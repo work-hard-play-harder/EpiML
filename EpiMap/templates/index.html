@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Home | Shilab web server</title>
+{% endblock %}
+{% block content %}
+    <div style="height:1500px;">
+        <main>
+            <section id="highlight" style="height: 300px">
+                <h2>IEpiMap: An open machine learning web service and model repository for the epistasis analysis in diseases and complex traits</h2>
+                <p >Our web server provides an easily used pipeline, through which biologists and biomedical researchers can train a specific model based on their own data or predict their new data based on a shared model in model repository, and visualize results using interactive visualizations. </p>
+            </section>
+            <section id="usage">
+                <h2>The easiest way to use</h2>
+                <p>Users will only need to upload their data to our server, and the results can be quickly predicted based on our models trained online. </p>
+                <br>
+
+            </section>
+            <section id="repository" style="height: 300px">
+                <h2>Model repository</h2>
+                <p>due to the challenges of replicating large models on large datasets, it is hard to achieve a good model following existing work. We will provide a model repository which is a set of unified containers with trained models. We will package the depending packages, configurations, model parameters, and training details in the container, which can be run on any operating system.</p>
+                
+            </section>
+            <section id="visulization" style="height: 300px">
+                <h2>Fancy visulization</h2>
+                <p>To help understand the results, we will provide interactive visualization of intermediate results and final results, with options to zoom in and out for diverse views of the data and results. We will provide links to metadata of omics data and external resources, such as gene annotations and biological pathways, to help interpret the results. </p>
+                
+            </section>
+            <section id="news" style="height: 300px">
+                <h2>News</h2>
+                <p>Jun. 5 2018 >> update log
+                </p></section>
+        </main>
+    </div>
+{% endblock %}

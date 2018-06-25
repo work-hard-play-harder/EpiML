@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block metas %}
+    {{ super() }}
+    <meta http-equiv="refresh" content="5">
+{% endblock %}
+{% block content %}
+    <div class="container" style="background-color:whitesmoke">
+
+        <h2>Your job is currently running ...</h2>
+        <hr>
+        <p style="">The job you submitted is being processed. The results will be shown on your screen when it is
+            finished. You also can retrieve the results by using the link:
+        <p align="center">
+            <a href={{ url_for('result', jobid=jobid, methods=methods) }}
+                       target="_blank">http://127.0.0.1:5000{{ url_for('result', jobid=jobid, methods=methods) }} </a>
+        </p>
+        <hr>
+        <h4><strong>Please note the following:</strong></h4>
+        <ul style="margin:0 auto">
+            <li style="line-height:30px">This page will be reloaded for each 5 seconds. You also can press
+                Refresh or Reload on your browser at any time to check if results are ready.
+            </li>
+            <li style="line-height:30px">You may press CTRL + D to bookmark this page to view your results
+                later.
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}

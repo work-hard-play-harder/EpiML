@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Jobs | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div>
+        <h2>Jobs</h2>
+        <p>This page lists all submitted jobs. There are total {{ jobs|length }} jobs</p>
+        <hr>
+
+        <table class="table table-hover table-condense">
+            <thead>
+            <tr class="bg-white">
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Selected Methods</th>
+                <th>Submit time</th>
+                <th>Running status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for job in jobs %}
+                {% if loop.index % 2 == 0 %}
+                    <tr class="bg-info">
+                {% else %}
+                    <tr class="bg-success">
+                {% endif %}
+                <td>{{ loop.index0 + 1 }}</td>
+                <td>{{ job.jobname }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ job.selected_algorithm }}</td>
+                <td>{{ momentjs(job.timestamp).calendar() }} </td>
+
+                <td>{% if job.status==0 %}
+                        Waiting...
+                    {% elif job.status==1 %}
+                        Running...
+                    {% elif job.status==2 %}
+                        Done! Use time: {{ job.running_time }}
+                    {% else %}
+                        Don't exist!
+                    {% endif %}
+                </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

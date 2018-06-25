@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Profile | Shilab web server</title>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Profile</h2>
+        <p>Please fill out the form below to change your account settings or your password. </p>
+        <hr>
+        <form class="form-horizontal" method="POST">
+            <h4>Personal Information</h4>
+            <div class="form-group ">
+                <label class="control-label col-sm-2" for="username">Username: </label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input name="username" type="text" class="form-control" id="username"
+                           value="{{ user.username }}" readonly="readonly" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email: </label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    <input name="email" type="email" class="form-control" id="email" value="{{ user.email }}"
+                           readonly="readonly" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="timestamp">Register Date: </label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    <input name="timestamp" type="text" class="form-control" id="timestamp" value={{ user.timestamp }} readonly="readonly"
+                           required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="address">Address: </label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input name="address" type="text" class="form-control" id="address" value="" readonly="readonly"
+                           required>
+                </div>
+            </div>
+            <hr>
+            <h4>Reset Password</h4>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="old_password">Old Password: </label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input name="old_password" type="password" class="form-control" id="old_password"
+                           placeholder="Old Password"
+                           required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="new_password">New Password: </label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input name="new_password" type="password" class="form-control" id="new_password"
+                           placeholder="New Password"
+                           required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="confirm_password">Confirm Password: </label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input name="confirm_password" type="password" class="form-control" id="confirm_password"
+                           placeholder="Confirm Password" required onkeyup="validatePassword();returnFalse()">
+                    <span id="confirmMessage" class="confirmMessage"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button name="submit" id="submit" type="submit" class="btn btn-default">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

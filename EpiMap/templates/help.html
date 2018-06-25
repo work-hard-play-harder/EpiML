@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Help | Shilab web server</title>
+{% endblock %}
+{% block content %}
+    <div class="col-sm-3">
+        <ul class="nav nav-stacked nav-pills hidden-xs affix">
+            <h2>Help</h2>
+            <hr>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </div>
+    <div class="col-sm-9" style="height:1500px;">
+        <main>
+            <section class="anchor" id="introduction" style="height: 300px">
+                <h2>Introduction</h2>
+                <p>This is a free web serivce anchor_fixedfavoidContentHiddenor predicting by using LASSO.</p>
+            </section>
+
+            <section class="anchor" id="publications" style="height: 300px">
+                <h2>Publications</h2>
+                <p>This web service is built upon following several papaers:</p>
+                <ul>
+                    <li>First paper</li>
+                    <li>Second paer</li>
+                </ul>
+            </section>
+            <section class="anchor" id="contact" style="height: 300px">
+                <h2>Contact</h2>
+                <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
+                </p></section>
+        </main>
+    </div>
+{% endblock %}
