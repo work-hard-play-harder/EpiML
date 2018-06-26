@@ -6,7 +6,15 @@
 {% block styles %}
     {{ super() }}
     <style>
+        /*
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+        */
+        .hiddenRow {
+            padding: 0 !important;
+        }
+        .table-hover tbody .tr_hover:hover td, .table-hover tbody .tr_hover:hover th{
             background-color: coral;
         }
     </style>
@@ -22,7 +30,6 @@
             <tr class="bg-white">
                 <th>#</th>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Selected Methods</th>
                 <th>Submit time</th>
                 <th>Running status</th>
@@ -30,17 +37,16 @@
             </thead>
             <tbody>
             {% for job in jobs %}
+
                 {% if loop.index % 2 == 0 %}
-                    <tr class="bg-info">
+                    <tr class="bg-info accordion-toggle tr_hover" data-toggle="collapse" data-target="#row{{ loop.index0 + 1 }}" data-collapsed-icon="arrow-d">
                 {% else %}
-                    <tr class="bg-success">
+                    <tr class="bg-success accordion-toggle tr_hover" data-toggle="collapse" data-target="#row{{ loop.index0 + 1 }}">
                 {% endif %}
                 <td>{{ loop.index0 + 1 }}</td>
                 <td>{{ job.jobname }}</td>
-                <td>{{ job.description }}</td>
                 <td>{{ job.selected_algorithm }}</td>
                 <td>{{ momentjs(job.timestamp).calendar() }} </td>
-
                 <td>{% if job.status==0 %}
                         Waiting...
                     {% elif job.status==1 %}
@@ -51,6 +57,19 @@
                         Don't exist!
                     {% endif %}
                 </td>
+                </tr>
+                <tr>
+                    <td class="hiddenRow" colspan="5">
+                        <div class="accordian-body collapse" id="row{{ loop.index0 + 1 }}">
+                            <p align="center"><strong>Job Description</strong></p>
+                            <p>{{ job.description }}</p>
+                            <hr>
+                            <div align="center">
+                                <button class="submit" name="submit" value="{{ job.id }}" >View Results</button>
+                            </div>
+                            <p></p>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -5,21 +5,34 @@
 {% endblock %}
 {% block content %}
     <div>
-        <h2>Log In</h2>
+        <h2>Verify Your Security Code</h2>
+        <p>For your data security, please verify security code, which should be sent to you via email.</p>
         <hr>
         <form class="form-horizontal" method="POST">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="email">Email:</label>
                 <div class="col-sm-4 input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" required>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="Enter Email" required>
                 </div>
             </div>
+            <!-- for password login-->
+            <!--
             <div class="form-group">
                 <label class="control-label col-sm-2" for="password">Password:</label>
                 <div class="col-sm-4 input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <input name="password" type="password" class="form-control" id="pwd" placeholder="Enter password"
+                           required>
+                </div>
+            </div>
+            -->
+            <!-- for security code login -->
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="security_code">Security Code:</label>
+                <div class="col-sm-4 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input name="security_code" type="password" class="form-control" id="security_code" placeholder="Enter Security Code"
                            required>
                 </div>
             </div>

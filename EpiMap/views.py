@@ -183,17 +183,20 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
 
+    # achieve next page link
+    next = request.args.get('next')
+    if not is_safe_url(next):
+        return abort(400)
+
+    # verify security code
     if request.method == 'POST':
         user = User.query.filter_by(email=request.form['email']).first()
-        if user is None or not user.check_password(request.form['password']):
+        if user is None or not user.check_security_code(request.form['security_code']):
             flash(message='Login Failed! Invalid Username or Password.', category='error')
-            return redirect(url_for('login'))
+            return redirect(next or url_for('index'))
         else:
             # login_user(user, remember=request.form['remember_me'])
             login_user(user)
-            next = request.args.get('next')
-            if not is_safe_url(next):
-                return abort(400)
             return redirect(next or url_for('index'))
 
     return render_template('login.html', title='Login')
@@ -211,7 +214,7 @@ def profile():
 def jobs():
     user = User.query.filter_by(id=current_user.id).first_or_404()
     jobs = user.jobs.order_by(desc('timestamp')).all()
-    print(jobs)
+
     return render_template('jobs.html', jobs=jobs)
 
 

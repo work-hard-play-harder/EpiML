@@ -26,6 +26,9 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def check_security_code(self, security_code):
+        return self.security_code==security_code
+
 
 @login.user_loader
 def user_loader(id):
