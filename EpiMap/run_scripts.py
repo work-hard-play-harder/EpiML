@@ -79,9 +79,7 @@ def check_job_status(jobid, methods):
                     flag += 1
 
     # updating job status as done
-    vars_locals = locals()
-    exec('methods=' + methods, globals(), vars_locals)  # tricks that execute python code from string
-    methods = vars_locals['methods']
+    methods=methods.split(';')
     print(methods)
     print(flag)
     if flag == len(methods):

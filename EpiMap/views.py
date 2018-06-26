@@ -85,39 +85,42 @@ def webserver():
 
             # send result link and security code via email
 
-            result_link = str(url_for('processing', jobid=job.id, methods=methods))
+            result_link = str(url_for('processing', jobid=job.id))
             send_email( recipients=[email],
                        result_link=result_link, security_code=security_code)
 
-            return redirect(url_for('processing', jobid=job.id, methods=methods))
+            return redirect(url_for('processing', jobid=job.id))
         else:
             flash("Only .txt and .csv file types are valid!")
     return render_template('webserver.html')
 
 
-@app.route('/processing/<jobid>/<methods>')
+@app.route('/processing/<jobid>')
 @login_required
-def processing(jobid, methods):
+def processing(jobid):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
     if job.status == 2:
-        return redirect(url_for('result', jobid=job.id, methods=methods))
+        return redirect(url_for('result', jobid=job.id))
     else:
+        methods = job.selected_algorithm
         check_job_status(jobid, methods)
-        return render_template('processing.html', jobid=job.id, methods=methods)
+        return render_template('processing.html', jobid=job.id)
 
 
-@app.route('/result/<jobid>/<methods>')
+@app.route('/result/<jobid>')
 @login_required
-def result(jobid, methods):
+def result(jobid):
     job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
                            '_'.join(['userid', str(current_user.id)]),
                            '_'.join(['jobid', str(jobid)]))
-
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
-    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=methods)
+
+    job=Job.query.filter_by(id=jobid).first_or_404()
+
+    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm)
 
 
 @app.route('/show_pic/<jobid>/<filename>')
@@ -209,9 +212,10 @@ def profile():
     return render_template('profile.html', user=user)
 
 
-@app.route('/user/jobs')
+@app.route('/user/jobs', methods=['GET', 'POST'])
 @login_required
 def jobs():
+
     user = User.query.filter_by(id=current_user.id).first_or_404()
     jobs = user.jobs.order_by(desc('timestamp')).all()
 
