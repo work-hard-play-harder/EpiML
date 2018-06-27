@@ -3,6 +3,18 @@
 {% block title %}
     <title>Result | Shilab web server</title>
 {% endblock %}
+{% block styles %}
+    {{ super() }}
+    {{ css_resources|indent(4)|safe }}
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    {{ js_resources|indent(4)|safe }}
+    {{ lasso_script|indent(4)|safe }}
+    {{ EBEN_script|indent(4)|safe }}
+    {{ Matrix_eQTL_script|indent(4)|safe }}
+{% endblock %}
+
 {% block content %}
     <div>
         <h2>Result</h2>
@@ -13,20 +25,22 @@
         {% if 'LASSO' in methods %}
             <h4>LASSO result</h4>
             <hr>
-            <img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}>
+            <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+            {{ lasso_div|indent(4)|safe }}
         {% endif %}
 
         {% if 'EBEN' in methods %}
             <h4>EBEN result</h4>
             <hr>
-            <img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}>
+            <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+            {{ EBEN_div|indent(4)|safe }}
         {% endif %}
 
         {% if 'Matrix_eQTL' in methods %}
             <h4>Matrix eQTL result</h4>
             <hr>
-            <img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}>
+            <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+            {{ Matrix_eQTL_div|indent(4)|safe }}
         {% endif %}
-
     </div>
 {% endblock %}

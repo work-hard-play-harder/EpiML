@@ -12,7 +12,7 @@ from bokeh.resources import INLINE
 
 # customized functions
 from EpiMap.run_scripts import call_scripts, create_job_folder, check_job_status
-from EpiMap.create_figures import create_pca_figure
+from EpiMap.create_figures import create_pca_figure, create_lasso_figure
 from EpiMap.db_tables import User, Job, Model
 from EpiMap.safety_check import is_safe_url, is_allowed_file, security_code_generator
 from EpiMap.email import send_email
@@ -118,7 +118,23 @@ def result(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm)
+    fit_file=os.path.join(job_dir,'lasso.fit')
+    lasso_figure = create_lasso_figure(fit_file)
+    lasso_script, lasso_div = components(lasso_figure)
+    EBEN_figure = create_lasso_figure(fit_file)
+    EBEN_script, EBEN_div = components(EBEN_figure)
+    Matrix_eQTL_figure = create_lasso_figure(fit_file)
+    Matrix_eQTL_script, Matrix_eQTL_div = components(Matrix_eQTL_figure)
+
+    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
+                           lasso_script=lasso_script,
+                           lasso_div=lasso_div,
+                           EBEN_script=EBEN_script,
+                           EBEN_div=EBEN_div,
+                           Matrix_eQTL_script=Matrix_eQTL_script,
+                           Matrix_eQTL_div=Matrix_eQTL_div,
+                           js_resources=INLINE.render_js(),
+                           css_resources=INLINE.render_css())
 
 
 @app.route('/show_pic/<jobid>/<filename>')
