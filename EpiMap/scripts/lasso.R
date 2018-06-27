@@ -25,7 +25,7 @@ y = read.csv(
 
 # basic call
 fit = glmnet(as.matrix(x),as.matrix(y), alpha = alpha)
-
+save(fit, file = file.path(workspace, 'lasso.fit'))
 # save plot
 png(file = file.path(workspace, 'lasso.png'))
 plot(fit, label = TRUE, xvar = 'lambda')
