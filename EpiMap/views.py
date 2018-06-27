@@ -53,9 +53,8 @@ def webserver():
                 security_code = user.security_code
             else:
                 security_code = security_code_generator()
-                user = User(username='anonymous', email=request.form['email'],
-                            security_code=security_code)
-                #user.set_password(request.form['password'])
+                user = User(username='anonymous', email=email, security_code=security_code)
+                # user.set_password(request.form['password'])
                 db.session.add(user)
                 db.session.commit()
             login_user(user)
@@ -84,9 +83,8 @@ def webserver():
             db.session.commit()
 
             # send result link and security code via email
-
             result_link = str(url_for('processing', jobid=job.id))
-            send_email( recipients=[email],
+            send_email(recipients=[email],
                        result_link=result_link, security_code=security_code)
 
             return redirect(url_for('processing', jobid=job.id))
@@ -118,7 +116,7 @@ def result(jobid):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
 
-    job=Job.query.filter_by(id=jobid).first_or_404()
+    job = Job.query.filter_by(id=jobid).first_or_404()
 
     return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm)
 
@@ -141,10 +139,8 @@ def show_pic(jobid, filename):
 
 @app.route('/pca', methods=['GET', 'POST'])
 def pca():
-    # prepare some data
     x = [1, 2, 3, 4, 5]
-    y = [6, 7, 2, 4, 5]
-
+    y = [6, 7, 8, 9, 0]
     boken_figure = create_pca_figure(x, y)
 
     script, div = components(boken_figure)
@@ -215,7 +211,6 @@ def profile():
 @app.route('/user/jobs', methods=['GET', 'POST'])
 @login_required
 def jobs():
-
     user = User.query.filter_by(id=current_user.id).first_or_404()
     jobs = user.jobs.order_by(desc('timestamp')).all()
 
