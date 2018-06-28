@@ -233,7 +233,23 @@ def jobs():
     return render_template('jobs.html', jobs=jobs)
 
 
-@app.route('/repository/')
+@app.route('/models', methods=['GET', 'POST'])
+@login_required
+def models():
+    models=Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
+    print(models)
+    jobnames = []
+    usernames = []
+    for model in models:
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
+        jobnames.append(jobname)
+        username = User.query.filter_by(id=model.user_id).first_or_404().username
+        usernames.append(username)
+
+    return render_template('models.html', models=models, jobnames=jobnames, usernames=usernames)
+
+
+@app.route('/repository')
 def repository():
     models = Model.query.filter_by(is_shared=True).order_by(desc(Model.timestamp)).all()
     print(models)
