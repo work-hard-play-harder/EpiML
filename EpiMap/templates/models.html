@@ -11,6 +11,22 @@
         }
     </style>
 {% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script>
+    // limit check number
+        $(document).ready(function () {
+            $("input[name='choose']").change(function () {
+                var maxAllowed = 3;
+                var cnt = $("input[name='choose']:checked").length;
+                if (cnt > maxAllowed) {
+                    $(this).prop("checked", "");
+                    alert('Select maximum ' + maxAllowed + ' Models!');
+                }
+            });
+        });
+    </script>
+{% endblock %}
 {% block content %}
     <div>
         <h2>Model Repository</h2>
@@ -28,6 +44,7 @@
                 <th>Training time</th>
                 <th>Job Name</th>
                 <th>Author Name</th>
+                <th>Choose</th>
             </tr>
             </thead>
             <tbody>
@@ -47,6 +64,7 @@
                 <td>{{ model.training_time }}</td>
                 <td>{{ jobnames[loop.index0] }}</td>
                 <td>{{ usernames[loop.index0] }}</td>
+                <td><input name="choose" type="checkbox" value="{{ model.id }}"></td>
                 </tr>
             {% endfor %}
             </tbody>
