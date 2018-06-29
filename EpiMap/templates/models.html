@@ -5,6 +5,7 @@
 {% endblock %}
 {% block styles %}
     {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
@@ -14,7 +15,7 @@
 {% block scripts %}
     {{ super() }}
     <script>
-    // limit check number
+        // limit check number
         $(document).ready(function () {
             $("input[name='choose']").change(function () {
                 var maxAllowed = 3;
@@ -26,62 +27,53 @@
             });
         });
     </script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#model_table').DataTable();
+        });
+    </script>
 {% endblock %}
 {% block content %}
     <div>
         <h2>Model Repository</h2>
         <p>This page lists all shared models. There are total {{ models|length }} shared models.</p>
         <hr>
-        <table class="table table-hover table-condense">
-            <thead>
-            <tr class="bg-white">
-                <th>#</th>
-                <th>Method</th>
-                <th>Description</th>
-                <th>Performance</th>
-                <th>Recall times</th>
-                <th>Submit time</th>
-                <th>Training time</th>
-                <th>Job Name</th>
-                <th>Author Name</th>
-                <th>Choose</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for model in models %}
-                {% if loop.index % 2 == 0 %}
-                    <tr class="bg-info">
-                {% else %}
-                    <tr class="bg-success">
-                {% endif %}
-                <td>{{ loop.index0 + 1 }}</td>
-
-                <td>{{ model.algorithm }}</td>
-                <td>{{ model.description }}</td>
-                <td>{{ model.performance }}</td>
-                <td>{{ model.recall_times }}</td>
-                <td>{{ momentjs(model.timestamp).calendar() }} </td>
-                <td>{{ model.training_time }}</td>
-                <td>{{ jobnames[loop.index0] }}</td>
-                <td>{{ usernames[loop.index0] }}</td>
-                <td><input name="choose" type="checkbox" value="{{ model.id }}"></td>
+        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+            <table class=" table-hover table-condense stripe" id="model_table" data-page-length='25' >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Method</th>
+                    <th>Description</th>
+                    <th>Performance</th>
+                    <th>Recall times</th>
+                    <th>Submit time</th>
+                    <th>Training time</th>
+                    <th>Job Name</th>
+                    <th>Author Name</th>
+                    <th>Choose</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
+                </thead>
+                <tbody>
+                {% for model in models %}
+                    <tr>
+                        <td>{{ loop.index0 + 1 }}</td>
+
+                        <td>{{ model.algorithm }}</td>
+                        <td>{{ model.description }}</td>
+                        <td>{{ model.performance }}</td>
+                        <td>{{ model.recall_times }}</td>
+                        <td>{{ momentjs(model.timestamp).calendar() }} </td>
+                        <td>{{ model.training_time }}</td>
+                        <td>{{ jobnames[loop.index0] }}</td>
+                        <td>{{ usernames[loop.index0] }}</td>
+                        <td><input name="choose" type="checkbox" value="{{ model.id }}"></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
     </div>
 {% endblock %}

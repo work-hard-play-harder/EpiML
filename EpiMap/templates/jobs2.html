@@ -9,20 +9,12 @@
     <style>
         .table-hover tbody .tr_hover:hover td, .table-hover tbody .tr_hover:hover th {
             background-color: coral;
+            cursor: pointer;
         }
 
-        td {
-            height: 50px;
+        .hiddenRow {
+            padding: 0 !important;
         }
-
-        div.scrollable {
-            width: 100%;
-            max-height: 50px;
-            margin: 0;
-            padding: 0;
-            overflow: auto;
-        }
-
     </style>
 {% endblock %}
 {% block scripts %}
@@ -44,12 +36,10 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th width="10%">Name</th>
-                <th width="15%">Selected Methods</th>
-                <th>Description</th>
-                <th width="11%">Submit time</th>
-                <th width="12%">Running status</th>
-                <th>View Results</th>
+                <th>Name</th>
+                <th>Selected Methods</th>
+                <th>Submit time</th>
+                <th>Running status</th>
             </tr>
             </thead>
             <tbody>
@@ -58,29 +48,35 @@
                     data-target="#row{{ loop.index0 + 1 }}">
                     <td>{{ loop.index0 + 1 }}</td>
                     <td>{{ job.jobname }}</td>
-                    <td>
-                        <div class="scrollable">{{ job.selected_algorithm }}</div>
-                    </td>
-                    <td>
-                        <div class="scrollable">{{ job.description }}</div>
-                    </td>
+                    <td>{{ job.selected_algorithm }}</td>
                     <td>{{ momentjs(job.timestamp).calendar() }} </td>
                     <td>{% if job.status==0 %}
                         Waiting...
                     {% elif job.status==1 %}
                         Running...
                     {% elif job.status==2 %}
-                        Done! <br/> Use time: {{ job.running_time }}
+                        Done! Use time: {{ job.running_time }}
                     {% else %}
                         Don't exist!
                     {% endif %}
                     </td>
-                    <td>
-                        <a href="{{ url_for('result',jobid=job.id) }}">
-                            <button name="submit" type="submit" class="btn btn-default" value="{{ job.id }}">
-                                View Results
-                            </button>
-                        </a>
+                </tr>
+                <tr>
+                    <td class="hiddenRow" colspan="5">
+                        <div class="accordian-body collapse" id="row{{ loop.index0 + 1 }}">
+                            <div class="col-sm-10">
+                                <p align="center"><strong>Job Description</strong></p>
+                                <p>{{ job.description }}</p>
+                            </div>
+                            <div class="col-sm-2" align="center" style="vertical-align: middle; display: table-cell">
+                                <a href="{{ url_for('result',jobid=job.id) }}">
+                                    <button name="submit" type="submit" class="btn btn-default" value="{{ job.id }}">
+                                        View Results
+                                    </button>
+                                </a>
+                            </div>
+                            <p></p>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

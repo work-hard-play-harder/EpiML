@@ -286,3 +286,4 @@ def page_not_found(error):
     resp = make_response(render_template('page_not_found.html'), 404)
     resp.headers['X-Something'] = 'A value'
     return resp
+
