@@ -1,4 +1,5 @@
 import os
+import json
 import time
 from EpiMap import app, db
 
@@ -93,6 +94,11 @@ def webserver():
     return render_template('webserver.html')
 
 
+@app.route('/predict')
+@login_required
+def predict():
+    return render_template('predict.html')
+
 @app.route('/processing/<jobid>')
 @login_required
 def processing(jobid):
@@ -118,7 +124,7 @@ def result(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    fit_file=os.path.join(job_dir,'lasso.fit')
+    fit_file = os.path.join(job_dir, 'lasso.fit')
     lasso_figure = create_lasso_figure(fit_file)
     lasso_script, lasso_div = components(lasso_figure)
     EBEN_figure = create_lasso_figure(fit_file)
@@ -236,8 +242,12 @@ def jobs():
 @app.route('/models', methods=['GET', 'POST'])
 @login_required
 def models():
-    models=Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
-    print(models)
+    if request.method == 'POST':
+        choosed_models = request.form.getlist('id[]')
+        print(choosed_models)
+
+    models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
+    # print(models)
     jobnames = []
     usernames = []
     for model in models:
@@ -286,4 +296,3 @@ def page_not_found(error):
     resp = make_response(render_template('page_not_found.html'), 404)
     resp.headers['X-Something'] = 'A value'
     return resp
-

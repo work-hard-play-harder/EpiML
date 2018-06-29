@@ -21,16 +21,7 @@
     {{ Matrix_eQTL_script|indent(4)|safe }}
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#performance_table').DataTable();
-        });
-        $('#performance_table').DataTable({
-            paging: false,
-            searching: false,
-            autoWidth: false
-        });
-    </script>
+
 {% endblock %}
 
 {% block content %}
@@ -41,7 +32,7 @@
         <p>This page show the result output by various models.</p>
         <p>The job {{ jobid }} is finished, and the results are shown in following </p>
         <h3>Performance</h3>
-        <div class="col-sm-12">
+        <div class="container">
             <div class="col-sm-6">
                 <table class="table table-hover stripe">
                     <thead>
@@ -71,32 +62,32 @@
         <div>You can download the result <a href="#">here</a></div>
 
         <h3>Visulization</h3>
-        <div class="col-sm-12">
+        <div class="container">
 
             {% if 'LASSO' in methods %}
-                <div class="col-sm-6">
-                <h4>LASSO result</h4>
+                <div class="col-sm-6" style="padding: 5px"  align="center">
+                    <h4>LASSO result</h4>
 
-                <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
-                {{ lasso_div|indent(4)|safe }}
+                    <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+                    {{ lasso_div|indent(4)|safe }}
                 </div>
             {% endif %}
 
             {% if 'EBEN' in methods %}
-                <div class="col-sm-6">
-                <h4>EBEN result</h4>
+                <div class="col-sm-6" style="padding: 5px"  align="center">
+                    <h4>EBEN result</h4>
 
-                <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
-                {{ EBEN_div|indent(4)|safe }}
+                    <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+                    {{ EBEN_div|indent(4)|safe }}
                 </div>
             {% endif %}
 
             {% if 'Matrix_eQTL' in methods %}
-                <div class="col-sm-6">
-                <h4>Matrix eQTL result</h4>
+                <div class="col-sm-6" style="padding: 5px" align="center">
+                    <h4>Matrix eQTL result</h4>
 
-                <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
-                {{ Matrix_eQTL_div|indent(4)|safe }}
+                    <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+                    {{ Matrix_eQTL_div|indent(4)|safe }}
                 </div>
             {% endif %}
         </div>

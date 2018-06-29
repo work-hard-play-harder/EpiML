@@ -2,7 +2,6 @@ from bokeh.models import HoverTool, FactorRange, Range1d
 from bokeh.plotting import figure
 from bokeh.palettes import d3
 
-
 import numpy as np
 from sklearn import linear_model, decomposition, datasets
 
@@ -10,6 +9,7 @@ from bokeh.util.string import encode_utf8
 
 import rpy2.robjects as robjects
 from rpy2.robjects.packages import importr
+
 
 def create_pca_figure(x, y):
     TOOLS = "crosshair,pan,wheel_zoom,box_zoom,reset,box_select,lasso_select,hover"
@@ -51,10 +51,12 @@ def create_lasso_figure(fit_file):
     lasso_beta = np.array(robjects.r['as.matrix'](lasso_beta))
     print(lasso_beta[0])
 
-    plot= figure(tools=TOOLS,
+    plot = figure(tools=TOOLS,
                   title='LASSO coefficients',
                   x_axis_label='Log Lambda',
-                  y_axis_label='Coefficients')
+                  y_axis_label='Coefficients',
+                  plot_width=500,
+                  plot_height=500)
 
     colors = d3['Category20'][20]
     for i, color in zip(range(20), colors):

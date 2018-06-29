@@ -6,6 +6,12 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
@@ -29,10 +35,63 @@
     </script>
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf8"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#model_table').DataTable();
+            var table = $('#model_table').DataTable({
+                'columnDefs': [{
+                    'targets': 0,
+                    'checkboxes': {
+                        'selectRow': true
+                    },
+                    'searchable': false,
+                    'orderable': false,
+                }],
+                'select': {
+                    'style': 'multi'
+                }
+            });
+
+            // handle row click
+            $('#form_model tbody').on('click', 'tr', function () {
+                var count = table.rows({selected: true}).count();
+                if (count >= 3) {
+                    alert(count);
+                }
+            });
+
+            // Handle form submission event
+            $('#form_model').on('submit', function (e) {
+                var form = this;
+                var rows_selected = table.column(0).checkboxes.selected();
+                // Iterate over all selected checkboxes
+                $.each(rows_selected, function (index, rowId) {
+                    // Create a hidden element
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'id[]')
+                            .val(rowId)
+                    );
+                });
+
+                // FOR DEMONSTRATION ONLY
+                // The code below is not needed in production
+
+                // Output form data to a console
+                $('#example-console-rows').text(rows_selected.join(","));
+
+                // Output form data to a console
+                $('#example-console-form').text($(form).serialize());
+            });
         });
+
     </script>
 {% endblock %}
 {% block content %}
@@ -40,10 +99,11 @@
         <h2>Model Repository</h2>
         <p>This page lists all shared models. There are total {{ models|length }} shared models.</p>
         <hr>
-        <form class="form-horizontal" method="post" enctype="multipart/form-data">
-            <table class=" table-hover table-condense stripe" id="model_table" data-page-length='25' >
+        <form name="form_model" id="form_model" method="post" enctype="multipart/form-data">
+            <table class="table-hover table-condense stripe" id="model_table" data-page-length='25'>
                 <thead>
                 <tr>
+                    <th></th>
                     <th>#</th>
                     <th>Method</th>
                     <th>Description</th>
@@ -53,14 +113,14 @@
                     <th>Training time</th>
                     <th>Job Name</th>
                     <th>Author Name</th>
-                    <th>Choose</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for model in models %}
                     <tr>
+                        <td> {{ model.id }}</td>
+                        <!-- input checkbox value-->
                         <td>{{ loop.index0 + 1 }}</td>
-
                         <td>{{ model.algorithm }}</td>
                         <td>{{ model.description }}</td>
                         <td>{{ model.performance }}</td>
@@ -69,11 +129,23 @@
                         <td>{{ model.training_time }}</td>
                         <td>{{ jobnames[loop.index0] }}</td>
                         <td>{{ usernames[loop.index0] }}</td>
-                        <td><input name="choose" type="checkbox" value="{{ model.id }}"></td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            <hr>
+
+            <p>Press <b>Submit</b> and check console for URL-encoded form data that would be submitted.</p>
+
+            <p>
+                <button id="submit" type="submit">Submit</button>
+            </p>
+
+            <p><b>Selected rows data:</b></p>
+            <pre id="example-console-rows"></pre>
+
+            <p><b>Form data as submitted to the server:</b></p>
+            <pre id="example-console-form"></pre>
         </form>
     </div>
 {% endblock %}
