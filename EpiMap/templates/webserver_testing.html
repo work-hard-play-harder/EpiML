@@ -3,37 +3,89 @@
 {% block title %}
     <title>Web Server | Shilab web server</title>
 {% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+
+    <style>
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+    </style>
+{% endblock %}
 {% block scripts %}
     {{ super() }}
     <script>
-        function ShowHideCV(chkCV) {
-            var fold_number = document.getElementById("fold_number");
-            fold_number.style.visibility = chkCV.checked ? "visible" : "hidden";
-        }
-    </script>
-    <script type="text/javascript">
+        // limit check number
         $(document).ready(function () {
-            var arr = new Array();
-            $("select[multiple]").change(function () {
-                $(this).find("option:selected")
-                if ($(this).find("option:selected").length > 3) {
-                    $(this).find("option").removeAttr("selected");
-                    $(this).val(arr);
-                }
-                else {
-                    arr = new Array();
-                    $(this).find("option:selected").each(function (index, item) {
-                        arr.push($(item).val());
-                    });
+            $("input[name='choose']").change(function () {
+                var maxAllowed = 3;
+                var cnt = $("input[name='choose']:checked").length;
+                if (cnt > maxAllowed) {
+                    $(this).prop("checked", "");
+                    alert('Select maximum ' + maxAllowed + ' Models!');
                 }
             });
         });
+    </script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#model_table').DataTable({
+
+                'columnDefs': [{
+                    'targets': 0,
+                    'checkboxes': {
+                        'selectRow': true
+                    },
+                    'searchable': false,
+                    'orderable': false,
+                }],
+                'select': {
+                    'style': 'multi'
+                }
+            });
+
+            // handle row click
+            table.on('select', function (e, dt, type, ix) {
+                var selected = dt.rows({selected: true});
+                if (selected.count() > 3) {
+                    dt.rows(ix).deselect();
+                }
+            });
+
+            // Handle form submission event
+            $('#model_table').on('submit', function (e) {
+                var form = this;
+                var rows_selected = table.column(0).checkboxes.selected();
+                // Iterate over all selected checkboxes
+                $.each(rows_selected, function (index, rowId) {
+                    // Create a hidden element
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'id[]')
+                            .val(rowId)
+                    );
+                });
+            });
+        });
+
     </script>
 {% endblock %}
 {% block content %}
     <div>
         <h2>Web Server</h2>
-        webserver.html
         <hr>
         <!-- Tab links-->
         <ul class="nav nav-tabs">
@@ -81,14 +133,36 @@
                     </div>
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-2" for="methods">Choose Models:</label>
-                        <div class="col-sm-8">
-                            <select multiple>
+                        <div class="col-sm-10">
+                            <p>Select maximum 3 models</p>
+                            <table class="table-hover table-condense stripe" id="model_table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th>Job Name</th>
+                                    <th>Method</th>
+                                    <th>Performance</th>
+                                    <th>Recall times</th>
+                                    <th>Submit time</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 {% for model in models %}
-                                    <option value=" {{ model.id }}">{{ model.algorithm }} {{ model.performance }} {{ jobnames[loop.index0] }}</option>
-                                {% endfor %}
+                                    <tr>
+                                        <!-- input checkbox value-->
+                                        <td> {{ model.id }}</td>
+                                        <td>{{ loop.index0 + 1 }}</td>
+                                        <td>{{ jobnames[loop.index0] }}</td>
+                                        <td>{{ model.algorithm }}</td>
+                                        <td>{{ model.performance }}</td>
+                                        <td>{{ model.recall_times }}</td>
+                                        <td>{{ momentjs(model.timestamp).calendar() }} </td>
 
-                            </select>
-                        <p>* Hold down the Ctrl (windows) / Command (Mac) button to select multiple options. Limit to maximum 3 models</p>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 

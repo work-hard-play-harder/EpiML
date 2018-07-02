@@ -47,9 +47,7 @@
             var table = $('#model_table').DataTable({
                 'columnDefs': [{
                     'targets': 0,
-                    'checkboxes': {
-                        'selectRow': true
-                    },
+
                     'searchable': false,
                     'orderable': false,
                 }],
@@ -59,10 +57,10 @@
             });
 
             // handle row click
-            $('#form_model tbody').on('click', 'tr', function () {
-                var count = table.rows({selected: true}).count();
-                if (count >= 3) {
-                    alert(count);
+            table.on('select', function (e, dt, type, ix) {
+                var selected = dt.rows({selected: true});
+                if (selected.count() > 3) {
+                    dt.rows(ix).deselect();
                 }
             });
 
