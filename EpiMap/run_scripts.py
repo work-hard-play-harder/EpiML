@@ -89,3 +89,13 @@ def check_job_status(jobid, methods):
         job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
         db.session.add(job)
         db.session.commit()
+
+
+def load_results(filename):
+    content=[]
+    with open(filename,'r') as fin:
+        for line in fin:
+            line=line.strip().split()
+            content.append(line)
+
+    return content

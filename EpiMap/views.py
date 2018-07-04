@@ -12,7 +12,7 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 
 # customized functions
-from EpiMap.run_scripts import call_scripts, create_job_folder, check_job_status
+from EpiMap.run_scripts import call_scripts, create_job_folder, check_job_status, load_results
 from EpiMap.create_figures import create_pca_figure, create_lasso_figure
 from EpiMap.db_tables import User, Job, Model
 from EpiMap.safety_check import is_safe_url, is_allowed_file, security_code_generator
@@ -275,6 +275,12 @@ def result(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
+    results = load_results(os.path.join(job_dir, 'idma.txt'))
+
+    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm, results=results)
+
+    '''
+    # for visulization
     fit_file = os.path.join(job_dir, 'lasso.fit')
     lasso_figure = create_lasso_figure(fit_file)
     lasso_script, lasso_div = components(lasso_figure)
@@ -282,6 +288,7 @@ def result(jobid):
     EBEN_script, EBEN_div = components(EBEN_figure)
     Matrix_eQTL_figure = create_lasso_figure(fit_file)
     Matrix_eQTL_script, Matrix_eQTL_div = components(Matrix_eQTL_figure)
+    
 
     return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            lasso_script=lasso_script,
@@ -292,22 +299,7 @@ def result(jobid):
                            Matrix_eQTL_div=Matrix_eQTL_div,
                            js_resources=INLINE.render_js(),
                            css_resources=INLINE.render_css())
-
-
-@app.route('/show_pic/<jobid>/<filename>')
-@login_required
-def show_pic(jobid, filename):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                           '_'.join(['userid', str(current_user.id)]),
-                           '_'.join(['jobid', str(jobid)]))
-    if not os.path.exists(job_dir):
-        flash("Job doesn't exist!", category='error')
-        return redirect(request.url)
-
-    try:
-        return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
-    except Exception as e:
-        return str(e)
+    '''
 
 
 @app.route('/pca', methods=['GET', 'POST'])
@@ -447,3 +439,35 @@ def page_not_found(error):
     resp = make_response(render_template('page_not_found.html'), 404)
     resp.headers['X-Something'] = 'A value'
     return resp
+
+
+@app.route('/show_pic/<jobid>/<filename>')
+@login_required
+def show_pic(jobid, filename):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                           '_'.join(['userid', str(current_user.id)]),
+                           '_'.join(['jobid', str(jobid)]))
+    if not os.path.exists(job_dir):
+        flash("Job doesn't exist!", category='error')
+        return redirect(request.url)
+
+    try:
+        return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
+    except Exception as e:
+        return str(e)
+
+
+@app.route('/download_result/<jobid>/<filename>')
+@login_required
+def download_result(jobid, filename):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                           '_'.join(['userid', str(current_user.id)]),
+                           '_'.join(['jobid', str(jobid)]))
+    if not os.path.exists(job_dir):
+        flash("Job doesn't exist!", category='error')
+        return redirect(request.url)
+
+    try:
+        return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
+    except Exception as e:
+        return str(e)

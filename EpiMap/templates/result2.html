@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Result | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    {{ css_resources|indent(4)|safe }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <style>
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    {{ js_resources|indent(4)|safe }}
+    {{ lasso_script|indent(4)|safe }}
+    {{ EBEN_script|indent(4)|safe }}
+    {{ Matrix_eQTL_script|indent(4)|safe }}
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Results</h2>
+        <hr>
+
+        <p>This page show the result output by various models.</p>
+        <p>The job {{ jobid }} is finished, and the results are shown in following </p>
+        <h3>Performance</h3>
+        <div class="container">
+            <div class="col-sm-6">
+                <table class="table table-hover stripe">
+                    <thead>
+                    <tr>
+                        <th>Methods</th>
+                        <th>R^2</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>LASSO</td>
+                        <td>0.8</td>
+                    </tr>
+                    <tr>
+                        <td>EBEN</td>
+                        <td>0.9</td>
+                    </tr>
+                    <tr>
+                        <td>Matrix eQTL</td>
+                        <td>0.85</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6">performance comparison</div>
+        </div>
+        <div>You can download the result <a href="#">here</a></div>
+
+        <h3>Visulization</h3>
+        <div class="container">
+
+            {% if 'LASSO' in methods %}
+                <div class="col-sm-6" style="padding: 5px"  align="center">
+                    <h4>LASSO result</h4>
+
+                    <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+                    {{ lasso_div|indent(4)|safe }}
+                </div>
+            {% endif %}
+
+            {% if 'EBEN' in methods %}
+                <div class="col-sm-6" style="padding: 5px"  align="center">
+                    <h4>EBEN result</h4>
+
+                    <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+                    {{ EBEN_div|indent(4)|safe }}
+                </div>
+            {% endif %}
+
+            {% if 'Matrix_eQTL' in methods %}
+                <div class="col-sm-6" style="padding: 5px" align="center">
+                    <h4>Matrix eQTL result</h4>
+
+                    <!--<img style=" display:block; margin:auto;" src={{ url_for('show_pic',jobid=jobid,filename='lasso.png') }}> -->
+                    {{ Matrix_eQTL_div|indent(4)|safe }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

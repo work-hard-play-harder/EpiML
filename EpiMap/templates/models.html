@@ -47,7 +47,9 @@
             var table = $('#model_table').DataTable({
                 'columnDefs': [{
                     'targets': 0,
-
+                    'checkboxes': {
+                        'selectRow': true
+                    },
                     'searchable': false,
                     'orderable': false,
                 }],
