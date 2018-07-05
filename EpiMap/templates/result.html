@@ -6,6 +6,8 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
@@ -16,23 +18,33 @@
     {{ super() }}
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#main_effect').DataTable();
+            $('#epis_effect').DataTable();
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
     <div>
         <h2>Results</h2>
         <hr>
-        <p>Your job is finished, and the results are shown in following. Result can be downloaded <a
-                href="{{ url_for('download_result',jobid=jobid, filename='idma.txt') }}">here</a></p>
+        <p>Your job is finished, and the results are shown in following. Result can be downloaded
+            <a href="{{ url_for('download_result',jobid=jobid, filename='EBEN.main_result.txt') }}">Main effect</a>,
+            <a href="{{ url_for('download_result',jobid=jobid, filename='EBEN.epis_result.txt') }}">Epistatic effect</a>
+        </p>
 
         <div class="container">
-            <div class="col-sm-10">
-                <table class="table table-hover stripe">
+            <h4>Main Effect</h4>
+            <div>
+                <table id="main_effect" name="main_effect" class="table table-hover stripe">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>feature index1</th>
-                        <th>feature index2</th>
+                        <th>Main effect features</th>
                         <th>coefficent value</th>
                         <th>posterior variance</th>
                         <th>t-value</th>
@@ -40,7 +52,36 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for line in results %}
+                    {% for line in EBEN_main_result %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ line[0] }}</td>
+                            <td>{{ line[1] }}</td>
+                            <td>{{ line[2] }}</td>
+                            <td>{{ line[3] }}</td>
+                            <td>{{ line[4] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h4>Epistatic Effect</h4>
+                <table id="epis_effect" name="epis_effect" class="table table-hover stripe">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Epistasic effect features1</th>
+                        <th>Epistasic effect features2</th>
+                        <th>coefficent value</th>
+                        <th>posterior variance</th>
+                        <th>t-value</th>
+                        <th>p-value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line in EBEN_epis_result %}
                         <tr>
                             <td>{{ loop.index }}</td>
                             <td>{{ line[0] }}</td>
@@ -54,12 +95,12 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
 
-
-        <h3>Visulization</h3>
+        <h3>Visualization</h3>
         <div class="container">
+
+
 
 
         </div>

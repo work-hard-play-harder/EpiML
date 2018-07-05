@@ -9,10 +9,10 @@ workspace <- args[1]
 x_filename <- args[2]
 y_filename <- args[3]
 
-cat('EBEN_train parameters:','\n')
-cat('\tworkspace:',workspace,'\n')
-cat('\tx_filename:',x_filename,'\n')
-cat('\ty_filename:',y_filename,'\n')
+cat('EBEN_train parameters:', '\n')
+cat('\tworkspace:', workspace, '\n')
+cat('\tx_filename:', x_filename, '\n')
+cat('\ty_filename:', y_filename, '\n')
 
 x <- read.table(
   file = file.path(workspace, x_filename),
@@ -30,39 +30,38 @@ sprintf('y size: (%d, %d)', nrow(y), ncol(y))
 
 y <- as.matrix(y)
 target1 <- log(as.numeric(y), base = exp(1))
-cat('Transform pathological stages into natural log values','\n')
+cat('Transform pathological stages into natural log values', '\n')
 
-x<-t(x)
+x <- t(x)
 x11 <- matrix(as.numeric(x), nrow(x))
 
-cat('Filter the miRNA data with more than 20% missing data','\n')
+cat('Filter the miRNA data with more than 20% missing data', '\n')
 x1 <- NULL
 for (i in 1:nrow(x11)) {
-  if (sum(as.numeric(x11[i,]) != 0)) {
-    x1 <- rbind(x1, x[i,])
+  if (sum(as.numeric(x11[i, ]) != 0)) {
+    x1 <- rbind(x1, x[i, ])
   }
 }
 x2 <- NULL
 criteria <- trunc((ncol(x1) - 1) * 0.8)
 for (i in 1:nrow(x1)) {
   if (sum(as.numeric(x1[i, (2:ncol(x1))]) != 0) > criteria) {
-    x2 <- rbind(x2, x1[i,])
-    
+    x2 <- rbind(x2, x1[i, ])
   }
 }
 colnames(x2) <- colnames(x)
 
-cat('Quantile normalization','\n')
+cat('Quantile normalization', '\n')
 x3 <- x2
 for (sl in 1:nrow(x3)) {
-  mat = matrix(as.numeric(x3[sl,]), 1)
+  mat = matrix(as.numeric(x3[sl, ]), 1)
   mat = t(apply(mat, 1, rank, ties.method = "average"))
   mat = qnorm(mat / (ncol(x3) + 1))
-  x3[sl,] = mat
+  x3[sl, ] = mat
 }
 rm(sl, mat)
 
-cat('Main effect estimated using EBEN','\n')
+cat('Main effect estimated using EBEN', '\n')
 x4 <- matrix(as.numeric(x3), nrow = nrow(x3))
 CV = EBelasticNet.GaussianCV(t(x4), target1, nFolds = 5, Epis = "no")
 Blup1 = EBelasticNet.Gaussian(
@@ -73,16 +72,16 @@ Blup1 = EBelasticNet.Gaussian(
   Epis = "no",
   verbose = 0
 )
-Blup_main_sig = Blup1$weight[which(Blup1$weight[, 6] <= 0.05),]
+Blup_main_sig = Blup1$weight[which(Blup1$weight[, 6] <= 0.05), ]
 
-cat('Substract the main effect','\n')
+cat('Substract the main effect', '\n')
 x5 <- t(x4)
 index_main <- Blup_main_sig[, 1]
 effect_main <- Blup_main_sig[, 3]
 target_new <-
   as.matrix(target1) - x5[, index_main] %*% (as.matrix(effect_main))
 
-cat('Epistatic effect estimated using EBEN','\n')
+cat('Epistatic effect estimated using EBEN', '\n')
 CV_epis = EBelasticNet.GaussianCV(t(x4), target_new, nFolds = 5, Epis = "yes")
 Blup_epis = EBelasticNet.Gaussian(
   t(x4),
@@ -92,10 +91,10 @@ Blup_epis = EBelasticNet.Gaussian(
   Epis = "yes",
   verbose = 0
 )
-Blup_epis_sig = Blup_epis$weight[which(Blup_epis$weight[, 6] <= 0.05),]
+Blup_epis_sig = Blup_epis$weight[which(Blup_epis$weight[, 6] <= 0.05), ]
 
 
-cat('Final run','\n')
+cat('Final run', '\n')
 mir <- as.matrix(t(x3))
 mir <- matrix(as.numeric(mir), nrow = nrow(mir))
 main_epi_miR_id = rbind(Blup_main_sig[, 1:2], Blup_epis_sig[, 1:2])
@@ -113,10 +112,10 @@ for (i in 1:nrow(main_epi_miR_id)) {
 
 new_x7 <- t(new_x6)
 for (sl in 1:nrow(new_x7)) {
-  mat = matrix(as.numeric(new_x7[sl, ]), 1)
+  mat = matrix(as.numeric(new_x7[sl,]), 1)
   mat = t(apply(mat, 1, rank, ties.method = "average"))
   mat = qnorm(mat / (ncol(new_x7) + 1))
-  new_x7[sl, ] = mat
+  new_x7[sl,] = mat
 }
 rm(sl, mat)
 
@@ -130,17 +129,36 @@ Blup_full = EBelasticNet.Gaussian(
   Epis = "no",
   verbose = 0
 )
-Blup_full_sig =  Blup_full$weight[which(Blup_full$weight[, 6] <= 0.05), ]
+Blup_full_sig =  Blup_full$weight[which(Blup_full$weight[, 6] <= 0.05),]
 
 idma <- matrix(NA, nrow = nrow(Blup_full_sig), 6)
 for (i in 1:nrow(Blup_full_sig)) {
-  idma[i, ] = c(main_epi_miR_id[Blup_full_sig[i, 1], 1:2], Blup_full_sig[i, 3:6])
+  idma[i,] = c(main_epi_miR_id[Blup_full_sig[i, 1], 1:2], Blup_full_sig[i, 3:6])
 }
 
-cat('Ouput the final result including main and epistatic effect','\n')
+main_result <- NULL
+epsi_result <- NULL
+for (i in 1:nrow(idma)) {
+  if (idma[i, 1] == idma[i, 2]) {
+    main_result <- rbind(main_result, c(rownames(x)[idma[i, 1]],idma[i,3:6]))
+  }
+  if (idma[i, 1] != idma[i, 2]) {
+    epsi_result <- rbind(epsi_result, c(rownames(x)[idma[i, 1]],rownames(x)[idma[i, 2]],idma[i,3:6]))
+  }
+}
+
+cat('Ouput the final result including main and epistatic effect', '\n')
 write.table(
-  idma,
-  file = file.path(workspace, 'idma.txt'),
+  main_result,
+  file = file.path(workspace, 'EBEN.main_result.txt'),
+  quote = F,
+  sep = '\t',
+  row.names = F,
+  col.names = F
+)
+write.table(
+  epsi_result,
+  file = file.path(workspace, 'EBEN.epis_result.txt'),
   quote = F,
   sep = '\t',
   row.names = F,

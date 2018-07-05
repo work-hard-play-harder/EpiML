@@ -1,4 +1,5 @@
 import os
+import shutil
 import json
 import time
 from EpiMap import app, db
@@ -276,9 +277,11 @@ def result(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    results = load_results(os.path.join(job_dir, 'idma.txt'))
+    EBEN_main_result = load_results(os.path.join(job_dir, 'EBEN.main_result.txt'))
+    EBEN_epis_result = load_results(os.path.join(job_dir, 'EBEN.epis_result.txt'))
 
-    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm, results=results)
+    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
+                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result)
 
     '''
     # for visulization
@@ -320,6 +323,11 @@ def jobs():
             print(job)
             db.session.delete(job)
 
+            # delete job_dir
+            job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                                   '_'.join(['userid', str(current_user.id)]),
+                                   '_'.join(['jobid', str(id)]))
+            shutil.rmtree(job_dir)
         db.session.commit()
 
     user = User.query.filter_by(id=current_user.id).first_or_404()
@@ -342,7 +350,6 @@ def models():
     models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
     # print(models)
     jobnames = []
-    usernames = []
     for model in models:
         jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
         jobnames.append(jobname)
@@ -485,7 +492,6 @@ def download_result(jobid, filename):
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
-
     try:
         return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
     except Exception as e:
