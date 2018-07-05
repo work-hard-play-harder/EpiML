@@ -14,7 +14,7 @@ class Config(object):
     ALLOWED_EXTENSIONS = set(['txt', 'csv'])
 
     # for run scripts
-    EBEN_SCRIPT = os.path.join(basedir,'EpiMap','scripts','EBEN.R')
+    EBEN_SCRIPT = os.path.join(basedir,'EpiMap','scripts','EBEN_train.R')
     LASSO_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'lasso.R')
     MATRIX_EQTL_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'Matrix_eQTL.R')
 

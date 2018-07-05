@@ -1,32 +1,41 @@
 library('EBEN')
 
-#workspace <- '~/Downloads/EBEN-epistasis-master-4/'
-#x_filename <- 'bc_x.txt'
-#y_filename <- 'bc_y.txt'
+workspace <- '~/Downloads/EBEN-epistasis-master-4/'
+x_filename <- 'bc_x.txt'
+y_filename <- 'bc_y.txt'
 
 args <- commandArgs(trailingOnly = TRUE)
 workspace <- args[1]
 x_filename <- args[2]
 y_filename <- args[3]
 
+cat('EBEN_train parameters:','\n')
+cat('\tworkspace:',workspace,'\n')
+cat('\tx_filename:',x_filename,'\n')
+cat('\ty_filename:',y_filename,'\n')
+
 x <- read.table(
   file = file.path(workspace, x_filename),
   header = TRUE,
   row.names = 1
 )
+sprintf('x size: (%d, %d)', nrow(x), ncol(x))
 
 y <- read.table(
   file = file.path(workspace, y_filename),
   header = TRUE,
   row.names = 1
 )
+sprintf('y size: (%d, %d)', nrow(y), ncol(y))
+
 y <- as.matrix(y)
 target1 <- log(as.numeric(y), base = exp(1))
+cat('Transform pathological stages into natural log values','\n')
 
 x<-t(x)
 x11 <- matrix(as.numeric(x), nrow(x))
 
-## Filter the miRNA data with more than 20% missing data
+cat('Filter the miRNA data with more than 20% missing data','\n')
 x1 <- NULL
 for (i in 1:nrow(x11)) {
   if (sum(as.numeric(x11[i,]) != 0)) {
@@ -43,7 +52,7 @@ for (i in 1:nrow(x1)) {
 }
 colnames(x2) <- colnames(x)
 
-## Quantile normalization:
+cat('Quantile normalization','\n')
 x3 <- x2
 for (sl in 1:nrow(x3)) {
   mat = matrix(as.numeric(x3[sl,]), 1)
@@ -53,7 +62,7 @@ for (sl in 1:nrow(x3)) {
 }
 rm(sl, mat)
 
-## Main effect estimated using EBEN:
+cat('Main effect estimated using EBEN','\n')
 x4 <- matrix(as.numeric(x3), nrow = nrow(x3))
 CV = EBelasticNet.GaussianCV(t(x4), target1, nFolds = 5, Epis = "no")
 Blup1 = EBelasticNet.Gaussian(
@@ -66,14 +75,14 @@ Blup1 = EBelasticNet.Gaussian(
 )
 Blup_main_sig = Blup1$weight[which(Blup1$weight[, 6] <= 0.05),]
 
-## Substract the main effect:
+cat('Substract the main effect','\n')
 x5 <- t(x4)
 index_main <- Blup_main_sig[, 1]
 effect_main <- Blup_main_sig[, 3]
 target_new <-
   as.matrix(target1) - x5[, index_main] %*% (as.matrix(effect_main))
 
-## Epistatic effect estimated using EBEN:
+cat('Epistatic effect estimated using EBEN','\n')
 CV_epis = EBelasticNet.GaussianCV(t(x4), target_new, nFolds = 5, Epis = "yes")
 Blup_epis = EBelasticNet.Gaussian(
   t(x4),
@@ -86,7 +95,7 @@ Blup_epis = EBelasticNet.Gaussian(
 Blup_epis_sig = Blup_epis$weight[which(Blup_epis$weight[, 6] <= 0.05),]
 
 
-## Final run:
+cat('Final run','\n')
 mir <- as.matrix(t(x3))
 mir <- matrix(as.numeric(mir), nrow = nrow(mir))
 main_epi_miR_id = rbind(Blup_main_sig[, 1:2], Blup_epis_sig[, 1:2])
@@ -128,7 +137,7 @@ for (i in 1:nrow(Blup_full_sig)) {
   idma[i, ] = c(main_epi_miR_id[Blup_full_sig[i, 1], 1:2], Blup_full_sig[i, 3:6])
 }
 
-## Ouput the final result including main and epistatic effect
+cat('Ouput the final result including main and epistatic effect','\n')
 write.table(
   idma,
   file = file.path(workspace, 'idma.txt'),

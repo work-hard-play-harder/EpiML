@@ -6,32 +6,121 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css"
+          rel="stylesheet" type="text/css">
     <style>
-        .table-hover tbody .tr_hover:hover td, .table-hover tbody .tr_hover:hover th {
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
         }
 
-        td {
-            height: 50px;
+        table {
+            table-layout: fixed;
+            width: 100%;
         }
 
         div.scrollable {
             width: 100%;
-            max-height: 50px;
+            max-height: 100px;
             margin: 0;
             padding: 0;
             overflow: auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
-
     </style>
 {% endblock %}
 {% block scripts %}
     {{ super() }}
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#job_table').DataTable();
+            var table = $('#job_table').DataTable({
+                'columnDefs': [{
+                    'targets': 0,
+                    'checkboxes': {
+                        'selectRow': true
+                    },
+                    'searchable': false,
+                    'orderable': false,
+                }],
+                'select': {
+                    'style': 'multi'
+                },
+                'order': [[1, 'asc']],
+            });
+
+            $("#delete").on("click", function () {
+                var rows_selected = table.column(0).checkboxes.selected();
+                if (rows_selected.length == 0) {
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_WARNING,
+                        title: 'No job is selected',
+                        message: 'Please selected jobs to delete.',
+                        buttons: [{
+                            label: 'Close',
+                            action: function (dialogItself) {
+                                dialogItself.close();
+                            }
+                        }]
+                    });
+                } else {
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_DANGER,
+                        title: 'Delete selected jobs',
+                        message: 'Are you sure to permanently delete selected jobs? The related models are also ' +
+                        'be permanently deleted. It can\'t be recovered.',
+                        buttons: [{
+                            label: 'Delete',
+                            action: function () {
+                                $("#form_job").submit();
+                            }
+                        }, {
+                            label: 'Cancel',
+                            action: function (dialogItself) {
+                                dialogItself.close();
+                            }
+                        }]
+                    });
+                }
+                return false // !important, keep dialog blocking and prevent submit event
+            });
+
+            // Handle form submission event
+            $('#form_job').on('submit', function (e) {
+                var form = this;
+                var rows_selected = table.column(0).checkboxes.selected();
+
+                // Iterate over all selected checkboxes
+                $.each(rows_selected, function (index, rowId) {
+                    // Create a hidden element
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'id[]')
+                            .val(rowId)
+                    );
+                });
+
+                // FOR DEMONSTRATION ONLY
+                // The code below is not needed in production
+
+                // Output form data to a console
+                //$('#example-console-rows').text(rows_selected.join(","));
+
+                // Output form data to a console
+                //$('#example-console-form').text($(form).serialize());
+            });
         });
     </script>
 {% endblock %}
@@ -40,51 +129,63 @@
         <h2>Jobs</h2>
         <p>This page lists all submitted jobs. There are total {{ jobs|length }} jobs</p>
         <hr>
-        <table class="table-hover table-condense stripe" id="job_table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th width="10%">Name</th>
-                <th width="15%">Selected Methods</th>
-                <th>Description</th>
-                <th width="11%">Submit time</th>
-                <th width="12%">Running status</th>
-                <th>View Results</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for job in jobs %}
-                <tr class="tr_hover accordion-toggle collapsible" data-toggle="collapse"
-                    data-target="#row{{ loop.index0 + 1 }}">
-                    <td>{{ loop.index0 + 1 }}</td>
-                    <td>{{ job.jobname }}</td>
-                    <td>
-                        <div class="scrollable">{{ job.selected_algorithm }}</div>
-                    </td>
-                    <td>
-                        <div class="scrollable">{{ job.description }}</div>
-                    </td>
-                    <td>{{ momentjs(job.timestamp).calendar() }} </td>
-                    <td>{% if job.status==0 %}
-                        Waiting...
-                    {% elif job.status==1 %}
-                        Running...
-                    {% elif job.status==2 %}
-                        Done! <br/> Use time: {{ job.running_time }}
-                    {% else %}
-                        Don't exist!
-                    {% endif %}
-                    </td>
-                    <td>
-                        <a href="{{ url_for('result',jobid=job.id) }}">
-                            <button name="submit" type="submit" class="btn btn-default" value="{{ job.id }}">
-                                View Results
-                            </button>
-                        </a>
-                    </td>
+        <form name="form_job" id="form_job" method="post" enctype="multipart/form-data">
+            <table class="table-hover table-condense stripe" id="job_table">
+                <thead>
+                <tr>
+                    <th width="4%"></th>
+                    <th width="4%">#</th>
+                    <th width="10%">Name</th>
+                    <th width="18%">Selected Methods</th>
+                    <th>Description</th>
+                    <th width="15%">Submit time</th>
+                    <th width="12%">Running status</th>
+                    <th width="11%">View Results</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for job in jobs %}
+                    <tr>
+                        <td>{{ job.id }}</td>
+                        <td>{{ loop.index0 + 1 }}</td>
+                        <td>
+                            <div class="scrollable">{{ job.jobname }}</div>
+                        </td>
+                        <td>
+                            <div class="scrollable">{{ job.selected_algorithm }}</div>
+                        </td>
+                        <td>
+                            <div class="scrollable">{{ job.description }}</div>
+                        </td>
+                        <td>{{ momentjs(job.timestamp).calendar() }} </td>
+                        <td>{% if job.status==0 %}
+                            Waiting...
+                        {% elif job.status==1 %}
+                            Running...
+                        {% elif job.status==2 %}
+                            Done! <br/> Use time: {{ job.running_time }}
+                        {% else %}
+                            Don't exist!
+                        {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('result',jobid=job.id) }}"> View Results </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div style="padding-top: 10px">
+                <button id="delete" name="delete" type="submit">Delete Jobs</button>
+            </div>
+
+            <!--
+                        <p><b>Selected rows data:</b></p>
+                        <pre id="example-console-rows"></pre>
+
+                        <p><b>Form data as submitted to the server:</b></p>
+                        <pre id="example-console-form"></pre>
+            -->
+        </form>
     </div>
 {% endblock %}

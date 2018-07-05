@@ -147,6 +147,7 @@ def webserver_training():
                 params = {'alpha': '1'}
                 call_scripts(method, params, job_dir, x_filename, y_filename)
                 params_str = ';'.join([key + '=' + value for key, value in params.items()])
+                print(job.id)
                 model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
                               job_id=job.id)
                 db.session.add(model)
@@ -302,6 +303,68 @@ def result(jobid):
     '''
 
 
+@app.route('/user/jobs', methods=['GET', 'POST'])
+@login_required
+def jobs():
+    if request.method == 'POST':
+        choosed_jobs = request.form.getlist('id[]')
+        print(choosed_jobs)
+        for id in choosed_jobs:
+            # must delete related models first, otherwise foreigner key will be delete then can't link to related model
+            models = Model.query.filter_by(job_id=id).all()
+            if models:
+                for model in models:
+                    db.session.delete(model)
+
+            job = Job.query.filter_by(id=int(id)).first_or_404()
+            print(job)
+            db.session.delete(job)
+
+        db.session.commit()
+
+    user = User.query.filter_by(id=current_user.id).first_or_404()
+    jobs = user.jobs.order_by(desc('timestamp')).all()
+
+    return render_template('jobs.html', jobs=jobs)
+
+
+@app.route('/user/models', methods=['GET', 'POST'])
+@login_required
+def models():
+    if request.method == 'POST':
+        choosed_models = request.form.getlist('id[]')
+        print(choosed_models)
+        for id in choosed_models:
+            model = Model.query.filter_by(id=int(id)).first_or_404()
+            db.session.delete(model)
+        db.session.commit()
+
+    models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
+    # print(models)
+    jobnames = []
+    usernames = []
+    for model in models:
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
+        jobnames.append(jobname)
+
+    return render_template('models.html', models=models, jobnames=jobnames)
+
+
+@app.route('/repository')
+def repository():
+    models = Model.query.filter_by(is_shared=True).order_by(desc(Model.timestamp)).all()
+    print(models)
+    jobnames = []
+    usernames = []
+    for model in models:
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
+        jobnames.append(jobname)
+        username = User.query.filter_by(id=model.user_id).first_or_404().username
+        usernames.append(username)
+
+    return render_template('repository.html', models=models, jobnames=jobnames, usernames=usernames)
+
+
 @app.route('/pca', methods=['GET', 'POST'])
 def pca():
     x = [1, 2, 3, 4, 5]
@@ -371,50 +434,6 @@ def login():
 def profile():
     user = User.query.filter_by(id=current_user.id).first_or_404()
     return render_template('profile.html', user=user)
-
-
-@app.route('/user/jobs', methods=['GET', 'POST'])
-@login_required
-def jobs():
-    user = User.query.filter_by(id=current_user.id).first_or_404()
-    jobs = user.jobs.order_by(desc('timestamp')).all()
-
-    return render_template('jobs.html', jobs=jobs)
-
-
-@app.route('/models', methods=['GET', 'POST'])
-@login_required
-def models():
-    if request.method == 'POST':
-        choosed_models = request.form.getlist('id[]')
-        print(choosed_models)
-
-    models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
-    # print(models)
-    jobnames = []
-    usernames = []
-    for model in models:
-        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
-        jobnames.append(jobname)
-        username = User.query.filter_by(id=model.user_id).first_or_404().username
-        usernames.append(username)
-
-    return render_template('models.html', models=models, jobnames=jobnames, usernames=usernames)
-
-
-@app.route('/repository')
-def repository():
-    models = Model.query.filter_by(is_shared=True).order_by(desc(Model.timestamp)).all()
-    print(models)
-    jobnames = []
-    usernames = []
-    for model in models:
-        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
-        jobnames.append(jobname)
-        username = User.query.filter_by(id=model.user_id).first_or_404().username
-        usernames.append(username)
-
-    return render_template('repository.html', models=models, jobnames=jobnames, usernames=usernames)
 
 
 @app.route('/logout')
