@@ -1,4 +1,5 @@
 import os
+import shutil
 import json
 import time
 from EpiMap import app, db
@@ -147,6 +148,7 @@ def webserver_training():
                 params = {'alpha': '1'}
                 call_scripts(method, params, job_dir, x_filename, y_filename)
                 params_str = ';'.join([key + '=' + value for key, value in params.items()])
+                print(job.id)
                 model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
                               job_id=job.id)
                 db.session.add(model)
@@ -275,9 +277,11 @@ def result(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    results = load_results(os.path.join(job_dir, 'idma.txt'))
+    EBEN_main_result = load_results(os.path.join(job_dir, 'EBEN.main_result.txt'))
+    EBEN_epis_result = load_results(os.path.join(job_dir, 'EBEN.epis_result.txt'))
 
-    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm, results=results)
+    return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
+                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result)
 
     '''
     # for visulization
@@ -300,6 +304,72 @@ def result(jobid):
                            js_resources=INLINE.render_js(),
                            css_resources=INLINE.render_css())
     '''
+
+
+@app.route('/user/jobs', methods=['GET', 'POST'])
+@login_required
+def jobs():
+    if request.method == 'POST':
+        choosed_jobs = request.form.getlist('id[]')
+        print(choosed_jobs)
+        for id in choosed_jobs:
+            # must delete related models first, otherwise foreigner key will be delete then can't link to related model
+            models = Model.query.filter_by(job_id=id).all()
+            if models:
+                for model in models:
+                    db.session.delete(model)
+
+            job = Job.query.filter_by(id=int(id)).first_or_404()
+            print(job)
+            db.session.delete(job)
+
+            # delete job_dir
+            job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                                   '_'.join(['userid', str(current_user.id)]),
+                                   '_'.join(['jobid', str(id)]))
+            shutil.rmtree(job_dir)
+        db.session.commit()
+
+    user = User.query.filter_by(id=current_user.id).first_or_404()
+    jobs = user.jobs.order_by(desc('timestamp')).all()
+
+    return render_template('jobs.html', jobs=jobs)
+
+
+@app.route('/user/models', methods=['GET', 'POST'])
+@login_required
+def models():
+    if request.method == 'POST':
+        choosed_models = request.form.getlist('id[]')
+        print(choosed_models)
+        for id in choosed_models:
+            model = Model.query.filter_by(id=int(id)).first_or_404()
+            db.session.delete(model)
+        db.session.commit()
+
+    models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
+    # print(models)
+    jobnames = []
+    for model in models:
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
+        jobnames.append(jobname)
+
+    return render_template('models.html', models=models, jobnames=jobnames)
+
+
+@app.route('/repository')
+def repository():
+    models = Model.query.filter_by(is_shared=True).order_by(desc(Model.timestamp)).all()
+    print(models)
+    jobnames = []
+    usernames = []
+    for model in models:
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
+        jobnames.append(jobname)
+        username = User.query.filter_by(id=model.user_id).first_or_404().username
+        usernames.append(username)
+
+    return render_template('repository.html', models=models, jobnames=jobnames, usernames=usernames)
 
 
 @app.route('/pca', methods=['GET', 'POST'])
@@ -373,50 +443,6 @@ def profile():
     return render_template('profile.html', user=user)
 
 
-@app.route('/user/jobs', methods=['GET', 'POST'])
-@login_required
-def jobs():
-    user = User.query.filter_by(id=current_user.id).first_or_404()
-    jobs = user.jobs.order_by(desc('timestamp')).all()
-
-    return render_template('jobs.html', jobs=jobs)
-
-
-@app.route('/models', methods=['GET', 'POST'])
-@login_required
-def models():
-    if request.method == 'POST':
-        choosed_models = request.form.getlist('id[]')
-        print(choosed_models)
-
-    models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
-    # print(models)
-    jobnames = []
-    usernames = []
-    for model in models:
-        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
-        jobnames.append(jobname)
-        username = User.query.filter_by(id=model.user_id).first_or_404().username
-        usernames.append(username)
-
-    return render_template('models.html', models=models, jobnames=jobnames, usernames=usernames)
-
-
-@app.route('/repository')
-def repository():
-    models = Model.query.filter_by(is_shared=True).order_by(desc(Model.timestamp)).all()
-    print(models)
-    jobnames = []
-    usernames = []
-    for model in models:
-        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
-        jobnames.append(jobname)
-        username = User.query.filter_by(id=model.user_id).first_or_404().username
-        usernames.append(username)
-
-    return render_template('repository.html', models=models, jobnames=jobnames, usernames=usernames)
-
-
 @app.route('/logout')
 @login_required
 def logout():
@@ -466,7 +492,6 @@ def download_result(jobid, filename):
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
-
     try:
         return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
     except Exception as e:
