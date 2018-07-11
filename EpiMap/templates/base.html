@@ -15,7 +15,17 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
         <script src="{{ url_for('static',filename='js/moment.js') }}"></script>
+        <script>
+            function autocollapse() {
+                var navbar = $('.navbar-autocollapse');
+                navbar.removeClass('collapsed');
+                if (navbar.innerHeight() > 113)
+                    navbar.addClass('collapsed');
+            }
 
+            jQuery(document).on('ready', autocollapse);
+            jQuery(window).on('resize', autocollapse);
+        </script>
     {% endblock %}
     {% block styles %}
         <!-- Latest compiled and minified CSS -->
@@ -32,28 +42,46 @@
                 /* to make the container go al the way to
                            the bottom of the topbar*/
                 padding-top: 90px;
+
+            }
+
+            .navbar-toggle .icon-bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: #cccccc;
+                border-radius: 1px;
             }
         </style>
     {% endblock %}
 </head>
 <body>
-<header class="navbar navbar-fixed-top ">
+<nav class="navbar navbar-fixed-top navbar-autocollapse">
     <div class="container container-fluid">
         <div class="nav navbar-header">
-            <a class="navbar-brand" href="#"><span><img style="max-height: 75px"
-                                                        src="{{ url_for('static', filename='img/shilab_logo.png') }}"></span></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <span>
+                    <img style="max-height: 75px" src="{{ url_for('static', filename='img/shilab_logo.png') }}">
+                </span>
+            </a>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('webserver_training') }}">Server</a></li>
-            <li><a href="{{ url_for('jobs') }}">Jobs</a></li>
-            <li><a href="{{ url_for('models') }}">Models</a></li>
-            <!--<li><a href="{{ url_for('repository') }}">Repository</a></li> -->
-            <li><a href="{{ url_for('help') }}">Help</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-        </ul>
-        <!-- following code is used for login  -->
-        <!--
+        <div id="menu" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('webserver_training') }}">Server</a></li>
+                <li><a href="{{ url_for('jobs') }}">Jobs</a></li>
+                <li><a href="{{ url_for('models') }}">Models</a></li>
+                <!--<li><a href="{{ url_for('repository') }}">Repository</a></li> -->
+                <li><a href="{{ url_for('help') }}">Help</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+            <!-- following code is used for login  -->
+            <!--
         <ul class="nav navbar-nav navbar-right">
             {% if not current_user.is_authenticated %}
                 <li><a href={{ url_for('login') }}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -77,8 +105,9 @@
             {% endif %}
         </ul>
         -->
+        </div>
     </div>
-</header>
+</nav>
 <div class="container">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -91,7 +120,7 @@
         {% endif %}
     {% endwith %}
     {% block content %}{% endblock %}
-<div style="height: 50px "></div>
+    <div style="height: 50px "></div>
 </div>
 <footer class="footer modal-footer" style="background-color: #155724">
     <div class="container container-fluid">

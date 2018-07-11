@@ -16,6 +16,7 @@
 {% endblock %}
 {% block scripts %}
     {{ super() }}
+    <!-- for datatables -->
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8"
@@ -26,6 +27,8 @@
             $('#epis_effect').DataTable();
         });
     </script>
+
+
 {% endblock %}
 
 {% block content %}
@@ -98,11 +101,17 @@
         </div>
 
         <h3>Visualization</h3>
-        <div class="container">
-
-
-
-
+        <div id="visualization" class="container">
+            <svg></svg>
+            <!-- for d3 visualization.
+                        This script must be after svg tag-->
+            <script src="https://d3js.org/d3.v4.min.js"></script>
+            <script>
+                var nodes = {{ nodes|safe }};
+                var links = {{ links|safe }};
+            </script>
+            <script type="text/javascript" charset="utf8"
+                    src="{{ url_for('static', filename='js/visu_miRNA_d3.js') }}"></script>
         </div>
     </div>
 {% endblock %}
