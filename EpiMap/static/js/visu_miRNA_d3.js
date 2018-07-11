@@ -1,8 +1,8 @@
 function getNodeColor(node, neighbors) {
     if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
-        return node.level === 1 ? 'blue' : 'green'
+        return 'green'
     }
-    return node.level === 1 ? 'red' : 'gray';
+    return node.group === 1 ? 'red' : 'blue';
 }
 
 function getTextColor(node, neighbors) {
@@ -10,7 +10,7 @@ function getTextColor(node, neighbors) {
 }
 
 function getLinkColor(node, link) {
-    return Array.isArray(link) && isNeighborLink(node, link) > -1 ? 'green' : '#e5e5e5'
+    return isNeighborLink(node, link) ? 'green' : 'rgba(50, 50, 50, 0.2)'
 }
 
 function getNeighbors(node) {
@@ -37,8 +37,8 @@ function selectNode(selectedNode) {
 
 function mouseOut() {
     nodeElements.attr('fill', node => getNodeColor(node));
-    textElements.attr('fill', node => getTextColor(node));
-    linkElements.attr('stroke', link => getLinkColor(link));
+    textElements.attr('fill', 'black');
+    linkElements.attr('stroke', 'rgba(50, 50, 50, 0.2)');
 }
 
 // define container
