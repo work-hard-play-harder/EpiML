@@ -1,4 +1,5 @@
 library('EBEN')
+library('jsonlite')
 
 workspace <- '~/Downloads/EBEN-epistasis-master-4/'
 x_filename <- 'bc_x.txt'
@@ -164,4 +165,29 @@ write.table(
   row.names = F,
   col.names = F
 )
+
+cat('Generate nodes and links json file','\n')
+key_set=as.set(c(main_result[,1],epsi_result[,1],epsi_result[,2]))
+nodes <-  NULL
+key_set <-  as.list(key_set)
+for (i in 1:length(key_set)) {
+  if (key_set[i] %in% main_result[, 1]) {
+    nodes <- rbind(nodes, c(key_set[i], 1, key_set[i], 1))
+  } else{
+    nodes <- rbind(nodes, c(key_set[i], 2, key_set[i], 1))
+  }
+}
+colnames(nodes) <- c('id', 'group', 'label', 'level')
+nodes <- data.frame(nodes)
+nodes_json<-toJSON(nodes, pretty = TRUE, auto_unbox = TRUE)
+links <- NULL
+for (i in 1:length(epsi_result[,1])) {
+  links <- rbind(links, c(epsi_result[i, 1], epsi_result[i, 2], 0.7))
+}
+colnames(links) <- c('target', 'source', 'strength')
+links <- data.frame(links)
+links_json<-toJSON(links, pretty = TRUE, auto_unbox = TRUE)
+json<-paste('{\n','\"nodes\":',nodes_json,',\n\"links\":',links_json,'\n}')
+write(json, file = file.path(workspace, 'nodes_links.json'))
+
 cat('Done!')

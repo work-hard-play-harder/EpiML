@@ -13,7 +13,7 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 
 # customized functions
-from EpiMap.run_scripts import call_scripts, create_job_folder, check_job_status, load_results
+from EpiMap.run_scripts import call_scripts, create_job_folder, check_job_status, load_results, load_json
 from EpiMap.create_figures import create_pca_figure, create_lasso_figure
 from EpiMap.db_tables import User, Job, Model
 from EpiMap.safety_check import is_safe_url, is_allowed_file, security_code_generator
@@ -280,8 +280,11 @@ def result(jobid):
     EBEN_main_result = load_results(os.path.join(job_dir, 'EBEN.main_result.txt'))
     EBEN_epis_result = load_results(os.path.join(job_dir, 'EBEN.epis_result.txt'))
 
+    nodes, links = load_json(os.path.join(job_dir, 'nodes_links.json'))
+
     return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
-                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result)
+                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
+                           nodes=nodes, links=links)
 
     '''
     # for visulization

@@ -1,0 +1,31 @@
+Warning messages:
+1: In (0L:n) * by :
+  Recycling array of length 1 in vector-array arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
+2: In from + (0L:n) * by :
+  Recycling array of length 1 in array-vector arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
+Warning messages:
+1: In (0L:n) * by :
+  Recycling array of length 1 in vector-array arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
+2: In from + (0L:n) * by :
+  Recycling array of length 1 in array-vector arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
+Warning messages:
+1: In (0L:n) * by :
+  Recycling array of length 1 in vector-array arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
+2: In from + (0L:n) * by :
+  Recycling array of length 1 in array-vector arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
+Error: unexpected '=' in:
+"  file = file.path(workspace, 'main_result.txt'),
+  quote = F, ="
+Execution halted
