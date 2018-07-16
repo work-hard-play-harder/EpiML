@@ -3,37 +3,40 @@
 {% block title %}
     <title>Web Server | Shilab web server</title>
 {% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        label {
+            font-size: medium;
+        }
+    </style>
+{% endblock %}
+
 {% block scripts %}
     {{ super() }}
     <script>
-        function ShowHideCV(chkCV) {
-            var fold_number = document.getElementById("fold_number");
-            fold_number.style.visibility = chkCV.checked ? "visible" : "hidden";
+        function disableInput(chkCV, id) {
+            var input_field = document.getElementById(id);
+            input_field.disabled = chkCV.checked ? false : true;
         }
     </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var arr = new Array();
-            $("select[multiple]").change(function () {
-                $(this).find("option:selected")
-                if ($(this).find("option:selected").length > 3) {
-                    $(this).find("option").removeAttr("selected");
-                    $(this).val(arr);
-                }
-                else {
-                    arr = new Array();
-                    $(this).find("option:selected").each(function (index, item) {
-                        arr.push($(item).val());
-                    });
-                }
-            });
-        });
+    <!-- for fieldset -->
+    <script>
+        function disableFieldset(checkbox) {
+            var fieldset = checkbox.parentElement.parentElement;
+            if (checkbox.checked) {
+                fieldset.disabled = false;
+            } else {
+                fieldset.disabled = true;
+            }
+        }
     </script>
 {% endblock %}
 {% block content %}
     <div>
-        <h2>Web Server</h2>
-        webserver.html
+        <h2>LASSO-based Methods Web Server</h2>
+        <p>It includes many variations of LASSO method. You can select multiple methods at one time to train model. </p>
+
         <hr>
         <!-- Tab links-->
         <ul class="nav nav-tabs">
@@ -43,9 +46,9 @@
 
         <div class="tab-content">
             <div id="training" class="tab-pane fade in active" style="padding-top: 20px">
-                <p>Upload labeled data and choose some methods to train your models. </p>
-                <hr>
-                <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
+
+                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are
+                    required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
@@ -84,42 +87,79 @@
                                    placeholder="choose your training label: Y" required>
                         </div>
                     </div>
-                    <div class="form-group form-inline">
+                    <div class="form-group">
                         <label class="control-label col-sm-2" for="methods">Select Methods:</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
-                            <label for="LASSO">LASSO</label>
+                        <div class=" col-sm-10">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4 form-inline" >
+                                    <fieldset>
+                                        <legend>
+                                            <input id="lasso" name="methods" type="checkbox" value="lasso"
+                                                   onclick="disableFieldset(this)" checked>
+                                            <label for="lasso">LASSO</label>
+                                        </legend>
+                                        Alpha:
+                                        <input id="lasso_alpha" name="lasso_alpha" class="form-control"
+                                               style="width: 100px;" value="0.5">
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4 form-inline">
+                                    <fieldset disabled>
+                                        <legend>
+                                            <input id="sslasso" name="methods" type="checkbox" value="ssLASSO"
+                                                   onclick="disableFieldset(this)">
+                                            <label for="sslasso">ss-LASSO</label>
+                                        </legend>
+                                        <div class="col-sm-12 ">
+                                            <div class="form-group  col-sm-12" style="padding-bottom: 10px ">
+                                                Alpha:
+                                                <input id="sslasso_alpha" name="sslasso_alpha" style="width: 100px"
+                                                       class="form-control " value="0.5">
+                                            </div>
+                                            <div class="form-group col-sm-12" style="padding-bottom: 10px ">
+                                                Beta:
+                                                <input id="sslasso_alpha" name="sslasso_alpha" style="width: 100px"
+                                                       class="form-control " value="0.5">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4 form-inline" >
+                                    <fieldset disabled>
+                                        <legend>
+                                            <input id="grouplasso" name="methods" type="checkbox" value="groupLASSO"
+                                                   onclick="disableFieldset(this)">
+                                            <label for="grouplasso">group-LASSO</label>
+                                        </legend>
+                                        <div class="col-sm-12">
+                                            Alpha:
+                                            <input id="grouplasso_alpha" name="grouplasso_alpha" class="form-control"
+                                                   style="width: 100px;" value="0.5">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-sm-3 form-inline">
+                                    <input type="checkbox" id="cv" name="cv" onclick="disableInput(this, 'fold_number')"
+                                           CHECKED>
+                                    <label for="validation"> Cross Validation </label>
+                                    <input class="form-control" style="width: 50px;" type="text" id="fold_number"
+                                           name="fold_number" maxlength="2" value="5">
+                                </div>
+                                <div class=" col-sm-4 form-inline">
+                                    <input type="checkbox" id="seed" name="seed"
+                                           onclick="disableInput(this, 'seed_number')" CHECKED>
+                                    <label for="validation"> Specify Seed </label>
+                                    <input class="form-control" style="width: 100px;" type="text" id="seed_number"
+                                           value="28213" name="seed_number">
+                                </div>
+                            </div>
                         </div>
-                        <div class=" col-sm-3">
-                            <input class="form-control" type="checkbox" id="EBEN" name="methods" value="EBEN">
-                            <label for="EBEN">ss-LASSO</label>
-                        </div>
+                    </div>
 
-                        <div class=" col-sm-3">
-                            <input class="form-control" type="checkbox" id="Matrix_eQTL" name="methods"
-                                   value="Matrix_eQTL">
-                            <label for="Matrix_eQTL">group-LASSO</label>
-                        </div>
-
-                    </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-4 form-inline">
-                            <input type="checkbox" id="cv" name="cv" onclick="ShowHideCV(this)" CHECKED>
-                            <label for="validation"> Cross Validation </label>
-                            <input class="form-control" style="width: 50px;" type="text" id="fold_number"
-                                   name="fold_number"
-                                   maxlength="2" value="5">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-4 form-inline">
-                            <input type="checkbox" id="seed" name="seed" CHECKED>
-                            <label for="validation"> Specify Seed </label>
-                            <input class="form-control" style="width: 100px;" type="text" id="seed_number"
-                                   name="seed_number">
-                        </div>
-                    </div>
-                    <div class="form-group">
+                        <hr style="padding: 1px">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -128,8 +168,6 @@
             </div>
 
             <div id="testing" class="tab-pane fade" style="padding-top: 20px">
-                <p>Upload unknown data and choose a model to predict your samples. </p>
-                <hr>
                 <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
