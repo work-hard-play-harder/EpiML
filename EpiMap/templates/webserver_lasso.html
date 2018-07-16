@@ -12,9 +12,9 @@
         }
     </script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var arr = new Array();
-            $("select[multiple]").change(function() {
+            $("select[multiple]").change(function () {
                 $(this).find("option:selected")
                 if ($(this).find("option:selected").length > 3) {
                     $(this).find("option").removeAttr("selected");
@@ -22,7 +22,7 @@
                 }
                 else {
                     arr = new Array();
-                    $(this).find("option:selected").each(function(index, item) {
+                    $(this).find("option:selected").each(function (index, item) {
                         arr.push($(item).val());
                     });
                 }
@@ -33,7 +33,7 @@
 {% block content %}
     <div>
         <h2>Web Server</h2>
-webserver.html
+        webserver.html
         <hr>
         <!-- Tab links-->
         <ul class="nav nav-tabs">
@@ -89,18 +89,16 @@ webserver.html
                         <div class="col-sm-3">
                             <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
                             <label for="LASSO">LASSO</label>
-
                         </div>
                         <div class=" col-sm-3">
                             <input class="form-control" type="checkbox" id="EBEN" name="methods" value="EBEN">
                             <label for="EBEN">ss-LASSO</label>
-
                         </div>
 
                         <div class=" col-sm-3">
                             <input class="form-control" type="checkbox" id="Matrix_eQTL" name="methods"
                                    value="Matrix_eQTL">
-                            <label for="Matrix_eQTL">group-Lasso</label>
+                            <label for="Matrix_eQTL">group-LASSO</label>
                         </div>
 
                     </div>
