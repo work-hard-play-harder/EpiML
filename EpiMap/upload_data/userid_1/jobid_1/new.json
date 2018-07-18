@@ -1,0 +1,2470 @@
+{
+  'nodes': [
+    {
+      'id': 'hsa-let-7c',
+      'group': 1,
+      'label': 'hsa-let-7c',
+      'level': 1
+    },
+    {
+      'id': 'hsa-let-7i',
+      'group': 2,
+      'label': 'hsa-let-7i',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1-2',
+      'group': 2,
+      'label': 'hsa-mir-1-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1181',
+      'group': 2,
+      'label': 'hsa-mir-1181',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1245',
+      'group': 2,
+      'label': 'hsa-mir-1245',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1247',
+      'group': 2,
+      'label': 'hsa-mir-1247',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1249',
+      'group': 1,
+      'label': 'hsa-mir-1249',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1254',
+      'group': 2,
+      'label': 'hsa-mir-1254',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1262',
+      'group': 2,
+      'label': 'hsa-mir-1262',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1271',
+      'group': 2,
+      'label': 'hsa-mir-1271',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-128-2',
+      'group': 2,
+      'label': 'hsa-mir-128-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1288',
+      'group': 2,
+      'label': 'hsa-mir-1288',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-129-1',
+      'group': 2,
+      'label': 'hsa-mir-129-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1292',
+      'group': 2,
+      'label': 'hsa-mir-1292',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1304',
+      'group': 2,
+      'label': 'hsa-mir-1304',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1306',
+      'group': 2,
+      'label': 'hsa-mir-1306',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-132',
+      'group': 2,
+      'label': 'hsa-mir-132',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-135b',
+      'group': 1,
+      'label': 'hsa-mir-135b',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-139',
+      'group': 2,
+      'label': 'hsa-mir-139',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-140',
+      'group': 2,
+      'label': 'hsa-mir-140',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-142',
+      'group': 2,
+      'label': 'hsa-mir-142',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-145',
+      'group': 2,
+      'label': 'hsa-mir-145',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-1468',
+      'group': 2,
+      'label': 'hsa-mir-1468',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-148a',
+      'group': 2,
+      'label': 'hsa-mir-148a',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-149',
+      'group': 2,
+      'label': 'hsa-mir-149',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-155',
+      'group': 2,
+      'label': 'hsa-mir-155',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-181a-2',
+      'group': 2,
+      'label': 'hsa-mir-181a-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-181b-2',
+      'group': 2,
+      'label': 'hsa-mir-181b-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-188',
+      'group': 2,
+      'label': 'hsa-mir-188',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-190',
+      'group': 2,
+      'label': 'hsa-mir-190',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-196a-2',
+      'group': 2,
+      'label': 'hsa-mir-196a-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-199b',
+      'group': 2,
+      'label': 'hsa-mir-199b',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-20b',
+      'group': 2,
+      'label': 'hsa-mir-20b',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-216a',
+      'group': 2,
+      'label': 'hsa-mir-216a',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-217',
+      'group': 2,
+      'label': 'hsa-mir-217',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-221',
+      'group': 2,
+      'label': 'hsa-mir-221',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-222',
+      'group': 2,
+      'label': 'hsa-mir-222',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-224',
+      'group': 2,
+      'label': 'hsa-mir-224',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-2355',
+      'group': 2,
+      'label': 'hsa-mir-2355',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-23c',
+      'group': 2,
+      'label': 'hsa-mir-23c',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-28',
+      'group': 2,
+      'label': 'hsa-mir-28',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-29a',
+      'group': 2,
+      'label': 'hsa-mir-29a',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3074',
+      'group': 2,
+      'label': 'hsa-mir-3074',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-30b',
+      'group': 2,
+      'label': 'hsa-mir-30b',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-30e',
+      'group': 2,
+      'label': 'hsa-mir-30e',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-31',
+      'group': 1,
+      'label': 'hsa-mir-31',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3117',
+      'group': 2,
+      'label': 'hsa-mir-3117',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3173',
+      'group': 2,
+      'label': 'hsa-mir-3173',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3189',
+      'group': 2,
+      'label': 'hsa-mir-3189',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-320b-2',
+      'group': 2,
+      'label': 'hsa-mir-320b-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-320c-1',
+      'group': 1,
+      'label': 'hsa-mir-320c-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-337',
+      'group': 1,
+      'label': 'hsa-mir-337',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-33b',
+      'group': 2,
+      'label': 'hsa-mir-33b',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-34a',
+      'group': 1,
+      'label': 'hsa-mir-34a',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-34b',
+      'group': 2,
+      'label': 'hsa-mir-34b',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-34c',
+      'group': 2,
+      'label': 'hsa-mir-34c',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3607',
+      'group': 2,
+      'label': 'hsa-mir-3607',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3610',
+      'group': 2,
+      'label': 'hsa-mir-3610',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3615',
+      'group': 2,
+      'label': 'hsa-mir-3615',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-362',
+      'group': 2,
+      'label': 'hsa-mir-362',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3648',
+      'group': 2,
+      'label': 'hsa-mir-3648',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-365-2',
+      'group': 2,
+      'label': 'hsa-mir-365-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3653',
+      'group': 2,
+      'label': 'hsa-mir-3653',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3662',
+      'group': 1,
+      'label': 'hsa-mir-3662',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3676',
+      'group': 2,
+      'label': 'hsa-mir-3676',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3677',
+      'group': 2,
+      'label': 'hsa-mir-3677',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-369',
+      'group': 2,
+      'label': 'hsa-mir-369',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-370',
+      'group': 2,
+      'label': 'hsa-mir-370',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-374b',
+      'group': 2,
+      'label': 'hsa-mir-374b',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-375',
+      'group': 2,
+      'label': 'hsa-mir-375',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-378',
+      'group': 2,
+      'label': 'hsa-mir-378',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-380',
+      'group': 2,
+      'label': 'hsa-mir-380',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-381',
+      'group': 2,
+      'label': 'hsa-mir-381',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3912',
+      'group': 2,
+      'label': 'hsa-mir-3912',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3913-1',
+      'group': 2,
+      'label': 'hsa-mir-3913-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3917',
+      'group': 2,
+      'label': 'hsa-mir-3917',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3928',
+      'group': 2,
+      'label': 'hsa-mir-3928',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3934',
+      'group': 2,
+      'label': 'hsa-mir-3934',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3940',
+      'group': 2,
+      'label': 'hsa-mir-3940',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-3942',
+      'group': 2,
+      'label': 'hsa-mir-3942',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-412',
+      'group': 2,
+      'label': 'hsa-mir-412',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-421',
+      'group': 2,
+      'label': 'hsa-mir-421',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-4326',
+      'group': 2,
+      'label': 'hsa-mir-4326',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-433',
+      'group': 2,
+      'label': 'hsa-mir-433',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-451',
+      'group': 2,
+      'label': 'hsa-mir-451',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-491',
+      'group': 2,
+      'label': 'hsa-mir-491',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-496',
+      'group': 2,
+      'label': 'hsa-mir-496',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-503',
+      'group': 2,
+      'label': 'hsa-mir-503',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-509-1',
+      'group': 2,
+      'label': 'hsa-mir-509-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-511-1',
+      'group': 2,
+      'label': 'hsa-mir-511-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-511-2',
+      'group': 2,
+      'label': 'hsa-mir-511-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-539',
+      'group': 2,
+      'label': 'hsa-mir-539',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-541',
+      'group': 2,
+      'label': 'hsa-mir-541',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-543',
+      'group': 2,
+      'label': 'hsa-mir-543',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-545',
+      'group': 2,
+      'label': 'hsa-mir-545',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-548e',
+      'group': 1,
+      'label': 'hsa-mir-548e',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-548v',
+      'group': 2,
+      'label': 'hsa-mir-548v',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-550a-1',
+      'group': 2,
+      'label': 'hsa-mir-550a-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-570',
+      'group': 2,
+      'label': 'hsa-mir-570',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-580',
+      'group': 1,
+      'label': 'hsa-mir-580',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-589',
+      'group': 2,
+      'label': 'hsa-mir-589',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-592',
+      'group': 2,
+      'label': 'hsa-mir-592',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-598',
+      'group': 2,
+      'label': 'hsa-mir-598',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-605',
+      'group': 2,
+      'label': 'hsa-mir-605',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-616',
+      'group': 2,
+      'label': 'hsa-mir-616',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-625',
+      'group': 2,
+      'label': 'hsa-mir-625',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-627',
+      'group': 2,
+      'label': 'hsa-mir-627',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-628',
+      'group': 2,
+      'label': 'hsa-mir-628',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-629',
+      'group': 2,
+      'label': 'hsa-mir-629',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-653',
+      'group': 2,
+      'label': 'hsa-mir-653',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-659',
+      'group': 2,
+      'label': 'hsa-mir-659',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-660',
+      'group': 2,
+      'label': 'hsa-mir-660',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-7-2',
+      'group': 2,
+      'label': 'hsa-mir-7-2',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-7-3',
+      'group': 2,
+      'label': 'hsa-mir-7-3',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-758',
+      'group': 2,
+      'label': 'hsa-mir-758',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-769',
+      'group': 2,
+      'label': 'hsa-mir-769',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-889',
+      'group': 2,
+      'label': 'hsa-mir-889',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-9-1',
+      'group': 2,
+      'label': 'hsa-mir-9-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-92a-1',
+      'group': 2,
+      'label': 'hsa-mir-92a-1',
+      'level': 1
+    },
+    {
+      'id': 'hsa-mir-939',
+      'group': 2,
+      'label': 'hsa-mir-939',
+      'level': 1
+    },
+    {
+      'id': 'CDC25A',
+      'group': 1,
+      'label': 'CDC25A',
+      'level': 2
+    },
+    {
+      'id': 'CDK6',
+      'group': 1,
+      'label': 'CDK6',
+      'level': 2
+    },
+    {
+      'id': 'RAS',
+      'group': 1,
+      'label': 'RAS',
+      'level': 2
+    },
+    {
+      'id': 'HMGA2',
+      'group': 1,
+      'label': 'HMGA2',
+      'level': 2
+    },
+    {
+      'id': 'BCL2',
+      'group': 1,
+      'label': 'BCL2',
+      'level': 2
+    },
+    {
+      'id': 'Kcnd2',
+      'group': 1,
+      'label': 'Kcnd2',
+      'level': 2
+    },
+    {
+      'id': 'Irx5',
+      'group': 1,
+      'label': 'Irx5',
+      'level': 2
+    },
+    {
+      'id': 'Hand2',
+      'group': 1,
+      'label': 'Hand2',
+      'level': 2
+    },
+    {
+      'id': 'p250GAP',
+      'group': 1,
+      'label': 'p250GAP',
+      'level': 2
+    },
+    {
+      'id': 'MeCP2',
+      'group': 1,
+      'label': 'MeCP2',
+      'level': 2
+    },
+    {
+      'id': 'SirT1',
+      'group': 1,
+      'label': 'SirT1',
+      'level': 2
+    },
+    {
+      'id': 'Cxcl12',
+      'group': 1,
+      'label': 'Cxcl12',
+      'level': 2
+    },
+    {
+      'id': 'HDAC4',
+      'group': 1,
+      'label': 'HDAC4',
+      'level': 2
+    },
+    {
+      'id': 'Elk-1',
+      'group': 1,
+      'label': 'Elk-1',
+      'level': 2
+    },
+    {
+      'id': 'SOX2',
+      'group': 1,
+      'label': 'SOX2',
+      'level': 2
+    },
+    {
+      'id': 'KLF5',
+      'group': 1,
+      'label': 'KLF5',
+      'level': 2
+    },
+    {
+      'id': 'KLF4',
+      'group': 1,
+      'label': 'KLF4',
+      'level': 2
+    },
+    {
+      'id': 'BNIP3',
+      'group': 1,
+      'label': 'BNIP3',
+      'level': 2
+    },
+    {
+      'id': 'IGF-IR',
+      'group': 1,
+      'label': 'IGF-IR',
+      'level': 2
+    },
+    {
+      'id': 'IRS-1',
+      'group': 1,
+      'label': 'IRS-1',
+      'level': 2
+    },
+    {
+      'id': 'Klf4',
+      'group': 1,
+      'label': 'Klf4',
+      'level': 2
+    },
+    {
+      'id': 'DNMT-1',
+      'group': 1,
+      'label': 'DNMT-1',
+      'level': 2
+    },
+    {
+      'id': 'TGIF2',
+      'group': 1,
+      'label': 'TGIF2',
+      'level': 2
+    },
+    {
+      'id': 'HLA-G',
+      'group': 1,
+      'label': 'HLA-G',
+      'level': 2
+    },
+    {
+      'id': 'SOCS1',
+      'group': 1,
+      'label': 'SOCS1',
+      'level': 2
+    },
+    {
+      'id': 'TP53INP1',
+      'group': 1,
+      'label': 'TP53INP1',
+      'level': 2
+    },
+    {
+      'id': 'RhoA',
+      'group': 1,
+      'label': 'RhoA',
+      'level': 2
+    },
+    {
+      'id': 'JARID2',
+      'group': 1,
+      'label': 'JARID2',
+      'level': 2
+    },
+    {
+      'id': 'hAT1R',
+      'group': 1,
+      'label': 'hAT1R',
+      'level': 2
+    },
+    {
+      'id': 'Ets-1',
+      'group': 1,
+      'label': 'Ets-1',
+      'level': 2
+    },
+    {
+      'id': 'ET-1',
+      'group': 1,
+      'label': 'ET-1',
+      'level': 2
+    },
+    {
+      'id': 'SHIP1',
+      'group': 1,
+      'label': 'SHIP1',
+      'level': 2
+    },
+    {
+      'id': 'Meis1',
+      'group': 1,
+      'label': 'Meis1',
+      'level': 2
+    },
+    {
+      'id': 'AGTR1',
+      'group': 1,
+      'label': 'AGTR1',
+      'level': 2
+    },
+    {
+      'id': 'TAB2',
+      'group': 1,
+      'label': 'TAB2',
+      'level': 2
+    },
+    {
+      'id': 'HOXB8',
+      'group': 1,
+      'label': 'HOXB8',
+      'level': 2
+    },
+    {
+      'id': 'SET',
+      'group': 1,
+      'label': 'SET',
+      'level': 2
+    },
+    {
+      'id': 'Mylip',
+      'group': 1,
+      'label': 'Mylip',
+      'level': 2
+    },
+    {
+      'id': 'PTEN',
+      'group': 1,
+      'label': 'PTEN',
+      'level': 2
+    },
+    {
+      'id': 'PTEN',
+      'group': 1,
+      'label': 'PTEN',
+      'level': 2
+    },
+    {
+      'id': 'SirT1',
+      'group': 1,
+      'label': 'SirT1',
+      'level': 2
+    },
+    {
+      'id': 'p27',
+      'group': 1,
+      'label': 'p27',
+      'level': 2
+    },
+    {
+      'id': 'p27(Kip1)',
+      'group': 1,
+      'label': 'p27(Kip1)',
+      'level': 2
+    },
+    {
+      'id': 'KIT',
+      'group': 1,
+      'label': 'KIT',
+      'level': 2
+    },
+    {
+      'id': 'CDKN1B/p27/Kip1',
+      'group': 1,
+      'label': 'CDKN1B/p27/Kip1',
+      'level': 2
+    },
+    {
+      'id': 'p27Kip1',
+      'group': 1,
+      'label': 'p27Kip1',
+      'level': 2
+    },
+    {
+      'id': 'Bmf',
+      'group': 1,
+      'label': 'Bmf',
+      'level': 2
+    },
+    {
+      'id': 'c-KIT',
+      'group': 1,
+      'label': 'c-KIT',
+      'level': 2
+    },
+    {
+      'id': 'Bim',
+      'group': 1,
+      'label': 'Bim',
+      'level': 2
+    },
+    {
+      'id': 'p57',
+      'group': 1,
+      'label': 'p57',
+      'level': 2
+    },
+    {
+      'id': 'CDKN1B',
+      'group': 1,
+      'label': 'CDKN1B',
+      'level': 2
+    },
+    {
+      'id': 'CDKN1C/p57',
+      'group': 1,
+      'label': 'CDKN1C/p57',
+      'level': 2
+    },
+    {
+      'id': 'ERalpha',
+      'group': 1,
+      'label': 'ERalpha',
+      'level': 2
+    },
+    {
+      'id': 'BIRC1',
+      'group': 1,
+      'label': 'BIRC1',
+      'level': 2
+    },
+    {
+      'id': 'SOD2',
+      'group': 1,
+      'label': 'SOD2',
+      'level': 2
+    },
+    {
+      'id': 'p27',
+      'group': 1,
+      'label': 'p27',
+      'level': 2
+    },
+    {
+      'id': 'p27(Kip1)',
+      'group': 1,
+      'label': 'p27(Kip1)',
+      'level': 2
+    },
+    {
+      'id': 'KIT',
+      'group': 1,
+      'label': 'KIT',
+      'level': 2
+    },
+    {
+      'id': 'MMP1',
+      'group': 1,
+      'label': 'MMP1',
+      'level': 2
+    },
+    {
+      'id': 'CDKN1B/p27/Kip1',
+      'group': 1,
+      'label': 'CDKN1B/p27/Kip1',
+      'level': 2
+    },
+    {
+      'id': 'Bim',
+      'group': 1,
+      'label': 'Bim',
+      'level': 2
+    },
+    {
+      'id': 'c-KIT',
+      'group': 1,
+      'label': 'c-KIT',
+      'level': 2
+    },
+    {
+      'id': 'p57',
+      'group': 1,
+      'label': 'p57',
+      'level': 2
+    },
+    {
+      'id': 'CDKN1C/p57',
+      'group': 1,
+      'label': 'CDKN1C/p57',
+      'level': 2
+    },
+    {
+      'id': 'ERalpha',
+      'group': 1,
+      'label': 'ERalpha',
+      'level': 2
+    },
+    {
+      'id': 'API-5',
+      'group': 1,
+      'label': 'API-5',
+      'level': 2
+    },
+    {
+      'id': 'B7-H3',
+      'group': 1,
+      'label': 'B7-H3',
+      'level': 2
+    },
+    {
+      'id': 'DNMT3A',
+      'group': 1,
+      'label': 'DNMT3A',
+      'level': 2
+    },
+    {
+      'id': 'DNMT3B',
+      'group': 1,
+      'label': 'DNMT3B',
+      'level': 2
+    },
+    {
+      'id': 'BACE1',
+      'group': 1,
+      'label': 'BACE1',
+      'level': 2
+    },
+    {
+      'id': 'Ubc9',
+      'group': 1,
+      'label': 'Ubc9',
+      'level': 2
+    },
+    {
+      'id': 'RhoA',
+      'group': 1,
+      'label': 'RhoA',
+      'level': 2
+    },
+    {
+      'id': 'FOXP3',
+      'group': 1,
+      'label': 'FOXP3',
+      'level': 2
+    },
+    {
+      'id': 'JAG1',
+      'group': 1,
+      'label': 'JAG1',
+      'level': 2
+    },
+    {
+      'id': 'WNT1',
+      'group': 1,
+      'label': 'WNT1',
+      'level': 2
+    },
+    {
+      'id': 'MYCN',
+      'group': 1,
+      'label': 'MYCN',
+      'level': 2
+    },
+    {
+      'id': 'NOTCH1',
+      'group': 1,
+      'label': 'NOTCH1',
+      'level': 2
+    },
+    {
+      'id': 'DcR3',
+      'group': 1,
+      'label': 'DcR3',
+      'level': 2
+    },
+    {
+      'id': 'E2F',
+      'group': 1,
+      'label': 'E2F',
+      'level': 2
+    },
+    {
+      'id': 'SIRT1',
+      'group': 1,
+      'label': 'SIRT1',
+      'level': 2
+    },
+    {
+      'id': 'CDK6',
+      'group': 1,
+      'label': 'CDK6',
+      'level': 2
+    },
+    {
+      'id': 'BIRC3',
+      'group': 1,
+      'label': 'BIRC3',
+      'level': 2
+    },
+    {
+      'id': 'c-Met',
+      'group': 1,
+      'label': 'c-Met',
+      'level': 2
+    },
+    {
+      'id': 'GRM7',
+      'group': 1,
+      'label': 'GRM7',
+      'level': 2
+    },
+    {
+      'id': 'Notch-1',
+      'group': 1,
+      'label': 'Notch-1',
+      'level': 2
+    },
+    {
+      'id': 'E2F3',
+      'group': 1,
+      'label': 'E2F3',
+      'level': 2
+    },
+    {
+      'id': 'BCL2',
+      'group': 1,
+      'label': 'BCL2',
+      'level': 2
+    },
+    {
+      'id': 'Notch-2',
+      'group': 1,
+      'label': 'Notch-2',
+      'level': 2
+    },
+    {
+      'id': 'c-myc',
+      'group': 1,
+      'label': 'c-myc',
+      'level': 2
+    },
+    {
+      'id': 'CREB',
+      'group': 1,
+      'label': 'CREB',
+      'level': 2
+    },
+    {
+      'id': 'CDK6',
+      'group': 1,
+      'label': 'CDK6',
+      'level': 2
+    },
+    {
+      'id': 'BCL2',
+      'group': 1,
+      'label': 'BCL2',
+      'level': 2
+    },
+    {
+      'id': 'c-Met',
+      'group': 1,
+      'label': 'c-Met',
+      'level': 2
+    },
+    {
+      'id': 'BCL2',
+      'group': 1,
+      'label': 'BCL2',
+      'level': 2
+    },
+    {
+      'id': 'c-myc',
+      'group': 1,
+      'label': 'c-myc',
+      'level': 2
+    },
+    {
+      'id': 'E2F3',
+      'group': 1,
+      'label': 'E2F3',
+      'level': 2
+    },
+    {
+      'id': 'MAP3K8',
+      'group': 1,
+      'label': 'MAP3K8',
+      'level': 2
+    },
+    {
+      'id': 'TIMM8A',
+      'group': 1,
+      'label': 'TIMM8A',
+      'level': 2
+    },
+    {
+      'id': 'PDK1',
+      'group': 1,
+      'label': 'PDK1',
+      'level': 2
+    },
+    {
+      'id': 'Mtpn',
+      'group': 1,
+      'label': 'Mtpn',
+      'level': 2
+    },
+    {
+      'id': 'GalNT-7',
+      'group': 1,
+      'label': 'GalNT-7',
+      'level': 2
+    },
+    {
+      'id': 'FGF20',
+      'group': 1,
+      'label': 'FGF20',
+      'level': 2
+    },
+    {
+      'id': 'MIF',
+      'group': 1,
+      'label': 'MIF',
+      'level': 2
+    },
+    {
+      'id': 'GRN',
+      'group': 1,
+      'label': 'GRN',
+      'level': 2
+    }
+  ],
+  'links': [
+    {
+      'target': 'hsa-let-7i',
+      'source': 'hsa-mir-1271',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1-2',
+      'source': 'hsa-mir-605',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1181',
+      'source': 'hsa-mir-23c',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1181',
+      'source': 'hsa-mir-570',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1181',
+      'source': 'hsa-mir-653',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1245',
+      'source': 'hsa-mir-1254',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1247',
+      'source': 'hsa-mir-625',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1254',
+      'source': 'hsa-mir-128-2',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1254',
+      'source': 'hsa-mir-3615',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1262',
+      'source': 'hsa-mir-222',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1262',
+      'source': 'hsa-mir-496',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1262',
+      'source': 'hsa-mir-548v',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-128-2',
+      'source': 'hsa-mir-181b-2',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1288',
+      'source': 'hsa-mir-148a',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1288',
+      'source': 'hsa-mir-190',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-129-1',
+      'source': 'hsa-mir-592',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1292',
+      'source': 'hsa-mir-629',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1304',
+      'source': 'hsa-mir-628',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1306',
+      'source': 'hsa-mir-221',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-132',
+      'source': 'hsa-mir-148a',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-139',
+      'source': 'hsa-mir-199b',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-140',
+      'source': 'hsa-mir-4326',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-142',
+      'source': 'hsa-mir-598',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-145',
+      'source': 'hsa-mir-188',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-1468',
+      'source': 'hsa-mir-491',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-149',
+      'source': 'hsa-mir-92a-1',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-155',
+      'source': 'hsa-mir-3607',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-155',
+      'source': 'hsa-mir-421',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-155',
+      'source': 'hsa-mir-629',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-181a-2',
+      'source': 'hsa-mir-224',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-196a-2',
+      'source': 'hsa-mir-451',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-199b',
+      'source': 'hsa-mir-539',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-20b',
+      'source': 'hsa-mir-33b',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-216a',
+      'source': 'hsa-mir-30b',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-217',
+      'source': 'hsa-mir-7-2',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-2355',
+      'source': 'hsa-mir-3189',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-23c',
+      'source': 'hsa-mir-28',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-23c',
+      'source': 'hsa-mir-4326',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-28',
+      'source': 'hsa-mir-34c',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-29a',
+      'source': 'hsa-mir-889',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3074',
+      'source': 'hsa-mir-451',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-30e',
+      'source': 'hsa-mir-362',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-30e',
+      'source': 'hsa-mir-3934',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3117',
+      'source': 'hsa-mir-34a',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3173',
+      'source': 'hsa-mir-34b',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3189',
+      'source': 'hsa-mir-627',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-320b-2',
+      'source': 'hsa-mir-541',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-320c-1',
+      'source': 'hsa-mir-543',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-34c',
+      'source': 'hsa-mir-627',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-34c',
+      'source': 'hsa-mir-939',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3610',
+      'source': 'hsa-mir-503',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3610',
+      'source': 'hsa-mir-539',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3648',
+      'source': 'hsa-mir-539',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3648',
+      'source': 'hsa-mir-939',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-365-2',
+      'source': 'hsa-mir-769',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3653',
+      'source': 'hsa-mir-3940',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3676',
+      'source': 'hsa-mir-3928',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3677',
+      'source': 'hsa-mir-378',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-369',
+      'source': 'hsa-mir-7-3',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-370',
+      'source': 'hsa-mir-539',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-374b',
+      'source': 'hsa-mir-3934',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-375',
+      'source': 'hsa-mir-511-2',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-380',
+      'source': 'hsa-mir-9-1',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-381',
+      'source': 'hsa-mir-616',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3912',
+      'source': 'hsa-mir-3940',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3913-1',
+      'source': 'hsa-mir-758',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3917',
+      'source': 'hsa-mir-3928',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3917',
+      'source': 'hsa-mir-3942',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-3917',
+      'source': 'hsa-mir-412',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-433',
+      'source': 'hsa-mir-616',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-451',
+      'source': 'hsa-mir-543',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-503',
+      'source': 'hsa-mir-550a-1',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-503',
+      'source': 'hsa-mir-589',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-509-1',
+      'source': 'hsa-mir-660',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-511-1',
+      'source': 'hsa-mir-659',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-539',
+      'source': 'hsa-mir-545',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-580',
+      'source': 'hsa-mir-7-3',
+      'strength': '0.7'
+    },
+    {
+      'target': 'hsa-mir-625',
+      'source': 'hsa-mir-627',
+      'strength': '0.7'
+    },
+    {
+      'target': 'HMGA2',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'HMGA2',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'HMGA2',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'BCL2',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'RAS',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDC25A',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDK6',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'RAS',
+      'source': 'hsa-let-7c',
+      'strength': 0.7
+    },
+    {
+      'target': 'Hand2',
+      'source': 'hsa-miR-1-2',
+      'strength': 0.7
+    },
+    {
+      'target': 'Irx5',
+      'source': 'hsa-miR-1-2',
+      'strength': 0.7
+    },
+    {
+      'target': 'Kcnd2',
+      'source': 'hsa-miR-1-2',
+      'strength': 0.7
+    },
+    {
+      'target': 'p250GAP',
+      'source': 'hsa-miR-132',
+      'strength': 0.7
+    },
+    {
+      'target': 'MeCP2',
+      'source': 'hsa-miR-132',
+      'strength': 0.7
+    },
+    {
+      'target': 'p250GAP',
+      'source': 'hsa-miR-132',
+      'strength': 0.7
+    },
+    {
+      'target': 'SirT1',
+      'source': 'hsa-miR-132',
+      'strength': 0.7
+    },
+    {
+      'target': 'Cxcl12',
+      'source': 'hsa-miR-140',
+      'strength': 0.7
+    },
+    {
+      'target': 'HDAC4',
+      'source': 'hsa-miR-140',
+      'strength': 0.7
+    },
+    {
+      'target': 'Klf4',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'Elk-1',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'IGF-IR',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'IRS-1',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'KLF4',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'SOX2',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'KLF5',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'IRS-1',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'BNIP3',
+      'source': 'hsa-miR-145',
+      'strength': 0.7
+    },
+    {
+      'target': 'TGIF2',
+      'source': 'hsa-miR-148a',
+      'strength': 0.7
+    },
+    {
+      'target': 'HLA-G',
+      'source': 'hsa-miR-148a',
+      'strength': 0.7
+    },
+    {
+      'target': 'DNMT-1',
+      'source': 'hsa-miR-148a',
+      'strength': 0.7
+    },
+    {
+      'target': 'SOCS1',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'SHIP1',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'TAB2',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'AGTR1',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'Ets-1',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'Meis1',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'RhoA',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'RhoA',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'TP53INP1',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'hAT1R',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'ET-1',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'JARID2',
+      'source': 'hsa-miR-155',
+      'strength': 0.7
+    },
+    {
+      'target': 'HOXB8',
+      'source': 'hsa-miR-196a-2',
+      'strength': 0.7
+    },
+    {
+      'target': 'SET',
+      'source': 'hsa-miR-199b',
+      'strength': 0.7
+    },
+    {
+      'target': 'Mylip',
+      'source': 'hsa-miR-20b',
+      'strength': 0.7
+    },
+    {
+      'target': 'PTEN',
+      'source': 'hsa-miR-216a',
+      'strength': 0.7
+    },
+    {
+      'target': 'PTEN',
+      'source': 'hsa-miR-217',
+      'strength': 0.7
+    },
+    {
+      'target': 'SirT1',
+      'source': 'hsa-miR-217',
+      'strength': 0.7
+    },
+    {
+      'target': 'Bmf',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27(Kip1)',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p57',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-KIT',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27Kip1',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'Bim',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-KIT',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'KIT',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-KIT',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27(Kip1)',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27(Kip1)',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'ERalpha',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1C/p57',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-KIT',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'KIT',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'BIRC1',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'KIT',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B',
+      'source': 'hsa-miR-221',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'p57',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'MMP1',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'SOD2',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'Bim',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'KIT',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-KIT',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27(Kip1)',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27(Kip1)',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'ERalpha',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1C/p57',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-KIT',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'KIT',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDKN1B/p27/Kip1',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'KIT',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'p27',
+      'source': 'hsa-miR-222',
+      'strength': 0.7
+    },
+    {
+      'target': 'API-5',
+      'source': 'hsa-miR-224',
+      'strength': 0.7
+    },
+    {
+      'target': 'B7-H3',
+      'source': 'hsa-miR-29a',
+      'strength': 0.7
+    },
+    {
+      'target': 'BACE1',
+      'source': 'hsa-miR-29a',
+      'strength': 0.7
+    },
+    {
+      'target': 'DNMT3A',
+      'source': 'hsa-miR-29a',
+      'strength': 0.7
+    },
+    {
+      'target': 'DNMT3B',
+      'source': 'hsa-miR-29a',
+      'strength': 0.7
+    },
+    {
+      'target': 'Ubc9',
+      'source': 'hsa-miR-30e',
+      'strength': 0.7
+    },
+    {
+      'target': 'RhoA',
+      'source': 'hsa-miR-31',
+      'strength': 0.7
+    },
+    {
+      'target': 'FOXP3',
+      'source': 'hsa-miR-31',
+      'strength': 0.7
+    },
+    {
+      'target': 'BCL2',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'JAG1',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'WNT1',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-Met',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-Met',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'BCL2',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'MYCN',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'E2F3',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'NOTCH1',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'SIRT1',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'GRM7',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'SIRT1',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-Met',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'MYCN',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'E2F',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'E2F3',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'BCL2',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'BCL2',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'BIRC3',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'DcR3',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'E2F',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-Met',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'Notch-1',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'Notch-2',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDK6',
+      'source': 'hsa-miR-34a',
+      'strength': 0.7
+    },
+    {
+      'target': 'CREB',
+      'source': 'hsa-miR-34b',
+      'strength': 0.7
+    },
+    {
+      'target': 'CDK6',
+      'source': 'hsa-miR-34b',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-myc',
+      'source': 'hsa-miR-34b',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-myc',
+      'source': 'hsa-miR-34b',
+      'strength': 0.7
+    },
+    {
+      'target': 'BCL2',
+      'source': 'hsa-miR-34b',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-myc',
+      'source': 'hsa-miR-34c',
+      'strength': 0.7
+    },
+    {
+      'target': 'E2F3',
+      'source': 'hsa-miR-34c',
+      'strength': 0.7
+    },
+    {
+      'target': 'BCL2',
+      'source': 'hsa-miR-34c',
+      'strength': 0.7
+    },
+    {
+      'target': 'c-Met',
+      'source': 'hsa-miR-34c',
+      'strength': 0.7
+    },
+    {
+      'target': 'MAP3K8',
+      'source': 'hsa-miR-370',
+      'strength': 0.7
+    },
+    {
+      'target': 'PDK1',
+      'source': 'hsa-miR-375',
+      'strength': 0.7
+    },
+    {
+      'target': 'Mtpn',
+      'source': 'hsa-miR-375',
+      'strength': 0.7
+    },
+    {
+      'target': 'TIMM8A',
+      'source': 'hsa-miR-375',
+      'strength': 0.7
+    },
+    {
+      'target': 'GalNT-7',
+      'source': 'hsa-miR-378',
+      'strength': 0.7
+    },
+    {
+      'target': 'FGF20',
+      'source': 'hsa-miR-433',
+      'strength': 0.7
+    },
+    {
+      'target': 'MIF',
+      'source': 'hsa-miR-451',
+      'strength': 0.7
+    },
+    {
+      'target': 'MIF',
+      'source': 'hsa-miR-451',
+      'strength': 0.7
+    },
+    {
+      'target': 'GRN',
+      'source': 'hsa-miR-659',
+      'strength': 0.7
+    }
+  ]
+}

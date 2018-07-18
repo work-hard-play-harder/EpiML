@@ -9,14 +9,15 @@ from EpiMap.momentjs import momentjs
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.jinja_env.globals['momentjs']=momentjs
+app.jinja_env.globals['momentjs'] = momentjs
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
-mail=Mail(app)
+mail = Mail(app)
 
 # Keep this under the statement of app variable.
 # because views module will import app,
 from EpiMap import views, db_tables
+

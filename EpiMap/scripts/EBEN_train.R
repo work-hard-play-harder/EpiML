@@ -19,6 +19,7 @@ cat('\ty_filename:', y_filename, '\n')
 x <- read.table(
   file = file.path(workspace, x_filename),
   header = TRUE,
+  check.names=FALSE,
   row.names = 1
 )
 sprintf('x size: (%d, %d)', nrow(x), ncol(x))

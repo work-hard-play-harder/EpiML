@@ -95,8 +95,85 @@ def webserver():
     return render_template('webserver.html')
 
 
-@app.route('/webserver_lasso', methods=['GET', 'POST'])
-def webserver_lasso():
+@app.route('/webserver/lasso/train', methods=['GET', 'POST'])
+def webserver_lasso_train():
+    if request.method == 'POST':
+        jobname = request.form['jobname']
+        email = request.form['email']
+        description = request.form['description']
+        input_x = request.files['input-x']
+        input_y = request.files['input-y']
+        methods = request.form.getlist('methods')
+        params = {'lasso_alpha': request.form['lasso_alpha'],
+                  'sslasso_s1': request.form['sslasso_s1'],
+                  'sslasso_s2': request.form['sslasso_s2'],
+                  'grouplasso_alpha': request.form['grouplasso_alpha'],
+                  'fold_number': request.form['fold_number'],
+                  'seed_number': request.form['seed_number']
+                  }
+
+        if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
+            x_filename = secure_filename(input_x.filename)
+            y_filename = secure_filename(input_y.filename)
+        else:
+            flash("Only .txt and .csv file types are valid!")
+            return redirect(request.url)
+
+        if x_filename == y_filename:
+            flash("Training data have the same file name.")
+            return redirect(request.url)
+
+        if len(methods) == 0:
+            flash("You must choose at least one method!")
+            return redirect(request.url)
+
+        # return security_code when user exists, otherwise add user into User database
+        # then login
+        user = User.query.filter_by(email=email).first()
+        if user is not None:
+            security_code = user.security_code
+        else:
+            security_code = security_code_generator()
+            user = User(username='anonymous', email=email, security_code=security_code)
+            # user.set_password(request.form['password'])
+            db.session.add(user)
+            db.session.commit()
+        login_user(user)
+
+        # add job into Job database
+        job = Job(name=jobname, category='lasso-based method', type='train', description=description,
+                  selected_algorithm=';'.join(methods), status=0, user_id=current_user.id)
+        db.session.add(job)
+        db.session.commit()
+
+        # upload training data
+        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
+        input_x.save(os.path.join(job_dir, x_filename))
+        input_y.save(os.path.join(job_dir, y_filename))
+        # flash("File has been upload!")
+
+        # call scripts and update Model database
+        print(methods)
+        for method in methods:
+            call_scripts(method, params, job_dir, x_filename, y_filename)
+            params_str = ';'.join([key + '=' + value for key, value in params.items()])
+            model = Model(algorithm=method, parameters=params_str, user_id=current_user.id,
+                          job_id=job.id)
+            db.session.add(model)
+        db.session.commit()
+
+        # send result link and security code via email
+        result_link = str(url_for('processing', jobid=job.id))
+        send_email(recipients=[email],
+                   result_link=result_link, security_code=security_code)
+
+        return redirect(url_for('processing', jobid=job.id))
+
+    return render_template('webserver_lasso_train.html')
+
+
+@app.route('/webserver/lasso/test', methods=['GET', 'POST'])
+def webserver_lasso_test():
     if request.method == 'POST':
         jobname = request.form['jobname']
         description = request.form['description']
@@ -161,7 +238,7 @@ def webserver_lasso():
             return redirect(url_for('processing', jobid=job.id))
         else:
             flash("Only .txt and .csv file types are valid!")
-    return render_template('webserver_lasso.html')
+    return render_template('webserver_lasso_test.html')
 
 
 @app.route('/webserver_elasticNet', methods=['GET', 'POST'])
@@ -234,7 +311,7 @@ def webserver_elasticNet():
 
 
 @app.route('/webserver/epistasis_miRNA/training', methods=['GET', 'POST'])
-def webserver_epistasis_miRNA_training():
+def webserver_epistasis_miRNA_train():
     if request.method == 'POST':
         jobname = request.form['jobname']
         description = request.form['description']
@@ -269,8 +346,8 @@ def webserver_epistasis_miRNA_training():
             login_user(user)
 
             # add job into Job database
-            job = Job(jobname=jobname, description=description, selected_algorithm=';'.join(methods), status=0,
-                      user_id=current_user.id)
+            job = Job(name=jobname, category='epistatic analysis of miRNAs', type='train', description=description,
+                      selected_algorithm=';'.join(methods), status=0, user_id=current_user.id)
             db.session.add(job)
             db.session.commit()
 
@@ -300,7 +377,8 @@ def webserver_epistasis_miRNA_training():
             return redirect(url_for('processing', jobid=job.id))
         else:
             flash("Only .txt and .csv file types are valid!")
-    return render_template('webserver_epistasis_miRNA_training.html')
+    return render_template('webserver_epistasis_miRNA_train.html')
+
 
 @app.route('/webserver/epistasis_miRNA/testing', methods=['GET', 'POST'])
 @login_required
@@ -380,7 +458,8 @@ def webserver_epistasis_miRNA_testing():
         username = User.query.filter_by(id=model.user_id).first_or_404().username
         usernames.append(username)
 
-    return render_template('webserver_epistasis_miRNA_testing.html', models=models, jobnames=jobnames, usernames=usernames)
+    return render_template('webserver_epistasis_miRNA_testing.html', models=models, jobnames=jobnames,
+                           usernames=usernames)
 
 
 @app.route('/webserver/testing', methods=['GET', 'POST'])
@@ -572,7 +651,7 @@ def models():
     # print(models)
     jobnames = []
     for model in models:
-        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().name
         jobnames.append(jobname)
 
     return render_template('models.html', models=models, jobnames=jobnames)

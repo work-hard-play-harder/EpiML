@@ -135,12 +135,14 @@
                 <tr>
                     <th width="4%"></th>
                     <th width="4%">#</th>
-                    <th width="10%">Name</th>
-                    <th width="18%">Selected Methods</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Methods</th>
                     <th>Description</th>
-                    <th width="15%">Submit time</th>
-                    <th width="12%">Running status</th>
-                    <th width="11%">View Results</th>
+                    <th>Submit time</th>
+                    <th>Status</th>
+                    <th>View Results</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -149,8 +151,10 @@
                         <td>{{ job.id }}</td>
                         <td>{{ loop.index0 + 1 }}</td>
                         <td>
-                            <div class="scrollable">{{ job.jobname }}</div>
+                            <div class="scrollable">{{ job.name }}</div>
                         </td>
+                        <td>{{ job.category }}</td>
+                        <td>{{ job.type }}</td>
                         <td>
                             <div class="scrollable">{{ job.selected_algorithm }}</div>
                         </td>
