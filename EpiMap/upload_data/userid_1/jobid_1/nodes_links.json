@@ -1,0 +1,1141 @@
+{
+ "nodes": [
+  {
+    "id": "hsa-let-7c",
+    "group": 1,
+    "label": "hsa-let-7c",
+    "level": 1
+  },
+  {
+    "id": "hsa-let-7f-2",
+    "group": 2,
+    "label": "hsa-let-7f-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1-2",
+    "group": 2,
+    "label": "hsa-mir-1-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-106b",
+    "group": 2,
+    "label": "hsa-mir-106b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1181",
+    "group": 2,
+    "label": "hsa-mir-1181",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1228",
+    "group": 2,
+    "label": "hsa-mir-1228",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1247",
+    "group": 2,
+    "label": "hsa-mir-1247",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1248",
+    "group": 2,
+    "label": "hsa-mir-1248",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1249",
+    "group": 1,
+    "label": "hsa-mir-1249",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1254",
+    "group": 2,
+    "label": "hsa-mir-1254",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1262",
+    "group": 2,
+    "label": "hsa-mir-1262",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1271",
+    "group": 2,
+    "label": "hsa-mir-1271",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-128-2",
+    "group": 2,
+    "label": "hsa-mir-128-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1288",
+    "group": 2,
+    "label": "hsa-mir-1288",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-129-2",
+    "group": 2,
+    "label": "hsa-mir-129-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1291",
+    "group": 2,
+    "label": "hsa-mir-1291",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1292",
+    "group": 2,
+    "label": "hsa-mir-1292",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-1304",
+    "group": 2,
+    "label": "hsa-mir-1304",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-132",
+    "group": 2,
+    "label": "hsa-mir-132",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-133b",
+    "group": 2,
+    "label": "hsa-mir-133b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-134",
+    "group": 2,
+    "label": "hsa-mir-134",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-139",
+    "group": 2,
+    "label": "hsa-mir-139",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-141",
+    "group": 2,
+    "label": "hsa-mir-141",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-145",
+    "group": 2,
+    "label": "hsa-mir-145",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-146a",
+    "group": 2,
+    "label": "hsa-mir-146a",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-146b",
+    "group": 2,
+    "label": "hsa-mir-146b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-148a",
+    "group": 2,
+    "label": "hsa-mir-148a",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-155",
+    "group": 2,
+    "label": "hsa-mir-155",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-15a",
+    "group": 2,
+    "label": "hsa-mir-15a",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-181a-2",
+    "group": 2,
+    "label": "hsa-mir-181a-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-186",
+    "group": 2,
+    "label": "hsa-mir-186",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-188",
+    "group": 2,
+    "label": "hsa-mir-188",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-190",
+    "group": 2,
+    "label": "hsa-mir-190",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-192",
+    "group": 2,
+    "label": "hsa-mir-192",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-193a",
+    "group": 2,
+    "label": "hsa-mir-193a",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-199b",
+    "group": 2,
+    "label": "hsa-mir-199b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-200c",
+    "group": 2,
+    "label": "hsa-mir-200c",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-204",
+    "group": 2,
+    "label": "hsa-mir-204",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-20b",
+    "group": 2,
+    "label": "hsa-mir-20b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-216a",
+    "group": 2,
+    "label": "hsa-mir-216a",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-218-2",
+    "group": 2,
+    "label": "hsa-mir-218-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-221",
+    "group": 2,
+    "label": "hsa-mir-221",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-222",
+    "group": 2,
+    "label": "hsa-mir-222",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-223",
+    "group": 2,
+    "label": "hsa-mir-223",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-224",
+    "group": 2,
+    "label": "hsa-mir-224",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-2355",
+    "group": 2,
+    "label": "hsa-mir-2355",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-23c",
+    "group": 2,
+    "label": "hsa-mir-23c",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-26a-2",
+    "group": 2,
+    "label": "hsa-mir-26a-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-28",
+    "group": 2,
+    "label": "hsa-mir-28",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-296",
+    "group": 2,
+    "label": "hsa-mir-296",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-29a",
+    "group": 2,
+    "label": "hsa-mir-29a",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-29c",
+    "group": 2,
+    "label": "hsa-mir-29c",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3065",
+    "group": 1,
+    "label": "hsa-mir-3065",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3074",
+    "group": 2,
+    "label": "hsa-mir-3074",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-30b",
+    "group": 2,
+    "label": "hsa-mir-30b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-30e",
+    "group": 2,
+    "label": "hsa-mir-30e",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-31",
+    "group": 1,
+    "label": "hsa-mir-31",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3131",
+    "group": 2,
+    "label": "hsa-mir-3131",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3173",
+    "group": 2,
+    "label": "hsa-mir-3173",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3189",
+    "group": 1,
+    "label": "hsa-mir-3189",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-320c-1",
+    "group": 1,
+    "label": "hsa-mir-320c-1",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-337",
+    "group": 1,
+    "label": "hsa-mir-337",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-33b",
+    "group": 2,
+    "label": "hsa-mir-33b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-34a",
+    "group": 1,
+    "label": "hsa-mir-34a",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-34b",
+    "group": 2,
+    "label": "hsa-mir-34b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-34c",
+    "group": 2,
+    "label": "hsa-mir-34c",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3607",
+    "group": 2,
+    "label": "hsa-mir-3607",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3614",
+    "group": 2,
+    "label": "hsa-mir-3614",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3615",
+    "group": 2,
+    "label": "hsa-mir-3615",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-363",
+    "group": 2,
+    "label": "hsa-mir-363",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3648",
+    "group": 2,
+    "label": "hsa-mir-3648",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-365-2",
+    "group": 2,
+    "label": "hsa-mir-365-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3662",
+    "group": 1,
+    "label": "hsa-mir-3662",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3677",
+    "group": 2,
+    "label": "hsa-mir-3677",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3680",
+    "group": 2,
+    "label": "hsa-mir-3680",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3682",
+    "group": 2,
+    "label": "hsa-mir-3682",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-369",
+    "group": 2,
+    "label": "hsa-mir-369",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-374b",
+    "group": 2,
+    "label": "hsa-mir-374b",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-375",
+    "group": 2,
+    "label": "hsa-mir-375",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-378",
+    "group": 2,
+    "label": "hsa-mir-378",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-380",
+    "group": 2,
+    "label": "hsa-mir-380",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-382",
+    "group": 2,
+    "label": "hsa-mir-382",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3909",
+    "group": 2,
+    "label": "hsa-mir-3909",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3912",
+    "group": 2,
+    "label": "hsa-mir-3912",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3913-1",
+    "group": 2,
+    "label": "hsa-mir-3913-1",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3917",
+    "group": 2,
+    "label": "hsa-mir-3917",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3928",
+    "group": 2,
+    "label": "hsa-mir-3928",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3934",
+    "group": 2,
+    "label": "hsa-mir-3934",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3941",
+    "group": 2,
+    "label": "hsa-mir-3941",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-3942",
+    "group": 2,
+    "label": "hsa-mir-3942",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-412",
+    "group": 2,
+    "label": "hsa-mir-412",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-421",
+    "group": 2,
+    "label": "hsa-mir-421",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-431",
+    "group": 2,
+    "label": "hsa-mir-431",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-4326",
+    "group": 2,
+    "label": "hsa-mir-4326",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-433",
+    "group": 2,
+    "label": "hsa-mir-433",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-450a-1",
+    "group": 2,
+    "label": "hsa-mir-450a-1",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-450a-2",
+    "group": 2,
+    "label": "hsa-mir-450a-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-486",
+    "group": 2,
+    "label": "hsa-mir-486",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-496",
+    "group": 2,
+    "label": "hsa-mir-496",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-497",
+    "group": 2,
+    "label": "hsa-mir-497",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-503",
+    "group": 2,
+    "label": "hsa-mir-503",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-511-1",
+    "group": 2,
+    "label": "hsa-mir-511-1",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-511-2",
+    "group": 2,
+    "label": "hsa-mir-511-2",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-539",
+    "group": 2,
+    "label": "hsa-mir-539",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-545",
+    "group": 2,
+    "label": "hsa-mir-545",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-548e",
+    "group": 1,
+    "label": "hsa-mir-548e",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-548o",
+    "group": 2,
+    "label": "hsa-mir-548o",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-550a-1",
+    "group": 2,
+    "label": "hsa-mir-550a-1",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-574",
+    "group": 2,
+    "label": "hsa-mir-574",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-577",
+    "group": 2,
+    "label": "hsa-mir-577",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-580",
+    "group": 1,
+    "label": "hsa-mir-580",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-605",
+    "group": 2,
+    "label": "hsa-mir-605",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-616",
+    "group": 2,
+    "label": "hsa-mir-616",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-627",
+    "group": 2,
+    "label": "hsa-mir-627",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-628",
+    "group": 2,
+    "label": "hsa-mir-628",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-654",
+    "group": 2,
+    "label": "hsa-mir-654",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-659",
+    "group": 2,
+    "label": "hsa-mir-659",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-7-3",
+    "group": 2,
+    "label": "hsa-mir-7-3",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-708",
+    "group": 2,
+    "label": "hsa-mir-708",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-744",
+    "group": 2,
+    "label": "hsa-mir-744",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-769",
+    "group": 2,
+    "label": "hsa-mir-769",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-889",
+    "group": 2,
+    "label": "hsa-mir-889",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-9-1",
+    "group": 2,
+    "label": "hsa-mir-9-1",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-935",
+    "group": 2,
+    "label": "hsa-mir-935",
+    "level": 1
+  },
+  {
+    "id": "hsa-mir-942",
+    "group": 2,
+    "label": "hsa-mir-942",
+    "level": 1
+  }
+] ,
+"links": [
+  {
+    "target": "hsa-let-7f-2",
+    "source": "hsa-mir-3614",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1-2",
+    "source": "hsa-mir-3682",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-106b",
+    "source": "hsa-mir-3912",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1181",
+    "source": "hsa-mir-23c",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1228",
+    "source": "hsa-mir-1271",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1247",
+    "source": "hsa-mir-186",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1247",
+    "source": "hsa-mir-23c",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1248",
+    "source": "hsa-mir-605",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1254",
+    "source": "hsa-mir-128-2",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1254",
+    "source": "hsa-mir-3615",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1262",
+    "source": "hsa-mir-222",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1262",
+    "source": "hsa-mir-496",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1271",
+    "source": "hsa-mir-1291",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1288",
+    "source": "hsa-mir-148a",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1288",
+    "source": "hsa-mir-190",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1288",
+    "source": "hsa-mir-3074",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-129-2",
+    "source": "hsa-mir-148a",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-129-2",
+    "source": "hsa-mir-320c-1",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1292",
+    "source": "hsa-mir-942",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1304",
+    "source": "hsa-mir-628",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-1304",
+    "source": "hsa-mir-744",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-132",
+    "source": "hsa-mir-148a",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-132",
+    "source": "hsa-mir-29c",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-133b",
+    "source": "hsa-mir-511-2",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-134",
+    "source": "hsa-mir-539",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-139",
+    "source": "hsa-mir-199b",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-141",
+    "source": "hsa-mir-3614",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-141",
+    "source": "hsa-mir-450a-1",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-145",
+    "source": "hsa-mir-188",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-146a",
+    "source": "hsa-mir-659",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-146b",
+    "source": "hsa-mir-577",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-155",
+    "source": "hsa-mir-421",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-155",
+    "source": "hsa-mir-4326",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-15a",
+    "source": "hsa-mir-574",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-181a-2",
+    "source": "hsa-mir-192",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-181a-2",
+    "source": "hsa-mir-224",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-186",
+    "source": "hsa-mir-412",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-193a",
+    "source": "hsa-mir-375",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-200c",
+    "source": "hsa-mir-627",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-204",
+    "source": "hsa-mir-7-3",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-20b",
+    "source": "hsa-mir-33b",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-216a",
+    "source": "hsa-mir-30b",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-218-2",
+    "source": "hsa-mir-296",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-221",
+    "source": "hsa-mir-363",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-223",
+    "source": "hsa-mir-3913-1",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-2355",
+    "source": "hsa-mir-3189",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-26a-2",
+    "source": "hsa-mir-486",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-28",
+    "source": "hsa-mir-34c",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-28",
+    "source": "hsa-mir-548o",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-29a",
+    "source": "hsa-mir-450a-2",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-29a",
+    "source": "hsa-mir-889",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-30e",
+    "source": "hsa-mir-605",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-31",
+    "source": "hsa-mir-654",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3131",
+    "source": "hsa-mir-935",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3173",
+    "source": "hsa-mir-34b",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3189",
+    "source": "hsa-mir-627",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-34b",
+    "source": "hsa-mir-3607",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3607",
+    "source": "hsa-mir-497",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3648",
+    "source": "hsa-mir-539",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-365-2",
+    "source": "hsa-mir-769",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3677",
+    "source": "hsa-mir-378",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3680",
+    "source": "hsa-mir-382",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-369",
+    "source": "hsa-mir-7-3",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-374b",
+    "source": "hsa-mir-3934",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-375",
+    "source": "hsa-mir-511-2",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-380",
+    "source": "hsa-mir-9-1",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3909",
+    "source": "hsa-mir-421",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3917",
+    "source": "hsa-mir-3928",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3917",
+    "source": "hsa-mir-3942",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3941",
+    "source": "hsa-mir-503",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-3942",
+    "source": "hsa-mir-616",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-431",
+    "source": "hsa-mir-708",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-433",
+    "source": "hsa-mir-616",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-503",
+    "source": "hsa-mir-550a-1",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-511-1",
+    "source": "hsa-mir-659",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-539",
+    "source": "hsa-mir-545",
+    "strength": "0.7"
+  },
+  {
+    "target": "hsa-mir-580",
+    "source": "hsa-mir-7-3",
+    "strength": "0.7"
+  }
+] 
+}
