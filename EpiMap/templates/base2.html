@@ -52,10 +52,6 @@
                 background-color: #cccccc;
                 border-radius: 1px;
             }
-
-            p {
-                font-size: large;
-            }
         </style>
     {% endblock %}
 </head>
@@ -77,19 +73,7 @@
         <div id="menu" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Server
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href={{ url_for('webserver_lasso_train') }}> LASSO-based methods</a></li>
-                        <li><a href={{ url_for('webserver_elasticNet') }}>Elastic Net-based methods</a></li>
-                        <li class="divider"></li>
-                        <li><a href={{ url_for('webserver_epistasis_miRNA_train') }}> Epistasis Analysis of
-                            MicroRNAs</a>
-                        </li>
-                    </ul>
-                </li>
+                <li><a href="{{ url_for('webserver_training') }}">Server</a></li>
                 <li><a href="{{ url_for('jobs') }}">Jobs</a></li>
                 <li><a href="{{ url_for('models') }}">Models</a></li>
                 <!--<li><a href="{{ url_for('repository') }}">Repository</a></li> -->

@@ -11,7 +11,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64))
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
     password_hash = db.Column(db.String(128))
-    security_code=db.Column(db.String(6))
+    security_code = db.Column(db.String(6))
     timestamp = db.Column(db.DateTime, default=datetime.now(timezone.utc))
 
     jobs = db.relationship('Job', backref='author', lazy='dynamic')
@@ -27,7 +27,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def check_security_code(self, security_code):
-        return self.security_code==security_code
+        return self.security_code == security_code
 
 
 @login.user_loader
@@ -37,7 +37,9 @@ def user_loader(id):
 
 class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    jobname = db.Column(db.String(64))
+    name = db.Column(db.String(64))
+    category = db.Column(db.String(64))
+    type = db.Column(db.String(64))
     timestamp = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     description = db.Column(db.String(280))
     selected_algorithm = db.Column(db.String(64))  # format like algorithm1|algorithm2|algorithm3
@@ -48,7 +50,7 @@ class Job(db.Model):
     models = db.relationship('Model', backref='job', lazy='dynamic')
 
     def __repr__(self):
-        return '<Job {}>'.format(self.jobname)
+        return '<Job {}>'.format(self.name)
 
 
 class Model(db.Model):

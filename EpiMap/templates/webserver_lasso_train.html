@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Web Server | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        label {
+            font-size: medium;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        function disableInput(chk, id, CVChk = 'cv') {
+            var input_field = document.getElementById(id);
+            var cv_check = document.getElementById(CVChk);
+            if (cv_check.checked) {
+                var fieldsets = document.getElementsByTagName('fieldset');
+                for (var i = 0; i < fieldsets.length; i++) {
+                    fieldsets[i].disabled = true;
+                    fieldsets[i].style.backgroundColor = ' whitesmoke';
+                }
+            }
+            else {
+                if (chk.checked) {
+                    input_field.disabled = false;
+                    input_field.style.backgroundColor = 'white';
+                }
+                else {
+                    input_field.disabled = true;
+                    input_field.style.backgroundColor = ' whitesmoke';
+                }
+            }
+        }
+    </script>
+
+{% endblock %}
+{% block content %}
+    <div>
+        <h2>LASSO-based Methods Web Server</h2>
+        <hr>
+        <!-- Tab links-->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{{ url_for('webserver_lasso_train') }}">Training</a></li>
+            <li><a href="{{ url_for('webserver_lasso_test') }}">Testing</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="training" class="tab-pane fade in active" style="padding-top: 20px">
+
+                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are
+                    required.</strong></p>
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2" for="jobname">Job Name:</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="jobname" name="jobname" placeholder="Enter your job name"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="Enter your Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2" for="description">Description:</label>
+                        <div class="col-sm-10">
+                    <textarea class="form-control" id="description" name="description" style="height: 100px"
+                              placeholder="Add description for your job, like data, method and parameters."
+                              required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="upload">Upload files:</label>
+                        <div class=" col-sm-5" id="upload">
+                            <label class="control-label" for="input-x">Choose your training data: X</label>
+                            <input class="form-control" type="file" id="input-x" name="input-x"
+                                   placeholder="choose your training data: X" required>
+                        </div>
+                        <div class=" col-sm-5">
+                            <label class="control-label" for="input-y">Choose your training label: Y</label>
+                            <input class="form-control" type="file" id="input-y" name="input-y"
+                                   placeholder="choose your training label: Y" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="option">Select Methods:</label>
+                        <div class=" col-sm-10" id="option">
+                            <div class="col-sm-12" style="padding: 10px">
+                                <div class="col-sm-4 form-inline">
+                                    <input id="lasso" name="methods" type="checkbox" value="lasso"
+                                           onclick="disableInput(this,'lasso_fieldset')" checked>
+                                    <label for="lasso">LASSO</label>
+                                    <fieldset id="lasso_fieldset">
+                                        <legend></legend>
+                                        <div class="col-sm-12" style="padding-bottom: 10px">
+                                            Alpha:
+                                            <input id="lasso_alpha" name="lasso_alpha" class="form-control"
+                                                   style="width: 100px;" value="0.5">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4 form-inline">
+                                    <input id="sslasso" name="methods" type="checkbox" value="ssLASSO"
+                                           onclick="disableInput(this,'sslasso_fieldset')">
+                                    <label for="sslasso">ss-LASSO</label>
+                                    <fieldset id="sslasso_fieldset" style="background-color: whitesmoke" disabled>
+                                        <legend></legend>
+                                        <div class="col-sm-12 ">
+                                            <div class="form-group  col-sm-12" style="padding-bottom: 10px ">
+                                                s1:
+                                                <input id="sslasso_s1" name="sslasso_s1" style="width: 100px"
+                                                       class="form-control " value="0.5">
+                                            </div>
+                                            <div class="form-group col-sm-12" style="padding-bottom: 10px ">
+                                                s2:
+                                                <input id="sslasso_alpha" name="sslasso_alpha" style="width: 100px"
+                                                       class="form-control " value="0.5">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4 form-inline">
+                                    <input id="grouplasso" name="methods" type="checkbox" value="groupLASSO"
+                                           onclick="disableInput(this,'grouplasso_fieldset')">
+                                    <label for="grouplasso">group-LASSO</label>
+                                    <fieldset id="grouplasso_fieldset" style="background-color: whitesmoke" disabled>
+                                        <legend></legend>
+                                        <div class="col-sm-12" style="padding-bottom: 10px ">
+                                            Alpha:
+                                            <input id="grouplasso_alpha" name="grouplasso_alpha" class="form-control"
+                                                   style="width: 100px; " value="0.5">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="background-color: ghostwhite; padding: 10px" disabled>
+                                <div class="col-sm-4 form-inline">
+                                    <input type="checkbox" id="cv" name="cv" onclick="disableInput(this, 'fold_number')"
+                                    >
+                                    <label for="cv"> Cross Validation: </label>
+                                    <input class="form-control" style="width: 50px;" type="text" id="fold_number"
+                                           name="fold_number" maxlength="2" value="5" disabled>
+                                </div>
+                                <div class=" col-sm-8 form-inline">
+                                    <input type="checkbox" id="seed" name="seed"
+                                           onclick="disableInput(this, 'seed_number')">
+                                    <label for="seed"> Specify Seed: </label>
+                                    <input class="form-control" style="width: 100px;" type="text" id="seed_number"
+                                           value="28213" name="seed_number" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <hr style="padding: 1px">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="button" class="btn btn-default" value="Clear"
+                                   onClick="window.location.reload()">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

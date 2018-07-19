@@ -19,6 +19,7 @@ cat('\ty_filename:', y_filename, '\n')
 x <- read.table(
   file = file.path(workspace, x_filename),
   header = TRUE,
+  check.names=FALSE,
   row.names = 1
 )
 sprintf('x size: (%d, %d)', nrow(x), ncol(x))
@@ -39,18 +40,25 @@ x11 <- matrix(as.numeric(x), nrow(x))
 
 cat('Filter the miRNA data with more than 20% missing data', '\n')
 x1 <- NULL
+x1_rownames<-NULL
 for (i in 1:nrow(x11)) {
   if (sum(as.numeric(x11[i, ]) != 0)) {
     x1 <- rbind(x1, x[i, ])
+    x1_rownames<-c(x1_rownames,rownames(x)[i])
   }
 }
+rownames(x1)<-x1_rownames
+
 x2 <- NULL
+x2_rownames<-NULL
 criteria <- trunc((ncol(x1) - 1) * 0.8)
 for (i in 1:nrow(x1)) {
   if (sum(as.numeric(x1[i, (2:ncol(x1))]) != 0) > criteria) {
     x2 <- rbind(x2, x1[i, ])
+    x2_rownames<-c(x2_rownames,x1_rownames[i])
   }
 }
+rownames(x2)<-x2_rownames
 colnames(x2) <- colnames(x)
 
 cat('Quantile normalization', '\n')
@@ -142,10 +150,10 @@ main_result <- NULL
 epsi_result <- NULL
 for (i in 1:nrow(idma)) {
   if (idma[i, 1] == idma[i, 2]) {
-    main_result <- rbind(main_result, c(rownames(x)[idma[i, 1]],idma[i,3:6]))
+    main_result <- rbind(main_result, c(rownames(x3)[idma[i, 1]],idma[i,3:6]))
   }
   if (idma[i, 1] != idma[i, 2]) {
-    epsi_result <- rbind(epsi_result, c(rownames(x)[idma[i, 1]],rownames(x)[idma[i, 2]],idma[i,3:6]))
+    epsi_result <- rbind(epsi_result, c(rownames(x3)[idma[i, 1]],rownames(x3)[idma[i, 2]],idma[i,3:6]))
   }
 }
 

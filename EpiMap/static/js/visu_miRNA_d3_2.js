@@ -44,7 +44,7 @@ function mouseOut() {
 // define container
 //var width = window.innerWidth, height = window.innerHeight/2;
 var margin = {top: 30, right: 10, bottom: 30, left: 10}
-var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight;
+var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight / 2;
 var svg = d3.select('svg')
     .attr('width', width - margin.left - margin.right)
     .attr('height', height)
@@ -57,7 +57,7 @@ var svg = d3.select('svg')
 // define simulator
 var simulation = d3.forceSimulation()
 // push nodes apart to space them out
-    .force('charge', d3.forceManyBody().strength(-10))
+    .force('charge', d3.forceManyBody().strength(-20))
     // draw them around the centre of the space
     .force('center', d3.forceCenter(width / 2, height / 2))
     // pull nodes together based on the links between them
