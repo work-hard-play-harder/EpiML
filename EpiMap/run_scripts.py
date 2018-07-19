@@ -131,7 +131,7 @@ def load_json(filename):
         target_nodes = set(target_nodes)
         for node in target_nodes:
             data['nodes'].append({'id': node,
-                                  'group': 1,
+                                  'group': 3,
                                   'label': node,
                                   'level': 2})
 

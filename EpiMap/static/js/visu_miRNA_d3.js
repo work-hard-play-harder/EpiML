@@ -5,6 +5,22 @@ function getNodeColor(node, neighbors) {
     return node.group === 1 ? 'red' : 'blue';
 }
 
+function getNodeType(node) {
+    if (node.level === 1) {
+        return 'polygon';
+    } else if (node.level === 2) {
+        return 'circle';
+    }
+}
+
+function getNodeSize(node) {
+    if (node.level === 1) {
+        return 10;
+    } else if (node.level === 2) {
+        return 5;
+    }
+}
+
 function getTextColor(node, neighbors) {
     return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' : 'black'
 }
@@ -67,15 +83,23 @@ var simulation = d3.forceSimulation()
     .force('x', d3.forceX(width / 2).strength(0.01))
     .force('y', d3.forceY(height / 2).strength(0.01));
 
-
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+var shape = d3.scaleOrdinal(d3.symbols);
 // define nodes, texts, links and drag&drop
 var nodeElements = svg.append('g')
     .attr('class', 'nodes')
-    .selectAll('circle')
+    .selectAll('.path')
     .data(nodes)
-    .enter().append('circle')
-    .attr('r', 5)
-    .attr('fill', getNodeColor)
+    .enter().append('path')
+
+    .attr('d', d3.symbol()
+        .type(function (d) {
+            return shape(d.level);
+        })
+    )
+    .attr('fill', function (d) {
+        return color(d.group);
+    })
     // mouse event
     .on('click', selectNode)
     .on('mouseover', selectNode)
@@ -118,9 +142,11 @@ nodeElements.call(dragDrop);
 
 // setup
 simulation.nodes(nodes).on('tick', () => {
-    nodeElements
-        .attr('cx', node => node.x)
-        .attr('cy', node => node.y);
+    nodeElements.attr('transform', function (d) {
+        return 'translate(' + d.x + ',' + d.y + ')';
+    });
+    //   .attr('cx', node => node.x)
+    // .attr('cy', node => node.y);
     textElements
         .attr('x', node => node.x)
         .attr('y', node => node.y);
