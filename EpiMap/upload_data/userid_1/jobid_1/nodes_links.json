@@ -755,387 +755,387 @@
   {
     "target": "hsa-let-7f-2",
     "source": "hsa-mir-3614",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1-2",
     "source": "hsa-mir-3682",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-106b",
     "source": "hsa-mir-3912",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1181",
     "source": "hsa-mir-23c",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1228",
     "source": "hsa-mir-1271",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1247",
     "source": "hsa-mir-186",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1247",
     "source": "hsa-mir-23c",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1248",
     "source": "hsa-mir-605",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1254",
     "source": "hsa-mir-128-2",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1254",
     "source": "hsa-mir-3615",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1262",
     "source": "hsa-mir-222",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1262",
     "source": "hsa-mir-496",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1271",
     "source": "hsa-mir-1291",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1288",
     "source": "hsa-mir-148a",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1288",
     "source": "hsa-mir-190",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1288",
     "source": "hsa-mir-3074",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-129-2",
     "source": "hsa-mir-148a",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-129-2",
     "source": "hsa-mir-320c-1",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1292",
     "source": "hsa-mir-942",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1304",
     "source": "hsa-mir-628",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-1304",
     "source": "hsa-mir-744",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-132",
     "source": "hsa-mir-148a",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-132",
     "source": "hsa-mir-29c",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-133b",
     "source": "hsa-mir-511-2",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-134",
     "source": "hsa-mir-539",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-139",
     "source": "hsa-mir-199b",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-141",
     "source": "hsa-mir-3614",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-141",
     "source": "hsa-mir-450a-1",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-145",
     "source": "hsa-mir-188",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-146a",
     "source": "hsa-mir-659",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-146b",
     "source": "hsa-mir-577",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-155",
     "source": "hsa-mir-421",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-155",
     "source": "hsa-mir-4326",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-15a",
     "source": "hsa-mir-574",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-181a-2",
     "source": "hsa-mir-192",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-181a-2",
     "source": "hsa-mir-224",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-186",
     "source": "hsa-mir-412",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-193a",
     "source": "hsa-mir-375",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-200c",
     "source": "hsa-mir-627",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-204",
     "source": "hsa-mir-7-3",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-20b",
     "source": "hsa-mir-33b",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-216a",
     "source": "hsa-mir-30b",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-218-2",
     "source": "hsa-mir-296",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-221",
     "source": "hsa-mir-363",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-223",
     "source": "hsa-mir-3913-1",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-2355",
     "source": "hsa-mir-3189",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-26a-2",
     "source": "hsa-mir-486",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-28",
     "source": "hsa-mir-34c",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-28",
     "source": "hsa-mir-548o",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-29a",
     "source": "hsa-mir-450a-2",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-29a",
     "source": "hsa-mir-889",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-30e",
     "source": "hsa-mir-605",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-31",
     "source": "hsa-mir-654",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3131",
     "source": "hsa-mir-935",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3173",
     "source": "hsa-mir-34b",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3189",
     "source": "hsa-mir-627",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-34b",
     "source": "hsa-mir-3607",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3607",
     "source": "hsa-mir-497",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3648",
     "source": "hsa-mir-539",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-365-2",
     "source": "hsa-mir-769",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3677",
     "source": "hsa-mir-378",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3680",
     "source": "hsa-mir-382",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-369",
     "source": "hsa-mir-7-3",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-374b",
     "source": "hsa-mir-3934",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-375",
     "source": "hsa-mir-511-2",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-380",
     "source": "hsa-mir-9-1",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3909",
     "source": "hsa-mir-421",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3917",
     "source": "hsa-mir-3928",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3917",
     "source": "hsa-mir-3942",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3941",
     "source": "hsa-mir-503",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-3942",
     "source": "hsa-mir-616",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-431",
     "source": "hsa-mir-708",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-433",
     "source": "hsa-mir-616",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-503",
     "source": "hsa-mir-550a-1",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-511-1",
     "source": "hsa-mir-659",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-539",
     "source": "hsa-mir-545",
-    "strength": "0.7"
+    "strength": "0.3"
   },
   {
     "target": "hsa-mir-580",
     "source": "hsa-mir-7-3",
-    "strength": "0.7"
+    "strength": "0.3"
   }
 ] 
 }

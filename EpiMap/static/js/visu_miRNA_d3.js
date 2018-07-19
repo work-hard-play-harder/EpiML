@@ -60,7 +60,7 @@ function mouseOut() {
 // define container
 //var width = window.innerWidth, height = window.innerHeight/2;
 var margin = {top: 30, right: 10, bottom: 30, left: 10}
-var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight;
+var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight/1.5;
 var svg = d3.select('svg')
     .attr('width', width - margin.left - margin.right)
     .attr('height', height)
@@ -79,7 +79,7 @@ var simulation = d3.forceSimulation()
     // pull nodes together based on the links between them
     .force('link', d3.forceLink().id(link => link.id).strength(link => link.strength))
     // add some collision detection so they don't overlap
-    .force("collide", d3.forceCollide().radius(20))
+    .force("collide", d3.forceCollide().radius(10))
     .force('x', d3.forceX(width / 2).strength(0.01))
     .force('y', d3.forceY(height / 2).strength(0.01));
 
