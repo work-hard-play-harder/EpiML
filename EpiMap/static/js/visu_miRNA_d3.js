@@ -1,24 +1,38 @@
 function getNodeColor(node, neighbors) {
+    /*
     if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
         return 'green'
-    }
-    return node.group === 1 ? 'red' : 'blue';
+    }*/
+    return color(node.fill); // use color schemeCategory10
+    //return node.fill; // directly assign fill color
 }
 
 function getNodeType(node) {
-    if (node.level === 1) {
-        return 'polygon';
-    } else if (node.level === 2) {
-        return 'circle';
+    if (node.type === 'circle') {
+        return d3.symbolCircle;
+    }
+    if (node.type === 'cross') {
+        return d3.symbolCross;
+    }
+    if (node.type === 'diamond') {
+        return d3.symbolDiamond;
+    }
+    if (node.type === 'square') {
+        return d3.symbolSquare;
+    }
+    if (node.type === 'star') {
+        return d3.symbolStar;
+    }
+    if (node.type === 'triangle') {
+        return d3.symbolTriangle;
+    }
+    if (node.type === 'wye') {
+        return d3.symbolWye;
     }
 }
 
 function getNodeSize(node) {
-    if (node.level === 1) {
-        return 10;
-    } else if (node.level === 2) {
-        return 5;
-    }
+    return node.size;
 }
 
 function getTextColor(node, neighbors) {
@@ -60,7 +74,7 @@ function mouseOut() {
 // define container
 //var width = window.innerWidth, height = window.innerHeight/2;
 var margin = {top: 30, right: 10, bottom: 30, left: 10}
-var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight/1.5;
+var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight ;
 var svg = d3.select('svg')
     .attr('width', width - margin.left - margin.right)
     .attr('height', height)
@@ -73,33 +87,33 @@ var svg = d3.select('svg')
 // define simulator
 var simulation = d3.forceSimulation()
 // push nodes apart to space them out
-    .force('charge', d3.forceManyBody().strength(-10))
+//TODO: assign charge for a group nodes
+    .force('charge', d3.forceManyBody().strength(-5))
     // draw them around the centre of the space
     .force('center', d3.forceCenter(width / 2, height / 2))
     // pull nodes together based on the links between them
     .force('link', d3.forceLink().id(link => link.id).strength(link => link.strength))
     // add some collision detection so they don't overlap
-    .force("collide", d3.forceCollide().radius(10))
-    .force('x', d3.forceX(width / 2).strength(0.01))
-    .force('y', d3.forceY(height / 2).strength(0.01));
+    .force("collide", d3.forceCollide().radius(30))
+    //.force('x', d3.forceX(width / 2).strength(0.01))
+    //.force('y', d3.forceY(height / 2).strength(0.01));
 
-var color = d3.scaleOrdinal(d3.schemeCategory20);
+var color = d3.scaleOrdinal(d3.schemeCategory10);
 var shape = d3.scaleOrdinal(d3.symbols);
+
 // define nodes, texts, links and drag&drop
 var nodeElements = svg.append('g')
     .attr('class', 'nodes')
     .selectAll('.path')
     .data(nodes)
     .enter().append('path')
-
+    // three different methods to change shapes
+    //.attr("d", d3.symbol().type(d3.symbolCross))
+    //.attr("d", d3.symbol().type( function(d) { return shape(d.type);} ))
     .attr('d', d3.symbol()
-        .type(function (d) {
-            return shape(d.level);
-        })
-    )
-    .attr('fill', function (d) {
-        return color(d.group);
-    })
+        .type(getNodeType)
+        .size(getNodeSize))
+    .attr("fill", getNodeColor)
     // mouse event
     .on('click', selectNode)
     .on('mouseover', selectNode)
@@ -109,10 +123,11 @@ var textElements = svg.append('g')
     .selectAll('text')
     .data(nodes)
     .enter().append('text')
+    .attr('text-anchor','middle')
     .text(node => node.label)
     .attr('font-size', 15)
-    .attr('dx', 15)
-    .attr('dy', 4);
+    //.attr('dx', 15)
+    //.attr('dy', 4);
 var linkElements = svg.append('g')
     .attr('class', 'links')
     .selectAll('line')
@@ -156,4 +171,4 @@ simulation.nodes(nodes).on('tick', () => {
         .attr('x2', link => link.target.x)
         .attr('y2', link => link.target.y);
 });
-simulation.force('link').links(links)
+simulation.force('link').links(links);

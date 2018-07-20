@@ -1,6 +1,5 @@
 import os
 import shutil
-import json
 import time
 from EpiMap import app, db
 
@@ -13,7 +12,8 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 
 # customized functions
-from EpiMap.run_scripts import call_scripts, create_job_folder, check_job_status, load_results, load_json
+from EpiMap.run_scripts import call_scripts, create_job_folder, check_job_status
+from EpiMap.generate_json import load_results, load_json, EBEN_json
 from EpiMap.create_figures import create_pca_figure, create_lasso_figure
 from EpiMap.db_tables import User, Job, Model
 from EpiMap.safety_check import is_safe_url, is_allowed_file, security_code_generator
@@ -574,10 +574,18 @@ def result(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    EBEN_main_result = load_results(os.path.join(job_dir, 'EBEN.main_result.txt'))
-    EBEN_epis_result = load_results(os.path.join(job_dir, 'EBEN.epis_result.txt'))
+    EBEN_main_result = load_results(os.path.join(job_dir, 'EBEN.main_result.txt')).values.tolist()
+    EBEN_epis_result = load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')).values.tolist()
 
-    nodes, links = load_json(os.path.join(job_dir, 'nodes_links.json'))
+
+
+    if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
+        E_json = EBEN_json(job_dir)
+        nodes = E_json.generate_nodes_json()
+        links = E_json.generate_links_json()
+        #E_json.write_json()
+    else:
+        nodes, links = load_json(os.path.join(job_dir, 'nodes_links.json'))
 
     return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,

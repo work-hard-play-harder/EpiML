@@ -9,9 +9,6 @@ from flask_login import current_user
 
 from EpiMap import app, db
 from EpiMap.db_tables import User, Job, Model
-from EpiMap.datasets import miRNA2Disease
-
-miR2D_dataset = miRNA2Disease()
 
 
 def create_job_folder(upload_folder='', userid=None, jobid=None):
@@ -94,46 +91,3 @@ def check_job_status(jobid, methods):
         job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
         db.session.add(job)
         db.session.commit()
-
-
-def load_results(filename):
-    content = []
-    with open(filename, 'r') as fin:
-        for line in fin:
-            line = line.strip().split()
-            content.append(line)
-    return content
-
-
-def load_json(filename):
-    with open(filename, 'r') as fin:
-        data = json.load(fin)
-    print(data['nodes'])
-    for node in data['nodes']:
-        # TODO: use identified key
-        # node_id = node['id'].replace('.', '-')
-
-        linked_targets = miR2D_dataset.miRNA_target[miR2D_dataset.miRNA_target['miRNA'].str.lower() == node['id']]
-        target_nodes = []
-        # add links
-        for index, row in linked_targets.iterrows():
-            '''
-            data['links'].append({'target': row['Validated target'],
-                                  'source': row['miRNA'],
-                                  'strength': 0.7})
-            '''
-            data['links'].append({'target': row['Validated target'],
-                                  'source': node['id'],
-                                  'strength': 0.7})
-            target_nodes.append(row['Validated target'])
-
-        # add target nodes
-        target_nodes = set(target_nodes)
-        for node in target_nodes:
-            data['nodes'].append({'id': node,
-                                  'group': 3,
-                                  'label': node,
-                                  'level': 2})
-
-    print(data)
-    return data['nodes'], data['links']
