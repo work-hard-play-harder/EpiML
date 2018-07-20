@@ -127,7 +127,7 @@ var textElements = svg.append('g')
     .text(node => node.label)
     .attr('font-size', 15)
     //.attr('dx', 15)
-    //.attr('dy', 4);
+    .attr('dy', -4);
 var linkElements = svg.append('g')
     .attr('class', 'links')
     .selectAll('line')
