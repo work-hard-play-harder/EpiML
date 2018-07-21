@@ -3,30 +3,30 @@ function getNodeColor(node, neighbors) {
     if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
         return 'green'
     }*/
-    return color(node.fill); // use color schemeCategory10
+    return color(node.group); // use color schemeCategory10
     //return node.fill; // directly assign fill color
 }
 
 function getNodeType(node) {
-    if (node.type === 'circle') {
+    if (node.shape === 'circle') {
         return d3.symbolCircle;
     }
-    if (node.type === 'cross') {
+    if (node.shape === 'cross') {
         return d3.symbolCross;
     }
-    if (node.type === 'diamond') {
+    if (node.shape === 'diamond') {
         return d3.symbolDiamond;
     }
-    if (node.type === 'square') {
+    if (node.shape === 'square') {
         return d3.symbolSquare;
     }
-    if (node.type === 'star') {
+    if (node.shape === 'star') {
         return d3.symbolStar;
     }
-    if (node.type === 'triangle') {
+    if (node.shape === 'triangle') {
         return d3.symbolTriangle;
     }
-    if (node.type === 'wye') {
+    if (node.shape === 'wye') {
         return d3.symbolWye;
     }
 }
@@ -41,6 +41,36 @@ function getTextColor(node, neighbors) {
 
 function getLinkColor(node, link) {
     return isNeighborLink(node, link) ? 'green' : 'rgba(50, 50, 50, 0.2)'
+}
+
+function getLegendType(legend) {
+    if (legend.shape === 'circle') {
+        return d3.symbolCircle;
+    }
+    if (legend.shape === 'cross') {
+        return d3.symbolCross;
+    }
+    if (legend.shape === 'diamond') {
+        return d3.symbolDiamond;
+    }
+    if (legend.shape === 'square') {
+        return d3.symbolSquare;
+    }
+    if (legend.shape === 'star') {
+        return d3.symbolStar;
+    }
+    if (legend.shape === 'triangle') {
+        return d3.symbolTriangle;
+    }
+    if (legend.shape === 'wye') {
+        return d3.symbolWye;
+    }
+}
+
+function getLegendColor(legend) {
+
+    return color(legend.label); // use color schemeCategory10
+    //return node.fill; // directly assign fill color
 }
 
 function getNeighbors(node) {
@@ -74,7 +104,7 @@ function mouseOut() {
 // define container
 //var width = window.innerWidth, height = window.innerHeight/2;
 var margin = {top: 30, right: 10, bottom: 30, left: 10}
-var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight ;
+var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight;
 var svg = d3.select('svg')
     .attr('width', width - margin.left - margin.right)
     .attr('height', height)
@@ -88,15 +118,15 @@ var svg = d3.select('svg')
 var simulation = d3.forceSimulation()
 // push nodes apart to space them out
 //TODO: assign charge for a group nodes
-    .force('charge', d3.forceManyBody().strength(-5))
+    .force('charge', d3.forceManyBody().strength(-10))
     // draw them around the centre of the space
     .force('center', d3.forceCenter(width / 2, height / 2))
     // pull nodes together based on the links between them
     .force('link', d3.forceLink().id(link => link.id).strength(link => link.strength))
     // add some collision detection so they don't overlap
     .force("collide", d3.forceCollide().radius(30))
-    //.force('x', d3.forceX(width / 2).strength(0.01))
-    //.force('y', d3.forceY(height / 2).strength(0.01));
+    .force('x', d3.forceX(width / 2).strength(0.01))
+    .force('y', d3.forceY(height / 2).strength(0.01));
 
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 var shape = d3.scaleOrdinal(d3.symbols);
@@ -117,13 +147,30 @@ var nodeElements = svg.append('g')
     // mouse event
     .on('click', selectNode)
     .on('mouseover', selectNode)
-    .on('mouseout', mouseOut);
+    .on('mouseout', mouseOut)
+    .call(d3.drag()
+        .on('start', node => {
+            node.fx = node.x;
+            node.fy = node.y;
+        })
+        .on('drag', node => {
+            simulation.alphaTarget(0.7).restart();
+            node.fx = d3.event.x;
+            node.fy = d3.event.y;
+        })
+        .on('end', node => {
+            if (!d3.event.active) {
+                simulation.alphaTarget(0);
+            }
+            node.fx = null;
+            node.fy = null;
+        }));
 var textElements = svg.append('g')
     .attr('class', 'texts')
     .selectAll('text')
     .data(nodes)
     .enter().append('text')
-    .attr('text-anchor','middle')
+    .attr('text-anchor', 'middle')
     .text(node => node.label)
     .attr('font-size', 15)
     //.attr('dx', 15)
@@ -136,24 +183,29 @@ var linkElements = svg.append('g')
     .attr('stroke-width', 1)
     .attr('stroke', 'rgba(50, 50, 50, 0.2)');
 
-var dragDrop = d3.drag()
-    .on('start', node => {
-        node.fx = node.x;
-        node.fy = node.y;
-    })
-    .on('drag', node => {
-        simulation.alphaTarget(0.7).restart();
-        node.fx = d3.event.x;
-        node.fy = d3.event.y;
-    })
-    .on('end', node => {
-        if (!d3.event.active) {
-            simulation.alphaTarget(0);
-        }
-        node.fx = null;
-        node.fy = null;
+var legend = svg.append('g')
+    .attr('transform', 'translate(20,20)')
+    .selectAll('legend')
+    .data(legends)
+    .enter().append('g')
+    .attr('class', 'legend')
+    .attr('transform', function (d, i) {
+        return 'translate(0,' + i * 20 + ')';
     });
-nodeElements.call(dragDrop);
+legend.append('path')
+    .attr('d', d3.symbol()
+        .type(getLegendType)
+        .size(100))
+    .attr('fill', getLegendColor);
+
+legend.append("text")
+    .attr("x", 18)
+    .attr("y", -3)
+    .attr("dy", ".35em")
+    .style("text-anchor", "begin")
+    .text(function (d) {
+        return d.label;
+    });
 
 // setup
 simulation.nodes(nodes).on('tick', () => {

@@ -27,6 +27,7 @@ class EBEN_json():
 
     nodes_json = []
     links_json = []
+    legend_json = []
 
     def __init__(self, job_dir):
         self.job_dir = job_dir
@@ -36,7 +37,6 @@ class EBEN_json():
         self.main_results = load_results(main_results_filename)
         self.epis_results = load_results(epis_results_filename)
         self.miRNA_target = miR2D_dataset.miRNA_target
-
 
     def generate_nodes_json(self):
         self.main_nodes = self.main_results['feature'].drop_duplicates()
@@ -48,16 +48,16 @@ class EBEN_json():
         for node in all_miRNA_nodes:
             if node in self.main_nodes.values:
                 self.nodes_json.append({'id': node,
-                                        'type': 'triangle',
-                                        'size': 400,
+                                        'shape': 'triangle',
+                                        'size': 300,
                                         'fill': 'red',
                                         'group': 'main_miRNA',
                                         'label': node,
                                         'level': 1})
             elif node in self.epis_nodes.values:
                 self.nodes_json.append({'id': node,
-                                        'type': 'triangle',
-                                        'size': 400,
+                                        'shape': 'triangle',
+                                        'size': 300,
                                         'fill': 'blue',
                                         'group': 'epis_miRNA',
                                         'label': node,
@@ -69,7 +69,7 @@ class EBEN_json():
         self.target_nodes = self.related_target['Validated target'].drop_duplicates()
         for node in self.target_nodes.values:
             self.nodes_json.append({'id': node,
-                                    'type': 'circle',
+                                    'shape': 'circle',
                                     'size': 80,
                                     'fill': 'purple',
                                     'group': 'target',
@@ -98,6 +98,26 @@ class EBEN_json():
                                     'strength': 0.5})
 
         return self.links_json
+
+    def generate_legend_json(self):
+        self.legend_json = [
+            {
+                'label': 'main_miRNA',
+                'shape': 'triangle',
+                'color': 'red'
+            },
+            {
+                'label': 'epis_miRNA',
+                'shape': 'triangle',
+                'color': 'green'
+            },
+            {
+                'label': 'target',
+                'shape': 'circle',
+                'color': 'blue'
+            }
+        ]
+        return self.legend_json
 
     def write_json(self):
         filename = os.path.join(self.job_dir, 'nodes_links.json')

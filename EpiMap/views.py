@@ -577,19 +577,18 @@ def result(jobid):
     EBEN_main_result = load_results(os.path.join(job_dir, 'EBEN.main_result.txt')).values.tolist()
     EBEN_epis_result = load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')).values.tolist()
 
-
-
     if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
         E_json = EBEN_json(job_dir)
         nodes = E_json.generate_nodes_json()
         links = E_json.generate_links_json()
-        #E_json.write_json()
+        legends = E_json.generate_legend_json()
+        # E_json.write_json()
     else:
         nodes, links = load_json(os.path.join(job_dir, 'nodes_links.json'))
 
     return render_template('result.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
-                           nodes=nodes, links=links)
+                           nodes=nodes, links=links, legends=legends)
 
     '''
     # for visulization
