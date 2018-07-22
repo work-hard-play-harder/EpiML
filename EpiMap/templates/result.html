@@ -12,6 +12,26 @@
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
         }
+
+        div.tooltip {
+            position: absolute;
+            background: lightyellow;
+            max-width: 200px;
+            height: auto;
+            padding: 2px;
+            border: 0px;
+            border-style: solid;
+            border-radius: 8px;
+            #border-width: 1px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, .5);
+            #pointer-events: none;
+        }
+
+        svg {
+            border: 1px solid black;
+
+        }
+
     </style>
 {% endblock %}
 {% block scripts %}
@@ -105,7 +125,7 @@
                 <button id='saveAsPNG'>save as PNG</button>
                 <button id='saveAsSVG'>save as SVG</button>
             </div>
-            <div style="padding: 10px">
+            <div style="padding-top: 10px">
                 <svg id="diagram"></svg>
             </div>
             <!-- for d3 visualization.

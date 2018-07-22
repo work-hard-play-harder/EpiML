@@ -49,7 +49,7 @@ class EBEN_json():
             if node in self.main_nodes.values:
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
-                                        'size': 300,
+                                        'size': 100,
                                         'fill': 'red',
                                         'group': 'main_miRNA',
                                         'label': node,
@@ -57,7 +57,7 @@ class EBEN_json():
             elif node in self.epis_nodes.values:
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
-                                        'size': 300,
+                                        'size': 100,
                                         'fill': 'blue',
                                         'group': 'epis_miRNA',
                                         'label': node,
@@ -70,7 +70,7 @@ class EBEN_json():
         for node in self.target_nodes.values:
             self.nodes_json.append({'id': node,
                                     'shape': 'circle',
-                                    'size': 80,
+                                    'size': 50,
                                     'fill': 'purple',
                                     'group': 'target',
                                     'label': node,
