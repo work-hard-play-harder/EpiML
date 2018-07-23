@@ -46,14 +46,20 @@
     <script>
         $(document).ready(function () {
             var table = $('#job_table').DataTable({
-                'columnDefs': [{
-                    'targets': 0,
-                    'checkboxes': {
-                        'selectRow': true
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        },
+                        'searchable': false,
+                        'orderable': false,
                     },
-                    'searchable': false,
-                    'orderable': false,
-                }],
+                    {
+                        'targets': 9,
+                        'searchable': false,
+                        'orderable': false,
+                    }],
                 'select': {
                     'style': 'multi'
                 },
@@ -137,12 +143,12 @@
                     <th width="4%">#</th>
                     <th>Name</th>
                     <th>Category</th>
-                    <th>Type</th>
+                    <th width="7%">Type</th>
                     <th>Methods</th>
                     <th>Description</th>
                     <th>Submit time</th>
-                    <th>Status</th>
-                    <th>View Results</th>
+                    <th width="12%">Status</th>
+                    <th width="7%">Results</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -172,8 +178,8 @@
                             Don't exist!
                         {% endif %}
                         </td>
-                        <td>
-                            <a href="{{ url_for('processing',jobid=job.id) }}"> View Results </a>
+                        <td style="text-align: center">
+                            <a href="{{ url_for('processing',jobid=job.id) }}"> Results </a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -92,14 +92,14 @@
         <!-- Tab links-->
         <ul class="nav nav-tabs">
             <li><a href="{{ url_for('webserver_epistasis_miRNA_train') }}">Training</a></li>
-            <li class="active"><a href="{{ url_for('webserver_epistasis_miRNA_testing') }}">Testing</a></li>
+            <li class="active"><a href="{{ url_for('webserver_epistasis_miRNA_predict') }}">Testing</a></li>
         </ul>
 
         <div class="tab-content">
             <div id="testing" class="tab-pane fade active in" style="padding-top: 20px">
                 <p>Upload unknown data and choose a model to predict your samples. </p>
                 <hr>
-                <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
+                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
