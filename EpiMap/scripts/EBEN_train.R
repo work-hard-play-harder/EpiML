@@ -1,6 +1,4 @@
 library('EBEN')
-library('jsonlite')
-library('sets')
 
 workspace <- '~/Downloads/EBEN-epistasis-master-4/'
 x_filename <- 'bc_x.txt'
