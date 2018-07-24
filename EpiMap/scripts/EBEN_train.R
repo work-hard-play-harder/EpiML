@@ -162,7 +162,7 @@ write.table(
   quote = F,
   sep = '\t',
   row.names = F,
-  col.names = c('features','coefficent value','posterior variance','t-value','p-value')
+  col.names = c('feature','coefficent value','posterior variance','t-value','p-value')
 )
 write.table(
   epsi_result,
@@ -170,7 +170,7 @@ write.table(
   quote = F,
   sep = '\t',
   row.names = F,
-  col.names = c('features1','features2','coefficent value','posterior variance','t-value','p-value')
+  col.names = c('feature1','feature2','coefficent value','posterior variance','t-value','p-value')
 )
 
 write.table(

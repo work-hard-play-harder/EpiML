@@ -47,8 +47,8 @@
         <hr>
         <!-- Tab links-->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="{{ url_for('webserver_lasso_train') }}">Training</a></li>
-            <li><a href="{{ url_for('webserver_lasso_test') }}">Testing</a></li>
+            <li class="active"><a href="{{ url_for('webserver_lasso_train') }}">Train</a></li>
+            <li><a href="{{ url_for('webserver_lasso_predict') }}">Predict</a></li>
         </ul>
 
         <div class="tab-content">
@@ -60,7 +60,7 @@
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
                         <div class="col-sm-4">
-                            <input class="form-control" id="jobname" name="jobname" placeholder="Enter your job name"
+                            <input type="text" class="form-control" id="jobname" name="jobname" placeholder="Enter your job name"
                                    required>
                         </div>
                     </div>

@@ -32,27 +32,53 @@ def create_job_folder(upload_folder='', userid=None, jobid=None):
     return job_dir
 
 
-def call_scripts(method, params=None, job_dir='', x_filename='', y_filename=''):
+def call_train_scripts(method, params=None, job_dir='', x_filename='', y_filename=''):
     print(method)
     if method == 'EBEN':
-        with open(os.path.join(job_dir, 'EBEN.stdout'), 'w') as EBEN_stdout, \
-                open(os.path.join(job_dir, 'EBEN.stderr'), 'w') as EBEN_stderr:
-            subprocess.Popen(['Rscript', app.config['EBEN_SCRIPT'], job_dir, x_filename, y_filename],
+        with open(os.path.join(job_dir, 'EBEN_train.stdout'), 'w') as EBEN_stdout, \
+                open(os.path.join(job_dir, 'EBEN_train.stderr'), 'w') as EBEN_stderr:
+            subprocess.Popen(['Rscript', app.config['EBEN_TRAIN_SCRIPT'], job_dir, x_filename, y_filename],
                              stdout=EBEN_stdout,
                              stderr=EBEN_stderr)
 
     if method == 'LASSO':
-        with open(os.path.join(job_dir, 'LASSO.stdout'), 'w') as LASSO_stdout, \
-                open(os.path.join(job_dir, 'LASSO.stderr'), 'w') as LASSO_stderr:
+        with open(os.path.join(job_dir, 'LASSO_train.stdout'), 'w') as LASSO_stdout, \
+                open(os.path.join(job_dir, 'LASSO_train.stderr'), 'w') as LASSO_stderr:
             subprocess.Popen(
-                ['Rscript', app.config['LASSO_SCRIPT'], params['alpha'], job_dir, x_filename, y_filename],
+                ['Rscript', app.config['LASSO_TRAIN_SCRIPT'], params['alpha'], job_dir, x_filename, y_filename],
                 stdout=LASSO_stdout,
                 stderr=LASSO_stderr)
 
     if method == 'Matrix_eQTL':
-        with open(os.path.join(job_dir, 'Matrix_eQTL.R.stdout'), 'w') as Matrix_eQTL_stdout, \
-                open(os.path.join(job_dir, 'Matrix_eQTL.R.stderr'), 'w') as Matrix_eQTL_stderr:
-            subprocess.Popen(['Rscript', app.config['MATRIX_EQTL_SCRIPT'], job_dir, x_filename, y_filename],
+        with open(os.path.join(job_dir, 'Matrix_eQTL_train.stdout'), 'w') as Matrix_eQTL_stdout, \
+                open(os.path.join(job_dir, 'Matrix_eQTL_train.stderr'), 'w') as Matrix_eQTL_stderr:
+            subprocess.Popen(['Rscript', app.config['MATRIX_EQTL_TRAIN_SCRIPT'], job_dir, x_filename, y_filename],
+                             stdout=Matrix_eQTL_stdout,
+                             stderr=Matrix_eQTL_stderr)
+
+
+def call_predict_scripts(job_dir='',model_dir='', method=None, x_filename=''):
+    print(job_dir,model_dir,method)
+    if method == 'EBEN':
+        print('run EBEN predict')
+        with open(os.path.join(job_dir, 'EBEN_predict.stdout'), 'w') as EBEN_stdout, \
+                open(os.path.join(job_dir, 'EBEN_predict.stderr'), 'w') as EBEN_stderr:
+            subprocess.Popen(['Rscript', app.config['EBEN_PREDICT_SCRIPT'], job_dir, model_dir, x_filename],
+                             stdout=EBEN_stdout,
+                             stderr=EBEN_stderr)
+
+    if method == 'LASSO':
+        with open(os.path.join(job_dir, 'LASSO_predict.stdout'), 'w') as LASSO_stdout, \
+                open(os.path.join(job_dir, 'LASSO_predict.stderr'), 'w') as LASSO_stderr:
+            subprocess.Popen(
+                ['Rscript', app.config['LASSO_PREDICT_SCRIPT'], job_dir, model_dir, x_filename],
+                stdout=LASSO_stdout,
+                stderr=LASSO_stderr)
+
+    if method == 'Matrix_eQTL':
+        with open(os.path.join(job_dir, 'Matrix_eQTL_predict.stdout'), 'w') as Matrix_eQTL_stdout, \
+                open(os.path.join(job_dir, 'Matrix_eQTL_predict.stderr'), 'w') as Matrix_eQTL_stderr:
+            subprocess.Popen(['Rscript', app.config['MATRIX_EQTL_PREDICT_SCRIPT'], job_dir, model_dir, x_filename],
                              stdout=Matrix_eQTL_stdout,
                              stderr=Matrix_eQTL_stderr)
 

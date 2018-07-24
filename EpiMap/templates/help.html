@@ -3,6 +3,14 @@
 {% block title %}
     <title>Help | Shilab web server</title>
 {% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+    ul{
+        font-size: large;
+    }
+    </style>
+{% endblock %}
 {% block content %}
     <div class="col-sm-3">
         <ul class="nav nav-stacked nav-pills hidden-xs affix">
@@ -12,13 +20,13 @@
             <li><a href="#publications">Publications</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-
     </div>
     <div class="col-sm-9" style="height:1500px;">
         <main>
-            <section class="anchor" id="introduction" style="height: 300px">
+            <section class="anchor" id="introduction">
                 <h2>Introduction</h2>
-                <p>This is a free web serivce anchor_fixedfavoidContentHiddenor predicting by using LASSO.</p>
+                <p>This is a free web serivce. The schematic diagram is following:</p>
+                <img  width="80%" src="{{ url_for('static',filename='img/help/schematic diagram.png') }}">
             </section>
 
             <section class="anchor" id="publications" style="height: 300px">

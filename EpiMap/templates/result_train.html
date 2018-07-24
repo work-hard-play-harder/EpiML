@@ -54,8 +54,10 @@
         <h2>Results</h2>
         <hr>
         <p>Your job is finished, and the results are shown in following. Result can be downloaded
-            <a href="{{ url_for('download_result',jobid=jobid, filename='EBEN.main_result.txt') }}">Main effect</a>,
-            <a href="{{ url_for('download_result',jobid=jobid, filename='EBEN.epis_result.txt') }}">Epistatic effect</a>
+            <a href="{{ url_for('download_result',jobid=jobid, filename='EBEN.main_result.txt') }}" target="_blank">Main
+                effect</a>,
+            <a href="{{ url_for('download_result',jobid=jobid, filename='EBEN.epis_result.txt') }}" target="_blank">Epistatic
+                effect</a>
         </p>
 
         <div class="container">
@@ -120,7 +122,9 @@
 
         <h3>Visualization</h3>
         <div id="visualization" class="container">
-            <p>Red circles are main effects, and blue circles are epistasis effects.</p>
+            <p>Relationship between miRNAs and target genes. The mega data can be download
+                <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}" target="_blank">here</a> in
+                JSON format.</p>
             <div>
                 <button id='saveAsPNG'>save as PNG</button>
                 <button id='saveAsSVG'>save as SVG</button>

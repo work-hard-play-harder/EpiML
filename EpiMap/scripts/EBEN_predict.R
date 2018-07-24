@@ -1,22 +1,20 @@
 library('EBEN')
-library('jsonlite')
-library('sets')
 
-workspace <- '~/Downloads/EBEN-epistasis-master-4/'
+workspace <- '/Users/jchen67/Experiment/ShiLab_securityCode/EpiMap/upload_data/userid_1/jobid_1'
 x_filename <- 'bc_x.txt'
+
+args <- commandArgs(trailingOnly = TRUE)
+workspace <- args[1]
+model_dir <- args[2]
+x_filename <- args[3]
 main_filename <- 'EBEN.main_result.txt'
 epis_filename <- 'EBEN.epis_result.txt'
 hyperparams_filename <- 'EBEN.blup_full_hyperparams.txt'
 
-args <- commandArgs(trailingOnly = TRUE)
-workspace <- args[1]
-x_filename <- args[2]
-main_filename <- args[3]
-epis_filename <- args[4]
-hyperparams_filename <- args[5]
-
 cat('EBEN_predict parameters:', '\n')
 cat('\tworkspace:', workspace, '\n')
+cat('\tmodel_dir:', model_dir, '\n')
+cat('\tx_filename:', x_filename, '\n')
 cat('\tmain_filename:', main_filename, '\n')
 cat('\tepis_filename:', epis_filename, '\n')
 cat('\tintercept_filename:', hyperparams_filename, '\n')
@@ -97,3 +95,15 @@ Epis_geno = x3[, epis_effect[, 1], drop = F] * x3[, epis_effect[, 2], drop = F]
 y_epis_predict = Epis_geno %*% matrix(epis_effect[, 3], ncol = 1)
 
 y_predict = intercept + y_main_predict + y_epis_predict
+
+y_predict <- data.frame(Samples = row.names(y_predict), y_predict)
+write.table(
+  y_predict,
+  file = file.path(workspace, 'EBEN_predict.txt'),
+  quote = F,
+  sep = '\t',
+  row.names = F,
+  col.names = T
+)
+
+cat('Done!')

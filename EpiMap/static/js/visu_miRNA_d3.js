@@ -103,8 +103,8 @@ function mouseOverNodeTooltip(node) {
     tooltip
         .html("Name: " + node.id + "<br/>" +
             "Group: " + node.group + "<br/>" +
-            "Ref.:" + "reference" + "<br/>" +
-            "<a href='http://www.google.com'>URL FOR TEST</a>")
+            "Ref.:" + 'node.ref' + "<br/>" +
+            "<a href='http://www.mir2disease.org' target='_blank'>URL FOR miR2Disease</a>")
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY + 10) + "px");
 }
@@ -133,7 +133,7 @@ function mouseOverLinkTooltip(link) {
         .html("Source: " + link.source + "<br/>" +
             "Target: " + link.target + "<br/>" +
             "Ref.:" + "reference" + "<br/>" +
-            "<a href='http://www.google.com'>URL FOR TEST</a>")
+            "<a href='http://www.google.com' target='_blank'>URL FOR TEST</a>")
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY + 10) + "px");
 }
@@ -148,7 +148,6 @@ d3.select('svg').on('click', function () {
         .duration(100)
         .style("opacity", 0);
 })
-
 
 
 // define container
@@ -239,7 +238,7 @@ var linkElements = svg.append('g')
     .attr('stroke', 'rgba(50, 50, 50, 0.2)')
     //TODO:high ligth link
     //.on('mouseover', linkHighLight)
-    .on('mouseover.tooltip', mouseOverLinkTooltip);
+    //.on('mouseover.tooltip', mouseOverLinkTooltip);
 
 var legend = svg.append('g')
     .attr('transform', 'translate(20,20)')

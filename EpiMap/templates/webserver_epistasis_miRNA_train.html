@@ -20,15 +20,15 @@
         <hr>
         <!-- Tab links-->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="{{ url_for('webserver_epistasis_miRNA_train') }}">Training</a></li>
-            <li><a href="{{ url_for('webserver_epistasis_miRNA_predict') }}">Testing</a></li>
+            <li class="active"><a href="{{ url_for('webserver_epistasis_miRNA_train') }}">Train</a></li>
+            <li><a href="{{ url_for('webserver_epistasis_miRNA_predict') }}">Predict</a></li>
         </ul>
 
         <div class="tab-content">
             <div id="training" class="tab-pane fade in active" style="padding-top: 20px">
-                <p>Upload labeled data and choose some methods to train your models. </p>
-                <hr>
-                <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
+
+                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are
+                    required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
@@ -56,15 +56,25 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="upload">Upload files:</label>
-                        <div class=" col-sm-5">
-                            <label class="control-label" for="input-x">Choose your training data: X</label>
-                            <input class="form-control" type="file" id="input-x" name="input-x"
-                                   placeholder="choose your training data: X" required>
-                        </div>
-                        <div class=" col-sm-5">
-                            <label class="control-label" for="input-y">Choose your training label: Y</label>
-                            <input class="form-control" type="file" id="input-y" name="input-y"
-                                   placeholder="choose your training label: Y" required>
+                        <div class="col-sm-10">
+                            <div class="col-sm-6">
+                                <label class="control-label" for="input-x">Choose your training data: X</label>
+                                <input class="form-control" type="file" id="input-x" name="input-x"
+                                       placeholder="choose your training data: X" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label" for="input-y">Choose your training label: Y</label>
+                                <input class="form-control" type="file" id="input-y" name="input-y"
+                                       placeholder="choose your training label: Y" required>
+                            </div>
+                            <div class="col-sm-6" style="padding-top: 5px">
+                                <p style="font-size: small"> Here is sample data, <a
+                                        href="{{ url_for('download_sample_data', filename='bc_x.txt') }}"
+                                        target="_blank"> Training data</a> and <a
+                                        href="{{ url_for('download_sample_data', filename='bc_y.txt') }}"
+                                        target="_blank"> Testing data</a>.
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group form-inline">
@@ -77,7 +87,7 @@
                         </div>
                         -->
                         <div class=" col-sm-3">
-                            <input class="form-control" type="checkbox" id="EBEN" name="methods" value="EBEN">
+                            <input type="checkbox" id="EBEN" name="methods" value="EBEN">
                             <label for="EBEN">EBEN</label>
 
                         </div>
@@ -92,7 +102,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-4 form-inline">
                             <input type="checkbox" id="cv" name="cv" onclick="ShowHideCV(this)" CHECKED>
-                            <label for="validation"> Cross Validation </label>
+                            <label for="validation"> Cross Validation: </label>
                             <input class="form-control" style="width: 50px;" type="text" id="fold_number"
                                    name="fold_number"
                                    maxlength="2" value="5">
@@ -101,7 +111,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-4 form-inline">
                             <input type="checkbox" id="seed" name="seed" CHECKED>
-                            <label for="validation"> Specify Seed </label>
+                            <label for="validation"> Specify Seed: </label>
                             <input class="form-control" style="width: 100px;" type="text" id="seed_number"
                                    name="seed_number">
                         </div>
@@ -114,6 +124,5 @@
                 </form>
             </div>
         </div>
-
     </div>
 {% endblock %}

@@ -4,32 +4,61 @@
     <title>Home | Shilab web server</title>
 {% endblock %}
 {% block content %}
-    <div style="height:1500px;">
-        <main>
-            <section id="highlight" style="height: 300px">
-                <h2>IEpiMap: An open machine learning web service and model repository for the epistasis analysis in diseases and complex traits</h2>
-                <p >Our web server provides an easily used pipeline, through which biologists and biomedical researchers can train a specific model based on their own data or predict their new data based on a shared model in model repository, and visualize results using interactive visualizations. </p>
-            </section>
-            <section id="usage">
-                <h2>The easiest way to use</h2>
-                <p>Users will only need to upload their data to our server, and the results can be quickly predicted based on our models trained online. </p>
-                <br>
+    <div>
+        <div style="background-color: whitesmoke;padding: 30px">
+            <h1>Epistatic Analysis Sever: An open machine learning web service and model repository for the
+                epistatic analysis </h1>
+            <p>This server provides epistatic analysis of miRNAs and SNPs, through which biologists and
+                biomedical researchers can train a specific model based on their own data or predict their new
+                data based on a shared model in model repository, and visualize results using interactive
+                visualizations. </p>
+        </div>
+        <div style=" padding-bottom: 20px; ">
+            <h2 align="center" style="padding: 20px">The easiest way to use</h2>
+            <div class="row">
+                <div class="col-sm-3" align="center">
+                    <img width="50%" src="{{ url_for('static',filename='img/home/upload_to_cloud.png') }}">
+                    <p style="padding: 10px"><strong>Upload training data to our server. All user’s data will be kept
+                        private.</strong></p>
+                </div>
+                <div class="col-sm-3" align="center">
+                    <img width="50%" src="{{ url_for('static',filename='img/home/process_in_cloud.png') }}">
+                    <p style="padding: 10px"><strong>Securely save and process. All processing is automated.</strong>
+                    </p>
+                </div>
+                <div class="col-sm-3" align="center">
+                    <img width="35%" src="{{ url_for('static',filename='img/home/visualization.png') }}">
+                    <p style="padding: 10px"><strong>Analysis by visualization. Many graphs are provided.</strong></p>
+                </div>
+                <div class="col-sm-3" align="center">
+                    <img width="50%" src="{{ url_for('static',filename='img/home/download_to_cloud.png') }}">
+                    <p style="padding: 10px"><strong>Download results and visualization</strong></p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div style=" padding-bottom: 20px; ">
+            <h2 align="center" style="padding: 20px">Model repository</h2>
+            <p>Due to the challenges of replicating large models on large datasets, it is hard to achieve a good
+                model following existing work. We will provide a model repository which is a set of unified
+                containers with trained models. We will package the depending packages, configurations, model
+                parameters, and training details in the container, which can be run on any operating system.</p>
+        </div>
+        <hr>
+        <div style=" padding-bottom: 20px; ">
+            <h2 align="center" style="padding: 20px">Fancy visulization</h2>
+            <p>To help understand the results, we will provide interactive visualization of intermediate results
+                and
+                final results, with options to zoom in and out for diverse views of the data and results. We
+                will
+                provide links to metadata of omics data and external resources, such as gene annotations and
+                biological pathways, to help interpret the results. </p>
+        </div>
+        <hr>
 
-            </section>
-            <section id="repository" style="height: 300px">
-                <h2>Model repository</h2>
-                <p>due to the challenges of replicating large models on large datasets, it is hard to achieve a good model following existing work. We will provide a model repository which is a set of unified containers with trained models. We will package the depending packages, configurations, model parameters, and training details in the container, which can be run on any operating system.</p>
-                
-            </section>
-            <section id="visulization" style="height: 300px">
-                <h2>Fancy visulization</h2>
-                <p>To help understand the results, we will provide interactive visualization of intermediate results and final results, with options to zoom in and out for diverse views of the data and results. We will provide links to metadata of omics data and external resources, such as gene annotations and biological pathways, to help interpret the results. </p>
-                
-            </section>
-            <section id="news" style="height: 300px">
-                <h2>News</h2>
-                <p>Jun. 5 2018 >> update log
-                </p></section>
-        </main>
+        <h2>News</h2>
+        <p>Jun. 5 2018 >> update log
+        </p>
+
     </div>
 {% endblock %}

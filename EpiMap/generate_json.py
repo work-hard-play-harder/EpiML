@@ -17,7 +17,7 @@ def load_json(filename):
     with open(filename, 'r') as fin:
         json_data = json.load(fin)
 
-    return json_data['nodes'], json_data['links']
+    return json_data['nodes'], json_data['links'], json_data['legends']
 
 
 class EBEN_json():
@@ -53,7 +53,8 @@ class EBEN_json():
                                         'fill': 'red',
                                         'group': 'main_miRNA',
                                         'label': node,
-                                        'level': 1})
+                                        'level': 1
+                                        })
             elif node in self.epis_nodes.values:
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
@@ -122,6 +123,7 @@ class EBEN_json():
     def write_json(self):
         filename = os.path.join(self.job_dir, 'nodes_links.json')
         json_data = {'nodes': self.nodes_json,
-                     'links': self.links_json}
+                     'links': self.links_json,
+                     'legends': self.legend_json}
         with open(filename, 'w') as fout:
             json.dump(json_data, fout, indent=4)
