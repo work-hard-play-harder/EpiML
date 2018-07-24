@@ -31,21 +31,6 @@
                     required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
-                        <label class="control-label col-sm-2" for="jobname">Job Category:</label>
-                        <div class="col-sm-10">
-                            <label class="radio-inline col-sm-2">
-                                <input id="jobcategory" name="jobcategory" type="radio" value="microRNA" CHECKED>
-                                microRNA
-                            </label>
-                            <label class="radio-inline col-sm-2">
-                                <input id="jobcategory" name="jobcategory" type="radio" value="SNP"> SNP
-                            </label>
-                            <label class="radio-inline col-sm-2">
-                                <input id="jobcategory" name="jobcategory" type="radio" value="Other"> Other
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
                         <div class="col-sm-4">
                             <input name="jobname" class="form-control" id="jobname" placeholder="Enter your job name"
@@ -63,9 +48,9 @@
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="description">Description:</label>
                         <div class="col-sm-10">
-                            <textarea style="height: 100px" class="form-control" name="description" id="description"
-                                      placeholder="Add description for your job, like data, method and parameters."
-                                      required></textarea>
+                    <textarea style="height: 100px" name="description" class="form-control" id="description"
+                              placeholder="Add description for your job, like data, method and parameters."
+                              required></textarea>
                         </div>
                     </div>
 
@@ -82,7 +67,7 @@
                                 <input class="form-control" type="file" id="input-y" name="input-y"
                                        placeholder="choose your training label: Y" required>
                             </div>
-                            <div class="col-sm-6" style="padding-top: 10px">
+                            <div class="col-sm-6" style="padding-top: 5px">
                                 <p style="font-size: small"> Here is sample data, <a
                                         href="{{ url_for('download_sample_data', filename='bc_x.txt') }}"
                                         target="_blank"> Training data</a> and <a
@@ -98,6 +83,7 @@
                         <div class="col-sm-3">
                             <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
                             <label for="LASSO">LASSO</label>
+
                         </div>
                         -->
                         <div class=" col-sm-3">

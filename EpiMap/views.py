@@ -313,6 +313,7 @@ def webserver_elasticNet():
 @app.route('/webserver/epistasis_miRNA/training', methods=['GET', 'POST'])
 def webserver_epistasis_miRNA_train():
     if request.method == 'POST':
+        jobcategory=request.form['jobcategory']
         jobname = request.form['jobname']
         description = request.form['description']
         email = request.form['email']
@@ -320,6 +321,8 @@ def webserver_epistasis_miRNA_train():
 
         input_x = request.files['input-x']
         input_y = request.files['input-y']
+        print(jobcategory)
+
         if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
             x_filename = secure_filename(input_x.filename)
             y_filename = secure_filename(input_y.filename)
@@ -349,7 +352,7 @@ def webserver_epistasis_miRNA_train():
         login_user(user)
 
         # add job into Job database
-        job = Job(name=jobname, category='epistatic analysis of miRNAs', type='Train', description=description,
+        job = Job(name=jobname, category=jobcategory, type='Train', description=description,
                   selected_algorithm=';'.join(methods), status=0, user_id=current_user.id)
         db.session.add(job)
         db.session.commit()
