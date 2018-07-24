@@ -15,7 +15,7 @@ class Config(object):
 
     # for datasets
     SAMPLE_DATA_DIR = os.path.join(basedir, 'EpiMap', 'datasets', 'sample_data')
-    miRNA2Disease_DATA_DIR=os.path.join(basedir, 'EpiMap', 'datasets', 'miR2Disease')
+    MIR2DISEASE_DATA_DIR = os.path.join(basedir, 'EpiMap', 'datasets', 'miR2Disease')
 
     # for run scripts
     EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'EBEN_train.R')

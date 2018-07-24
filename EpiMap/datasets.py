@@ -1,10 +1,10 @@
 import os
 import pandas as pd
+
 from EpiMap import app
 
-
 class miRNA2Disease():
-    dir = app.config['miRNA2Disease_DATA_DIR']
+    dir = app.config['MIR2DISEASE_DATA_DIR']
     all_entries_file = os.path.join(dir, 'AllEntries.txt')
     disease_list_file = os.path.join(dir, 'diseaseList.txt')
     miRNA_list_file = os.path.join(dir, 'miRNAlist.txt')
