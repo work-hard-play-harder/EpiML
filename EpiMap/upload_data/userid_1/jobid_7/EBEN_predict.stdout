@@ -1,0 +1,14 @@
+EBEN_predict parameters: 
+	workspace: /Users/jchen67/Experiment/ShiLab_securityCode/EpiMap/upload_data/userid_1/jobid_1 
+	main_filename: EBEN.main_result.txt 
+	epis_filename: EBEN.epis_result.txt 
+	intercept_filename: EBEN.blup_full_hyperparams.txt 
+read data 
+[1] "x size: (233, 1046)"
+[1] "main_effect size: (10, 5)"
+[1] "epis_effect size: (73, 6)"
+[1] "hyperparams size: (1, 5)"
+Filter the miRNA data with more than 20% missing data 
+Quantile normalization 
+predict based on main epistatic effects 
+Done!

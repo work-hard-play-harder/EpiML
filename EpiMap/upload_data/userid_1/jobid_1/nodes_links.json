@@ -1,0 +1,2768 @@
+{
+    "nodes": [
+        {
+            "id": "hsa-let-7c",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-let-7c",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1249",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-1249",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-31",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-31",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3189",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-3189",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-320c-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-320c-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-337",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-337",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-34a",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-34a",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3662",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-3662",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-548e",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-548e",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-580",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "hsa-mir-580",
+            "level": 1
+        },
+        {
+            "id": "hsa-let-7f-2",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-let-7f-2",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1-2",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1-2",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-101-2",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-101-2",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1181",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1181",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1245",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1245",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1247",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1247",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1248",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1248",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1254",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1254",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1262",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1262",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1269",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1269",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1271",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1271",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1288",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1288",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-129-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-129-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1292",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1292",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1304",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1304",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1306",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1306",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1307",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1307",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-130b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-130b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-140",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-140",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-1468",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-1468",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-154",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-154",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-155",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-155",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-192",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-192",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-195",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-195",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-196b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-196b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-204",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-204",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-20b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-20b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-216a",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-216a",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-217",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-217",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-218-2",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-218-2",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-221",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-221",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-223",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-223",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-2355",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-2355",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-23c",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-23c",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-28",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-28",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-30e",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-30e",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3131",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3131",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3173",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3173",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-338",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-338",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-339",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-339",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-342",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-342",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-34c",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-34c",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3610",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3610",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3615",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3615",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3648",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3648",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-365-2",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-365-2",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-369",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-369",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-374b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-374b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-375",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-375",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-380",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-380",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3913-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3913-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3917",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3917",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-433",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-433",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-511-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-511-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-539",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-539",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-545",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-545",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-550a-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-550a-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-616",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-616",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-92b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-92b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-147b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-147b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-188",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-188",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-199b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-199b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-653",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-653",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-625",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-625",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-496",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-496",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-590",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-590",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-32",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-32",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-148a",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-148a",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-629",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-629",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-628",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-628",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-26a-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-26a-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-4326",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-4326",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-491",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-491",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-212",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-212",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-374a",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-374a",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-627",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-627",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-940",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-940",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-331",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-331",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-33b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-33b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-23a",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-23a",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-301b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-301b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-7-2",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-7-2",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-92a-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-92a-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3607",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3607",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-605",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-605",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-95",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-95",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-34b",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-34b",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-363",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-363",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-511-2",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-511-2",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-93",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-93",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-939",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-939",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-503",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-503",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-769",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-769",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3912",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3912",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-3934",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-3934",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-9-1",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-9-1",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-675",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-675",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-412",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-412",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-659",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-659",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-548v",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-548v",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-744",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-744",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-7-3",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-7-3",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-652",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-652",
+            "level": 1
+        },
+        {
+            "id": "hsa-mir-937",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "hsa-mir-937",
+            "level": 1
+        },
+        {
+            "id": "HMGA2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "HMGA2",
+            "level": 2
+        },
+        {
+            "id": "BCL2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "BCL2",
+            "level": 2
+        },
+        {
+            "id": "RAS",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "RAS",
+            "level": 2
+        },
+        {
+            "id": "CDC25A",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CDC25A",
+            "level": 2
+        },
+        {
+            "id": "CDK6",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CDK6",
+            "level": 2
+        },
+        {
+            "id": "Hand2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Hand2",
+            "level": 2
+        },
+        {
+            "id": "Irx5",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Irx5",
+            "level": 2
+        },
+        {
+            "id": "Kcnd2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Kcnd2",
+            "level": 2
+        },
+        {
+            "id": "TP53INP1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "TP53INP1",
+            "level": 2
+        },
+        {
+            "id": "Cxcl12",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Cxcl12",
+            "level": 2
+        },
+        {
+            "id": "HDAC4",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "HDAC4",
+            "level": 2
+        },
+        {
+            "id": "TGIF2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "TGIF2",
+            "level": 2
+        },
+        {
+            "id": "HLA-G",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "HLA-G",
+            "level": 2
+        },
+        {
+            "id": "DNMT-1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "DNMT-1",
+            "level": 2
+        },
+        {
+            "id": "SOCS1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "SOCS1",
+            "level": 2
+        },
+        {
+            "id": "SHIP1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "SHIP1",
+            "level": 2
+        },
+        {
+            "id": "TAB2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "TAB2",
+            "level": 2
+        },
+        {
+            "id": "AGTR1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "AGTR1",
+            "level": 2
+        },
+        {
+            "id": "Ets-1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Ets-1",
+            "level": 2
+        },
+        {
+            "id": "Meis1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Meis1",
+            "level": 2
+        },
+        {
+            "id": "RhoA",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "RhoA",
+            "level": 2
+        },
+        {
+            "id": "hAT1R",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "hAT1R",
+            "level": 2
+        },
+        {
+            "id": "ET-1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "ET-1",
+            "level": 2
+        },
+        {
+            "id": "JARID2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "JARID2",
+            "level": 2
+        },
+        {
+            "id": "CDKN1A/p21",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CDKN1A/p21",
+            "level": 2
+        },
+        {
+            "id": "MIP-2 alpha",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "MIP-2 alpha",
+            "level": 2
+        },
+        {
+            "id": "CCND1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CCND1",
+            "level": 2
+        },
+        {
+            "id": "E2F3",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "E2F3",
+            "level": 2
+        },
+        {
+            "id": "WEE1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "WEE1",
+            "level": 2
+        },
+        {
+            "id": "SET",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "SET",
+            "level": 2
+        },
+        {
+            "id": "Mylip",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Mylip",
+            "level": 2
+        },
+        {
+            "id": "ZO-1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "ZO-1",
+            "level": 2
+        },
+        {
+            "id": "PTEN",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "PTEN",
+            "level": 2
+        },
+        {
+            "id": "SirT1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "SirT1",
+            "level": 2
+        },
+        {
+            "id": "Bmf",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Bmf",
+            "level": 2
+        },
+        {
+            "id": "p27",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "p27",
+            "level": 2
+        },
+        {
+            "id": "p27(Kip1)",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "p27(Kip1)",
+            "level": 2
+        },
+        {
+            "id": "p57",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "p57",
+            "level": 2
+        },
+        {
+            "id": "c-KIT",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "c-KIT",
+            "level": 2
+        },
+        {
+            "id": "p27Kip1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "p27Kip1",
+            "level": 2
+        },
+        {
+            "id": "Bim",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Bim",
+            "level": 2
+        },
+        {
+            "id": "CDKN1B/p27/Kip1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CDKN1B/p27/Kip1",
+            "level": 2
+        },
+        {
+            "id": "KIT",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "KIT",
+            "level": 2
+        },
+        {
+            "id": "ERalpha",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "ERalpha",
+            "level": 2
+        },
+        {
+            "id": "CDKN1C/p57",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CDKN1C/p57",
+            "level": 2
+        },
+        {
+            "id": "BIRC1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "BIRC1",
+            "level": 2
+        },
+        {
+            "id": "CDKN1B",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CDKN1B",
+            "level": 2
+        },
+        {
+            "id": "LMO2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "LMO2",
+            "level": 2
+        },
+        {
+            "id": "STMN1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "STMN1",
+            "level": 2
+        },
+        {
+            "id": "Mef2c",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Mef2c",
+            "level": 2
+        },
+        {
+            "id": "NFI-A",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "NFI-A",
+            "level": 2
+        },
+        {
+            "id": "RhoB",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "RhoB",
+            "level": 2
+        },
+        {
+            "id": "RING1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "RING1",
+            "level": 2
+        },
+        {
+            "id": "Ubc9",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Ubc9",
+            "level": 2
+        },
+        {
+            "id": "FOXP3",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "FOXP3",
+            "level": 2
+        },
+        {
+            "id": "PCAF",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "PCAF",
+            "level": 2
+        },
+        {
+            "id": "COXIV",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "COXIV",
+            "level": 2
+        },
+        {
+            "id": "JAG1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "JAG1",
+            "level": 2
+        },
+        {
+            "id": "WNT1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "WNT1",
+            "level": 2
+        },
+        {
+            "id": "c-Met",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "c-Met",
+            "level": 2
+        },
+        {
+            "id": "MYCN",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "MYCN",
+            "level": 2
+        },
+        {
+            "id": "NOTCH1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "NOTCH1",
+            "level": 2
+        },
+        {
+            "id": "SIRT1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "SIRT1",
+            "level": 2
+        },
+        {
+            "id": "GRM7",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "GRM7",
+            "level": 2
+        },
+        {
+            "id": "E2F",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "E2F",
+            "level": 2
+        },
+        {
+            "id": "BIRC3",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "BIRC3",
+            "level": 2
+        },
+        {
+            "id": "DcR3",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "DcR3",
+            "level": 2
+        },
+        {
+            "id": "Notch-1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Notch-1",
+            "level": 2
+        },
+        {
+            "id": "Notch-2",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Notch-2",
+            "level": 2
+        },
+        {
+            "id": "CREB",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "CREB",
+            "level": 2
+        },
+        {
+            "id": "c-myc",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "c-myc",
+            "level": 2
+        },
+        {
+            "id": "PDK1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "PDK1",
+            "level": 2
+        },
+        {
+            "id": "Mtpn",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "Mtpn",
+            "level": 2
+        },
+        {
+            "id": "TIMM8A",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "TIMM8A",
+            "level": 2
+        },
+        {
+            "id": "FGF20",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "FGF20",
+            "level": 2
+        },
+        {
+            "id": "GRN",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "GRN",
+            "level": 2
+        },
+        {
+            "id": "FUS1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "FUS1",
+            "level": 2
+        },
+        {
+            "id": "p21",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "p21",
+            "level": 2
+        },
+        {
+            "id": "E2F1",
+            "shape": "circle",
+            "size": 50,
+            "fill": "purple",
+            "group": "target",
+            "label": "E2F1",
+            "level": 2
+        }
+    ],
+    "links": [
+        {
+            "source": "hsa-let-7f-2",
+            "target": "hsa-mir-147b",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1-2",
+            "target": "hsa-mir-188",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-101-2",
+            "target": "hsa-mir-199b",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1181",
+            "target": "hsa-mir-23c",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1181",
+            "target": "hsa-mir-653",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1245",
+            "target": "hsa-mir-1254",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1247",
+            "target": "hsa-mir-130b",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1247",
+            "target": "hsa-mir-545",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1247",
+            "target": "hsa-mir-625",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1248",
+            "target": "hsa-mir-616",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1254",
+            "target": "hsa-mir-3189",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1254",
+            "target": "hsa-mir-3615",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1262",
+            "target": "hsa-mir-496",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1269",
+            "target": "hsa-mir-590",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1271",
+            "target": "hsa-mir-32",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1288",
+            "target": "hsa-mir-148a",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-129-1",
+            "target": "hsa-mir-31",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1292",
+            "target": "hsa-mir-629",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1304",
+            "target": "hsa-mir-628",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1306",
+            "target": "hsa-mir-221",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1307",
+            "target": "hsa-mir-26a-1",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-130b",
+            "target": "hsa-mir-216a",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-140",
+            "target": "hsa-mir-4326",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-1468",
+            "target": "hsa-mir-491",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-154",
+            "target": "hsa-mir-539",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "hsa-mir-4326",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-192",
+            "target": "hsa-mir-3913-1",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-195",
+            "target": "hsa-mir-212",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-196b",
+            "target": "hsa-mir-433",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-204",
+            "target": "hsa-mir-374a",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-204",
+            "target": "hsa-mir-627",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-204",
+            "target": "hsa-mir-940",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-20b",
+            "target": "hsa-mir-331",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-20b",
+            "target": "hsa-mir-33b",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-216a",
+            "target": "hsa-mir-23a",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-216a",
+            "target": "hsa-mir-301b",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-217",
+            "target": "hsa-mir-7-2",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-218-2",
+            "target": "hsa-mir-3189",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "hsa-mir-92a-1",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-223",
+            "target": "hsa-mir-3913-1",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-2355",
+            "target": "hsa-mir-3189",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-23c",
+            "target": "hsa-mir-3607",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-28",
+            "target": "hsa-mir-34c",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-30e",
+            "target": "hsa-mir-605",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-31",
+            "target": "hsa-mir-545",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3131",
+            "target": "hsa-mir-95",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3173",
+            "target": "hsa-mir-34b",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-337",
+            "target": "hsa-mir-363",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-338",
+            "target": "hsa-mir-3917",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-339",
+            "target": "hsa-mir-511-2",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-342",
+            "target": "hsa-mir-93",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-34c",
+            "target": "hsa-mir-627",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-34c",
+            "target": "hsa-mir-939",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3610",
+            "target": "hsa-mir-503",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3615",
+            "target": "hsa-mir-374b",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3648",
+            "target": "hsa-mir-539",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3648",
+            "target": "hsa-mir-939",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-365-2",
+            "target": "hsa-mir-769",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-369",
+            "target": "hsa-mir-3912",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-374b",
+            "target": "hsa-mir-3934",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-375",
+            "target": "hsa-mir-511-2",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-380",
+            "target": "hsa-mir-9-1",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3913-1",
+            "target": "hsa-mir-675",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-3917",
+            "target": "hsa-mir-412",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-433",
+            "target": "hsa-mir-616",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-511-1",
+            "target": "hsa-mir-659",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-539",
+            "target": "hsa-mir-545",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-545",
+            "target": "hsa-mir-548v",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-545",
+            "target": "hsa-mir-744",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-550a-1",
+            "target": "hsa-mir-616",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-580",
+            "target": "hsa-mir-7-3",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-616",
+            "target": "hsa-mir-652",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-mir-92b",
+            "target": "hsa-mir-937",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "hsa-let-7c",
+            "target": "HMGA2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-let-7c",
+            "target": "BCL2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-let-7c",
+            "target": "RAS",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-let-7c",
+            "target": "CDC25A",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-let-7c",
+            "target": "CDK6",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-1-2",
+            "target": "Hand2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-1-2",
+            "target": "Irx5",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-1-2",
+            "target": "Kcnd2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-130b",
+            "target": "TP53INP1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-140",
+            "target": "Cxcl12",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-140",
+            "target": "HDAC4",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-148a",
+            "target": "TGIF2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-148a",
+            "target": "HLA-G",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-148a",
+            "target": "DNMT-1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "SOCS1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "SHIP1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "TAB2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "AGTR1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "Ets-1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "Meis1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "RhoA",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "TP53INP1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "hAT1R",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "ET-1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-155",
+            "target": "JARID2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-192",
+            "target": "CDKN1A/p21",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-192",
+            "target": "MIP-2 alpha",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-195",
+            "target": "CCND1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-195",
+            "target": "CDK6",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-195",
+            "target": "E2F3",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-195",
+            "target": "WEE1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-199b",
+            "target": "SET",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-20b",
+            "target": "Mylip",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-212",
+            "target": "ZO-1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-216a",
+            "target": "PTEN",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-217",
+            "target": "PTEN",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-217",
+            "target": "SirT1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "Bmf",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "p27",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "p27(Kip1)",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "p57",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "c-KIT",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "p27Kip1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "Bim",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "CDKN1B/p27/Kip1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "KIT",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "ERalpha",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "CDKN1C/p57",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "BIRC1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-221",
+            "target": "CDKN1B",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-223",
+            "target": "LMO2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-223",
+            "target": "STMN1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-223",
+            "target": "Mef2c",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-223",
+            "target": "NFI-A",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-223",
+            "target": "RhoB",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-23a",
+            "target": "RING1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-30e",
+            "target": "Ubc9",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-31",
+            "target": "RhoA",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-31",
+            "target": "FOXP3",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-32",
+            "target": "PCAF",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-338",
+            "target": "COXIV",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "BCL2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "JAG1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "WNT1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "c-Met",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "MYCN",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "E2F3",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "NOTCH1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "SIRT1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "GRM7",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "E2F",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "BIRC3",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "DcR3",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "Notch-1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "Notch-2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34a",
+            "target": "CDK6",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34b",
+            "target": "CREB",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34b",
+            "target": "CDK6",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34b",
+            "target": "c-myc",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34b",
+            "target": "BCL2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34c",
+            "target": "c-myc",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34c",
+            "target": "E2F3",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34c",
+            "target": "BCL2",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-34c",
+            "target": "c-Met",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-375",
+            "target": "PDK1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-375",
+            "target": "Mtpn",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-375",
+            "target": "TIMM8A",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-433",
+            "target": "FGF20",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-659",
+            "target": "GRN",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-92b",
+            "target": "p57",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-93",
+            "target": "FUS1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-93",
+            "target": "p21",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-93",
+            "target": "E2F1",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-93",
+            "target": "PCAF",
+            "color": "green",
+            "strength": 0.5
+        },
+        {
+            "source": "hsa-mir-93",
+            "target": "TP53INP1",
+            "color": "green",
+            "strength": 0.5
+        }
+    ],
+    "legends": [
+        {
+            "label": "main_miRNA",
+            "shape": "triangle",
+            "color": "red"
+        },
+        {
+            "label": "epis_miRNA",
+            "shape": "triangle",
+            "color": "green"
+        },
+        {
+            "label": "target",
+            "shape": "circle",
+            "color": "blue"
+        }
+    ]
+}
