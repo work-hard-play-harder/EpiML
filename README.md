@@ -70,7 +70,7 @@ source venv/bin/activate
 
 7.	Flask 0.12 and plugins, Scientific tools
 
-Install flask by using following command in system-wide:
+Install flask by using following command in virtual environment:
 
 `pip install -r requirements.txt`
 
