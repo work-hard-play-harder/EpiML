@@ -11,7 +11,7 @@ def load_results(filename):
     return df
 
 
-def scitific_notation(df,skip_col):
+def scitific_notation(df, skip_col):
     new_df = []
     for index, row in df.iterrows():
         row = list(row)
@@ -35,6 +35,7 @@ class EBEN_json():
     target_nodes = []
 
     nodes_json = []
+    nodes_group_domain = set()
     links_json = []
     legend_json = []
 
@@ -64,6 +65,8 @@ class EBEN_json():
                                         'label': node,
                                         'level': 1
                                         })
+                self.nodes_group_domain.add('main_effect')
+
             elif node in self.epis_nodes.values:
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
@@ -72,6 +75,7 @@ class EBEN_json():
                                         'group': 'epis_effect',
                                         'label': node,
                                         'level': 1})
+                self.nodes_group_domain.add('epis_effect')
 
         # filter related target nodes with ignore case
         self.related_target = self.miRNA_target[
@@ -85,6 +89,7 @@ class EBEN_json():
                                     'group': 'target',
                                     'label': node,
                                     'level': 2})
+            self.nodes_group_domain.add('target')
         return self.nodes_json
 
     def generate_links_json(self):
@@ -109,24 +114,26 @@ class EBEN_json():
         return self.links_json
 
     def generate_legend_json(self):
+        self.legend_json = []
+        if 'main_effect' in self.nodes_group_domain:
+            self.legend_json.append({
+                "label": "main_effect",
+                "shape": "triangle",
+                "color": "red"
+            })
+        if 'epis_effect' in self.nodes_group_domain:
+            self.legend_json.append({
+                "label": "epis_effect",
+                "shape": "triangle",
+                "color": "green"
+            })
+        if 'target' in self.nodes_group_domain:
+            self.legend_json.append({
+                "label": "target",
+                "shape": "circle",
+                "color": "blue"
+            })
 
-        self.legend_json = [
-            {
-                'label': 'main_miRNA',
-                'shape': 'triangle',
-                'color': 'red'
-            },
-            {
-                'label': 'epis_miRNA',
-                'shape': 'triangle',
-                'color': 'green'
-            },
-            {
-                'label': 'target',
-                'shape': 'circle',
-                'color': 'blue'
-            }
-        ]
         return self.legend_json
 
     def write_json(self):

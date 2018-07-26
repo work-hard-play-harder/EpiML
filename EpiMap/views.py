@@ -675,7 +675,7 @@ def result_train(jobid):
         nodes = E_json.generate_nodes_json()
         links = E_json.generate_links_json()
         legends = E_json.generate_legend_json()
-        E_json.write_json()
+        #E_json.write_json()
     else:
         nodes, links, legends = load_json(os.path.join(job_dir, 'nodes_links.json'))
 
