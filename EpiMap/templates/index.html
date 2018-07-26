@@ -14,7 +14,7 @@
                 visualizations. </p>
         </div>
         <div style=" padding-bottom: 20px; ">
-            <h2 align="center" style="padding: 20px">The easiest way to use</h2>
+            <h2 align="center" style="padding: 20px">Easy to Use</h2>
             <div class="row">
                 <div class="col-sm-3" align="center">
                     <img width="50%" src="{{ url_for('static',filename='img/home/upload.png') }}">
@@ -27,13 +27,13 @@
                     </p>
                 </div>
                 <div class="col-sm-3" align="center">
-                    <img width="50%" src="{{ url_for('static',filename='img/home/process.png') }}">
+                    <img width="50%" src="{{ url_for('static',filename='img/home/processing.png') }}">
                     <p style="padding: 10px"><strong>Multiple threads to process. All processing is automated.</strong>
                     </p>
                 </div>
                 <div class="col-sm-3" align="center">
-                    <img width="55%" src="{{ url_for('static',filename='img/home/visualization.png') }}">
-                    <p style="padding: 10px"><strong>Analysis by visualization. Many graphs are provided.</strong></p>
+                    <img width="50%" src="{{ url_for('static',filename='img/home/finished.png') }}">
+                    <p style="padding: 10px"><strong>Download results when your jobs is finished.</strong></p>
                 </div>
                 <!--
                 <div class="col-sm-3" align="center">
@@ -46,31 +46,55 @@
         </div>
         <hr>
         <div style=" padding-bottom: 20px; ">
-            <h2 align="center" style="padding: 20px">Model repository</h2>
-            <div>
+            <h2 align="center" style="padding: 20px">Model Repository</h2>
+            <div class="row">
                 <div class="col-sm-4" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/repository.png') }}">
                 </div>
+                <div class="col-sm-8">
+                    <p><strong>Trained models are stored, and they are convenient to share with others.</strong> Due to
+                        the challenges of replicating large models on large datasets, it is hard to achieve a good
+                        model following existing work. We will provide a model repository which is a set of unified
+                        containers with trained models. We will package the depending packages, configurations, model
+                        parameters, and training details in the container, which can be run on any operating system.</p>
+                </div>
             </div>
-            <p><strong>Trained model will be stored, and it is convenient to share with others.</strong> Due to the
-                challenges of replicating large models on large datasets, it is hard to achieve a good
-                model following existing work. We will provide a model repository which is a set of unified
-                containers with trained models. We will package the depending packages, configurations, model
-                parameters, and training details in the container, which can be run on any operating system.</p>
         </div>
         <hr>
         <div style=" padding-bottom: 20px; ">
-            <h2 align="center" style="padding: 20px">Integrate multiple sources for visualization</h2>
-            <p>To help understand the results, we will provide interactive visualization of intermediate results
-                and final results, with options to zoom in and out for diverse views of the data and results. We
-                will provide links to metadata of omics data and external resources, such as gene annotations and
-                biological pathways, to help interpret the results. </p>
+            <h2 align="center" style="padding: 20px">Interactive Visualization</h2>
+            <div class="row">
+                <div class="col-sm-4" align="center">
+                    <img width="40%" src="{{ url_for('static',filename='img/home/visualization.png') }}">
+                </div>
+                <div class="col-sm-8">
+                    <p><strong>Results are visualized.</strong> To help understand the results, we will provide
+                        interactive visualization of
+                        intermediate results and final results, with options to zoom in and out for diverse views of the
+                        data and results. </p>
+                </div>
+            </div>
         </div>
         <hr>
-
-        <h2>News</h2>
-        <p>Jun. 5 2018 >> update log
-        </p>
-
+        <div style=" padding-bottom: 20px; ">
+            <h2 align="center" style="padding: 20px"> Multiple Resources Integration</h2>
+            <div class="row">
+                <div class="col-sm-4" align="center">
+                    <img width="40%" src="{{ url_for('static',filename='img/home/integration.png') }}">
+                </div>
+                <div class="col-sm-8">
+                    <p><strong>Multiple external resources are integrated for analysis.</strong> Many external resources
+                        are embedded in results visualization. We also provide links to metadata of omics data and
+                        external resources, such as gene annotations and biological pathways, to help interpret the
+                        results. </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div style=" padding-bottom: 20px; ">
+            <h2 style=" padding-bottom: 20px; ">News</h2>
+            <p>Jun. 5 2018 >> update log
+            </p>
+        </div>
     </div>
 {% endblock %}
