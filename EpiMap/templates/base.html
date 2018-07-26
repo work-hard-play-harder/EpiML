@@ -19,8 +19,11 @@
             function autocollapse() {
                 var navbar = $('.navbar-autocollapse');
                 navbar.removeClass('collapsed');
-                if (navbar.innerHeight() > 113)
+                if (navbar.innerHeight() > 113) {
                     navbar.addClass('collapsed');
+                    navbar.addClass('responsive');
+                }
+
             }
 
             jQuery(document).on('ready', autocollapse);
@@ -42,7 +45,6 @@
                 /* to make the container go al the way to
                            the bottom of the topbar*/
                 padding-top: 90px;
-
             }
 
             .navbar-toggle .icon-bar {

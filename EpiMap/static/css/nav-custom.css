@@ -35,6 +35,7 @@ nav-custom is for the nav-bar with green background and white color
     }
 }
 
+
 .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
     background-color: whitesmoke;
     color: green;

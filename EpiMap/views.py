@@ -14,7 +14,7 @@ from bokeh.resources import INLINE
 
 # customized functions
 from EpiMap.run_scripts import call_train_scripts, call_predict_scripts, create_job_folder, check_job_status
-from EpiMap.generate_json import load_results, load_json, EBEN_json
+from EpiMap.generate_json import load_results, load_json, EBEN_json, scitific_notation
 from EpiMap.create_figures import create_pca_figure, create_lasso_figure
 from EpiMap.db_tables import User, Job, Model
 from EpiMap.safety_check import is_safe_url, is_allowed_file, security_code_generator
@@ -667,8 +667,8 @@ def result_train(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    EBEN_main_result = load_results(os.path.join(job_dir, 'EBEN.main_result.txt')).values.tolist()
-    EBEN_epis_result = load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')).values.tolist()
+    EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.main_result.txt')), 1)
+    EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')), 2)
 
     if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
         E_json = EBEN_json(job_dir)
@@ -716,7 +716,7 @@ def result_predict(jobid):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
 
-    EBEN_predict_results = load_results(os.path.join(job_dir, 'EBEN_predict.txt')).values.tolist()
+    EBEN_predict_results = scitific_notation(load_results(os.path.join(job_dir, 'EBEN_predict.txt')), 1)
 
     return render_template('result_predict.html', jobid=jobid, job_dir=job_dir,
                            EBEN_predict_results=EBEN_predict_results)

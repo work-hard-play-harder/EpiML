@@ -1,16 +1,25 @@
 import os
 import json
+import decimal
 import pandas as pd
 
 from EpiMap.datasets import miRNA2Disease
 
 
-
-
 def load_results(filename):
     df = pd.read_csv(filename, header=0, sep='\t')
-
     return df
+
+
+def scitific_notation(df,skip_col):
+    new_df = []
+    for index, row in df.iterrows():
+        row = list(row)
+        last_col = ['%.4E' % decimal.Decimal(x) for x in row[skip_col:]]
+        new_row = row[:skip_col] + last_col
+        new_df.append(new_row)
+
+    return new_df
 
 
 def load_json(filename):
@@ -51,7 +60,7 @@ class EBEN_json():
                                         'shape': 'triangle',
                                         'size': 100,
                                         'fill': 'red',
-                                        'group': 'main_miRNA',
+                                        'group': 'main_effect',
                                         'label': node,
                                         'level': 1
                                         })
@@ -60,7 +69,7 @@ class EBEN_json():
                                         'shape': 'triangle',
                                         'size': 100,
                                         'fill': 'blue',
-                                        'group': 'epis_miRNA',
+                                        'group': 'epis_effect',
                                         'label': node,
                                         'level': 1})
 
@@ -76,7 +85,6 @@ class EBEN_json():
                                     'group': 'target',
                                     'label': node,
                                     'level': 2})
-
         return self.nodes_json
 
     def generate_links_json(self):
@@ -101,6 +109,7 @@ class EBEN_json():
         return self.links_json
 
     def generate_legend_json(self):
+
         self.legend_json = [
             {
                 'label': 'main_miRNA',
