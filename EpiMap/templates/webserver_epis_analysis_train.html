@@ -19,18 +19,20 @@
 {% endblock %}
 {% block content %}
     <div>
-        <h2>Epistatic analysis -- General Purpose</h2>
+        <h2>Epistatic analysis Server </h2>
         <p>Epistatic analysis for general purpose.</p>
         <hr>
+
         <!-- Tab links-->
+        <!--
         <ul class="nav nav-tabs">
             <li class="active"><a href="{{ url_for('webserver_epistatic_analysis_train') }}">Train</a></li>
             <li><a href="{{ url_for('webserver_epistatic_analysis_predict') }}">Predict</a></li>
         </ul>
-
+        -->
         <div class="tab-content">
             <div id="training" class="tab-pane fade in active" style="padding-top: 20px">
-                <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
+                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
@@ -71,9 +73,9 @@
                             <div class="col-sm-12" style="padding-top: 10px">
                                 <p style="font-size: small"> Here is sample data (<a
                                         href="{{ url_for('download_sample_data', filename='general_x.txt') }}"
-                                        target="_blank"> Training data </a> and <a
+                                        target="_blank">Training data</a> and <a
                                         href="{{ url_for('download_sample_data', filename='general_y.txt') }}"
-                                        target="_blank"> Training label </a> ). The data was from R package EBEN. It was
+                                        target="_blank">Training label</a>). This data is from 'EBEN' package of R. It was
                                     simulated on a 2400cM chromosome, each column corresponded to an even spaced QTL.
                                 </p>
                             </div>
