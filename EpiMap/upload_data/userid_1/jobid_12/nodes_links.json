@@ -1,0 +1,1145 @@
+{
+    "nodes": [
+        {
+            "id": "X33070_chrI_33070_A_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X33070_chrI_33070_A_T",
+            "level": 1
+        },
+        {
+            "id": "X46723_chrI_46723_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X46723_chrI_46723_A_G",
+            "level": 1
+        },
+        {
+            "id": "X158971_chrI_158971_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X158971_chrI_158971_A_G",
+            "level": 1
+        },
+        {
+            "id": "X361238_chrII_131020_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X361238_chrII_131020_A_G",
+            "level": 1
+        },
+        {
+            "id": "X423598_chrII_193380_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X423598_chrII_193380_A_G",
+            "level": 1
+        },
+        {
+            "id": "X601364_chrII_371146_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X601364_chrII_371146_C_T",
+            "level": 1
+        },
+        {
+            "id": "X652980_chrII_422762_T_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X652980_chrII_422762_T_G",
+            "level": 1
+        },
+        {
+            "id": "X986485_chrII_756267_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X986485_chrII_756267_T_C",
+            "level": 1
+        },
+        {
+            "id": "X1218730_chrIII_175328_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X1218730_chrIII_175328_A_G",
+            "level": 1
+        },
+        {
+            "id": "X1553745_chrIV_193723_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X1553745_chrIV_193723_G_A",
+            "level": 1
+        },
+        {
+            "id": "X1977864_chrIV_617842_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X1977864_chrIV_617842_C_T",
+            "level": 1
+        },
+        {
+            "id": "X2118146_chrIV_758124_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X2118146_chrIV_758124_A_G",
+            "level": 1
+        },
+        {
+            "id": "X2412904_chrIV_1052882_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X2412904_chrIV_1052882_T_C",
+            "level": 1
+        },
+        {
+            "id": "X2467466_chrIV_1107444_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X2467466_chrIV_1107444_C_T",
+            "level": 1
+        },
+        {
+            "id": "X2824228_chrIV_1464206_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X2824228_chrIV_1464206_G_A",
+            "level": 1
+        },
+        {
+            "id": "X2867628_chrIV_1507606_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X2867628_chrIV_1507606_T_C",
+            "level": 1
+        },
+        {
+            "id": "X2926005_chrV_34050_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X2926005_chrV_34050_G_A",
+            "level": 1
+        },
+        {
+            "id": "X2948126_chrV_56171_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X2948126_chrV_56171_A_G",
+            "level": 1
+        },
+        {
+            "id": "X3415134_chrV_523179_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X3415134_chrV_523179_A_G",
+            "level": 1
+        },
+        {
+            "id": "X4177718_chrVII_438728_A_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X4177718_chrVII_438728_A_T",
+            "level": 1
+        },
+        {
+            "id": "X4533961_chrVII_794971_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X4533961_chrVII_794971_T_C",
+            "level": 1
+        },
+        {
+            "id": "X4804357_chrVII_1065367_C_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X4804357_chrVII_1065367_C_A",
+            "level": 1
+        },
+        {
+            "id": "X4859981_chrVIII_30051_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X4859981_chrVIII_30051_C_T",
+            "level": 1
+        },
+        {
+            "id": "X4995072_chrVIII_165142_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X4995072_chrVIII_165142_G_A",
+            "level": 1
+        },
+        {
+            "id": "X5481017_chrIX_88444_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5481017_chrIX_88444_G_A",
+            "level": 1
+        },
+        {
+            "id": "X5588105_chrIX_195532_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5588105_chrIX_195532_C_T",
+            "level": 1
+        },
+        {
+            "id": "X5677216_chrIX_284643_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5677216_chrIX_284643_C_T",
+            "level": 1
+        },
+        {
+            "id": "X5728770_chrIX_336197_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5728770_chrIX_336197_G_A",
+            "level": 1
+        },
+        {
+            "id": "X5811993_chrIX_419420_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5811993_chrIX_419420_A_G",
+            "level": 1
+        },
+        {
+            "id": "X5910191_chrX_77730_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5910191_chrX_77730_G_A",
+            "level": 1
+        },
+        {
+            "id": "X5972280_chrX_139819_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5972280_chrX_139819_A_G",
+            "level": 1
+        },
+        {
+            "id": "X6051785_chrX_219324_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X6051785_chrX_219324_T_C",
+            "level": 1
+        },
+        {
+            "id": "X6140249_chrX_307788_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X6140249_chrX_307788_T_C",
+            "level": 1
+        },
+        {
+            "id": "X6171890_chrX_339429_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X6171890_chrX_339429_T_C",
+            "level": 1
+        },
+        {
+            "id": "X6659456_chrXI_81244_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X6659456_chrXI_81244_T_C",
+            "level": 1
+        },
+        {
+            "id": "X6674764_chrXI_96552_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X6674764_chrXI_96552_C_T",
+            "level": 1
+        },
+        {
+            "id": "X6701514_chrXI_123302_A_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X6701514_chrXI_123302_A_C",
+            "level": 1
+        },
+        {
+            "id": "X6824790_chrXI_246578_G_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X6824790_chrXI_246578_G_C",
+            "level": 1
+        },
+        {
+            "id": "X7024066_chrXI_445854_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X7024066_chrXI_445854_T_C",
+            "level": 1
+        },
+        {
+            "id": "X7101207_chrXI_522995_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X7101207_chrXI_522995_G_A",
+            "level": 1
+        },
+        {
+            "id": "X7149964_chrXI_571752_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X7149964_chrXI_571752_G_A",
+            "level": 1
+        },
+        {
+            "id": "X7503296_chrXII_258268_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X7503296_chrXII_258268_G_A",
+            "level": 1
+        },
+        {
+            "id": "X8210322_chrXII_965294_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X8210322_chrXII_965294_T_C",
+            "level": 1
+        },
+        {
+            "id": "X8265170_chrXII_1020142_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X8265170_chrXII_1020142_T_C",
+            "level": 1
+        },
+        {
+            "id": "X8283573_chrXII_1038545_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X8283573_chrXII_1038545_C_T",
+            "level": 1
+        },
+        {
+            "id": "X8382690_chrXIII_59485_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X8382690_chrXIII_59485_A_G",
+            "level": 1
+        },
+        {
+            "id": "X8576082_chrXIII_252877_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X8576082_chrXIII_252877_G_A",
+            "level": 1
+        },
+        {
+            "id": "X8862465_chrXIII_539260_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X8862465_chrXIII_539260_C_T",
+            "level": 1
+        },
+        {
+            "id": "X8900872_chrXIII_577667_G_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X8900872_chrXIII_577667_G_C",
+            "level": 1
+        },
+        {
+            "id": "X9060988_chrXIII_737783_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9060988_chrXIII_737783_T_C",
+            "level": 1
+        },
+        {
+            "id": "X9153767_chrXIII_830562_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9153767_chrXIII_830562_C_T",
+            "level": 1
+        },
+        {
+            "id": "X9194093_chrXIII_870888_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9194093_chrXIII_870888_G_A",
+            "level": 1
+        },
+        {
+            "id": "X9233281_chrXIII_910076_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9233281_chrXIII_910076_A_G",
+            "level": 1
+        },
+        {
+            "id": "X9298372_chrXIV_50736_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9298372_chrXIV_50736_A_G",
+            "level": 1
+        },
+        {
+            "id": "X9358401_chrXIV_110765_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9358401_chrXIV_110765_G_A",
+            "level": 1
+        },
+        {
+            "id": "X9578768_chrXIV_331132_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9578768_chrXIV_331132_G_A",
+            "level": 1
+        },
+        {
+            "id": "X9639000_chrXIV_391364_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X9639000_chrXIV_391364_T_C",
+            "level": 1
+        },
+        {
+            "id": "X10005759_chrXIV_758123_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10005759_chrXIV_758123_C_T",
+            "level": 1
+        },
+        {
+            "id": "X10075842_chrXV_43873_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10075842_chrXV_43873_G_A",
+            "level": 1
+        },
+        {
+            "id": "X10096138_chrXV_64169_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10096138_chrXV_64169_G_A",
+            "level": 1
+        },
+        {
+            "id": "X10147936_chrXV_115967_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10147936_chrXV_115967_A_G",
+            "level": 1
+        },
+        {
+            "id": "X10277883_chrXV_245914_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10277883_chrXV_245914_A_G",
+            "level": 1
+        },
+        {
+            "id": "X10395522_chrXV_363553_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10395522_chrXV_363553_A_G",
+            "level": 1
+        },
+        {
+            "id": "X10853111_chrXV_821142_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10853111_chrXV_821142_C_T",
+            "level": 1
+        },
+        {
+            "id": "X11243579_chrXVI_120319_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X11243579_chrXVI_120319_T_C",
+            "level": 1
+        },
+        {
+            "id": "X11626574_chrXVI_503314_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X11626574_chrXVI_503314_A_G",
+            "level": 1
+        },
+        {
+            "id": "X5056754_chrVIII_226824_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5056754_chrVIII_226824_G_A",
+            "level": 1
+        },
+        {
+            "id": "X5927307_chrX_94846_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X5927307_chrX_94846_A_G",
+            "level": 1
+        },
+        {
+            "id": "X10875921_chrXV_843952_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X10875921_chrXV_843952_C_T",
+            "level": 1
+        },
+        {
+            "id": "X11000155_chrXV_968186_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X11000155_chrXV_968186_G_A",
+            "level": 1
+        },
+        {
+            "id": "X11853552_chrXVI_730292_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "red",
+            "group": "main_miRNA",
+            "label": "X11853552_chrXVI_730292_T_C",
+            "level": 1
+        },
+        {
+            "id": "X446164_chrII_215946_G_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X446164_chrII_215946_G_C",
+            "level": 1
+        },
+        {
+            "id": "X570523_chrII_340305_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X570523_chrII_340305_A_G",
+            "level": 1
+        },
+        {
+            "id": "X759011_chrII_528793_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X759011_chrII_528793_T_C",
+            "level": 1
+        },
+        {
+            "id": "X776950_chrII_546732_C_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X776950_chrII_546732_C_G",
+            "level": 1
+        },
+        {
+            "id": "X1640881_chrIV_280859_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X1640881_chrIV_280859_C_T",
+            "level": 1
+        },
+        {
+            "id": "X1662633_chrIV_302611_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X1662633_chrIV_302611_G_A",
+            "level": 1
+        },
+        {
+            "id": "X2301085_chrIV_941063_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X2301085_chrIV_941063_T_C",
+            "level": 1
+        },
+        {
+            "id": "X3136068_chrV_244113_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X3136068_chrV_244113_G_A",
+            "level": 1
+        },
+        {
+            "id": "X3252364_chrV_360409_C_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X3252364_chrV_360409_C_A",
+            "level": 1
+        },
+        {
+            "id": "X3511784_chrVI_42955_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X3511784_chrVI_42955_A_G",
+            "level": 1
+        },
+        {
+            "id": "X3841157_chrVII_102167_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X3841157_chrVII_102167_G_A",
+            "level": 1
+        },
+        {
+            "id": "X3926164_chrVII_187174_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X3926164_chrVII_187174_A_G",
+            "level": 1
+        },
+        {
+            "id": "X5550381_chrIX_157808_T_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X5550381_chrIX_157808_T_G",
+            "level": 1
+        },
+        {
+            "id": "X6005118_chrX_172657_A_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X6005118_chrX_172657_A_T",
+            "level": 1
+        },
+        {
+            "id": "X6760046_chrXI_181834_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X6760046_chrXI_181834_T_C",
+            "level": 1
+        },
+        {
+            "id": "X7130105_chrXI_551893_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X7130105_chrXI_551893_C_T",
+            "level": 1
+        },
+        {
+            "id": "X7802889_chrXII_557861_C_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X7802889_chrXII_557861_C_G",
+            "level": 1
+        },
+        {
+            "id": "X8465411_chrXIII_142206_T_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X8465411_chrXIII_142206_T_G",
+            "level": 1
+        },
+        {
+            "id": "X8551719_chrXIII_228514_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X8551719_chrXIII_228514_G_A",
+            "level": 1
+        },
+        {
+            "id": "X10235916_chrXV_203947_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X10235916_chrXV_203947_T_C",
+            "level": 1
+        },
+        {
+            "id": "X9509901_chrXIV_262265_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X9509901_chrXIV_262265_G_A",
+            "level": 1
+        },
+        {
+            "id": "X3662991_chrVI_194162_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X3662991_chrVI_194162_A_G",
+            "level": 1
+        },
+        {
+            "id": "X8953451_chrXIII_630246_T_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X8953451_chrXIII_630246_T_A",
+            "level": 1
+        },
+        {
+            "id": "X2081015_chrIV_720993_C_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X2081015_chrIV_720993_C_G",
+            "level": 1
+        },
+        {
+            "id": "X6971854_chrXI_393642_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X6971854_chrXI_393642_A_G",
+            "level": 1
+        },
+        {
+            "id": "X10124638_chrXV_92669_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X10124638_chrXV_92669_T_C",
+            "level": 1
+        },
+        {
+            "id": "X8702982_chrXIII_379777_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X8702982_chrXIII_379777_A_G",
+            "level": 1
+        },
+        {
+            "id": "X6538042_chrX_705581_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X6538042_chrX_705581_A_G",
+            "level": 1
+        },
+        {
+            "id": "X8093870_chrXII_848842_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X8093870_chrXII_848842_A_G",
+            "level": 1
+        },
+        {
+            "id": "X10635015_chrXV_603046_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X10635015_chrXV_603046_C_T",
+            "level": 1
+        },
+        {
+            "id": "X8053217_chrXII_808189_T_C",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X8053217_chrXII_808189_T_C",
+            "level": 1
+        },
+        {
+            "id": "X7558993_chrXII_313965_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X7558993_chrXII_313965_G_A",
+            "level": 1
+        },
+        {
+            "id": "X6992548_chrXI_414336_C_T",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X6992548_chrXI_414336_C_T",
+            "level": 1
+        },
+        {
+            "id": "X10518104_chrXV_486135_A_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X10518104_chrXV_486135_A_G",
+            "level": 1
+        },
+        {
+            "id": "X10178520_chrXV_146551_T_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X10178520_chrXV_146551_T_A",
+            "level": 1
+        },
+        {
+            "id": "X9279748_chrXIV_32112_G_A",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X9279748_chrXIV_32112_G_A",
+            "level": 1
+        },
+        {
+            "id": "X11664756_chrXVI_541496_T_G",
+            "shape": "triangle",
+            "size": 100,
+            "fill": "blue",
+            "group": "epis_miRNA",
+            "label": "X11664756_chrXVI_541496_T_G",
+            "level": 1
+        }
+    ],
+    "links": [
+        {
+            "source": "X33070_chrI_33070_A_T",
+            "target": "X9509901_chrXIV_262265_G_A",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X361238_chrII_131020_A_G",
+            "target": "X3662991_chrVI_194162_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X446164_chrII_215946_G_C",
+            "target": "X3926164_chrVII_187174_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X570523_chrII_340305_A_G",
+            "target": "X4859981_chrVIII_30051_C_T",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X759011_chrII_528793_T_C",
+            "target": "X8953451_chrXIII_630246_T_A",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X776950_chrII_546732_C_G",
+            "target": "X2081015_chrIV_720993_C_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X1640881_chrIV_280859_C_T",
+            "target": "X6971854_chrXI_393642_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X1662633_chrIV_302611_G_A",
+            "target": "X7503296_chrXII_258268_G_A",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X1977864_chrIV_617842_C_T",
+            "target": "X10124638_chrXV_92669_T_C",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X2301085_chrIV_941063_T_C",
+            "target": "X3415134_chrV_523179_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X2948126_chrV_56171_A_G",
+            "target": "X11626574_chrXVI_503314_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X3136068_chrV_244113_G_A",
+            "target": "X6140249_chrX_307788_T_C",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X3252364_chrV_360409_C_A",
+            "target": "X8702982_chrXIII_379777_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X3511784_chrVI_42955_A_G",
+            "target": "X6538042_chrX_705581_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X3511784_chrVI_42955_A_G",
+            "target": "X8093870_chrXII_848842_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X3841157_chrVII_102167_G_A",
+            "target": "X10635015_chrXV_603046_C_T",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X3926164_chrVII_187174_A_G",
+            "target": "X8053217_chrXII_808189_T_C",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X5550381_chrIX_157808_T_G",
+            "target": "X6171890_chrX_339429_T_C",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X6005118_chrX_172657_A_T",
+            "target": "X7558993_chrXII_313965_G_A",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X6760046_chrXI_181834_T_C",
+            "target": "X6992548_chrXI_414336_C_T",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X7130105_chrXI_551893_C_T",
+            "target": "X7802889_chrXII_557861_C_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X7802889_chrXII_557861_C_G",
+            "target": "X10518104_chrXV_486135_A_G",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X8465411_chrXIII_142206_T_G",
+            "target": "X10178520_chrXV_146551_T_A",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X8551719_chrXIII_228514_G_A",
+            "target": "X9279748_chrXIV_32112_G_A",
+            "color": "black",
+            "strength": 0.3
+        },
+        {
+            "source": "X10235916_chrXV_203947_T_C",
+            "target": "X11664756_chrXVI_541496_T_G",
+            "color": "black",
+            "strength": 0.3
+        }
+    ],
+    "legends": [
+        {
+            "label": "main_effect",
+            "shape": "triangle",
+            "color": "red"
+        },
+        {
+            "label": "epis_effect",
+            "shape": "triangle",
+            "color": "green"
+        },
+        {
+            "label": "target",
+            "shape": "circle",
+            "color": "blue"
+        }
+    ]
+}

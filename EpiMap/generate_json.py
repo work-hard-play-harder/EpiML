@@ -3,7 +3,7 @@ import json
 import pandas as pd
 
 from EpiMap.datasets import miRNA2Disease
-miR2D_dataset = miRNA2Disease()
+
 
 
 
@@ -36,8 +36,7 @@ class EBEN_json():
 
         self.main_results = load_results(main_results_filename)
         self.epis_results = load_results(epis_results_filename)
-
-        self.miRNA_target = miR2D_dataset.miRNA_target
+        self.miRNA_target = miRNA2Disease().miRNA_target
 
     def generate_nodes_json(self):
         self.main_nodes = self.main_results['feature'].drop_duplicates()

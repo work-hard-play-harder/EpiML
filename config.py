@@ -18,6 +18,8 @@ class Config(object):
     MIR2DISEASE_DATA_DIR = os.path.join(basedir, 'EpiMap', 'datasets', 'miR2Disease')
 
     # for run scripts
+    GENERAL_EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'general_EBEN_train.R')
+
     EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'EBEN_train.R')
     EBEN_PREDICT_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'EBEN_predict.R')
     LASSO_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'lasso_train.R')

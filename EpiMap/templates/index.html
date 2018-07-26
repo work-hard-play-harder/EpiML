@@ -17,41 +17,52 @@
             <h2 align="center" style="padding: 20px">The easiest way to use</h2>
             <div class="row">
                 <div class="col-sm-3" align="center">
-                    <img width="50%" src="{{ url_for('static',filename='img/home/upload_to_cloud.png') }}">
+                    <img width="50%" src="{{ url_for('static',filename='img/home/upload.png') }}">
                     <p style="padding: 10px"><strong>Upload training data to our server. All user’s data will be kept
                         private.</strong></p>
                 </div>
                 <div class="col-sm-3" align="center">
-                    <img width="50%" src="{{ url_for('static',filename='img/home/process_in_cloud.png') }}">
-                    <p style="padding: 10px"><strong>Securely save and process. All processing is automated.</strong>
+                    <img width="50%" src="{{ url_for('static',filename='img/home/submit.png') }}">
+                    <p style="padding: 10px"><strong>Select methods and submit jobs.</strong>
                     </p>
                 </div>
                 <div class="col-sm-3" align="center">
-                    <img width="35%" src="{{ url_for('static',filename='img/home/visualization.png') }}">
-                    <p style="padding: 10px"><strong>Analysis by visualization. Many graphs are provided.</strong></p>
+                    <img width="50%" src="{{ url_for('static',filename='img/home/process.png') }}">
+                    <p style="padding: 10px"><strong>Multiple threads to process. All processing is automated.</strong>
+                    </p>
                 </div>
                 <div class="col-sm-3" align="center">
-                    <img width="50%" src="{{ url_for('static',filename='img/home/download_to_cloud.png') }}">
+                    <img width="55%" src="{{ url_for('static',filename='img/home/visualization.png') }}">
+                    <p style="padding: 10px"><strong>Analysis by visualization. Many graphs are provided.</strong></p>
+                </div>
+                <!--
+                <div class="col-sm-3" align="center">
+                    <img width="50%" src="{{ url_for('static',filename='img/home/download.png') }}">
                     <p style="padding: 10px"><strong>Download results and visualization</strong></p>
                 </div>
+                -->
             </div>
         </div>
         <hr>
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Model repository</h2>
-            <p>Due to the challenges of replicating large models on large datasets, it is hard to achieve a good
+            <div>
+                <div class="col-sm-4" align="center">
+                    <img width="40%" src="{{ url_for('static',filename='img/home/repository.png') }}">
+                </div>
+            </div>
+            <p><strong>Trained model will be stored, and it is convenient to share with others.</strong> Due to the
+                challenges of replicating large models on large datasets, it is hard to achieve a good
                 model following existing work. We will provide a model repository which is a set of unified
                 containers with trained models. We will package the depending packages, configurations, model
                 parameters, and training details in the container, which can be run on any operating system.</p>
         </div>
         <hr>
         <div style=" padding-bottom: 20px; ">
-            <h2 align="center" style="padding: 20px">Fancy visulization</h2>
+            <h2 align="center" style="padding: 20px">Integrate multiple sources for visualization</h2>
             <p>To help understand the results, we will provide interactive visualization of intermediate results
-                and
-                final results, with options to zoom in and out for diverse views of the data and results. We
-                will
-                provide links to metadata of omics data and external resources, such as gene annotations and
+                and final results, with options to zoom in and out for diverse views of the data and results. We
+                will provide links to metadata of omics data and external resources, such as gene annotations and
                 biological pathways, to help interpret the results. </p>
         </div>
         <hr>

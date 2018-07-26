@@ -19,54 +19,37 @@
 {% endblock %}
 {% block content %}
     <div>
-        <h2>Epistatic analysis -- Case Study</h2>
-        <p>Epistasis analysis of case studies on miRNAs and SNPs based on an Empirical Bayesian Elastic
-            Net method</p>
+        <h2>Epistatic analysis -- General Purpose</h2>
+        <p>Epistatic analysis for general purpose.</p>
         <hr>
         <!-- Tab links-->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="{{ url_for('webserver_epistasis_miRNA_train') }}">Train</a></li>
-            <li><a href="{{ url_for('webserver_epistasis_miRNA_predict') }}">Predict</a></li>
+            <li class="active"><a href="{{ url_for('webserver_epistatic_analysis_train') }}">Train</a></li>
+            <li><a href="{{ url_for('webserver_epistatic_analysis_predict') }}">Predict</a></li>
         </ul>
 
         <div class="tab-content">
             <div id="training" class="tab-pane fade in active" style="padding-top: 20px">
-
-                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are
-                    required.</strong></p>
+                <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2" for="jobname">Job Category:</label>
-                        <div class="col-sm-10">
-                            <label class="radio-inline col-sm-2">
-                                <input id="jobcategory" name="jobcategory" type="radio" value="microRNA" CHECKED>
-                                microRNA
-                            </label>
-                            <label class="radio-inline col-sm-2">
-                                <input id="jobcategory" name="jobcategory" type="radio" value="SNP"> SNP
-                            </label>
-
-                        </div>
-                    </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
                         <div class="col-sm-4">
-                            <input name="jobname" class="form-control" id="jobname" placeholder="Enter your job name"
-                                   required>
+                            <input type="text" name="jobname" class="form-control" id="jobname"
+                                   placeholder="Enter your job name" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="email">Email:</label>
                         <div class="col-sm-4">
                             <input name="email" type="email" class="form-control" id="email"
-                                   placeholder="Enter your Email"
-                                   required>
+                                   placeholder="Enter your Email" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="description">Description:</label>
                         <div class="col-sm-10">
-                            <textarea style="height: 100px" class="form-control" name="description" id="description"
+                            <textarea style="height: 100px" name="description" class="form-control" id="description"
                                       placeholder="Add description for your job, like data, method and parameters."
                                       required></textarea>
                         </div>
@@ -75,39 +58,41 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="upload">Upload files:</label>
                         <div class="col-sm-10">
-                            <div class="col-sm-6">
+                            <div class=" col-sm-6">
                                 <label class="control-label" for="input-x">Choose your training data: X</label>
                                 <input class="form-control" type="file" id="input-x" name="input-x"
                                        placeholder="choose your training data: X" required>
                             </div>
-                            <div class="col-sm-6">
+                            <div class=" col-sm-6">
                                 <label class="control-label" for="input-y">Choose your training label: Y</label>
                                 <input class="form-control" type="file" id="input-y" name="input-y"
                                        placeholder="choose your training label: Y" required>
                             </div>
-                            <div class="col-sm-6" style="padding-top: 10px">
-                                <p style="font-size: small"> Here is sample data, <a
-                                        href="{{ url_for('download_sample_data', filename='bc_x.txt') }}"
-                                        target="_blank"> Training data</a> and <a
-                                        href="{{ url_for('download_sample_data', filename='bc_y.txt') }}"
-                                        target="_blank"> Testing data</a>.
+                            <div class="col-sm-12" style="padding-top: 10px">
+                                <p style="font-size: small"> Here is sample data (<a
+                                        href="{{ url_for('download_sample_data', filename='general_x.txt') }}"
+                                        target="_blank"> Training data </a> and <a
+                                        href="{{ url_for('download_sample_data', filename='general_y.txt') }}"
+                                        target="_blank"> Training label </a> ). The data was from R package EBEN. It was
+                                    simulated on a 2400cM chromosome, each column corresponded to an even spaced QTL.
                                 </p>
                             </div>
                         </div>
+
                     </div>
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-2" for="methods">Select Methods:</label>
                         <!--
                         <div class="col-sm-3">
                             <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
-                            <label for="LASSO">LASSO</label>
+                            <label for="LASSO">Elastic Net</label>
                         </div>
                         -->
                         <div class=" col-sm-3" style="padding: 15px">
                             <input type="checkbox" id="EBEN" name="methods" value="EBEN" checked>
                             <label for="EBEN">Empirical Bayesian Elastic Net</label>
                         </div>
-                        <!--
+                        <!---
                         <div class=" col-sm-3">
                             <input class="form-control" type="checkbox" id="Matrix_eQTL" name="methods"
                                    value="Matrix_eQTL">
@@ -142,5 +127,6 @@
                 </form>
             </div>
         </div>
+
     </div>
 {% endblock %}

@@ -11,6 +11,7 @@
           href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
@@ -93,14 +94,13 @@
 {% endblock %}
 {% block content %}
     <div>
-        <h2>Epistatic analysis -- Case Study</h2>
-        <p>Epistasis analysis of case studies on miRNAs and SNPs based on an Empirical Bayesian Elastic
-            Net method</p>
+       <h2>Epistatic analysis -- General Purpose</h2>
+        <p>Epistatic analysis for general purpose.</p>
         <hr>
         <!-- Tab links-->
         <ul class="nav nav-tabs">
-            <li><a href="{{ url_for('webserver_epistasis_miRNA_train') }}">Train</a></li>
-            <li class="active"><a href="{{ url_for('webserver_epistasis_miRNA_predict') }}">Predict</a></li>
+            <li><a href="{{ url_for('webserver_epistatic_analysis_train') }}">Train</a></li>
+            <li class="active"><a href="{{ url_for('webserver_epistatic_analysis_predict') }}">Predict</a></li>
         </ul>
 
         <div class="tab-content">
@@ -116,7 +116,7 @@
                                    required>
                         </div>
                     </div>
-                    <!--
+                    <!--usernames
                         <div class="form-group row">
                             <label class="control-label col-sm-2" for="email">Email:</label>
                             <div class="col-sm-4">
