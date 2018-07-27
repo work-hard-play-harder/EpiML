@@ -100,13 +100,22 @@ function mouseOverNodeTooltip(node) {
     tooltip.transition()
         .duration(300)
         .style("opacity", .9);
-    tooltip
+    if (node.level===1){
+        tooltip
         .html("Name: " + node.id + "<br/>" +
             "Group: " + node.group + "<br/>" +
-            "Ref.:" + 'node.ref' + "<br/>" +
-            "<a href='http://www.mir2disease.org' target='_blank'>URL FOR miR2Disease</a>")
+            "<a href=" + node.url + " target='_blank'>miRBase</a>")
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY + 10) + "px");
+    }else if(node.level===2){
+        tooltip
+        .html("Name: " + node.id + "<br/>" +
+            "Group: " + node.group + "<br/>" +
+            "<a href=" + node.url + " target='_blank'>NCBI Genome</a>")
+        .style("left", (d3.event.pageX) + "px")
+        .style("top", (d3.event.pageY + 10) + "px");
+    }
+
 }
 
 function mouseOut() {
@@ -236,9 +245,9 @@ var linkElements = svg.append('g')
     .enter().append('line')
     .attr('stroke-width', 1)
     .attr('stroke', 'rgba(50, 50, 50, 0.2)')
-    //TODO:high ligth link
-    //.on('mouseover', linkHighLight)
-    //.on('mouseover.tooltip', mouseOverLinkTooltip);
+//TODO:high ligth link
+//.on('mouseover', linkHighLight)
+//.on('mouseover.tooltip', mouseOverLinkTooltip);
 
 var legend = svg.append('g')
     .attr('transform', 'translate(20,20)')

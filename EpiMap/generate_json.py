@@ -3,7 +3,7 @@ import json
 import decimal
 import pandas as pd
 
-from EpiMap.datasets import miRNA2Disease
+from EpiMap.datasets import MiRNA2Disease
 
 
 def load_results(filename):
@@ -29,7 +29,7 @@ def load_json(filename):
     return json_data['nodes'], json_data['links'], json_data['legends']
 
 
-class EBEN_json():
+class MiRNAJson(object):
     main_nodes = []
     epis_nodes = []
     target_nodes = []
@@ -46,7 +46,129 @@ class EBEN_json():
 
         self.main_results = load_results(main_results_filename)
         self.epis_results = load_results(epis_results_filename)
-        self.miRNA_target = miRNA2Disease().miRNA_target
+        self.miRNA_target = MiRNA2Disease().miRNA_target
+
+
+    def generate_nodes_json(self):
+        self.main_nodes = self.main_results['feature'].drop_duplicates()
+        self.epis_nodes = pd.concat([self.epis_results['feature1'],
+                                     self.epis_results['feature2']]).drop_duplicates()
+        all_miRNA_nodes = pd.concat([self.main_nodes, self.epis_nodes]).drop_duplicates()
+
+        self.nodes_json = []
+        for node in all_miRNA_nodes:
+            if node in self.main_nodes.values:
+                self.nodes_json.append({'id': node,
+                                        'shape': 'triangle',
+                                        'size': 100,
+                                        'fill': 'red',
+                                        'group': 'Main effect',
+                                        'label': node,
+                                        'level': 1,
+                                        'url': 'http://www.mirbase.org/cgi-bin/query.pl?terms=' + node + '&submit=Search'
+                                        })
+                self.nodes_group_domain.add('main_effect')
+
+            elif node in self.epis_nodes.values:
+                self.nodes_json.append({'id': node,
+                                        'shape': 'triangle',
+                                        'size': 100,
+                                        'fill': 'blue',
+                                        'group': 'Epistatic effect',
+                                        'label': node,
+                                        'level': 1,
+                                        'url': 'http://www.mirbase.org/cgi-bin/query.pl?terms=' + node + '&submit=Search'
+                                        })
+                self.nodes_group_domain.add('epis_effect')
+
+        # filter related target nodes with ignore case
+        self.related_target = self.miRNA_target[
+            self.miRNA_target['miRNA'].str.lower().isin(all_miRNA_nodes.str.lower())].drop_duplicates()
+        self.target_nodes = self.related_target['Validated target'].drop_duplicates()
+        for node in self.target_nodes.values:
+            self.nodes_json.append({'id': node,
+                                    'shape': 'circle',
+                                    'size': 50,
+                                    'fill': 'purple',
+                                    'group': 'Target',
+                                    'label': node,
+                                    'level': 2,
+                                    'url': 'https://www.ncbi.nlm.nih.gov/genome'
+                                    })
+            self.nodes_group_domain.add('target')
+        return self.nodes_json
+
+    def generate_links_json(self):
+        self.links_json = []
+        # add epis link
+        epis_links = self.epis_results[['feature1', 'feature2']].drop_duplicates()
+        for index, link in epis_links.iterrows():
+            self.links_json.append({'source': link['feature1'],
+                                    'target': link['feature2'],
+                                    'color': 'black',
+                                    'strength': 0.3})
+
+        # add target link
+        target_links = self.related_target[['miRNA', 'Validated target']].drop_duplicates()
+
+        for index, link in target_links.iterrows():
+            self.links_json.append({'source': link['miRNA'].lower(),
+                                    'target': link['Validated target'],
+                                    'color': 'green',
+                                    'strength': 0.5})
+
+        return self.links_json
+
+    def generate_legend_json(self):
+        self.legend_json = []
+        if 'main_effect' in self.nodes_group_domain:
+            self.legend_json.append({
+                "label": "Main effect",
+                "shape": "triangle",
+                "color": "red"
+            })
+        if 'epis_effect' in self.nodes_group_domain:
+            self.legend_json.append({
+                "label": "Epistatic effect",
+                "shape": "triangle",
+                "color": "green"
+            })
+        if 'target' in self.nodes_group_domain:
+            self.legend_json.append({
+                "label": "Target",
+                "shape": "circle",
+                "color": "blue"
+            })
+
+        return self.legend_json
+
+    def write_json(self):
+        filename = os.path.join(self.job_dir, 'nodes_links.json')
+        json_data = {'nodes': self.nodes_json,
+                     'links': self.links_json,
+                     'legends': self.legend_json}
+        with open(filename, 'w') as fout:
+            json.dump(json_data, fout, indent=4)
+
+
+class SNPJson(object):
+    main_nodes = []
+    epis_nodes = []
+    target_nodes = []
+
+    nodes_json = []
+    nodes_group_domain = set()
+    links_json = []
+    legend_json = []
+
+    def __init__(self, job_dir):
+        self.job_dir = job_dir
+        main_results_filename = os.path.join(self.job_dir, 'EBEN.main_result.txt')
+        epis_results_filename = os.path.join(self.job_dir, 'EBEN.epis_result.txt')
+
+        self.main_results = load_results(main_results_filename)
+        self.epis_results = load_results(epis_results_filename)
+        self.miRNA_target = MiRNA2Disease().miRNA_target
 
     def generate_nodes_json(self):
         self.main_nodes = self.main_results['feature'].drop_duplicates()

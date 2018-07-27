@@ -14,7 +14,7 @@ from bokeh.resources import INLINE
 
 # customized functions
 from EpiMap.run_scripts import call_train_scripts, call_predict_scripts, create_job_folder, check_job_status
-from EpiMap.generate_json import load_results, load_json, EBEN_json, scitific_notation
+from EpiMap.generate_json import load_results, load_json, MiRNAJson, scitific_notation
 from EpiMap.create_figures import create_pca_figure, create_lasso_figure
 from EpiMap.db_tables import User, Job, Model
 from EpiMap.safety_check import is_safe_url, is_allowed_file, security_code_generator
@@ -671,7 +671,7 @@ def result_train(jobid):
     EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')), 2)
 
     if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
-        E_json = EBEN_json(job_dir)
+        E_json = MiRNAJson(job_dir)
         nodes = E_json.generate_nodes_json()
         links = E_json.generate_links_json()
         legends = E_json.generate_legend_json()
