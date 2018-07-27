@@ -13,119 +13,82 @@
 {% endblock %}
 {% block scripts %}
     {{ super() }}
-    <script>
-        (function (document, history, location) {
-            var HISTORY_SUPPORT = !!(history && history.pushState);
-
-            var anchorScrolls = {
-                ANCHOR_REGEX: /^#[^ ]+$/,
-                OFFSET_HEIGHT_PX: 110,
-
-                /**
-                 * Establish events, and fix initial scroll position if a hash is provided.
-                 */
-                init: function () {
-                    this.scrollToCurrent();
-                    window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
-                    document.body.addEventListener('click', this.delegateAnchors.bind(this));
-                },
-
-                /**
-                 * Return the offset amount to deduct from the normal scroll position.
-                 * Modify as appropriate to allow for dynamic calculations
-                 */
-                getFixedOffset: function () {
-                    return this.OFFSET_HEIGHT_PX;
-                },
-
-                /**
-                 * If the provided href is an anchor which resolves to an element on the
-                 * page, scroll to it.
-                 * @param  {String} href
-                 * @return {Boolean} - Was the href an anchor.
-                 */
-                scrollIfAnchor: function (href, pushToHistory) {
-                    var match, rect, anchorOffset;
-
-                    if (!this.ANCHOR_REGEX.test(href)) {
-                        return false;
-                    }
-
-                    match = document.getElementById(href.slice(1));
-
-                    if (match) {
-                        rect = match.getBoundingClientRect();
-                        anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
-                        window.scrollTo(window.pageXOffset, anchorOffset);
-
-                        // Add the state to history as-per normal anchor links
-                        if (HISTORY_SUPPORT && pushToHistory) {
-                            history.pushState({}, document.title, location.pathname + href);
-                        }
-                    }
-
-                    return !!match;
-                },
-
-                /**
-                 * Attempt to scroll to the current location's hash.
-                 */
-                scrollToCurrent: function () {
-                    this.scrollIfAnchor(window.location.hash);
-                },
-
-                /**
-                 * If the click event's target was an anchor, fix the scroll position.
-                 */
-                delegateAnchors: function (e) {
-                    var elem = e.target;
-
-                    if (
-                        elem.nodeName === 'A' &&
-                        this.scrollIfAnchor(elem.getAttribute('href'), true)
-                    ) {
-                        e.preventDefault();
-                    }
-                }
-            };
-
-            window.addEventListener(
-                'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
-            );
-        })(window.document, window.history, window.location);
-    </script>
+     <script src='{{ url_for('static', filename='js/offset_height_for_help_nav.js') }}'></script>
 {% endblock %}
+
 {% block content %}
     <div class="col-sm-3">
-        <ul class="nav nav-stacked nav-pills hidden-xs affix">
+        <ul class="nav nav-stacked nav-pills  affix">
             <h2>Help</h2>
             <hr>
             <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#getting_started">Getting Started</a></li>
+            <li><a href="#model_repository">Model Repository</a></li>
+            <li><a href="#visualization">Visualization</a></li>
+            <li><a href="#external_resources">External Resources</a></li>
+            <li><a href="#FAQ">FAQ</a></li>
         </ul>
     </div>
-    <div class="col-sm-9" style="height:1500px;">
+    <div class="col-sm-9">
         <main>
             <section class="anchor" id="introduction">
-
                 <h2>Introduction</h2>
-                <p>This is a free web serivce. The schematic diagram is following:</p>
-                <img width="80%" src="{{ url_for('static',filename='img/help/schematic diagram.png') }}">
+                <p> Epistasis analysis is used to determine if genes with related mutant phenotypes act
+                    in the same or different pathways, and, if in the same pathway, to place them in a
+                    linear order relative to one another based on the step in the pathway controlled by
+                    that gene. In other words, one uses epistasis analysis to construct an order-offunction
+                    map that reflects the sequence of events in a pathway controlled by several
+                    genes. [Ref. Genetic Techniques for Biological Research]
+                </p>
+                <p> Epistasis Analysis Server is a free web service.
+                    The schematic diagram is following:</p>
+                <img width="80%" src="{{ url_for('static',filename='img/help/schematic_graph.png') }}">
             </section>
+            <section class="anchor" id="getting_started">
 
-            <section class="anchor" id="publications" style="height: 300px">
-                <h2>Publications</h2>
-                <p>This web service is built upon following several papaers:</p>
-                <ul>
-                    <li>First paper</li>
-                    <li>Second paer</li>
-                </ul>
+                <h2>Getting Started</h2>
+                <p> This is a step-by-step tutorial how to use Epistasis Analysis Server.</p>
+                <h4>0. Prepare your data</h4>
+                <p>
+                <pre>plink --ped mystudy_chr1.ped --map mystudy_chr1.map --recode vcf --out mystudy_chr1</pre>
+                <code>test </code>
+                </p>
+                <hr>
+                <h4>1. Upload your data</h4>
+                <p></p>
+                <p>data sensitivity</p>
+
+                <hr>
+                <h4>2. Submit jobs</h4>
+                <hr>
+                <h4>3. Epistasis Analysis</h4>
+                <hr>
+                <h4>4.Download results</h4>
+                <hr>
+                <p>
+
+                </p>
             </section>
-            <section class="anchor" id="contact" style="height: 300px">
-                <h2>Contact</h2>
+            <section class="anchor" id="model_repository">
+                <h2>Model Repository</h2>
                 <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
-                </p></section>
+                </p>
+            </section>
+            <section class="anchor" id="visualization">
+                <h2>Visualization</h2>
+                <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
+                </p>
+            </section>
+            <section class="anchor" id="external_resources">
+                <h2>External Resources</h2>
+                <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
+                </p>
+            </section>
+            <section class="anchor" id="FAQ">
+                <h2>FAQ</h2>
+                <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
+                </p>
+            </section>
         </main>
     </div>
 {% endblock %}

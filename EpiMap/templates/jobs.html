@@ -56,7 +56,7 @@
                         'orderable': false,
                     },
                     {
-                        'targets': 9,
+                        'targets': 8, // This is the column number
                         'searchable': false,
                         'orderable': false,
                     }],
@@ -143,7 +143,7 @@
                     <th width="6px">#</th>
                     <th>Name</th>
                     <th>Category</th>
-                    <th width="7%">Type</th>
+                    <!--<th width="7%">Type</th>-->
                     <th>Methods</th>
                     <th>Description</th>
                     <th>Submit time</th>
@@ -160,7 +160,7 @@
                             <div class="scrollable">{{ job.name }}</div>
                         </td>
                         <td>{{ job.category }}</td>
-                        <td>{{ job.type }}</td>
+                        <!--<td>{{ job.type }}</td>-->
                         <td>
                             <div class="scrollable">{{ job.selected_algorithm }}</div>
                         </td>
