@@ -48,7 +48,6 @@ class MiRNAJson(object):
         self.epis_results = load_results(epis_results_filename)
         self.miRNA_target = MiRNA2Disease().miRNA_target
 
-
     def generate_nodes_json(self):
         self.main_nodes = self.main_results['feature'].drop_duplicates()
         self.epis_nodes = pd.concat([self.epis_results['feature1'],
@@ -90,10 +89,10 @@ class MiRNAJson(object):
                                     'shape': 'circle',
                                     'size': 50,
                                     'fill': 'purple',
-                                    'group': 'Target',
+                                    'group': 'Target gene',
                                     'label': node,
                                     'level': 2,
-                                    'url': 'https://www.ncbi.nlm.nih.gov/genome'
+                                    'url': 'http://watson.compbio.iupui.edu:8080/miR2Disease/searchTarget.jsp?SearchUnit=target&SearchText=' + node + '&checkbox2=Causal&checkbox2=Unspecified'
                                     })
             self.nodes_group_domain.add('target')
         return self.nodes_json
@@ -135,7 +134,7 @@ class MiRNAJson(object):
             })
         if 'target' in self.nodes_group_domain:
             self.legend_json.append({
-                "label": "Target",
+                "label": "Target gene",
                 "shape": "circle",
                 "color": "blue"
             })

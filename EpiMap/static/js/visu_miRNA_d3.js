@@ -111,7 +111,7 @@ function mouseOverNodeTooltip(node) {
         tooltip
         .html("Name: " + node.id + "<br/>" +
             "Group: " + node.group + "<br/>" +
-            "<a href=" + node.url + " target='_blank'>NCBI Genome</a>")
+            "<a href=" + node.url + " target='_blank'>miR2Disease</a>")
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY + 10) + "px");
     }
