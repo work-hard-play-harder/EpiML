@@ -47,6 +47,8 @@
             $('#epis_effect').DataTable();
         });
     </script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -117,31 +119,46 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                <div style="padding: 10px">
+                    <p> An hierarchical edge bundling graph shows the interaction between epistatic features. Mouseover
+                        any of nodes in this network to see the epistatic genes in green and the mutant genes in
+                        red. </p>
+                    <div style="padding: 10px">
+                        <svg name="HEB_diagram" id="HEB_diagram"></svg>
+                    </div>
+                    <!-- for hierarchical edge bundling graph -->
+                    <script>
+                        var miRNA_HEB_json = {{ miRNA_HEB_json|safe }};
+                    </script>
+                    <script type="text/javascript" charset="utf8"
+                            src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}"></script>
+                </div>
             </div>
         </div>
 
         <h3>Visualization</h3>
         <div id="visualization" class="container">
             <p>Relationship between miRNAs and target genes. The mega data can be download
-                <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}" target="_blank">here</a> in
+                <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}"
+                   target="_blank">here</a> in
                 JSON format.</p>
             <div>
-                <button id='saveAsPNG'>save as PNG</button>
-                <button id='saveAsSVG'>save as SVG</button>
+                <button id='FD_saveAsPNG'>Save as PNG</button>
+                <button id='FD_saveAsSVG'>Save as SVG</button>
             </div>
             <div style="padding-top: 10px">
-                <svg id="diagram"></svg>
+                <svg name="FD_diagram" id="FD_diagram"></svg>
             </div>
             <!-- for d3 visualization.
                         This script must be after svg tag-->
-            <script src="https://d3js.org/d3.v4.min.js"></script>
+
             <script>
                 var nodes = {{ nodes|safe }};
                 var links = {{ links|safe }};
                 var legends = {{ legends|safe }};
             </script>
             <script type="text/javascript" charset="utf8"
-                    src="{{ url_for('static', filename='js/visu_miRNA_d3.js') }}"></script>
+                    src="{{ url_for('static', filename='js/vis_miRNA_FD_d3.js') }}"></script>
 
             <!-- for save as -->
             <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
@@ -149,11 +166,11 @@
             <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
             <script>
                 // Set-up the export button
-                d3.select('#saveAsPNG').on('click', function () {
-                    saveSvgAsPng(document.getElementById("diagram"), "diagram.png", {scale: 4});
+                d3.select('#FD_saveAsPNG').on('click', function () {
+                    saveSvgAsPng(document.getElementById("FD_diagram"), "FD_diagram.png", {scale: 4});
                 });
 
-                d3.select("#saveAsSVG")
+                d3.select("#FD_saveAsSVG")
                     .on("click", function () {
                         try {
                             var isFileSaverSupported = !!new Blob();
@@ -161,14 +178,14 @@
                             alert("blob not supported");
                         }
 
-                        var html = d3.select("svg")
+                        var html = d3.select("#FD_diagram")
                             .attr("title", "saveAsSVG")
                             .attr("version", 1.1)
                             .attr("xmlns", "http://www.w3.org/2000/svg")
                             .node().parentNode.innerHTML;
 
                         var blob = new Blob([html], {type: "image/svg+xml"});
-                        saveAs(blob, "diagram.svg");
+                        saveAs(blob, "FD_diagram.svg");
                     });
             </script>
         </div>

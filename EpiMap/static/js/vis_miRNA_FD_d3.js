@@ -163,7 +163,7 @@ d3.select('svg').on('click', function () {
 //var width = window.innerWidth, height = window.innerHeight/2;
 var margin = {top: 30, right: 10, bottom: 30, left: 10};
 var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight / 1.5;
-var svg = d3.select('svg')
+var svg = d3.select('#FD_diagram')
     .attr('width', width - margin.left - margin.right)
     .attr('height', height)
     // call d3 zoom event, must append a g tag
@@ -245,7 +245,7 @@ var linkElements = svg.append('g')
     .enter().append('line')
     .attr('stroke-width', 1)
     .attr('stroke', 'rgba(50, 50, 50, 0.2)')
-//TODO:high ligth link
+//TODO:high light link
 //.on('mouseover', linkHighLight)
 //.on('mouseover.tooltip', mouseOverLinkTooltip);
 

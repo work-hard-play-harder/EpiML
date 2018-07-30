@@ -34,10 +34,14 @@ class MiRNAJson(object):
     epis_nodes = []
     target_nodes = []
 
+    # for force-directed graph
     nodes_json = []
     nodes_group_domain = set()
     links_json = []
     legend_json = []
+
+    # for Hierarchical Edge Bundling(HEB)
+    HEB_json = []
 
     def __init__(self, job_dir):
         self.job_dir = job_dir
@@ -109,7 +113,6 @@ class MiRNAJson(object):
 
         # add target link
         target_links = self.related_target[['miRNA', 'Validated target']].drop_duplicates()
-
         for index, link in target_links.iterrows():
             self.links_json.append({'source': link['miRNA'].lower(),
                                     'target': link['Validated target'],
@@ -141,13 +144,24 @@ class MiRNAJson(object):
 
         return self.legend_json
 
-    def write_json(self):
+    def write_forceDirect_json(self):
         filename = os.path.join(self.job_dir, 'nodes_links.json')
         json_data = {'nodes': self.nodes_json,
                      'links': self.links_json,
                      'legends': self.legend_json}
         with open(filename, 'w') as fout:
             json.dump(json_data, fout, indent=4)
+
+    def generate_miR_HEB_json(self):
+        for f1 in self.epis_nodes.values:
+            print(f1)
+            f2_list = self.epis_results[self.epis_results['feature1'] == f1]['feature2'].tolist()
+            print(f2_list)
+            element = {'name': f1, 'size': len(f2_list), 'effects': [x for x in f2_list]}
+
+            self.HEB_json.append(element)
+
+        return self.HEB_json
 
 
 class SNPJson(object):
