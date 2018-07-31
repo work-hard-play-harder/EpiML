@@ -678,7 +678,7 @@ def result_train(jobid):
         #miR_json.write_forceDirect_json()
 
         miRNA_HEB_json = miR_json.generate_miR_HEB_json()
-        print(miRNA_HEB_json)
+
     else:
         nodes, links, legends = load_json(os.path.join(job_dir, 'nodes_links.json'))
 

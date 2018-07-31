@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='css/vis_miRNA_HEB.css') }}">
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
@@ -27,12 +29,13 @@
             #pointer-events: none;
         }
 
-        svg {
+        [id|='FD_diagram'] {
             border: 1px solid black;
 
         }
 
     </style>
+
 {% endblock %}
 {% block scripts %}
     {{ super() }}
@@ -49,6 +52,11 @@
     </script>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- for save as -->
+    <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
+    <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -119,20 +127,55 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <div style="padding: 10px">
-                    <p> An hierarchical edge bundling graph shows the interaction between epistatic features. Mouseover
-                        any of nodes in this network to see the epistatic genes in green and the mutant genes in
-                        red. </p>
-                    <div style="padding: 10px">
+                <div class="row" style="padding: 10px">
+                    <div class="col-sm-3"><p> An hierarchical edge bundling graph shows the interaction between
+                        epistatic features. Mouseover
+                        any of nodes in this network to see the epistatic genes in red and the mutant genes in
+                        green. </p>
+                        <div>
+                            <button id='HEB_saveAsPNG'>Save as PNG</button>
+                            <button id='HEB_saveAsSVG'>Save as SVG</button>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-9" align="center" style="padding: 10px">
                         <svg name="HEB_diagram" id="HEB_diagram"></svg>
                     </div>
-                    <!-- for hierarchical edge bundling graph -->
-                    <script>
-                        var miRNA_HEB_json = {{ miRNA_HEB_json|safe }};
-                    </script>
-                    <script type="text/javascript" charset="utf8"
-                            src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}"></script>
+
+
                 </div>
+                <!-- for hierarchical edge bundling graph -->
+                <script>
+                    var miRNA_HEB_json = {{ miRNA_HEB_json|safe }};
+                </script>
+                <script type="text/javascript" charset="utf8"
+                        src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}"></script>
+
+                <script>
+                    // Set-up the export button for FD_diagram
+                    d3.select('#HEB_saveAsPNG').on('click', function () {
+                        saveSvgAsPng(document.getElementById("HEB_diagram"), "HEB_diagram.png", {scale: 4});
+                    });
+
+                    d3.select("#HEB_saveAsSVG")
+                        .on("click", function () {
+                            try {
+                                var isFileSaverSupported = !!new Blob();
+                            } catch (e) {
+                                alert("blob not supported");
+                            }
+
+                            var html = d3.select("#HEB_diagram")
+                                .attr("title", "saveAsSVG")
+                                .attr("version", 1.1)
+                                .attr("xmlns", "http://www.w3.org/2000/svg")
+                                .node().parentNode.innerHTML;
+
+                            var blob = new Blob([html], {type: "image/svg+xml"});
+                            saveAs(blob, "HEB_diagram.svg");
+                        });
+                </script>
             </div>
         </div>
 
@@ -160,12 +203,9 @@
             <script type="text/javascript" charset="utf8"
                     src="{{ url_for('static', filename='js/vis_miRNA_FD_d3.js') }}"></script>
 
-            <!-- for save as -->
-            <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
-            <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
-            <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+
             <script>
-                // Set-up the export button
+                // Set-up the export button for FD_diagram
                 d3.select('#FD_saveAsPNG').on('click', function () {
                     saveSvgAsPng(document.getElementById("FD_diagram"), "FD_diagram.png", {scale: 4});
                 });
