@@ -127,15 +127,17 @@
                     </tbody>
                 </table>
                 <div class="row" style="padding: 10px">
-                    <div class="col-sm-3"><p> A polar graph shows the interactions between epistatic features. Mouseover
-                        any of nodes in this network to see the epistatic genes in red and the mutant genes in
-                        green. </p>
+                    <div class="col-sm-3">
+                        <p> A polar graph shows the interactions between epistatic features. Mouseover
+                            any of nodes in this network to see its <span
+                                    style="color:#2ca02c ;">epistatic features in green</span> and <span
+                                    style="color: #d62728;">hypostatic features in red</span> .
+                        </p>
                         <div>
                             <button id='HEB_saveAsPNG'>Save as PNG</button>
                             <button id='HEB_saveAsSVG'>Save as SVG</button>
                         </div>
                     </div>
-
 
                     <div class="col-sm-9" align="center" style="padding: 10px">
                         <svg name="HEB_diagram" id="HEB_diagram"></svg>

@@ -1,4 +1,4 @@
-var diameter = 800,
+var diameter = parseInt(d3.select('.col-sm-9').style('width')),
     radius = diameter / 2,
     innerRadius = radius - 120;
 
