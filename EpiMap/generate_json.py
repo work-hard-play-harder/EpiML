@@ -153,6 +153,7 @@ class MiRNAJson(object):
             json.dump(json_data, fout, indent=4)
 
     def generate_miR_HEB_json(self):
+        self.HEB_json=[]
         for f1 in self.epis_nodes.values:
             f2_list = self.epis_results[self.epis_results['feature1'] == f1]['feature2'].tolist()
             element = {'name': 'miRNA.epis.' + f1, 'size': len(f2_list),

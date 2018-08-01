@@ -152,7 +152,7 @@ function linkHighLight(link) {
     linkElements.attr('stroke', link => getLinkColor(link.target, link));
 }
 
-d3.select('svg').on('click', function () {
+d3.select('#FD_diagram').on('click', function () {
     tooltip.transition()
         .duration(100)
         .style("opacity", 0);
