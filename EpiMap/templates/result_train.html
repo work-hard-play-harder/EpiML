@@ -190,6 +190,11 @@
                 <button id='FD_saveAsSVG'>Save as SVG</button>
             </div>
             <div style="padding-top: 10px">
+                <div class="row">
+                    <label><input type="checkbox" class="filter-ckb" id="blue" value="1"> Main effect</label>
+                    <label> <input type="checkbox" class="filter-ckb" id="orange" value="2"> Epistatic effect</label>
+                    <label> <input type="checkbox" class="filter-ckb" id="green" value="3"> Target gene</label>
+                </div>
                 <svg name="FD_diagram" id="FD_diagram"></svg>
             </div>
             <!-- for d3 visualization.
