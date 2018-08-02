@@ -1,163 +1,3 @@
-function getNodeColor(node, neighbors) {
-    /*
-    if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
-        return 'green'
-    }*/
-    return color(node.group); // use color schemeCategory10
-    //return node.fill; // directly assign fill color
-}
-
-function getNodeType(node) {
-    if (node.shape === 'circle') {
-        return d3.symbolCircle;
-    }
-    if (node.shape === 'cross') {
-        return d3.symbolCross;
-    }
-    if (node.shape === 'diamond') {
-        return d3.symbolDiamond;
-    }
-    if (node.shape === 'square') {
-        return d3.symbolSquare;
-    }
-    if (node.shape === 'star') {
-        return d3.symbolStar;
-    }
-    if (node.shape === 'triangle') {
-        return d3.symbolTriangle;
-    }
-    if (node.shape === 'wye') {
-        return d3.symbolWye;
-    }
-}
-
-function getNodeSize(node) {
-    return node.size;
-}
-
-function getTextColor(node, neighbors) {
-    return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' : 'black'
-}
-
-function getLinkColor(node, link) {
-
-    return isNeighborLink(node, link) ? 'black' : 'rgba(50, 50, 50, 0.2)'
-}
-
-function getLegendType(legend) {
-    if (legend.shape === 'circle') {
-        return d3.symbolCircle;
-    }
-    if (legend.shape === 'cross') {
-        return d3.symbolCross;
-    }
-    if (legend.shape === 'diamond') {
-        return d3.symbolDiamond;
-    }
-    if (legend.shape === 'square') {
-        return d3.symbolSquare;
-    }
-    if (legend.shape === 'star') {
-        return d3.symbolStar;
-    }
-    if (legend.shape === 'triangle') {
-        return d3.symbolTriangle;
-    }
-    if (legend.shape === 'wye') {
-        return d3.symbolWye;
-    }
-}
-
-function getLegendColor(legend) {
-
-    return color(legend.label); // use color schemeCategory10
-    //return node.fill; // directly assign fill color
-}
-
-function getNeighbors(node) {
-    return links.reduce((neighbors, link) => {
-        if (link.target.id === node.id) {
-            neighbors.push(link.source.id)
-        } else if (link.source.id === node.id) {
-            neighbors.push(link.target.id)
-        }
-        return neighbors
-    }, [node.id])
-}
-
-function isNeighborLink(node, link) {
-    return link.target.id === node.id || link.source.id === node.id
-}
-
-function nodeHighLight(selectedNode) {
-    var neighbors = getNeighbors(selectedNode);
-    nodeElements.attr('fill', node => getNodeColor(node, neighbors));
-    textElements.attr('fill', node => getTextColor(node, neighbors));
-    linkElements.attr('stroke', link => getLinkColor(selectedNode, link));
-}
-
-function mouseOverNodeTooltip(node) {
-    tooltip.transition()
-        .duration(300)
-        .style("opacity", .9);
-    if (node.level===1){
-        tooltip
-        .html("Name: " + node.id + "<br/>" +
-            "Group: " + node.group + "<br/>" +
-            "<a href=" + node.url + " target='_blank'>miRBase</a>")
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY + 10) + "px");
-    }else if(node.level===2){
-        tooltip
-        .html("Name: " + node.id + "<br/>" +
-            "Group: " + node.group + "<br/>" +
-            "<a href=" + node.url + " target='_blank'>miR2Disease</a>")
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY + 10) + "px");
-    }
-
-}
-
-function mouseOut() {
-    nodeElements.attr('fill', node => getNodeColor(node));
-    textElements.attr('fill', 'black');
-    linkElements.attr('stroke', 'rgba(50, 50, 50, 0.2)');
-}
-
-function mouseOutNodeTooltip() {
-    tooltip.transition()
-        .duration(100)
-        .style("opacity", 0);
-}
-
-function mouseClickNodeTooltip(node) {
-
-}
-
-function mouseOverLinkTooltip(link) {
-    tooltip.transition()
-        .duration(300)
-        .style("opacity", .9);
-    tooltip
-        .html("Source: " + link.source + "<br/>" +
-            "Target: " + link.target + "<br/>" +
-            "Ref.:" + "reference" + "<br/>" +
-            "<a href='http://www.google.com' target='_blank'>URL FOR TEST</a>")
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY + 10) + "px");
-}
-
-function linkHighLight(link) {
-    linkElements.attr('stroke', link => getLinkColor(link.source, link));
-    linkElements.attr('stroke', link => getLinkColor(link.target, link));
-}
-
-d3.select('#FD_diagram').on('click', function () {
-    tooltip.transition()
-        .duration(100)
-        .style("opacity", 0);
-})
-
 
 // define container
 //var width = window.innerWidth, height = window.innerHeight/2;
@@ -298,3 +138,165 @@ simulation.nodes(nodes).on('tick', () => {
         .attr('y2', link => link.target.y);
 });
 simulation.force('link').links(links);
+
+
+function getNodeColor(node, neighbors) {
+    /*
+    if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
+        return 'green'
+    }*/
+    return color(node.group); // use color schemeCategory10
+    //return node.fill; // directly assign fill color
+}
+
+function getNodeType(node) {
+    if (node.shape === 'circle') {
+        return d3.symbolCircle;
+    }
+    if (node.shape === 'cross') {
+        return d3.symbolCross;
+    }
+    if (node.shape === 'diamond') {
+        return d3.symbolDiamond;
+    }
+    if (node.shape === 'square') {
+        return d3.symbolSquare;
+    }
+    if (node.shape === 'star') {
+        return d3.symbolStar;
+    }
+    if (node.shape === 'triangle') {
+        return d3.symbolTriangle;
+    }
+    if (node.shape === 'wye') {
+        return d3.symbolWye;
+    }
+}
+
+function getNodeSize(node) {
+    return node.size;
+}
+
+function getTextColor(node, neighbors) {
+    return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' : 'black'
+}
+
+function getLinkColor(node, link) {
+
+    return isNeighborLink(node, link) ? 'black' : 'rgba(50, 50, 50, 0.2)'
+}
+
+function getLegendType(legend) {
+    if (legend.shape === 'circle') {
+        return d3.symbolCircle;
+    }
+    if (legend.shape === 'cross') {
+        return d3.symbolCross;
+    }
+    if (legend.shape === 'diamond') {
+        return d3.symbolDiamond;
+    }
+    if (legend.shape === 'square') {
+        return d3.symbolSquare;
+    }
+    if (legend.shape === 'star') {
+        return d3.symbolStar;
+    }
+    if (legend.shape === 'triangle') {
+        return d3.symbolTriangle;
+    }
+    if (legend.shape === 'wye') {
+        return d3.symbolWye;
+    }
+}
+
+function getLegendColor(legend) {
+
+    return color(legend.label); // use color schemeCategory10
+    //return node.fill; // directly assign fill color
+}
+
+function getNeighbors(node) {
+    return links.reduce((neighbors, link) => {
+        if (link.target.id === node.id) {
+            neighbors.push(link.source.id)
+        } else if (link.source.id === node.id) {
+            neighbors.push(link.target.id)
+        }
+        return neighbors
+    }, [node.id])
+}
+
+function isNeighborLink(node, link) {
+    return link.target.id === node.id || link.source.id === node.id
+}
+
+function nodeHighLight(selectedNode) {
+    var neighbors = getNeighbors(selectedNode);
+    nodeElements.attr('fill', node => getNodeColor(node, neighbors));
+    textElements.attr('fill', node => getTextColor(node, neighbors));
+    linkElements.attr('stroke', link => getLinkColor(selectedNode, link));
+}
+
+function mouseOverNodeTooltip(node) {
+    tooltip.transition()
+        .duration(300)
+        .style("opacity", .9);
+    if (node.level === 1) {
+        tooltip
+            .html("Name: " + node.id + "<br/>" +
+                "Group: " + node.group + "<br/>" +
+                "<a href=" + node.url + " target='_blank'>miRBase</a>")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY + 10) + "px");
+    } else if (node.level === 2) {
+        tooltip
+            .html("Name: " + node.id + "<br/>" +
+                "Group: " + node.group + "<br/>" +
+                "<a href=" + node.url + " target='_blank'>miR2Disease</a>")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY + 10) + "px");
+    }
+
+}
+
+function mouseOut() {
+    nodeElements.attr('fill', node => getNodeColor(node));
+    textElements.attr('fill', 'black');
+    linkElements.attr('stroke', 'rgba(50, 50, 50, 0.2)');
+}
+
+function mouseOutNodeTooltip() {
+    tooltip.transition()
+        .duration(100)
+        .style("opacity", 0);
+}
+
+function mouseClickNodeTooltip(node) {
+
+}
+
+function mouseOverLinkTooltip(link) {
+    tooltip.transition()
+        .duration(300)
+        .style("opacity", .9);
+    tooltip
+        .html("Source: " + link.source + "<br/>" +
+            "Target: " + link.target + "<br/>" +
+            "Ref.:" + "reference" + "<br/>" +
+            "<a href='http://www.google.com' target='_blank'>URL FOR TEST</a>")
+        .style("left", (d3.event.pageX) + "px")
+        .style("top", (d3.event.pageY + 10) + "px");
+}
+
+function linkHighLight(link) {
+    linkElements.attr('stroke', link => getLinkColor(link.source, link));
+    linkElements.attr('stroke', link => getLinkColor(link.target, link));
+}
+
+// hide tool tip
+d3.select('#FD_diagram').on('click', function () {
+    tooltip.transition()
+        .duration(100)
+        .style("opacity", 0);
+});

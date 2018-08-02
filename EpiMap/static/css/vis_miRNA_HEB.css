@@ -20,7 +20,8 @@
 }
 
 .HEB_node--source {
-    fill: #2ca02c;
+    //fill: #2ca02c;
+    fill: #d62728;
 }
 
 .HEB_node--target {
@@ -38,5 +39,6 @@
 }
 
 .HEB_link--target {
-    stroke: #2ca02c;
+    //stroke: #2ca02c;
+    stroke: #d62728;
 }

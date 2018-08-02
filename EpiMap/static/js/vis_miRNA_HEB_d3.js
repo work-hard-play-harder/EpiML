@@ -1,4 +1,4 @@
-var diameter = parseInt(d3.select('.col-sm-9').style('width')),
+var diameter = parseInt(d3.select('#polar_graph').style('width')),
     radius = diameter / 2,
     innerRadius = radius - 120;
 
@@ -50,7 +50,8 @@ var node = svg.append("g").selectAll(".HEB_node")
         return d.data.key;
     })
     .on("mouseover", mouseovered)
-    .on("mouseout", mouseouted);
+    .on("mouseout", mouseouted)
+    .on('click', mouseclicked);
 
 function mouseovered(d) {
     node
@@ -79,6 +80,7 @@ function mouseovered(d) {
         });
 }
 
+
 function mouseouted(d) {
     link
         .classed("HEB_link--target", false)
@@ -89,46 +91,56 @@ function mouseouted(d) {
         .classed("HEB_node--source", false);
 }
 
+function mouseclicked(d) {
+    $('#epis_effect').DataTable().search(d.data.key)
+        .draw();
+}
+
 // Lazily construct the package hierarchy from class names.
 function packageHierarchy(classes) {
-  var map = {};
+    var map = {};
 
-  function find(name, data) {
-    var node = map[name], i;
-    if (!node) {
-      node = map[name] = data || {name: name, children: []};
-      if (name.length) {
-        node.parent = find(name.substring(0, i = name.lastIndexOf(".")));
-        node.parent.children.push(node);
-        node.key = name.substring(i + 1);
-      }
+    function find(name, data) {
+        var node = map[name], i;
+        if (!node) {
+            node = map[name] = data || {name: name, children: []};
+            if (name.length) {
+                node.parent = find(name.substring(0, i = name.lastIndexOf(".")));
+                node.parent.children.push(node);
+                node.key = name.substring(i + 1);
+            }
+        }
+        return node;
     }
-    return node;
-  }
 
-  classes.forEach(function(d) {
-    find(d.name, d);
-  });
+    classes.forEach(function (d) {
+        find(d.name, d);
+    });
 
-  return d3.hierarchy(map[""]);
+    return d3.hierarchy(map[""]);
 }
 
 // Return a list of effects for the given array of nodes.
 function packageImports(nodes) {
-  var map = {},
-      effects = [];
+    var map = {},
+        effects = [];
 
-  // Compute a map from name to node.
-  nodes.forEach(function(d) {
-    map[d.data.name] = d;
-  });
-
-  // For each import, construct a link from the source to target node.
-  nodes.forEach(function(d) {
-    if (d.data.effects) d.data.effects.forEach(function(i) {
-      effects.push(map[d.data.name].path(map[i]));
+    // Compute a map from name to node.
+    nodes.forEach(function (d) {
+        map[d.data.name] = d;
     });
-  });
 
-  return effects;
+    // For each import, construct a link from the source to target node.
+    nodes.forEach(function (d) {
+        if (d.data.effects) d.data.effects.forEach(function (i) {
+            effects.push(map[d.data.name].path(map[i]));
+        });
+    });
+
+    return effects;
 }
+
+// back to search default
+d3.select('#HEB_diagram').on('dblclick', function () {
+    $('#epis_effect').DataTable().search('').draw();
+});
