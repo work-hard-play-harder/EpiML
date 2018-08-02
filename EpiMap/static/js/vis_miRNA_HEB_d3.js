@@ -1,4 +1,4 @@
-var diameter = parseInt(d3.select('#polar_graph').style('width')),
+var diameter = parseInt(d3.select('#HEB_canvas').style('width')),
     radius = diameter / 2,
     innerRadius = radius - 120;
 
