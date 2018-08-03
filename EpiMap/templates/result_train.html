@@ -44,10 +44,53 @@
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
     <script>
+        function selectRowHighLightLink(row) {
+
+            HEB_node
+                .each(function (n) {
+                    n.target = n.source = false;
+                });
+
+            HEB_link
+                .classed("HEB_link--target", function (l) {
+
+                    if (l.target.data.key === row.data()[2]) return l.source.source = true;
+                })
+                .classed("HEB_link--source", function (l) {
+                    if (l.source.data.key === row.data()[1]) return l.target.target = true;
+                })
+                .filter(function (l) {
+                    return l.target.data.key === row.data()[2] || l.source.data.key === row.data()[1];
+                })
+                .raise();
+
+            HEB_node
+                .classed("HEB_node--target", function (n) {
+                    return n.target;
+                })
+                .classed("HEB_node--source", function (n) {
+                    return n.source;
+                });
+
+        }
 
         $(document).ready(function () {
             $('#main_effect').DataTable();
-            $('#epis_effect').DataTable();
+
+            var epis_table = $('#epis_effect').DataTable();
+
+            $('#epis_effect tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    epis_table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+
+                selectRowHighLightLink(epis_table.row('.selected'));
+
+            });
         });
 
     </script>
@@ -136,11 +179,12 @@
                             Mouseover any of nodes in this network to see its <span style="color: #d62728;">associative features in red</span>.
                         </p>
                         <p>
-                            Click one node to find details in above Epistatic Effect table. Double click on graph back to
+                            Click one node to find details in above Epistatic Effect table. Double click on graph back
+                            to
                             default.
                         </p>
                         <!--//TODO: add datatables mouseover events -->
-                        <p> </p>
+                        <p></p>
                         <div>
                             <button id='HEB_saveAsPNG'>Save as PNG</button>
                             <button id='HEB_saveAsSVG'>Save as SVG</button>

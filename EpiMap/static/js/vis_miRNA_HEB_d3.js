@@ -1,6 +1,6 @@
 var diameter = parseInt(d3.select('#HEB_canvas').style('width')),
     radius = diameter / 2,
-    innerRadius = radius - 120;
+    innerRadius = radius - 140;
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);
@@ -26,7 +26,7 @@ var root = packageHierarchy(miRNA_HEB_json)
     });
 cluster(root);
 
-var link = svg.append("g").selectAll(".HEB_link")
+var HEB_link = svg.append("g").selectAll(".HEB_link")
     .data(packageImports(root.leaves()))
     .enter().append("path")
     .each(function (d) {
@@ -35,7 +35,7 @@ var link = svg.append("g").selectAll(".HEB_link")
     .attr("class", "HEB_link")
     .attr("d", line);
 
-var node = svg.append("g").selectAll(".HEB_node")
+var HEB_node = svg.append("g").selectAll(".HEB_node")
     .data(root.leaves())
     .enter().append("text")
     .attr("class", "HEB_node")
@@ -54,12 +54,12 @@ var node = svg.append("g").selectAll(".HEB_node")
     .on('click', mouseclicked);
 
 function mouseovered(d) {
-    node
+    HEB_node
         .each(function (n) {
             n.target = n.source = false;
         });
 
-    link
+    HEB_link
         .classed("HEB_link--target", function (l) {
             if (l.target === d) return l.source.source = true;
         })
@@ -71,7 +71,7 @@ function mouseovered(d) {
         })
         .raise();
 
-    node
+    HEB_node
         .classed("HEB_node--target", function (n) {
             return n.target;
         })
@@ -82,11 +82,11 @@ function mouseovered(d) {
 
 
 function mouseouted(d) {
-    link
+    HEB_link
         .classed("HEB_link--target", false)
         .classed("HEB_link--source", false);
 
-    node
+    HEB_node
         .classed("HEB_node--target", false)
         .classed("HEB_node--source", false);
 }
