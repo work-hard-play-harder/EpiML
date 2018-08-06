@@ -670,12 +670,25 @@ def result_train(jobid):
     EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.main_result.txt')), 1)
     EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')), 2)
 
+    miR_json = MiRNAJson(job_dir)
+    nodes = miR_json.generate_nodes_json()
+    links = miR_json.generate_links_json()
+    legends = miR_json.generate_legend_json()
+    miR_json.write_forceDirect_json()
+    miRNA_HEB_json = miR_json.generate_miR_HEB_json()
+
+    return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
+                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
+                           json_file= url_for('download_result',jobid=jobid, filename='nodes_links.json'),
+                           miRNA_HEB_json=miRNA_HEB_json)
+
+    '''
     if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
         miR_json = MiRNAJson(job_dir)
         nodes = miR_json.generate_nodes_json()
         links = miR_json.generate_links_json()
         legends = miR_json.generate_legend_json()
-        #miR_json.write_forceDirect_json()
+        miR_json.write_forceDirect_json()
 
         miRNA_HEB_json = miR_json.generate_miR_HEB_json()
 
@@ -685,6 +698,7 @@ def result_train(jobid):
     return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
                            nodes=nodes, links=links, legends=legends, miRNA_HEB_json=miRNA_HEB_json)
+    '''
 
     '''
     # for visulization

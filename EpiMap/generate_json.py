@@ -194,7 +194,7 @@ class SNPJson(object):
             if node in self.main_nodes.values:
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
-                                        'size': 100,
+                                        'size': 80,
                                         'fill': 'red',
                                         'group': 'main_effect',
                                         'label': node,
@@ -205,7 +205,7 @@ class SNPJson(object):
             elif node in self.epis_nodes.values:
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
-                                        'size': 100,
+                                        'size': 80,
                                         'fill': 'blue',
                                         'group': 'epis_effect',
                                         'label': node,

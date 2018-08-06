@@ -33,6 +33,7 @@
             border: 1px solid black;
         }
 
+
     </style>
 
 {% endblock %}
@@ -145,7 +146,7 @@
 
             <div>
                 <h4>Epistatic Effect</h4>
-                <table id="epis_effect" name="epis_effect" class="table table-hover stripe">
+                <table id="epis_effect" name="epis_effect" class="table table-hover stripe ">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -236,25 +237,32 @@
                 <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}"
                    target="_blank">here</a> in
                 JSON format.</p>
-            <div>
-                <button id='FD_saveAsPNG'>Save as PNG</button>
-                <button id='FD_saveAsSVG'>Save as SVG</button>
+            <div class="row">
+                <div class=" col-sm-6">
+                    <label><input type="checkbox" class="filter-ckb" id="blue" value="Main effect" checked> Main effect</label>
+                    <label><input type="checkbox" class="filter-ckb" id="orange" value="Epistatic effect" checked>
+                        Epistatic effect</label>
+                    <label> <input type="checkbox" class="filter-ckb" id="green" value="Target gene" checked> Target
+                        gene</label>
+                </div>
+                <div class=" col-sm-6" align="right">
+                    <button id='FD_saveAsPNG'>Save as PNG</button>
+                    <button id='FD_saveAsSVG'>Save as SVG</button>
+                </div>
             </div>
             <div style="padding-top: 10px">
-                <div class="row">
-                    <label><input type="checkbox" class="filter-ckb" id="blue" value="1"> Main effect</label>
-                    <label> <input type="checkbox" class="filter-ckb" id="orange" value="2"> Epistatic effect</label>
-                    <label> <input type="checkbox" class="filter-ckb" id="green" value="3"> Target gene</label>
-                </div>
+                <!--<svg name="FD_legend" id="FD_legend"></svg>-->
                 <svg name="FD_diagram" id="FD_diagram"></svg>
             </div>
             <!-- for d3 visualization.
                         This script must be after svg tag-->
-
             <script>
+                /*
                 var nodes = {{ nodes|safe }};
                 var links = {{ links|safe }};
                 var legends = {{ legends|safe }};
+                */
+                var json_file = '{{ json_file }}'
             </script>
             <script type="text/javascript" charset="utf8"
                     src="{{ url_for('static', filename='js/vis_miRNA_FD_d3.js') }}"></script>
