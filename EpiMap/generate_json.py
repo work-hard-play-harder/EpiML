@@ -234,8 +234,11 @@ class SNPJson(object):
         self.links_json = []
         # add epis link
         epis_links = self.epis_results[['feature1', 'feature2']].drop_duplicates()
+        link_id = 0
         for index, link in epis_links.iterrows():
-            self.links_json.append({'source': link['feature1'],
+            link_id = index
+            self.links_json.append({'id': link_id,
+                                    'source': link['feature1'],
                                     'target': link['feature2'],
                                     'color': 'black',
                                     'strength': 0.3})
@@ -243,8 +246,10 @@ class SNPJson(object):
         # add target link
         target_links = self.related_target[['miRNA', 'Validated target']].drop_duplicates()
 
+        link_id += 1
         for index, link in target_links.iterrows():
-            self.links_json.append({'source': link['miRNA'].lower(),
+            self.links_json.append({'id': link_id + index,
+                                    'source': link['miRNA'].lower(),
                                     'target': link['Validated target'],
                                     'color': 'green',
                                     'strength': 0.5})
