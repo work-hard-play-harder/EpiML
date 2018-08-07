@@ -10,6 +10,8 @@
           href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static',filename='css/vis_miRNA_HEB.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='css/vis_miRNA_FD.css') }}">
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
@@ -203,7 +205,6 @@
                 </script>
                 <script type="text/javascript" charset="utf8"
                         src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}"></script>
-
                 <script>
                     // Set-up the export button for FD_diagram
                     d3.select('#HEB_saveAsPNG').on('click', function () {
@@ -229,6 +230,16 @@
                         });
                 </script>
             </div>
+        </div>
+
+        <div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
+                </div>
+                <div class="col-sm-8"></div>
+            </div>
+
         </div>
 
         <h3>Visualization</h3>

@@ -1,0 +1,13 @@
+.FD_node {
+    stroke: white;
+    stroke-width: 1px;
+}
+
+.FD_link {
+    stroke: gray;
+    stroke-width: 1px;
+}
+
+.FD_text {
+    fill: black;
+}

@@ -19,14 +19,19 @@ var svg = d3.select('#FD_diagram')
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 var shape = d3.scaleOrdinal(d3.symbols);
 
-var FD_nodes = svg.append('g').attr('class', 'nodes').selectAll('.path'),
-    FD_links = svg.append('g').attr('class', 'links').selectAll('line');
+// retrieve link by two nodes index
+var linkedByID = {};
+
+// define links and nodes
+// first defined element is in back layer.
+var FD_links = svg.append('g').attr('class', 'FD_links').selectAll('.FD_link'),
+    FD_nodes = svg.append('g').attr('class', 'FD_nodes').selectAll('.FD_node');
 
 // define simulator
 var simulation = d3.forceSimulation()
 // push nodes apart to space them out
 //TODO: assign charge for a group nodes
-    .force('charge', d3.forceManyBody().strength(-5))
+    .force('charge', d3.forceManyBody().strength(-10))
     // .force('charge', d3.forceManyBody())
     // draw them around the centre of the space
     .force('center', d3.forceCenter(width / 2, height / 2))
@@ -71,8 +76,13 @@ d3.json(json_file, function (err, g) {
     FD_graph = g;
     FD_store = $.extend(true, {}, g);
 
+    FD_graph.links.forEach(d => {
+        linkedByID[`${d.source},${d.target}`] = 1;
+    });
+
     update();
 });
+
 
 function update() {
     //UPDATE
@@ -84,79 +94,57 @@ function update() {
     //ENTER
     var new_FD_nodes = FD_nodes.enter().append('g');
     new_FD_nodes.append('path')
-    // three different methods to change shapes
-    //.attr("d", d3.symbol().type(d3.symbolCross))
-    //.attr("d", d3.symbol().type( function(d) { return shape(d.type);} ))
-        .attr('d', d3.symbol()
-            .type(getNodeType)
-            .size(getNodeSize))
-        .attr("fill", getNodeColor)
+        .attr('class', 'FD_node')
+        // three different methods to change shapes
+        //.attr("d", d3.symbol().type(d3.symbolCross))
+        //.attr("d", d3.symbol().type( function(d) { return shape(d.type);} ))
+        .attr('d', d3.symbol().type(getNodeType).size(d => d.size))
+        .attr("fill", d => color(d.group))
         // mouse event
         //.on('click', mouseClickNodeTooltip)
-        //.on('mouseover', nodeHighLight)
+        .on('mouseover', fade(0.2))
         .on('mouseover.tooltip', mouseOverNodeTooltip)
-        .on('mouseout', mouseOut)
+        .on('mouseout', fade(1))
         //.on("mouseout.tooltip",mouseOutNodeTooltip)
         .call(d3.drag()
             .on('start', node => {
+                if (!d3.event.active) simulation.alphaTarget(0.3).restart();
                 node.fx = node.x;
                 node.fy = node.y;
             })
             .on('drag', node => {
-                simulation.alphaTarget(0.7).restart();
                 node.fx = d3.event.x;
                 node.fy = d3.event.y;
             })
             .on('end', node => {
-                if (!d3.event.active) {
-                    simulation.alphaTarget(0);
-                }
+                if (!d3.event.active) simulation.alphaTarget(0);
                 node.fx = null;
                 node.fy = null;
             }));
     //label
     new_FD_nodes.append('text')
+        .attr('class', 'FD_text')
         .attr('text-anchor', 'middle')
         .text(node => node.label)
         .attr('font-size', 8)
         //.attr('dx', 15)
         .attr('dy', -4);
-
     //ENTER + UPDATE
     FD_nodes = FD_nodes.merge(new_FD_nodes);
-    /*
-        //UPDATE
-        FD_nodeText = FD_nodeText.data(FD_graph.nodes, function (d) {
-            return d.id;
-        });
-        //EXIT
-        FD_nodeText.exit().remove();
-        //ENTER
-        var new_FD_nodeText = FD_nodeText.append('text')
-            .attr('text-anchor', 'middle')
-            .text(node => node.label)
-            .attr('font-size', 8)
-            //.attr('dx', 15)
-            .attr('dy', -4);
-        //ENTER + UPDATE
-        new_FD_nodeText = FD_nodeText.merge(new_FD_nodeText);
-    */
+
     //UPDATE
-    FD_links = FD_links.data(FD_graph.links, function (d) {
-        return d.id;
-    });
+    FD_links = FD_links.data(FD_graph.links, d => d.id);
     //EXITß
     FD_links.exit().remove();
     //ENTER
     var new_FD_links = FD_links.enter().append('line')
-        .attr('class', 'link')
-        .attr('stroke-width', 1)
-        .attr('stroke', 'rgba(50, 50, 50, 0.2)');
-
+        .attr('class', 'FD_link');
+    /*
     new_FD_links.append('title')
         .text(function (d) {
             return 'source: ' + d.source + '\n' + 'target: ' + d.target;
         });
+    */
     //ENTER + UPDATE
     FD_links = FD_links.merge(new_FD_links);
 
@@ -249,15 +237,6 @@ var tooltip = d3.select('body')
     .style('opacity', 0);
 
 
-function getNodeColor(node, neighbors) {
-    /*
-    if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
-        return 'green'
-    }*/
-    return color(node.group); // use color schemeCategory10
-    //return node.fill; // directly assign fill color
-}
-
 function getNodeType(node) {
     if (node.shape === 'circle') {
         return d3.symbolCircle;
@@ -282,18 +261,6 @@ function getNodeType(node) {
     }
 }
 
-function getNodeSize(node) {
-    return node.size;
-}
-
-function getTextColor(node, neighbors) {
-    return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' : 'black'
-}
-
-function getLinkColor(node, link) {
-
-    return isNeighborLink(node, link) ? 'black' : 'rgba(50, 50, 50, 0.2)'
-}
 
 function getLegendType(legend) {
     if (legend.shape === 'circle') {
@@ -325,26 +292,22 @@ function getLegendColor(legend) {
     //return node.fill; // directly assign fill color
 }
 
-function getNeighbors(node) {
-    return FD_links.reduce((neighbors, link) => {
-        if (link.target.id === node.id) {
-            neighbors.push(link.source.id)
-        } else if (link.source.id === node.id) {
-            neighbors.push(link.target.id)
-        }
-        return neighbors
-    }, [node.id])
+
+function isConnected(a, b) {
+    return linkedByID[`${a.id},${b.id}`] || linkedByID[`${b.id},${a.id}`] || a.id === b.id;
 }
 
-function isNeighborLink(node, link) {
-    return link.target.id === node.id || link.source.id === node.id
-}
+function fade(opacity) {
+    return d => {
+        FD_nodes.style('stroke-opacity', function (o) {
+            var thisOpacity = isConnected(d, o) ? 1 : opacity;
 
-function nodeHighLight(selectedNode) {
-    var neighbors = getNeighbors(selectedNode);
-    FD_nodes.attr('fill', node => getNodeColor(node, neighbors));
-    FD_nodeText.attr('fill', node => getTextColor(node, neighbors));
-    FD_links.attr('stroke', link => getLinkColor(selectedNode, link));
+            this.setAttribute('fill-opacity', thisOpacity);
+            return thisOpacity;
+        });
+
+        FD_links.style('stroke-opacity', o => (o.source === d || o.target === d ? 1 : opacity));
+    };
 }
 
 function mouseOverNodeTooltip(node) {
@@ -367,12 +330,6 @@ function mouseOverNodeTooltip(node) {
             .style("top", (d3.event.pageY + 10) + "px");
     }
 
-}
-
-function mouseOut() {
-    FD_nodes.attr('fill', node => getNodeColor(node));
-    //FD_nodeText.attr('fill', 'black');
-    FD_links.attr('stroke', 'rgba(50, 50, 50, 0.2)');
 }
 
 function mouseOutNodeTooltip() {
