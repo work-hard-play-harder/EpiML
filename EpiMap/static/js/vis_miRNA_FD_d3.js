@@ -31,7 +31,7 @@ var FD_links = svg.append('g').attr('class', 'FD_links').selectAll('.FD_link'),
 var simulation = d3.forceSimulation()
 // push nodes apart to space them out
 //TODO: assign charge for a group nodes
-    .force('charge', d3.forceManyBody().strength(-10))
+    .force('charge', d3.forceManyBody().strength(-5))
     // .force('charge', d3.forceManyBody())
     // draw them around the centre of the space
     .force('center', d3.forceCenter(width / 2, height / 2))
@@ -101,9 +101,9 @@ function update() {
         .attr('d', d3.symbol().type(getNodeType).size(d => d.size))
         .attr("fill", d => color(d.group))
         // mouse event
-        //.on('click', mouseClickNodeTooltip)
-        .on('mouseover', fade(0.2))
-        .on('mouseover.tooltip', mouseOverNodeTooltip)
+        .on('click', mouseClickNodeTooltip)
+        .on('mouseover', fade(0.1))
+        //.on('mouseover.tooltip', mouseOverNodeTooltip)
         .on('mouseout', fade(1))
         //.on("mouseout.tooltip",mouseOutNodeTooltip)
         .call(d3.drag()
@@ -339,7 +339,24 @@ function mouseOutNodeTooltip() {
 }
 
 function mouseClickNodeTooltip(node) {
-
+    tooltip.transition()
+        .duration(300)
+        .style("opacity", .9);
+    if (node.level === 1) {
+        tooltip
+            .html("Name: " + node.id + "<br/>" +
+                "Group: " + node.group + "<br/>" +
+                "<a href=" + node.url + " target='_blank'>miRBase</a>")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY + 10) + "px");
+    } else if (node.level === 2) {
+        tooltip
+            .html("Name: " + node.id + "<br/>" +
+                "Group: " + node.group + "<br/>" +
+                "<a href=" + node.url + " target='_blank'>miR2Disease</a>")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY + 10) + "px");
+    }
 }
 
 function mouseOverLinkTooltip(link) {
@@ -362,7 +379,10 @@ function linkHighLight(link) {
 
 // hide tool tip
 d3.select('#FD_diagram').on('click', function () {
-    tooltip.transition()
-        .duration(100)
-        .style("opacity", 0);
+    //alert(d3.select('.tooltip').style("opacity"));
+    if (d3.select('.tooltip').style("opacity") == 0.9) {
+        tooltip.transition()
+            .duration(100)
+            .style("opacity", 0);
+    }
 });
