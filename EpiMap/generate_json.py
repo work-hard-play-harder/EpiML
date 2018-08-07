@@ -105,18 +105,21 @@ class MiRNAJson(object):
         self.links_json = []
         # add epis link
         epis_links = self.epis_results[['feature1', 'feature2']].drop_duplicates()
+        link_id = 0
         for index, link in epis_links.iterrows():
-            self.links_json.append({'source': link['feature1'],
+            link_id = index
+            self.links_json.append({'id': link_id,
+                                    'source': link['feature1'],
                                     'target': link['feature2'],
-                                    'color': 'black',
                                     'strength': 0.3})
 
         # add target link
         target_links = self.related_target[['miRNA', 'Validated target']].drop_duplicates()
+        link_id += 1
         for index, link in target_links.iterrows():
-            self.links_json.append({'source': link['miRNA'].lower(),
+            self.links_json.append({'id': link_id + index,
+                                    'source': link['miRNA'].lower(),
                                     'target': link['Validated target'],
-                                    'color': 'green',
                                     'strength': 0.5})
 
         return self.links_json
@@ -153,7 +156,7 @@ class MiRNAJson(object):
             json.dump(json_data, fout, indent=4)
 
     def generate_miR_HEB_json(self):
-        self.HEB_json=[]
+        self.HEB_json = []
         for f1 in self.epis_nodes.values:
             f2_list = self.epis_results[self.epis_results['feature1'] == f1]['feature2'].tolist()
             element = {'name': 'miRNA.epis.' + f1, 'size': len(f2_list),

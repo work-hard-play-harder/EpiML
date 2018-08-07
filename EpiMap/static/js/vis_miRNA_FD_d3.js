@@ -145,7 +145,7 @@ function update() {
     FD_links = FD_links.data(FD_graph.links, function (d) {
         return d.id;
     });
-    //EXIT
+    //EXITß
     FD_links.exit().remove();
     //ENTER
     var new_FD_links = FD_links.enter().append('line')
