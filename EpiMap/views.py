@@ -671,15 +671,20 @@ def result_train(jobid):
     EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')), 2)
 
     miR_json = MiRNAJson(job_dir)
-    nodes = miR_json.generate_nodes_json()
-    links = miR_json.generate_links_json()
-    legends = miR_json.generate_legend_json()
-    miR_json.write_forceDirect_json()
+
+    miR_json.generate_nodes_json()
+    miR_json.generate_links_json()
+    miR_json.write_forceDirect_nodes_links_json()
+
+    miR_json.generate_legend_json()
+    miR_json.write_forceDirect_legends_json()
+
     miRNA_HEB_json = miR_json.generate_miR_HEB_json()
 
     return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
-                           json_file= url_for('download_result',jobid=jobid, filename='nodes_links.json'),
+                           nodes_links_json= url_for('download_result',jobid=jobid, filename='nodes_links.json'),
+                           legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
                            miRNA_HEB_json=miRNA_HEB_json)
 
     '''

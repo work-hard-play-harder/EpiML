@@ -262,21 +262,19 @@
                 </div>
             </div>
             <div style="padding-top: 10px">
-                <!--<svg name="FD_legend" id="FD_legend"></svg>-->
+                <svg name="FD_legend" id="FD_legend"></svg>
                 <svg name="FD_diagram" id="FD_diagram"></svg>
             </div>
             <!-- for d3 visualization.
                         This script must be after svg tag-->
             <script>
-                /*
-                var nodes = {{ nodes|safe }};
-                var links = {{ links|safe }};
-                var legends = {{ legends|safe }};
-                */
-                var json_file = '{{ json_file }}'
+                var nodes_links_json = '{{ nodes_links_json }}'
+                var legends_json = '{{ legends_json }}'
             </script>
             <script type="text/javascript" charset="utf8"
                     src="{{ url_for('static', filename='js/vis_miRNA_FD_d3.js') }}"></script>
+            <script type="text/javascript" charset="utf8"
+                    src="{{ url_for('static', filename='js/vis_miRNA_legend_d3.js') }}"></script>
             <script>
                 // Set-up the export button for FD_diagram
                 d3.select('#FD_saveAsPNG').on('click', function () {

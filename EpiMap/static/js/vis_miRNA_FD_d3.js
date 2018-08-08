@@ -25,8 +25,9 @@ var linkedByID = {};
 // define links and nodes
 // first defined element is in back layer.
 var FD_links = svg.append('g').attr('class', 'FD_links').selectAll('.FD_link'),
-    FD_nodes = svg.append('g').attr('class', 'FD_nodes').selectAll('.FD_node');
-
+    FD_nodes = svg.append('g').attr('class', 'FD_nodes').selectAll('.FD_node'),
+    FD_legends = svg.append('g').attr('class', 'FD_legends').attr('transform', 'translate(20,20)')
+        .selectAll('legend');
 // define simulator
 var simulation = d3.forceSimulation()
 // push nodes apart to space them out
@@ -60,7 +61,7 @@ $('input.filter-ckb').click(function () {
 });
 
 //	data read and store
-d3.json(json_file, function (err, g) {
+d3.json(nodes_links_json, function (err, g) {
     if (err) throw err;
 
     var nodeByID = {};
@@ -72,6 +73,7 @@ d3.json(json_file, function (err, g) {
         l.sourceGroup = nodeByID[l.source].group.toString();
         l.targetGroup = nodeByID[l.target].group.toString();
     });
+
 
     FD_graph = g;
     FD_store = $.extend(true, {}, g);
@@ -206,31 +208,6 @@ function filter() {
     });
 }
 
-/*
-var legend = svg.append('g')
-    .attr('transform', 'translate(20,20)')
-    .selectAll('legend')
-    .data(legends)
-    .enter().append('g')
-    .attr('class', 'legend')
-    .attr('transform', function (d, i) {
-        return 'translate(0,' + i * 20 + ')';
-    });
-legend.append('path')
-    .attr('d', d3.symbol()
-        .type(getLegendType)
-        .size(100))
-    .attr('fill', getLegendColor);
-
-legend.append("text")
-    .attr("x", 18)
-    .attr("y", -3)
-    .attr("dy", ".35em")
-    .style("text-anchor", "begin")
-    .text(function (d) {
-        return d.label;
-    });
-*/
 var tooltip = d3.select('body')
     .append('div')
     .attr('class', 'tooltip')
@@ -259,37 +236,6 @@ function getNodeType(node) {
     if (node.shape === 'wye') {
         return d3.symbolWye;
     }
-}
-
-
-function getLegendType(legend) {
-    if (legend.shape === 'circle') {
-        return d3.symbolCircle;
-    }
-    if (legend.shape === 'cross') {
-        return d3.symbolCross;
-    }
-    if (legend.shape === 'diamond') {
-        return d3.symbolDiamond;
-    }
-    if (legend.shape === 'square') {
-        return d3.symbolSquare;
-    }
-    if (legend.shape === 'star') {
-        return d3.symbolStar;
-    }
-    if (legend.shape === 'triangle') {
-        return d3.symbolTriangle;
-    }
-    if (legend.shape === 'wye') {
-        return d3.symbolWye;
-    }
-}
-
-function getLegendColor(legend) {
-
-    return color(legend.label); // use color schemeCategory10
-    //return node.fill; // directly assign fill color
 }
 
 

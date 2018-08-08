@@ -64,7 +64,6 @@ class MiRNAJson(object):
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
                                         'size': 100,
-                                        'fill': 'red',
                                         'group': 'Main effect',
                                         'label': node,
                                         'level': 1,
@@ -76,7 +75,6 @@ class MiRNAJson(object):
                 self.nodes_json.append({'id': node,
                                         'shape': 'triangle',
                                         'size': 100,
-                                        'fill': 'blue',
                                         'group': 'Epistatic effect',
                                         'label': node,
                                         'level': 1,
@@ -92,7 +90,6 @@ class MiRNAJson(object):
             self.nodes_json.append({'id': node,
                                     'shape': 'circle',
                                     'size': 50,
-                                    'fill': 'purple',
                                     'group': 'Target gene',
                                     'label': node,
                                     'level': 2,
@@ -147,14 +144,6 @@ class MiRNAJson(object):
 
         return self.legend_json
 
-    def write_forceDirect_json(self):
-        filename = os.path.join(self.job_dir, 'nodes_links.json')
-        json_data = {'nodes': self.nodes_json,
-                     'links': self.links_json,
-                     'legends': self.legend_json}
-        with open(filename, 'w') as fout:
-            json.dump(json_data, fout, indent=4)
-
     def generate_miR_HEB_json(self):
         self.HEB_json = []
         for f1 in self.epis_nodes.values:
@@ -165,6 +154,19 @@ class MiRNAJson(object):
             self.HEB_json.append(element)
 
         return self.HEB_json
+
+    def write_forceDirect_nodes_links_json(self):
+        filename = os.path.join(self.job_dir, 'nodes_links.json')
+        json_data = {'nodes': self.nodes_json,
+                     'links': self.links_json}
+        with open(filename, 'w') as fout:
+            json.dump(json_data, fout, indent=4)
+
+    def write_forceDirect_legends_json(self):
+        filename = os.path.join(self.job_dir, 'legends.json')
+        json_data = {'legends': self.legend_json}
+        with open(filename, 'w') as fout:
+            json.dump(json_data, fout, indent=4)
 
 
 class SNPJson(object):
