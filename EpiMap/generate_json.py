@@ -101,13 +101,17 @@ class MiRNAJson(object):
     def generate_links_json(self):
         self.links_json = []
         # add epis link
-        epis_links = self.epis_results[['feature1', 'feature2']].drop_duplicates()
+        epis_links = self.epis_results.drop_duplicates()
         link_id = 0
         for index, link in epis_links.iterrows():
             link_id = index
             self.links_json.append({'id': link_id,
                                     'source': link['feature1'],
                                     'target': link['feature2'],
+                                    'coff': link['coefficent value'],
+                                    'post': link['posterior variance'],
+                                    'tvalue': link['t-value'],
+                                    'pvalue': link['p-value'],
                                     'strength': 0.3})
 
         # add target link

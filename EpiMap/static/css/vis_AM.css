@@ -1,0 +1,26 @@
+.background {
+    fill: #eee;
+}
+
+line {
+    stroke: #fff;
+}
+
+line.active {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+text {
+    font-size: 10px;
+}
+
+text.active {
+    fill: red;
+    font-size: 12px;
+}
+
+rect.active {
+    stroke: black;
+    stroke-width: 1px;
+}

@@ -12,6 +12,8 @@
           href="{{ url_for('static',filename='css/vis_miRNA_HEB.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static',filename='css/vis_miRNA_FD.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='css/vis_AM.css') }}">
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
@@ -118,62 +120,68 @@
         </p>
 
         <div class="container">
-            <h4>Main Effect</h4>
-            <div>
-                <table id="main_effect" name="main_effect" class="table table-hover stripe">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Feature</th>
-                        <th>Coefficent value</th>
-                        <th>Posterior variance</th>
-                        <th>t-value</th>
-                        <th>p-value</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for line in EBEN_main_result %}
+            <section>
+                <h3>Main Effect</h3>
+                <div>
+                    <table id="main_effect" name="main_effect" class="table table-hover stripe">
+                        <thead>
                         <tr>
-                            <td>{{ loop.index }}</td>
-                            <td>{{ line[0] }}</td>
-                            <td>{{ line[1] }}</td>
-                            <td>{{ line[2] }}</td>
-                            <td>{{ line[3] }}</td>
-                            <td>{{ line[4] }}</td>
+                            <th>#</th>
+                            <th>Feature</th>
+                            <th>Coefficent value</th>
+                            <th>Posterior variance</th>
+                            <th>t-value</th>
+                            <th>p-value</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-            <div>
-                <h4>Epistatic Effect</h4>
-                <table id="epis_effect" name="epis_effect" class="table table-hover stripe ">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Feature 1</th>
-                        <th>Feature 2</th>
-                        <th>Coefficent value</th>
-                        <th>Posterior variance</th>
-                        <th>t-value</th>
-                        <th>p-value</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for line in EBEN_epis_result %}
+                        </thead>
+                        <tbody>
+                        {% for line in EBEN_main_result %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ line[0] }}</td>
+                                <td>{{ line[1] }}</td>
+                                <td>{{ line[2] }}</td>
+                                <td>{{ line[3] }}</td>
+                                <td>{{ line[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section>
+                <h3>Epistatic Effect</h3>
+                <div>
+                    <table id="epis_effect" name="epis_effect" class="table table-hover stripe ">
+                        <thead>
                         <tr>
-                            <td>{{ loop.index }}</td>
-                            <td>{{ line[0] }}</td>
-                            <td>{{ line[1] }}</td>
-                            <td>{{ line[2] }}</td>
-                            <td>{{ line[3] }}</td>
-                            <td>{{ line[4] }}</td>
-                            <td>{{ line[5] }}</td>
+                            <th>#</th>
+                            <th>Feature 1</th>
+                            <th>Feature 2</th>
+                            <th>Coefficent value</th>
+                            <th>Posterior variance</th>
+                            <th>t-value</th>
+                            <th>p-value</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {% for line in EBEN_epis_result %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ line[0] }}</td>
+                                <td>{{ line[1] }}</td>
+                                <td>{{ line[2] }}</td>
+                                <td>{{ line[3] }}</td>
+                                <td>{{ line[4] }}</td>
+                                <td>{{ line[5] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section>
+                <h3>Circle Network</h3>
                 <div class="row" style="padding: 10px">
                     <div class="col-sm-4">
                         <p> A circle network shows the interactions between epistatic features.
@@ -229,75 +237,91 @@
                             saveAs(blob, "HEB_diagram.svg");
                         });
                 </script>
-            </div>
-        </div>
+            </section>
+            <section>
+                <h3>Adjacency Matrix</h3>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
+                        <aside style="margin-top:80px;">
+                            <p>Order: <select id="order">
+                                <option value="name">by Name</option>
+                                <option value="count">by Frequency</option>
+                                <option value="group">by Cluster</option>
+                            </select>
+                            </p>
 
-        <div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
+                        </aside>
+                    </div>
+                    <div class="col-sm-8">
+                        <svg id="adjacency_matrix" name="adjacency_matrix"></svg>
+                    </div>
+                    <script>
+                        var am_graph_json = '{{ nodes_links_json }}';
+                    </script>
+                    <script src="{{ url_for('static',filename='js/vis_AM.js') }}"></script>
                 </div>
-                <div class="col-sm-8"></div>
-            </div>
+            </section>
+            <section>
+                <h3>External Resources</h3>
+                <div id="visualization" class="container">
+                    <p>Relationship between miRNAs and target genes. The mega data can be download
+                        <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}"
+                           target="_blank">here</a> in
+                        JSON format.</p>
+                    <div class="row">
+                        <div class=" col-sm-6">
+                            <label><input type="checkbox" class="filter-ckb" value="Main effect" checked> Main
+                                effect</label>
+                            <label><input type="checkbox" class="filter-ckb" value="Epistatic effect" checked>
+                                Epistatic effect</label>
+                            <label> <input type="checkbox" class="filter-ckb" value="Target gene" checked> Target
+                                gene</label>
+                        </div>
+                        <div class=" col-sm-6" align="right">
+                            <button id='FD_saveAsPNG'>Save as PNG</button>
+                            <button id='FD_saveAsSVG'>Save as SVG</button>
+                        </div>
+                    </div>
+                    <div style="padding-top: 10px">
+                        <svg name="FD_legend" id="FD_legend"></svg>
+                        <svg name="FD_diagram" id="FD_diagram"></svg>
+                    </div>
+                    <!-- for d3 visualization.
+                                This script must be after svg tag-->
+                    <script>
+                        var nodes_links_json = '{{ nodes_links_json }}';
+                        var legends_json = '{{ legends_json }}';
+                    </script>
+                    <script type="text/javascript" charset="utf8"
+                            src="{{ url_for('static', filename='js/vis_miRNA_FD_d3.js') }}"></script>
+                    <script type="text/javascript" charset="utf8"
+                            src="{{ url_for('static', filename='js/vis_miRNA_legend_d3.js') }}"></script>
+                    <script>
+                        // Set-up the export button for FD_diagram
+                        d3.select('#FD_saveAsPNG').on('click', function () {
+                            saveSvgAsPng(document.getElementById("FD_diagram"), "FD_diagram.png", {scale: 4});
+                        });
+                        d3.select("#FD_saveAsSVG")
+                            .on("click", function () {
+                                try {
+                                    var isFileSaverSupported = !!new Blob();
+                                } catch (e) {
+                                    alert("blob not supported");
+                                }
 
-        </div>
+                                var html = d3.select("#FD_diagram")
+                                    .attr("title", "saveAsSVG")
+                                    .attr("version", 1.1)
+                                    .attr("xmlns", "http://www.w3.org/2000/svg")
+                                    .node().parentNode.innerHTML;
 
-        <h3>Visualization</h3>
-        <div id="visualization" class="container">
-            <p>Relationship between miRNAs and target genes. The mega data can be download
-                <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}"
-                   target="_blank">here</a> in
-                JSON format.</p>
-            <div class="row">
-                <div class=" col-sm-6">
-                    <label><input type="checkbox" class="filter-ckb" id="blue" value="Main effect" checked> Main effect</label>
-                    <label><input type="checkbox" class="filter-ckb" id="orange" value="Epistatic effect" checked>
-                        Epistatic effect</label>
-                    <label> <input type="checkbox" class="filter-ckb" id="green" value="Target gene" checked> Target
-                        gene</label>
+                                var blob = new Blob([html], {type: "image/svg+xml"});
+                                saveAs(blob, "FD_diagram.svg");
+                            });
+                    </script>
                 </div>
-                <div class=" col-sm-6" align="right">
-                    <button id='FD_saveAsPNG'>Save as PNG</button>
-                    <button id='FD_saveAsSVG'>Save as SVG</button>
-                </div>
-            </div>
-            <div style="padding-top: 10px">
-                <svg name="FD_legend" id="FD_legend"></svg>
-                <svg name="FD_diagram" id="FD_diagram"></svg>
-            </div>
-            <!-- for d3 visualization.
-                        This script must be after svg tag-->
-            <script>
-                var nodes_links_json = '{{ nodes_links_json }}'
-                var legends_json = '{{ legends_json }}'
-            </script>
-            <script type="text/javascript" charset="utf8"
-                    src="{{ url_for('static', filename='js/vis_miRNA_FD_d3.js') }}"></script>
-            <script type="text/javascript" charset="utf8"
-                    src="{{ url_for('static', filename='js/vis_miRNA_legend_d3.js') }}"></script>
-            <script>
-                // Set-up the export button for FD_diagram
-                d3.select('#FD_saveAsPNG').on('click', function () {
-                    saveSvgAsPng(document.getElementById("FD_diagram"), "FD_diagram.png", {scale: 4});
-                });
-                d3.select("#FD_saveAsSVG")
-                    .on("click", function () {
-                        try {
-                            var isFileSaverSupported = !!new Blob();
-                        } catch (e) {
-                            alert("blob not supported");
-                        }
-
-                        var html = d3.select("#FD_diagram")
-                            .attr("title", "saveAsSVG")
-                            .attr("version", 1.1)
-                            .attr("xmlns", "http://www.w3.org/2000/svg")
-                            .node().parentNode.innerHTML;
-
-                        var blob = new Blob([html], {type: "image/svg+xml"});
-                        saveAs(blob, "FD_diagram.svg");
-                    });
-            </script>
+            </section>
         </div>
     </div>
 {% endblock %}
