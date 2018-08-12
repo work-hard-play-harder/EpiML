@@ -108,10 +108,6 @@ class MiRNAJson(object):
             self.links_json.append({'id': link_id,
                                     'source': link['feature1'],
                                     'target': link['feature2'],
-                                    'coff': link['coefficent value'],
-                                    'post': link['posterior variance'],
-                                    'tvalue': link['t-value'],
-                                    'pvalue': link['p-value'],
                                     'strength': 0.3})
 
         # add target link
@@ -148,6 +144,19 @@ class MiRNAJson(object):
 
         return self.legend_json
 
+    def write_forceDirect_nodes_links_json(self):
+        filename = os.path.join(self.job_dir, 'nodes_links.json')
+        json_data = {'nodes': self.nodes_json,
+                     'links': self.links_json}
+        with open(filename, 'w') as fout:
+            json.dump(json_data, fout, indent=4)
+
+    def write_forceDirect_legends_json(self):
+        filename = os.path.join(self.job_dir, 'legends.json')
+        json_data = {'legends': self.legend_json}
+        with open(filename, 'w') as fout:
+            json.dump(json_data, fout, indent=4)
+
     def generate_miR_HEB_json(self):
         self.HEB_json = []
         for f1 in self.epis_nodes.values:
@@ -159,16 +168,31 @@ class MiRNAJson(object):
 
         return self.HEB_json
 
-    def write_forceDirect_nodes_links_json(self):
-        filename = os.path.join(self.job_dir, 'nodes_links.json')
-        json_data = {'nodes': self.nodes_json,
-                     'links': self.links_json}
-        with open(filename, 'w') as fout:
-            json.dump(json_data, fout, indent=4)
+    def write_am_graph_json(self):
+        am_graph_nodes_json = []
+        am_graph_links_json = []
 
-    def write_forceDirect_legends_json(self):
-        filename = os.path.join(self.job_dir, 'legends.json')
-        json_data = {'legends': self.legend_json}
+        for node in self.epis_nodes.values:
+            am_graph_nodes_json.append({'name': node,
+                                        'group': 'Epistatic effect'
+                                        })
+
+        epis_nodes_list = self.epis_nodes.tolist()
+        epis_links = self.epis_results.drop_duplicates()
+        for index, link in epis_links.iterrows():
+            source_index = epis_nodes_list.index(link['feature1'])
+            target_index = epis_nodes_list.index(link['feature2'])
+            am_graph_links_json.append({'source': source_index,
+                                        'target': target_index,
+                                        'coff': link['coefficent value'],
+                                        'post': link['posterior variance'],
+                                        'tvalue': link['t-value'],
+                                        'pvalue': link['p-value'],
+                                        })
+
+        filename = os.path.join(self.job_dir, 'am_graph.json')
+        json_data = {'nodes': am_graph_nodes_json,
+                     'links': am_graph_links_json}
         with open(filename, 'w') as fout:
             json.dump(json_data, fout, indent=4)
 

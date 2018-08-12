@@ -1,6 +1,6 @@
 var am_margin = {top: 80, right: 0, bottom: 10, left: 80},
-    am_width = 700,
-    am_height = 700;
+    am_width = 900,
+    am_height = 900;
 
 var x = d3.scaleBand().range([0, am_width]),
     z = d3.scaleLinear().domain([0, 4]).clamp(true),
@@ -13,62 +13,43 @@ var am_svg = d3.select("#adjacency_matrix")
     .append("g")
     .attr("transform", "translate(" + am_margin.left + "," + am_margin.top + ")");
 
-var am_nodes = [], am_node_ids = [], am_links = [];
+
 d3.json(am_graph_json, function (am_graph) {
 
-    var am_matrix = [];
-
-    //filter epistatic nodes and links
-    am_graph.nodes.forEach(function (n) {
-        if (n.group === 'Epistatic effect') {
-            am_nodes.push($.extend(true, {}, n));
-            am_node_ids.push(n.id);
-        }
-    });
-    n = am_nodes.length;
-
-    am_graph.links.forEach(function (l) {
-        if (am_node_ids.includes(l.source) && am_node_ids.includes(l.target)) {
-            am_links.push($.extend(true, {}, l));
-        }
-    });
+    var am_matrix = [],
+        am_nodes = am_graph.nodes,
+        n = am_nodes.length;
 
     // Compute index per node.
-    am_nodes.forEach(function (node_i, i) {
-        //am_node_ids[node_i.id].index = i;
-        //am_node_ids[node_i.id].count = 0;
-        am_matrix[node_i.id] = {};
-        am_nodes.forEach(function (node_j, j) {
-            am_matrix[node_i.id][node_j.id] = {x: j, y: i, z: 0};
+    am_nodes.forEach(function (node, i) {
+        node.index = i;
+        node.count = 0;
+        am_matrix[i] = d3.range(n).map(function (j) {
+            return {x: j, y: i, z: 0};
         });
     });
 
-    console.log(am_matrix);
     // Convert links to matrix; count character occurrences.
-    am_links.forEach(function (link) {
+    am_graph.links.forEach(function (link) {
         am_matrix[link.source][link.target].z += link.coff;
         am_matrix[link.target][link.source].z += link.coff;
         am_matrix[link.source][link.source].z += link.coff;
         am_matrix[link.target][link.target].z += link.coff;
-
-        //am_node_ids[link.source].count += link.coff;
-        //am_node_ids[link.target].count += link.coff;
+        am_nodes[link.source].count += link.coff;
+        am_nodes[link.target].count += link.coff;
     });
-
 
     // Precompute the orders.
     var orders = {
         name: d3.range(n).sort(function (a, b) {
-            return d3.ascending(am_nodes[a].id, am_nodes[b].id);
-        })
-        /*,
+            return d3.ascending(am_nodes[a].name, am_nodes[b].name);
+        }),
         count: d3.range(n).sort(function (a, b) {
-            return nodes[b].count - nodes[a].count;
+            return am_nodes[b].count - am_nodes[a].count;
         }),
         group: d3.range(n).sort(function (a, b) {
-            return nodes[b].group - nodes[a].group;
+            return am_nodes[b].group - am_nodes[a].group;
         })
-        */
     };
 
     // The default sort order.
@@ -97,7 +78,7 @@ d3.json(am_graph_json, function (am_graph) {
         .attr("dy", ".32em")
         .attr("text-anchor", "end")
         .text(function (d, i) {
-            return am_nodes[i].id;
+            return am_nodes[i].name;
         });
 
     var column = am_svg.selectAll(".column")
@@ -117,12 +98,13 @@ d3.json(am_graph_json, function (am_graph) {
         .attr("dy", ".32em")
         .attr("text-anchor", "start")
         .text(function (d, i) {
-            return am_nodes[i].id;
+            return am_nodes[i].name;
         });
 
     function row(row) {
         var cell = d3.select(this).selectAll(".cell")
             .data(row.filter(function (d) {
+                console.log(d.z);
                 return d.z;
             }))
             .enter().append("rect")
@@ -136,7 +118,7 @@ d3.json(am_graph_json, function (am_graph) {
                 return z(d.z);
             })
             .style("fill", function (d) {
-                return nodes[d.x].group === nodes[d.y].group ? c(nodes[d.x].group) : null;
+                return am_nodes[d.x].group === am_nodes[d.y].group ? c(am_nodes[d.x].group) : null;
             })
             .on("mouseover", mouseover)
             .on("mouseout", mouseout);
@@ -146,26 +128,17 @@ d3.json(am_graph_json, function (am_graph) {
         d3.selectAll(".row text").classed("active", function (d, i) {
             return i === p.y;
         });
-        d3.selectAll(".row line").classed("active", function (d, i) {
-            return i === p.y;
-
-        });
-
         d3.selectAll(".column text").classed("active", function (d, i) {
-            return i === p.x;
-        });
-        d3.selectAll(".column line").classed("active", function (d, i) {
             return i === p.x;
         });
     }
 
     function mouseout() {
         d3.selectAll("text").classed("active", false);
-        d3.selectAll("line").classed("active", false);
     }
 
     d3.select("#order").on("change", function () {
-
+        clearTimeout(timeout);
         order(this.value);
     });
 
@@ -198,5 +171,9 @@ d3.json(am_graph_json, function (am_graph) {
             });
     }
 
-
+    var timeout = setTimeout(function () {
+        order("group");
+        d3.select("#order").property("selectedIndex", 2).node().focus();
+    }, 5000);
 });
+

@@ -671,21 +671,23 @@ def result_train(jobid):
     EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')), 2)
 
     miR_json = MiRNAJson(job_dir)
-
+    # for external resources network
     miR_json.generate_nodes_json()
     miR_json.generate_links_json()
     miR_json.write_forceDirect_nodes_links_json()
-
     miR_json.generate_legend_json()
     miR_json.write_forceDirect_legends_json()
-
+    # for circle network
     miRNA_HEB_json = miR_json.generate_miR_HEB_json()
+    # for adjacency matrix
+    miR_json.write_am_graph_json()
 
     return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
-                           nodes_links_json= url_for('download_result',jobid=jobid, filename='nodes_links.json'),
+                           nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
                            legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
-                           miRNA_HEB_json=miRNA_HEB_json)
+                           miRNA_HEB_json=miRNA_HEB_json,
+                           am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
 
     '''
     if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
