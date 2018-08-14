@@ -169,15 +169,17 @@
             <section>
                 <h3>Circle Network</h3>
                 <p> A circle network shows the interactions between epistatic features.
-                        </p>
+                </p>
+
+                <div class="row" style="padding: 10px">
+                    <div class="col-sm-3">
                         <p>
                             Mouseover any of nodes in this network to see its <span style="color: #d62728;">associative features in red</span>.
                         </p>
                         <p>
                             Click one node to find details in above Epistatic Effect table. Double click on graph back
-                            to default. </p>
-                <div class="row" style="padding: 10px">
-                    <div class="col-sm-2">
+                            to default.
+                        </p>
 
                         <!--//TODO: add datatables mouseover events -->
                         <p></p>
@@ -187,7 +189,7 @@
                         </div>
                     </div>
 
-                    <div id="HEB_canvas" class="col-sm-10" align="center">
+                    <div id="HEB_canvas" class="col-sm-9" align="center">
                         <svg name="HEB_diagram" id="HEB_diagram"></svg>
                     </div>
                     <!-- for hierarchical edge bundling graph -->
@@ -197,17 +199,28 @@
                     <script type="text/javascript" charset="utf8"
                             src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}">
                     </script>
-                </div>2
+                </div>
 
             </section>
             <section>
                 <h3>Adjacency Matrix</h3>
-                <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
-                <div class="row">
+                <div>
+                    <p>A network can be represented by an adjacency matrix, where each cell ij represents an
+                        edge from vertex i to vertex j. Here, vertices represent characters in a book, while
+                        edges represent co-occurrence in a chapter.</p>
+                    <p>
+                        While path-following is harder in a matrix view than in a node-link diagram, matrices
+                        have other advantages. As networks get large and highly connected, node-link diagrams
+                        often devolve into giant hairballs of line crossings. Line crossings are impossible with
+                        matrix views. Matrix cells can also be encoded to show additional data; here color
+                        depicts clusters computed by a community-detection algorithm.
+                    </p>
+                    <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
+                </div>
+                <div class="row" style="padding: 10px">
                     <div class="col-sm-2">
                         <aside>
-                            <p>add adjacent matrix. There is an example: add adjacent matrix. There is an example: add
-                                adjacent matrix. There is an example: </p>
+
                             <p>Order: <select id="order">
                                 <option value="name">by Name</option>
                                 <option value="count">by Count</option>
