@@ -159,7 +159,7 @@ d3.json(am_graph_json, function (am_graph) {
                 return c(z(d.z));
             })
             .on("mouseover", am_mouseovered)
-            .on("click", am_clicked)
+            //.on("click", am_clicked)
             .on("mouseout", am_mouseouted);
     }
 
@@ -204,7 +204,6 @@ d3.json(am_graph_json, function (am_graph) {
         am_tooltip.transition()
             .duration(100)
             .style("opacity", 0);
-
     }
 
     d3.select("#order").on("change", function () {

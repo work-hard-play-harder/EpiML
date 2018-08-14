@@ -332,3 +332,26 @@ d3.select('#FD_diagram').on('click', function () {
             .style("opacity", 0);
     }
 });
+
+
+// Set-up the export button for FD_diagram
+d3.select('#FD_saveAsPNG').on('click', function () {
+    saveSvgAsPng(document.getElementById("FD_diagram"), "FD_diagram.png", {scale: 4});
+});
+d3.select("#FD_saveAsSVG")
+    .on("click", function () {
+        try {
+            var isFileSaverSupported = !!new Blob();
+        } catch (e) {
+            alert("blob not supported");
+        }
+
+        var html = d3.select("#FD_diagram")
+            .attr("title", "saveAsSVG")
+            .attr("version", 1.1)
+            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .node().parentNode.innerHTML;
+
+        var blob = new Blob([html], {type: "image/svg+xml"});
+        saveAs(blob, "FD_diagram.svg");
+    });

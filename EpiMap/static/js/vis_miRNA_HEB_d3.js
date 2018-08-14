@@ -1,6 +1,6 @@
 var diameter = parseInt(d3.select('#HEB_canvas').style('width')),
     radius = diameter / 2,
-    innerRadius = radius - 140;
+    innerRadius = radius - 180;
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);
@@ -136,7 +136,6 @@ function packageImports(nodes) {
             effects.push(map[d.data.name].path(map[i]));
         });
     });
-
     return effects;
 }
 
@@ -144,3 +143,26 @@ function packageImports(nodes) {
 d3.select('#HEB_diagram').on('dblclick', function () {
     $('#epis_effect').DataTable().search('').draw();
 });
+
+// Set-up the export button for HEB_diagram
+d3.select('#HEB_saveAsPNG').on('click', function () {
+    saveSvgAsPng(document.getElementById("HEB_diagram"), "HEB_diagram.png", {scale: 4});
+});
+
+d3.select("#HEB_saveAsSVG")
+    .on("click", function () {
+        try {
+            var isFileSaverSupported = !!new Blob();
+        } catch (e) {
+            alert("blob not supported");
+        }
+
+        var html = d3.select("#HEB_diagram")
+            .attr("title", "saveAsSVG")
+            .attr("version", 1.1)
+            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .node().parentNode.innerHTML;
+
+        var blob = new Blob([html], {type: "image/svg+xml"});
+        saveAs(blob, "HEB_diagram.svg");
+    });

@@ -19,8 +19,6 @@
             background-color: coral;
         }
 
-
-
         [id|='FD_diagram'] {
             border: 1px solid black;
         }
@@ -170,61 +168,37 @@
             </section>
             <section>
                 <h3>Circle Network</h3>
-                <div class="row" style="padding: 10px">
-                    <div class="col-sm-4">
-                        <p> A circle network shows the interactions between epistatic features.
+                <p> A circle network shows the interactions between epistatic features.
                         </p>
                         <p>
                             Mouseover any of nodes in this network to see its <span style="color: #d62728;">associative features in red</span>.
                         </p>
                         <p>
                             Click one node to find details in above Epistatic Effect table. Double click on graph back
-                            to
-                            default.
-                        </p>
+                            to default. </p>
+                <div class="row" style="padding: 10px">
+                    <div class="col-sm-2">
+
                         <!--//TODO: add datatables mouseover events -->
                         <p></p>
                         <div>
-                            <button id='HEB_saveAsPNG'>Save as PNG</button>
-                            <button id='HEB_saveAsSVG'>Save as SVG</button>
+                            <button id='HEB_saveAsPNG' style="margin: 10px">Save as PNG</button>
+                            <button id='HEB_saveAsSVG' style="margin: 10px">Save as SVG</button>
                         </div>
                     </div>
 
-                    <div id="HEB_canvas" class="col-sm-8" align="center">
+                    <div id="HEB_canvas" class="col-sm-10" align="center">
                         <svg name="HEB_diagram" id="HEB_diagram"></svg>
                     </div>
+                    <!-- for hierarchical edge bundling graph -->
+                    <script>
+                        var miRNA_HEB_json = {{ miRNA_HEB_json|safe }};
+                    </script>
+                    <script type="text/javascript" charset="utf8"
+                            src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}">
+                    </script>
+                </div>2
 
-                </div>
-                <!-- for hierarchical edge bundling graph -->
-                <script>
-                    var miRNA_HEB_json = {{ miRNA_HEB_json|safe }};
-                </script>
-                <script type="text/javascript" charset="utf8"
-                        src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}"></script>
-                <script>
-                    // Set-up the export button for FD_diagram
-                    d3.select('#HEB_saveAsPNG').on('click', function () {
-                        saveSvgAsPng(document.getElementById("HEB_diagram"), "HEB_diagram.png", {scale: 4});
-                    });
-
-                    d3.select("#HEB_saveAsSVG")
-                        .on("click", function () {
-                            try {
-                                var isFileSaverSupported = !!new Blob();
-                            } catch (e) {
-                                alert("blob not supported");
-                            }
-
-                            var html = d3.select("#HEB_diagram")
-                                .attr("title", "saveAsSVG")
-                                .attr("version", 1.1)
-                                .attr("xmlns", "http://www.w3.org/2000/svg")
-                                .node().parentNode.innerHTML;
-
-                            var blob = new Blob([html], {type: "image/svg+xml"});
-                            saveAs(blob, "HEB_diagram.svg");
-                        });
-                </script>
             </section>
             <section>
                 <h3>Adjacency Matrix</h3>
@@ -232,7 +206,8 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <aside>
-                             <p>add adjacent matrix. There is an example: add adjacent matrix. There is an example: add adjacent matrix. There is an example: </p>
+                            <p>add adjacent matrix. There is an example: add adjacent matrix. There is an example: add
+                                adjacent matrix. There is an example: </p>
                             <p>Order: <select id="order">
                                 <option value="name">by Name</option>
                                 <option value="count">by Count</option>
@@ -285,29 +260,6 @@
                             src="{{ url_for('static', filename='js/vis_miRNA_FD_d3.js') }}"></script>
                     <script type="text/javascript" charset="utf8"
                             src="{{ url_for('static', filename='js/vis_miRNA_legend_d3.js') }}"></script>
-                    <script>
-                        // Set-up the export button for FD_diagram
-                        d3.select('#FD_saveAsPNG').on('click', function () {
-                            saveSvgAsPng(document.getElementById("FD_diagram"), "FD_diagram.png", {scale: 4});
-                        });
-                        d3.select("#FD_saveAsSVG")
-                            .on("click", function () {
-                                try {
-                                    var isFileSaverSupported = !!new Blob();
-                                } catch (e) {
-                                    alert("blob not supported");
-                                }
-
-                                var html = d3.select("#FD_diagram")
-                                    .attr("title", "saveAsSVG")
-                                    .attr("version", 1.1)
-                                    .attr("xmlns", "http://www.w3.org/2000/svg")
-                                    .node().parentNode.innerHTML;
-
-                                var blob = new Blob([html], {type: "image/svg+xml"});
-                                saveAs(blob, "FD_diagram.svg");
-                            });
-                    </script>
                 </div>
             </section>
         </div>
