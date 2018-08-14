@@ -11,3 +11,17 @@
 .FD_text {
     fill: black;
 }
+
+div.tooltip {
+    position: absolute;
+    background: lightyellow;
+    max-width: 250px;
+    height: auto;
+    padding: 5px;
+    border: 0px;
+    border-style: solid;
+    border-radius: 8px;
+    #border-width: 1px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .5);
+    #pointer-events: none;
+}

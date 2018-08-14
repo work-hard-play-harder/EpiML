@@ -19,19 +19,7 @@
             background-color: coral;
         }
 
-        div.tooltip {
-            position: absolute;
-            background: lightyellow;
-            max-width: 250px;
-            height: auto;
-            padding: 5px;
-            border: 0px;
-            border-style: solid;
-            border-radius: 8px;
-            #border-width: 1px;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, .5);
-            #pointer-events: none;
-        }
+
 
         [id|='FD_diagram'] {
             border: 1px solid black;
@@ -202,7 +190,7 @@
                         </div>
                     </div>
 
-                    <div id="HEB_canvas" class="col-sm-8" align="center" style="padding: 10px">
+                    <div id="HEB_canvas" class="col-sm-8" align="center">
                         <svg name="HEB_diagram" id="HEB_diagram"></svg>
                     </div>
 
@@ -240,20 +228,20 @@
             </section>
             <section>
                 <h3>Adjacency Matrix</h3>
+                <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
                 <div class="row">
-                    <div class="col-sm-4">
-                        <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
-                        <aside style="margin-top:80px;">
+                    <div class="col-sm-2">
+                        <aside>
+                             <p>add adjacent matrix. There is an example: add adjacent matrix. There is an example: add adjacent matrix. There is an example: </p>
                             <p>Order: <select id="order">
                                 <option value="name">by Name</option>
-                                <option value="count">by Frequency</option>
-                                <option value="group">by Cluster</option>
+                                <option value="count">by Count</option>
+                                <option value="rank">by Position</option>
                             </select>
                             </p>
-
                         </aside>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-offset-1 col-sm-8" id="vis_am" name="vis_am">
                         <svg id="adjacency_matrix" name="adjacency_matrix"></svg>
                     </div>
                     <script>

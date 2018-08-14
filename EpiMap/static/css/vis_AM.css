@@ -1,5 +1,5 @@
 .background {
-    fill: #eee;
+    fill: ghostwhite;
 }
 
 line {
@@ -11,16 +11,25 @@ line.active {
     stroke-width: 1px;
 }
 
-text {
+.am_text {
     font-size: 10px;
 }
 
-text.active {
+.am_text.active {
     fill: red;
     font-size: 12px;
 }
 
-rect.active {
-    stroke: black;
-    stroke-width: 1px;
+div.am_tooltip {
+    position: absolute;
+    background: lightyellow;
+    max-width: 250px;
+    height: auto;
+    padding: 5px;
+    border: 0px;
+    border-style: solid;
+    border-radius: 8px;
+    #border-width: 1px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .5);
+    #pointer-events: none;
 }

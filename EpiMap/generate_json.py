@@ -2,7 +2,7 @@ import os
 import json
 import decimal
 import pandas as pd
-
+import random
 from EpiMap.datasets import MiRNA2Disease
 
 
@@ -174,7 +174,8 @@ class MiRNAJson(object):
 
         for node in self.epis_nodes.values:
             am_graph_nodes_json.append({'name': node,
-                                        'group': 'Epistatic effect'
+                                        'group': 'Epistatic effect',
+                                        'rank': random.randint(0,100)
                                         })
 
         epis_nodes_list = self.epis_nodes.tolist()
