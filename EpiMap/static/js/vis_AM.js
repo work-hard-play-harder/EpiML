@@ -6,7 +6,7 @@ var am_margin = {top: 80, right: 0, bottom: 10, left: 80},
 
 var x = d3.scaleBand().range([0, am_width]),
     //z = d3.scaleLinear().domain([-1, 1]).clamp(true),
-    z = d3.scaleLinear().range([0, 1]),
+    z = d3.scaleLinear().range([0.1, 0.9]),
     c = d3.scaleSequential().interpolator(d3.interpolateRainbow);
 //c = d3.scaleOrdinal(d3.schemeCategory10).domain(d3.range(1));
 

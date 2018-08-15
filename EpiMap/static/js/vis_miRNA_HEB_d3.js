@@ -1,6 +1,6 @@
 var diameter = parseInt(d3.select('#HEB_canvas').style('width')),
     radius = diameter / 2,
-    innerRadius = radius - 180;
+    innerRadius = radius - 150;
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);

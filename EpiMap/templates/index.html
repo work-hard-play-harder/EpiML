@@ -8,50 +8,62 @@
         <div style="background-color: whitesmoke;padding: 30px">
             <h1>Epistasis Analysis Server: An open machine learning web service and model repository for
                 epistasis analysis </h1>
-            <p>This server provides epistatic analysis, through which biologists and
-                biomedical researchers can train a specific model based on their own data or predict their new
-                data based on a shared model in model repository, and visualize results using interactive
-                visualizations. </p>
+            <p> Epistasis analysis is a foundation in the analysis of genetic networks. The concept of epistasis was
+                introduced nearly 100 years ago and today underpins our interpretation of genetic pathways. If a
+                mutation in one gene masks the effects of a mutation in a second gene, then the first gene is said to be
+                epistatic to the second. The aim of epistasis analysis is to identify the group of genes controlling a
+                particular cellular process or pathway and to establish an order‐of‐function map that reflects the
+                sequence of events in a pathway controlled by several genes. </p>
+            <p> This server provides pair-wise epistasis analysis. First, we identify the main effects using a model
+                with only main effect on the phenotype. Second, a corrected phenotype is calculated by removing the
+                significant main effect from the original phenotype. Third, we select features with epistatic effect on
+                the corrected phenotype. Finally, we run the full model with main and epistatic effects on the
+                previously selected main and epistatic features.</p>
+            <!--
+            <p> By using this server, biologists and biomedical researchers can identify a set of main and epistatic
+                effects based on their own data. To help analysis results, we provide many interactive visualization,
+                with options to zoom in and out for diverse views of the data and results. Besides, many external
+                resources are embedded to enhance convenience.</p>
+                -->
         </div>
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Easy to Use</h2>
             <div class="row">
-                <div class="col-sm-3" align="center">
+                <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/upload.png') }}">
                     <p style="padding: 10px"><strong>Upload training data. All user’s data will be kept
                         private.</strong></p>
                 </div>
-                <div class="col-sm-3" align="center">
+                <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/submit.png') }}">
                     <p style="padding: 10px"><strong>Select methods and submit jobs.</strong>
                     </p>
                 </div>
-                <div class="col-sm-3" align="center">
+                <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/processing.png') }}">
                     <p style="padding: 10px"><strong>Multiple threads to process. All processing is automated.</strong>
                     </p>
                 </div>
-                <div class="col-sm-3" align="center">
+                <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/finished.png') }}">
                     <p style="padding: 10px"><strong>Download results when your jobs is finished.</strong></p>
                 </div>
                 <!--
-                <div class="col-sm-3" align="center">
+                <div class="col-xs-3" align="center">
                     <img width="50%" src="{{ url_for('static',filename='img/home/download.png') }}">
                     <p style="padding: 10px"><strong>Download results and visualization</strong></p>
                 </div>
                 -->
             </div>
-
         </div>
         <hr>
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Model Repository</h2>
             <div class="row">
-                <div class="col-sm-4" align="center">
+                <div class="col-xs-4" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/repository.png') }}">
                 </div>
-                <div class="col-sm-8">
+                <div class="col-xs-8">
                     <p><strong>Trained models are stored, and they are convenient to share with others.</strong> Due to
                         the challenges of replicating large models on large datasets, it is hard to achieve a good
                         model following existing work. We will provide a model repository which is a set of unified
@@ -64,10 +76,10 @@
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Interactive Visualization</h2>
             <div class="row">
-                <div class="col-sm-4" align="center">
+                <div class="col-xs-4" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/visualization.png') }}">
                 </div>
-                <div class="col-sm-8">
+                <div class="col-xs-8">
                     <p><strong>Results are visualized.</strong> To help understand the results, we will provide
                         interactive visualization of
                         intermediate results and final results, with options to zoom in and out for diverse views of the
@@ -79,10 +91,10 @@
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px"> Multiple Resources Integration</h2>
             <div class="row">
-                <div class="col-sm-4" align="center">
+                <div class="col-xs-4" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/integration.png') }}">
                 </div>
-                <div class="col-sm-8">
+                <div class="col-xs-8">
                     <p><strong>Multiple external resources are integrated for analysis.</strong> Many external resources
                         are embedded in results visualization. We also provide links to metadata of omics data and
                         external resources, such as gene annotations and biological pathways, to help interpret the
