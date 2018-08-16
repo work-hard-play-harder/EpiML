@@ -80,7 +80,6 @@ function mouseovered(d) {
         });
 }
 
-
 function mouseouted(d) {
     cn_links
         .classed("cn_link--target", false)
@@ -92,8 +91,37 @@ function mouseouted(d) {
 }
 
 function mouseclicked(d) {
+    console.log(d)
     $('#epis_effect').DataTable().search(d.data.key)
         .draw();
+
+    cn_nodes
+        .each(function (n) {
+            n.target = n.source = false;
+        });
+
+    cn_links
+        .classed("cn_click_link--target", function (l) {
+            if (l.target === d) return l.source.source = true;
+        })
+        .classed("cn_click_link--source", function (l) {
+            if (l.source === d) return l.target.target = true;
+        })
+        .filter(function (l) {
+            return l.target === d || l.source === d;
+        })
+        .raise();
+
+    cn_nodes
+        .classed("cn_click_node--target", function (n) {
+            return n.target;
+        })
+        .classed("cn_click_node--source", function (n) {
+            return n.source;
+        })
+        .classed("cn_click_node", function (n) {
+            return n === d;
+        });
 }
 
 // Lazily construct the package hierarchy from class names.

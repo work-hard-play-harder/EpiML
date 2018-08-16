@@ -1,4 +1,4 @@
-function selectRowHighLightLink(row) {
+function rowToNetLink(row) {
     cn_nodes
         .each(function (n) {
             n.target = n.source = false;
@@ -24,6 +24,11 @@ function selectRowHighLightLink(row) {
         .classed("cn_node--source", function (n) {
             return n.source;
         });
+}
+
+function rowToMatCell(row) {
+    console.log(row.data())
+    am_nodes.classed('am_')
 
 }
 
@@ -41,6 +46,7 @@ $(document).ready(function () {
             $(this).addClass('selected');
         }
 
-        selectRowHighLightLink(epis_table.row('.selected'));
+        rowToNetLink(epis_table.row('.selected'));
+        rowToMatCell(epis_table.row('.selected'));
     });
 });

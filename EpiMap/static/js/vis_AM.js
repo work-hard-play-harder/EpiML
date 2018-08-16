@@ -134,7 +134,6 @@ d3.json(am_graph_json, function (am_graph) {
         .attr('dy', '.35em')
         .text(String);
 
-
     var am_tooltip = d3.select('body')
         .append('div')
         .attr('class', 'am_tooltip')

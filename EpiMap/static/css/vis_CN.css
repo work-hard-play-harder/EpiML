@@ -19,26 +19,29 @@
     font-weight: 700;
 }
 
-.cn_node--source {
-    //fill: #2ca02c;
-    fill: #d62728;
-}
-
+.cn_node--source,
 .cn_node--target {
     fill: #d62728;
 }
 
 .cn_link--source,
 .cn_link--target {
+    stroke: #d62728;
     stroke-opacity: 1;
     stroke-width: 2px;
 }
 
-.cn_link--source {
-    stroke: #d62728;
+.cn_click_link--source,
+.cn_click_link--target {
+    stroke: green;
+    stroke-opacity: 1;
+    stroke-width: 2px;
 }
 
-.cn_link--target {
-    //stroke: #2ca02c;
-    stroke: #d62728;
+.cn_click_node--source,
+.cn_click_node--target,
+.cn_click_node {
+    fill: green;
+    font-weight: 700;
 }
+
