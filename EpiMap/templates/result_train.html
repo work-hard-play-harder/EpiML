@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css"
           href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
     <link rel="stylesheet" type="text/css"
-          href="{{ url_for('static',filename='css/vis_miRNA_HEB.css') }}">
+          href="{{ url_for('static',filename='css/vis_CN.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static',filename='css/vis_miRNA_FD.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -22,8 +22,6 @@
         [id|='FD_diagram'] {
             border: 1px solid black;
         }
-
-
     </style>
 
 {% endblock %}
@@ -34,60 +32,12 @@
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
-    <script>
-        function selectRowHighLightLink(row) {
 
-            HEB_node
-                .each(function (n) {
-                    n.target = n.source = false;
-                });
-
-            HEB_link
-                .classed("HEB_link--target", function (l) {
-
-                    if (l.target.data.key === row.data()[2]) return l.source.source = true;
-                })
-                .classed("HEB_link--source", function (l) {
-                    if (l.source.data.key === row.data()[1]) return l.target.target = true;
-                })
-                .filter(function (l) {
-                    return l.target.data.key === row.data()[2] || l.source.data.key === row.data()[1];
-                })
-                .raise();
-
-            HEB_node
-                .classed("HEB_node--target", function (n) {
-                    return n.target;
-                })
-                .classed("HEB_node--source", function (n) {
-                    return n.source;
-                });
-
-        }
-
-        $(document).ready(function () {
-            $('#main_effect').DataTable();
-
-            var epis_table = $('#epis_effect').DataTable();
-
-            $('#epis_effect tbody').on('click', 'tr', function () {
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    epis_table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                }
-
-                selectRowHighLightLink(epis_table.row('.selected'));
-
-            });
-        });
-
-    </script>
-
+    <!-- for visualization -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- for interaction -->
+    <script src="{{ url_for('static',filename='js/vis_interaction.js') }}"></script>
     <!-- for save as -->
     <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
     <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
@@ -185,20 +135,20 @@
                         <!--//TODO: add datatables mouseover events -->
                         <p></p>
                         <div>
-                            <button id='HEB_saveAsPNG' style="margin: 10px">Save as PNG</button>
-                            <button id='HEB_saveAsSVG' style="margin: 10px">Save as SVG</button>
+                            <button id='cn_saveAsPNG' style="margin: 10px">Save as PNG</button>
+                            <button id='cn_saveAsSVG' style="margin: 10px">Save as SVG</button>
                         </div>
                     </div>
 
-                    <div id="HEB_canvas" class="col-sm-9" align="center">
-                        <svg name="HEB_diagram" id="HEB_diagram"></svg>
+                    <div id="vis_cn" class="col-sm-9" align="center">
+                        <svg name="circle_network" id="circle_network"></svg>
                     </div>
                     <!-- for hierarchical edge bundling graph -->
                     <script>
-                        var miRNA_HEB_json = {{ miRNA_HEB_json|safe }};
+                        var cn_graph_json = {{ cn_graph_json|safe }};
                     </script>
                     <script type="text/javascript" charset="utf8"
-                            src="{{ url_for('static', filename='js/vis_miRNA_HEB_d3.js') }}">
+                            src="{{ url_for('static', filename='js/vis_CN.js') }}">
                     </script>
                 </div>
 
@@ -274,7 +224,7 @@
                         <svg name="FD_diagram" id="FD_diagram"></svg>
                     </div>
                     <!-- for d3 visualization.
-                                This script must be after svg tag-->
+                                This script must be after cn_svg tag-->
                     <script>
                         var nodes_links_json = '{{ nodes_links_json }}';
                         var legends_json = '{{ legends_json }}';

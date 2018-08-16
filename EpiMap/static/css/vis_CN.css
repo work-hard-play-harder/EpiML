@@ -1,44 +1,44 @@
-.HEB_node {
+.cn_node {
     fill: black;
 }
 
-.HEB_node:hover {
+.cn_node:hover {
     fill: #000;
 }
 
-.HEB_link {
+.cn_link {
     stroke: steelblue;
     stroke-opacity: 0.4;
     fill: none;
     pointer-events: none;
 }
 
-.HEB_node:hover,
-.HEB_node--source,
-.HEB_node--target {
+.cn_node:hover,
+.cn_node--source,
+.cn_node--target {
     font-weight: 700;
 }
 
-.HEB_node--source {
+.cn_node--source {
     //fill: #2ca02c;
     fill: #d62728;
 }
 
-.HEB_node--target {
+.cn_node--target {
     fill: #d62728;
 }
 
-.HEB_link--source,
-.HEB_link--target {
+.cn_link--source,
+.cn_link--target {
     stroke-opacity: 1;
     stroke-width: 2px;
 }
 
-.HEB_link--source {
+.cn_link--source {
     stroke: #d62728;
 }
 
-.HEB_link--target {
+.cn_link--target {
     //stroke: #2ca02c;
     stroke: #d62728;
 }

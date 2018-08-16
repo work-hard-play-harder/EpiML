@@ -1,11 +1,11 @@
-var diameter = parseInt(d3.select('#HEB_canvas').style('width')),
+var diameter = parseInt(d3.select('#vis_cn').style('width')),
     radius = diameter / 2,
     innerRadius = radius - 150;
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);
 
-var line = d3.radialLine()
+var cn_line = d3.radialLine()
     .curve(d3.curveBundle.beta(0.3))
     .radius(function (d) {
         return d.y;
@@ -14,31 +14,31 @@ var line = d3.radialLine()
         return d.x / 180 * Math.PI;
     });
 //TODO: add css in to js for generating good SVG file.
-var svg = d3.select("#HEB_diagram")
+var cn_svg = d3.select("#circle_network")
     .attr("width", diameter)
     .attr("height", diameter)
     .append("g")
     .attr("transform", "translate(" + radius + "," + radius + ")");
 
-var root = packageHierarchy(miRNA_HEB_json)
+var root = packageHierarchy(cn_graph_json)
     .sum(function (d) {
         return d.size;
     });
 cluster(root);
 
-var HEB_link = svg.append("g").selectAll(".HEB_link")
+var cn_links = cn_svg.append("g").selectAll(".cn_link")
     .data(packageImports(root.leaves()))
     .enter().append("path")
     .each(function (d) {
         d.source = d[0], d.target = d[d.length - 1];
     })
-    .attr("class", "HEB_link")
-    .attr("d", line);
+    .attr("class", "cn_link")
+    .attr("d", cn_line);
 
-var HEB_node = svg.append("g").selectAll(".HEB_node")
+var cn_nodes = cn_svg.append("g").selectAll(".cn_node")
     .data(root.leaves())
     .enter().append("text")
-    .attr("class", "HEB_node")
+    .attr("class", "cn_node")
     .attr("dy", "0.31em")
     .attr("transform", function (d) {
         return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)");
@@ -54,16 +54,16 @@ var HEB_node = svg.append("g").selectAll(".HEB_node")
     .on('click', mouseclicked);
 
 function mouseovered(d) {
-    HEB_node
+    cn_nodes
         .each(function (n) {
             n.target = n.source = false;
         });
 
-    HEB_link
-        .classed("HEB_link--target", function (l) {
+    cn_links
+        .classed("cn_link--target", function (l) {
             if (l.target === d) return l.source.source = true;
         })
-        .classed("HEB_link--source", function (l) {
+        .classed("cn_link--source", function (l) {
             if (l.source === d) return l.target.target = true;
         })
         .filter(function (l) {
@@ -71,24 +71,24 @@ function mouseovered(d) {
         })
         .raise();
 
-    HEB_node
-        .classed("HEB_node--target", function (n) {
+    cn_nodes
+        .classed("cn_node--target", function (n) {
             return n.target;
         })
-        .classed("HEB_node--source", function (n) {
+        .classed("cn_node--source", function (n) {
             return n.source;
         });
 }
 
 
 function mouseouted(d) {
-    HEB_link
-        .classed("HEB_link--target", false)
-        .classed("HEB_link--source", false);
+    cn_links
+        .classed("cn_link--target", false)
+        .classed("cn_link--source", false);
 
-    HEB_node
-        .classed("HEB_node--target", false)
-        .classed("HEB_node--source", false);
+    cn_nodes
+        .classed("cn_node--target", false)
+        .classed("cn_node--source", false);
 }
 
 function mouseclicked(d) {
@@ -140,16 +140,16 @@ function packageImports(nodes) {
 }
 
 // back to search default
-d3.select('#HEB_diagram').on('dblclick', function () {
+d3.select('#circle_network').on('dblclick', function () {
     $('#epis_effect').DataTable().search('').draw();
 });
 
-// Set-up the export button for HEB_diagram
-d3.select('#HEB_saveAsPNG').on('click', function () {
-    saveSvgAsPng(document.getElementById("HEB_diagram"), "HEB_diagram.png", {scale: 4});
+// Set-up the export button for circle_network
+d3.select('#cn_saveAsPNG').on('click', function () {
+    saveSvgAsPng(document.getElementById("circle_network"), "circle_network.png", {scale: 4});
 });
 
-d3.select("#HEB_saveAsSVG")
+d3.select("#cn_saveAsSVG")
     .on("click", function () {
         try {
             var isFileSaverSupported = !!new Blob();
@@ -157,12 +157,12 @@ d3.select("#HEB_saveAsSVG")
             alert("blob not supported");
         }
 
-        var html = d3.select("#HEB_diagram")
+        var html = d3.select("#circle_network")
             .attr("title", "saveAsSVG")
             .attr("version", 1.1)
-            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .attr("xmlns", "http://www.w3.org/2000/cn_svg")
             .node().parentNode.innerHTML;
 
-        var blob = new Blob([html], {type: "image/svg+xml"});
-        saveAs(blob, "HEB_diagram.svg");
+        var blob = new Blob([html], {type: "image/cn_svg+xml"});
+        saveAs(blob, "circle_network.svg");
     });

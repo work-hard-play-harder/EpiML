@@ -351,9 +351,9 @@ d3.select("#FD_saveAsSVG")
         var html = d3.select("#FD_diagram")
             .attr("title", "saveAsSVG")
             .attr("version", 1.1)
-            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .attr("xmlns", "http://www.w3.org/2000/cn_svg")
             .node().parentNode.innerHTML;
 
-        var blob = new Blob([html], {type: "image/svg+xml"});
+        var blob = new Blob([html], {type: "image/cn_svg+xml"});
         saveAs(blob, "FD_diagram.svg");
     });

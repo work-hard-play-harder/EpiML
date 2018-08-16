@@ -62,7 +62,7 @@ d3.json(am_graph_json, function (am_graph) {
     max_abs = d3.max(am_graph.links, function (d) {
         return Math.abs(d.coff);
     });
-    console.log(max_abs);
+
     z.domain([-max_abs, max_abs]).clamp(true);
 
     am_svg.append("rect")
@@ -157,7 +157,6 @@ d3.json(am_graph_json, function (am_graph) {
             //})
             .style("fill", function (d) {
                 //return am_nodes[d.x].group === am_nodes[d.y].group ? c(am_nodes[d.x].group) : null;
-                console.log(z(d.z));
                 return c(z(d.z));
             })
             .on("mouseover", am_mouseovered)

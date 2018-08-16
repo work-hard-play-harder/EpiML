@@ -678,7 +678,7 @@ def result_train(jobid):
     miR_json.generate_legend_json()
     miR_json.write_forceDirect_legends_json()
     # for circle network
-    miRNA_HEB_json = miR_json.generate_miR_HEB_json()
+    cn_graph_json = miR_json.generate_miR_HEB_json()
     # for adjacency matrix
     miR_json.write_am_graph_json()
 
@@ -686,7 +686,7 @@ def result_train(jobid):
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
                            nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
                            legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
-                           miRNA_HEB_json=miRNA_HEB_json,
+                           cn_graph_json=cn_graph_json,
                            am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
 
     '''
