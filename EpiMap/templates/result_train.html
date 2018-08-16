@@ -173,10 +173,10 @@
 
                 <div class="row" style="padding: 10px">
                     <div class="col-sm-3">
-                        <p>
+                        <p style="font-size: medium">
                             Mouseover any of nodes in this network to see its <span style="color: #d62728;">associative features in red</span>.
                         </p>
-                        <p>
+                        <p style="font-size: medium">
                             Click one node to find details in above Epistatic Effect table. Double click on graph back
                             to default.
                         </p>
@@ -205,22 +205,32 @@
             <section>
                 <h3>Adjacency Matrix</h3>
                 <div>
-                    <p>A network can be represented by an adjacency matrix, where each cell ij represents an
-                        edge from vertex i to vertex j. Here, vertices represent characters in a book, while
-                        edges represent co-occurrence in a chapter.</p>
-                    <p>
-                        While path-following is harder in a matrix view than in a node-link diagram, matrices
-                        have other advantages. As networks get large and highly connected, node-link diagrams
+                    <p> A network can be represented by an adjacency matrix, where each cell (<i>i</i>, <i>j</i>)
+                        represents an
+                        edge from vertex <i>i</i> to vertex <i>j</i>. Here, vertices represent features in epistatic
+                        effect, while
+                        edges represent coefficient value.</p>
+                    <p> While network diagram can give a good view for node-link relationship, adjacency matrix diagram
+                        has other advantages. As networks get large and highly connected, diagrams
                         often devolve into giant hairballs of line crossings. Line crossings are impossible with
-                        matrix views. Matrix cells can also be encoded to show additional data; here color
-                        depicts clusters computed by a community-detection algorithm.
+                        matrix views. Matrix cells can also be encoded to show additional data.
                     </p>
-                    <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>
+                    <!-- <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>-->
                 </div>
                 <div class="row" style="padding: 10px">
                     <div class="col-sm-2">
                         <aside>
-                            <p>Order: <select id="order">
+                            <p style="font-size: medium;">
+                                Matrix cell depicts coefficent value in epistatic effect table.
+                            </p>
+                            <p style="font-size: medium;">
+                                Blue cells indicate positive value, and purple cells indicate negative value. The darker
+                                cells indicate strong interaction.
+                            </p>
+                            <p style="font-size: medium">
+                                Use the drop-down menu to reorder the matrix and explore the data.
+                            </p>
+                            <p style="font-size: medium">Order: <select id="order">
                                 <option value="name">by Name</option>
                                 <option value="count">by Count</option>
                                 <option value="rank">by Position</option>
