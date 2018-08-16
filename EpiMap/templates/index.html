@@ -8,12 +8,21 @@
         <div style="background-color: whitesmoke;padding: 30px">
             <h1>Epistasis Analysis Server: An open machine learning web service and model repository for
                 epistasis analysis </h1>
+            <!--
             <p> Epistasis analysis is a foundation in the analysis of genetic networks. The concept of epistasis was
                 introduced nearly 100 years ago and today underpins our interpretation of genetic pathways. If a
                 mutation in one gene masks the effects of a mutation in a second gene, then the first gene is said to be
                 epistatic to the second. The aim of epistasis analysis is to identify the group of genes controlling a
                 particular cellular process or pathway and to establish an order‐of‐function map that reflects the
                 sequence of events in a pathway controlled by several genes. </p>
+                -->
+            <p> Epistasis analysis is a foundation in the analysis of genetic networks. The term “epistasis” is
+                sometimes used to describe some form of statistical interaction between genetic factors and is
+                alternatively sometimes used to describe instances in which the effect of a particular genetic variant
+                is masked by a variant at another locus. We define epistasis as the situations that the phenotype
+                variance could be explained by the interactions or
+                combinations of (epi-)genetic variants, instead of individual (epi-)genetic variants alone.
+            </p>
             <p> This server provides pair-wise epistasis analysis. First, we identify the main effects using a model
                 with only main effect on the phenotype. Second, a corrected phenotype is calculated by removing the
                 significant main effect from the original phenotype. Third, we select features with epistatic effect on

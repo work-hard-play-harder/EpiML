@@ -13,7 +13,7 @@
 {% endblock %}
 {% block scripts %}
     {{ super() }}
-     <script src='{{ url_for('static', filename='js/offset_height_for_help_nav.js') }}'></script>
+    <script src='{{ url_for('static', filename='js/offset_height_for_help_nav.js') }}'></script>
 {% endblock %}
 
 {% block content %}
@@ -33,6 +33,22 @@
         <main>
             <section class="anchor" id="introduction">
                 <h2>Introduction</h2>
+                <p> Epistasis analysis is a foundation in the analysis of genetic networks. The concept of epistasis was
+                    introduced nearly 100 years ago. In 1909, Bateson used the term “epistasis” to describe instances in
+                    which the effect of a particular genetic variant was masked by a variant at another locus so that
+                    variation of phenotype with genotype at one locus was only apparent amongst those with certain
+                    genotypes
+                    at the second locus (Bateson, 1909). And today, the term “epistasis” is sometimes used to describe
+                    some
+                    form of statistical interaction between genetic factors and is alternatively sometimes used to
+                    describe
+                    instances in which the effect of a particular genetic variant is masked by a variant at another
+                    locus.
+                    In general statistical tests for interaction are of limited use in detecting “epistasis” in the
+                    sense of
+                    masking.
+                </p>
+                <!--
                 <p> Epistasis analysis is used to determine if genes with related mutant phenotypes act
                     in the same or different pathways, and, if in the same pathway, to place them in a
                     linear order relative to one another based on the step in the pathway controlled by
@@ -40,6 +56,7 @@
                     map that reflects the sequence of events in a pathway controlled by several
                     genes. [Ref. Genetic Techniques for Biological Research]
                 </p>
+                -->
                 <p> Epistasis Analysis Server is a free web service.
                     The schematic diagram is following:</p>
                 <img width="80%" src="{{ url_for('static',filename='img/help/schematic_graph.png') }}">
