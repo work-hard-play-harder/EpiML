@@ -7,7 +7,11 @@ line {
 }
 
 line.active {
-    stroke: black;
+    stroke: red;
+    stroke-width: 1px;
+}
+line.click {
+    stroke: green;
     stroke-width: 1px;
 }
 
@@ -17,6 +21,11 @@ line.active {
 
 .am_text.active {
     fill: red;
+    font-size: 12px;
+}
+
+.am_text.click {
+    fill: green;
     font-size: 12px;
 }
 

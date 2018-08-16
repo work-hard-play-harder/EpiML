@@ -17,10 +17,11 @@ var am_svg = d3.select("#adjacency_matrix")
     .append("g")
     .attr("transform", "translate(" + am_margin.left + "," + am_margin.top + ")");
 
+var am_nodes;
 d3.json(am_graph_json, function (am_graph) {
-    var am_matrix = [],
-        am_nodes = am_graph.nodes,
-        n = am_nodes.length;
+    var am_matrix = [];
+    am_nodes = am_graph.nodes;
+    n = am_nodes.length;
 
     // Compute index per node.
     am_nodes.forEach(function (node, i) {
@@ -30,7 +31,7 @@ d3.json(am_graph_json, function (am_graph) {
             return {x: j, y: i, z: 0};
         });
     });
-
+    console.log(am_nodes)
     // Convert links to matrix; count character occurrences.
     am_graph.links.forEach(function (link) {
         am_matrix[link.source][link.target].z += link.coff;
@@ -164,6 +165,7 @@ d3.json(am_graph_json, function (am_graph) {
     }
 
     function am_mouseovered(p) {
+        console.log(p)
         d3.selectAll(".am_row text").classed("active", function (d, i) {
             return i === p.y;
         });

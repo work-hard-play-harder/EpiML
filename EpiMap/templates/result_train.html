@@ -25,25 +25,7 @@
     </style>
 
 {% endblock %}
-{% block scripts %}
-    {{ super() }}
-    <!-- for datatables -->
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
 
-    <!-- for visualization -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <!-- for interaction -->
-    <script src="{{ url_for('static',filename='js/vis_interaction.js') }}"></script>
-    <!-- for save as -->
-    <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
-    <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
-    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
-
-{% endblock %}
 
 {% block content %}
     <div>
@@ -237,4 +219,23 @@
             </section>
         </div>
     </div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <!-- for datatables -->
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+
+    <!-- for visualization -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- for interaction -->
+    <script src="{{ url_for('static',filename='js/vis_interaction.js') }}"></script>
+    <!-- for save as -->
+    <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
+    <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+
 {% endblock %}

@@ -28,8 +28,29 @@ function rowToNetLink(row) {
 
 function rowToMatCell(row) {
     console.log(row.data())
-    am_nodes.classed('am_')
+    var sourceIndex, targetIndex;
+    am_nodes.forEach(function (n) {
+        if (n.name === row.data()[1]) {
+            sourceIndex = n.index;
+        }
+        if (n.name === row.data()[2]) {
+            targetIndex = n.index;
+        }
+    });
+    console.log(sourceIndex, targetIndex)
+    d3.selectAll(".am_row text").classed("click", function (d, i) {
+        return i === targetIndex;
+    });
+    d3.selectAll(".am_row line").classed("click", function (d, i) {
+        return i === targetIndex;
+    });
 
+    d3.selectAll(".am_column text").classed("click", function (d, i) {
+        return i === sourceIndex;
+    });
+    d3.selectAll(".am_column line").classed("click", function (d, i) {
+        return i === sourceIndex;
+    });
 }
 
 $(document).ready(function () {
