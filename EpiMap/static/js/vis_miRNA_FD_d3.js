@@ -329,7 +329,9 @@ d3.select('#FD_diagram').on('click', function () {
     if (d3.select('.tooltip').style("opacity") == 0.9) {
         tooltip.transition()
             .duration(100)
-            .style("opacity", 0);
+            .style("opacity", 0)
+        .style("left", (width + 10) + "px")
+            .style("top", (height + 10) + "px");
     }
 });
 

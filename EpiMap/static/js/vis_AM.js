@@ -7,7 +7,7 @@ var am_margin = {top: 80, right: 0, bottom: 10, left: 80},
 var x = d3.scaleBand().range([0, am_width]),
     //z = d3.scaleLinear().domain([-1, 1]).clamp(true),
     z = d3.scaleLinear().range([0.1, 0.9]),
-    c = d3.scaleSequential().interpolator(d3.interpolateRainbow);
+    c = d3.scaleSequential(d3.interpolateBlues);
 //c = d3.scaleOrdinal(d3.schemeCategory10).domain(d3.range(1));
 
 var am_svg = d3.select("#adjacency_matrix")
@@ -58,11 +58,12 @@ d3.json(am_graph_json, function (am_graph) {
 
     // The default sort order.
     x.domain(orders.name);
-    z.domain([d3.min(am_graph.links, function (d) {
-        return d.coff;
-    }), d3.max(am_graph.links, function (d) {
-        return d.coff;
-    })]).clamp(true);
+
+    max_abs = d3.max(am_graph.links, function (d) {
+        return Math.abs(d.coff);
+    });
+    console.log(max_abs);
+    z.domain([-max_abs, max_abs]).clamp(true);
 
     am_svg.append("rect")
         .attr("class", "background")
@@ -156,6 +157,7 @@ d3.json(am_graph_json, function (am_graph) {
             //})
             .style("fill", function (d) {
                 //return am_nodes[d.x].group === am_nodes[d.y].group ? c(am_nodes[d.x].group) : null;
+                console.log(z(d.z));
                 return c(z(d.z));
             })
             .on("mouseover", am_mouseovered)
@@ -203,7 +205,9 @@ d3.json(am_graph_json, function (am_graph) {
 
         am_tooltip.transition()
             .duration(100)
-            .style("opacity", 0);
+            .style("opacity", 0)
+            .style("left", (am_width + 10) + "px")
+            .style("top", (am_height + 10) + "px");
     }
 
     d3.select("#order").on("change", function () {
