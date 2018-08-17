@@ -5,7 +5,7 @@ var radius = 55;
 //var width = window.innerWidth, height = window.innerHeight/2;
 var margin = {top: 30, right: 10, bottom: 30, left: 10};
 var width = parseInt(d3.select('#visualization').style('width')), height = window.innerHeight / 1.5;
-var svg = d3.select('#FD_diagram')
+var svg = d3.select('#ER_diagram')
     .attr('width', width - margin.left - margin.right)
     .attr('height', height)
     // call d3 zoom event, must append a g tag
@@ -16,7 +16,7 @@ var svg = d3.select('#FD_diagram')
     .append('g');
 
 //	d3.v4 color scales
-var color = d3.scaleOrdinal(d3.schemeCategory10);
+var ER_color = d3.scaleOrdinal(d3.schemeCategory10);
 var shape = d3.scaleOrdinal(d3.symbols);
 
 // retrieve link by two nodes index
@@ -24,9 +24,9 @@ var linkedByID = {};
 
 // define links and nodes
 // first defined element is in back layer.
-var FD_links = svg.append('g').attr('class', 'FD_links').selectAll('.FD_link'),
-    FD_nodes = svg.append('g').attr('class', 'FD_nodes').selectAll('.FD_node'),
-    FD_legends = svg.append('g').attr('class', 'FD_legends').attr('transform', 'translate(20,20)')
+var FD_links = svg.append('g').attr('class', 'er_links').selectAll('.er_link'),
+    FD_nodes = svg.append('g').attr('class', 'er_nodes').selectAll('.er_node'),
+    FD_legends = svg.append('g').attr('class', 'er_legends').attr('transform', 'translate(20,20)')
         .selectAll('legend');
 // define simulator
 var simulation = d3.forceSimulation()
@@ -96,12 +96,12 @@ function update() {
     //ENTER
     var new_FD_nodes = FD_nodes.enter().append('g');
     new_FD_nodes.append('path')
-        .attr('class', 'FD_node')
+        .attr('class', 'er_node')
         // three different methods to change shapes
         //.attr("d", d3.symbol().type(d3.symbolCross))
         //.attr("d", d3.symbol().type( function(d) { return shape(d.type);} ))
         .attr('d', d3.symbol().type(getNodeType).size(d => d.size))
-        .attr("fill", d => color(d.group))
+        .attr("fill", d => ER_color(d.group))
         // mouse event
         .on('click', mouseClickNodeTooltip)
         .on('mouseover', fade(0.1))
@@ -125,7 +125,7 @@ function update() {
             }));
     //label
     new_FD_nodes.append('text')
-        .attr('class', 'FD_text')
+        .attr('class', 'er_text')
         .attr('text-anchor', 'middle')
         .text(node => node.label)
         .attr('font-size', 8)
@@ -140,7 +140,7 @@ function update() {
     FD_links.exit().remove();
     //ENTER
     var new_FD_links = FD_links.enter().append('line')
-        .attr('class', 'FD_link');
+        .attr('class', 'er_link');
     /*
     new_FD_links.append('title')
         .text(function (d) {

@@ -1,15 +1,25 @@
-.FD_node {
+.er_node {
     stroke: white;
     stroke-width: 1px;
 }
 
-.FD_link {
+.er_link {
     stroke: gray;
     stroke-width: 1px;
 }
 
-.FD_text {
+.er_text {
     fill: black;
+}
+er_legend{
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    border: 1px solid red;
+}
+/* add border for visualization*/
+[id|='ER_diagram'] {
+    border: 1px solid black;
 }
 
 div.tooltip {

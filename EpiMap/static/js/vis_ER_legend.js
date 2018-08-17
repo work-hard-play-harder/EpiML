@@ -1,35 +1,57 @@
 var legend_margin = {top: 30, right: 10, bottom: 30, left: 10};
 var legend_width = parseInt(d3.select('#visualization').style('width')), legend_height = '30px';
-var legend_svg = d3.select('#FD_legend')
-    .attr('width', legend_width - legend_margin.left - legend_margin.right)
-    .attr('height', legend_height);
+var ER_legendDiv = d3.select('#ER_legendDiv').selectAll('.er_legend');
 
-//	d3.v4 color scales
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-var shape = d3.scaleOrdinal(d3.symbols);
+//	d3.v4 color scales. use definition in vis_ER.js
+//var ER_color = d3.scaleOrdinal(d3.schemeCategory10);
+//var shape = d3.scaleOrdinal(d3.symbols);
 
-var FD_legends = legend_svg.append('g').attr('class', 'FD_legends').attr('transform', 'translate(20,20)')
+/*
+var ER_legends = legend_svg.append('g').attr('class', 'er_legends').attr('transform', 'translate(20,20)')
     .selectAll('legend');
+*/
 
 //	data read and store
 d3.json(legends_json, function (err, g) {
     if (err) throw err;
 
     // for legend
-    FD_legends = FD_legends.data(g.legends)
-        .enter().append('g')
+    ER_legends = ER_legendDiv.data(g.legends)
+        .enter().append('div')
+        .attr('class', 'er_legend')
+        .classed('col-sm-4', true)
+        .append('label');
+
+
+    // add checkbox
+    ER_legends.append('input')
+        .attr('type', 'checkbox')
+        .attr('class', 'filter-ckb')
+        .attr('value', function (l) {
+            return l.label;
+        })
+        .property('checked', true);
+
+    // add shape
+    ER_legendsSvg = ER_legends.append('svg')
+        .attr('width', '150px')
+        .attr('height', '15px')
+        .append('g')
         .attr('class', 'legend')
         .attr('transform', function (d, i) {
-            return 'translate(' + i * 150 + ',0)';
+            return 'translate(12,10)';
         });
-    FD_legends.append('path')
+
+
+    ER_legendsSvg.append('path')
         .attr('d', d3.symbol()
             .type(getLegendType)
             .size(100))
         .attr('fill', getLegendColor);
-    FD_legends.append("text")
-        .attr("x", 18)
-        .attr("y", -3)
+    // add label
+    ER_legendsSvg.append("text")
+        .attr("x", 10)
+        .attr("y", -2)
         .attr("dy", ".35em")
         .style("text-anchor", "begin")
         .text(function (d) {
@@ -64,6 +86,6 @@ function getLegendType(legend) {
 
 function getLegendColor(legend) {
 
-    return color(legend.label); // use color schemeCategory10
+    return ER_color(legend.label); // use color schemeCategory10
     //return node.fill; // directly assign fill color
 }

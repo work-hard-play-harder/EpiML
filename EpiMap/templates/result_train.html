@@ -11,21 +11,16 @@
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static',filename='css/vis_CN.css') }}">
     <link rel="stylesheet" type="text/css"
-          href="{{ url_for('static',filename='css/vis_miRNA_FD.css') }}">
+          href="{{ url_for('static',filename='css/vis_ER.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static',filename='css/vis_AM.css') }}">
     <style>
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: coral;
         }
-
-        [id|='FD_diagram'] {
-            border: 1px solid black;
-        }
     </style>
 
 {% endblock %}
-
 
 {% block content %}
     <div>
@@ -189,12 +184,16 @@
                         JSON format.</p>
                     <div class="row">
                         <div class=" col-sm-6">
-                            <label><input type="checkbox" class="filter-ckb" value="Main effect" checked> Main
+                            <div id="ER_legendDiv" class="row"></div> <!-- automatically add legend in vis_ER_legend.js -->
+                            <!--
+                            <label>
+                                <input type="checkbox" class="filter-ckb" value="Main effect" checked> Main
                                 effect</label>
                             <label><input type="checkbox" class="filter-ckb" value="Epistatic effect" checked>
                                 Epistatic effect</label>
                             <label> <input type="checkbox" class="filter-ckb" value="Target gene" checked> Target
                                 gene</label>
+                                -->
                         </div>
                         <div class=" col-sm-6" align="right">
                             <button id='FD_saveAsPNG'>Save as PNG</button>
@@ -202,11 +201,10 @@
                         </div>
                     </div>
                     <div style="padding-top: 10px">
-                        <svg name="FD_legend" id="FD_legend"></svg>
-                        <svg name="FD_diagram" id="FD_diagram"></svg>
+                        <!--<svg name="ER_legend" id="ER_legend"></svg>-->
+                        <svg name="ER_diagram" id="ER_diagram"></svg>
                     </div>
-                    <!-- for d3 visualization.
-                                This script must be after svg tag-->
+                    <!-- for d3 visualization. This script must be after svg tag-->
                     <script>
                         var nodes_links_json = '{{ nodes_links_json }}';
                         var legends_json = '{{ legends_json }}';
@@ -214,7 +212,7 @@
                     <script type="text/javascript" charset="utf8"
                             src="{{ url_for('static', filename='js/vis_ER.js') }}"></script>
                     <script type="text/javascript" charset="utf8"
-                            src="{{ url_for('static', filename='js/vis_miRNA_legend_d3.js') }}"></script>
+                            src="{{ url_for('static', filename='js/vis_ER_legend.js') }}"></script>
                 </div>
             </section>
         </div>
