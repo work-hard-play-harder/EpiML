@@ -22,7 +22,6 @@ d3.json(legends_json, function (err, g) {
         .classed('col-sm-4', true)
         .append('label');
 
-
     // add checkbox
     ER_legends.append('input')
         .attr('type', 'checkbox')

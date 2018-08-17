@@ -11,12 +11,7 @@
 .er_text {
     fill: black;
 }
-er_legend{
-    display: table-cell;
-    vertical-align: middle;
-    height: 50px;
-    border: 1px solid red;
-}
+
 /* add border for visualization*/
 [id|='ER_diagram'] {
     border: 1px solid black;

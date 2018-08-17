@@ -184,7 +184,9 @@
                         JSON format.</p>
                     <div class="row">
                         <div class=" col-sm-6">
-                            <div id="ER_legendDiv" class="row"></div> <!-- automatically add legend in vis_ER_legend.js -->
+                            <!-- automatically add legend in vis_ER_legend.js -->
+                            <div id="ER_legendDiv" class="row"></div>
+
                             <!--
                             <label>
                                 <input type="checkbox" class="filter-ckb" value="Main effect" checked> Main
@@ -193,11 +195,11 @@
                                 Epistatic effect</label>
                             <label> <input type="checkbox" class="filter-ckb" value="Target gene" checked> Target
                                 gene</label>
-                                -->
+                            -->
                         </div>
                         <div class=" col-sm-6" align="right">
-                            <button id='FD_saveAsPNG'>Save as PNG</button>
-                            <button id='FD_saveAsSVG'>Save as SVG</button>
+                            <button id='ER_saveAsPNG'>Save as PNG</button>
+                            <button id='ER_saveAsSVG'>Save as SVG</button>
                         </div>
                     </div>
                     <div style="padding-top: 10px">
@@ -209,10 +211,11 @@
                         var nodes_links_json = '{{ nodes_links_json }}';
                         var legends_json = '{{ legends_json }}';
                     </script>
-                    <script type="text/javascript" charset="utf8"
-                            src="{{ url_for('static', filename='js/vis_ER.js') }}"></script>
+
                     <script type="text/javascript" charset="utf8"
                             src="{{ url_for('static', filename='js/vis_ER_legend.js') }}"></script>
+                    <script type="text/javascript" charset="utf8"
+                            src="{{ url_for('static', filename='js/vis_ER.js') }}"></script>
                 </div>
             </section>
         </div>

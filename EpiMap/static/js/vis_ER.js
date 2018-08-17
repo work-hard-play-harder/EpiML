@@ -1,5 +1,5 @@
 //	data stores
-var FD_graph, FD_store;
+var ER_graph, ER_store;
 var radius = 55;
 // define container
 //var width = window.innerWidth, height = window.innerHeight/2;
@@ -24,9 +24,9 @@ var linkedByID = {};
 
 // define links and nodes
 // first defined element is in back layer.
-var FD_links = svg.append('g').attr('class', 'er_links').selectAll('.er_link'),
-    FD_nodes = svg.append('g').attr('class', 'er_nodes').selectAll('.er_node'),
-    FD_legends = svg.append('g').attr('class', 'er_legends').attr('transform', 'translate(20,20)')
+var ER_links = svg.append('g').attr('class', 'er_links').selectAll('.er_link'),
+    ER_nodes = svg.append('g').attr('class', 'er_nodes').selectAll('.er_node'),
+    ER_legends = svg.append('g').attr('class', 'er_legends').attr('transform', 'translate(20,20)')
         .selectAll('legend');
 // define simulator
 var simulation = d3.forceSimulation()
@@ -46,18 +46,20 @@ var simulation = d3.forceSimulation()
 
 //	filtered types
 var typeFilterList = [];
-//	filter button event handlers
-$('input.filter-ckb').click(function () {
-    typeFilterList = [];
-    $('input.filter-ckb').each(function () {
-        typeFilterList.push($(this).val());
-    });
-    $('input.filter-ckb:checked').each(function () {
-        typeFilterList.splice(typeFilterList.indexOf($(this).val()), 1);
-    });
+//	filter button event handlerss
+$(document).ready(function () {
+    $('input.filter-ckb').on('click', function () {
+        typeFilterList = [];
+        $('input.filter-ckb').each(function () {
+            typeFilterList.push($(this).val());
+        });
+        $('input.filter-ckb:checked').each(function () {
+            typeFilterList.splice(typeFilterList.indexOf($(this).val()), 1);
+        });
 
-    filter();
-    update();
+        filter();
+        update();
+    });
 });
 
 //	data read and store
@@ -75,10 +77,10 @@ d3.json(nodes_links_json, function (err, g) {
     });
 
 
-    FD_graph = g;
-    FD_store = $.extend(true, {}, g);
+    ER_graph = g;
+    ER_store = $.extend(true, {}, g);
 
-    FD_graph.links.forEach(d => {
+    ER_graph.links.forEach(d => {
         linkedByID[`${d.source},${d.target}`] = 1;
     });
 
@@ -88,14 +90,14 @@ d3.json(nodes_links_json, function (err, g) {
 
 function update() {
     //UPDATE
-    FD_nodes = FD_nodes.data(FD_graph.nodes, function (d) {
+    ER_nodes = ER_nodes.data(ER_graph.nodes, function (d) {
         return d.id;
     });
     //EXIT
-    FD_nodes.exit().remove();
+    ER_nodes.exit().remove();
     //ENTER
-    var new_FD_nodes = FD_nodes.enter().append('g');
-    new_FD_nodes.append('path')
+    var new_ER_nodes = ER_nodes.enter().append('g');
+    new_ER_nodes.append('path')
         .attr('class', 'er_node')
         // three different methods to change shapes
         //.attr("d", d3.symbol().type(d3.symbolCross))
@@ -124,7 +126,7 @@ function update() {
                 node.fy = null;
             }));
     //label
-    new_FD_nodes.append('text')
+    new_ER_nodes.append('text')
         .attr('class', 'er_text')
         .attr('text-anchor', 'middle')
         .text(node => node.label)
@@ -132,35 +134,35 @@ function update() {
         //.attr('dx', 15)
         .attr('dy', -4);
     //ENTER + UPDATE
-    FD_nodes = FD_nodes.merge(new_FD_nodes);
+    ER_nodes = ER_nodes.merge(new_ER_nodes);
 
     //UPDATE
-    FD_links = FD_links.data(FD_graph.links, d => d.id);
+    ER_links = ER_links.data(ER_graph.links, d => d.id);
     //EXITß
-    FD_links.exit().remove();
+    ER_links.exit().remove();
     //ENTER
-    var new_FD_links = FD_links.enter().append('line')
+    var new_ER_links = ER_links.enter().append('line')
         .attr('class', 'er_link');
     /*
-    new_FD_links.append('title')
+    new_ER_links.append('title')
         .text(function (d) {
             return 'source: ' + d.source + '\n' + 'target: ' + d.target;
         });
     */
     //ENTER + UPDATE
-    FD_links = FD_links.merge(new_FD_links);
+    ER_links = ER_links.merge(new_ER_links);
 
     //update simulation nodes, links, and alpha
-    simulation.nodes(FD_graph.nodes)
+    simulation.nodes(ER_graph.nodes)
         .on('tick', ticked);
     simulation.force('link')
-        .links(FD_graph.links);
+        .links(ER_graph.links);
     simulation.alpha(1).alphaTarget(0).restart();
 }
 
 //	tick event handler with bounded box
 function ticked() {
-    FD_nodes
+    ER_nodes
         .attr('transform', function (d) {
             return 'translate(' + d.x + ',' + d.y + ')';
         });
@@ -168,7 +170,7 @@ function ticked() {
     //.attr("cx", function (d) {            return d.x = Math.max(radius, Math.min(width - radius, d.x));        })
     //.attr("cy", function (d) {            return d.y = Math.max(radius, Math.min(height - radius, d.y));        });
 
-    FD_links
+    ER_links
         .attr('x1', link => link.source.x)
         .attr('y1', link => link.source.y)
         .attr('x2', link => link.target.x)
@@ -178,30 +180,30 @@ function ticked() {
 //	filter function
 function filter() {
     //	add and remove nodes from data based on type filters
-    FD_store.nodes.forEach(function (n) {
+    ER_store.nodes.forEach(function (n) {
         if (!typeFilterList.includes(n.group) && n.filtered) {
             n.filtered = false;
-            FD_graph.nodes.push($.extend(true, {}, n));
+            ER_graph.nodes.push($.extend(true, {}, n));
         } else if (typeFilterList.includes(n.group) && !n.filtered) {
             n.filtered = true;
-            FD_graph.nodes.forEach(function (d, i) {
+            ER_graph.nodes.forEach(function (d, i) {
                 if (n.id === d.id) {
-                    FD_graph.nodes.splice(i, 1);
+                    ER_graph.nodes.splice(i, 1);
                 }
             });
         }
     });
 
     //	add and remove links from data based on availability of nodes
-    FD_store.links.forEach(function (l) {
+    ER_store.links.forEach(function (l) {
         if (!(typeFilterList.includes(l.sourceGroup) || typeFilterList.includes(l.targetGroup)) && l.filtered) {
             l.filtered = false;
-            FD_graph.links.push($.extend(true, {}, l));
+            ER_graph.links.push($.extend(true, {}, l));
         } else if ((typeFilterList.includes(l.sourceGroup) || typeFilterList.includes(l.targetGroup)) && !l.filtered) {
             l.filtered = true;
-            FD_graph.links.forEach(function (d, i) {
+            ER_graph.links.forEach(function (d, i) {
                 if (l.id === d.id) {
-                    FD_graph.links.splice(i, 1);
+                    ER_graph.links.splice(i, 1);
                 }
             });
         }
@@ -245,14 +247,14 @@ function isConnected(a, b) {
 
 function fade(opacity) {
     return d => {
-        FD_nodes.style('stroke-opacity', function (o) {
+        ER_nodes.style('stroke-opacity', function (o) {
             var thisOpacity = isConnected(d, o) ? 1 : opacity;
 
             this.setAttribute('fill-opacity', thisOpacity);
             return thisOpacity;
         });
 
-        FD_links.style('stroke-opacity', o => (o.source === d || o.target === d ? 1 : opacity));
+        ER_links.style('stroke-opacity', o => (o.source === d || o.target === d ? 1 : opacity));
     };
 }
 
@@ -319,28 +321,28 @@ function mouseOverLinkTooltip(link) {
 }
 
 function linkHighLight(link) {
-    FD_links.attr('stroke', link => getLinkColor(link.source, link));
-    FD_links.attr('stroke', link => getLinkColor(link.target, link));
+    ER_links.attr('stroke', link => getLinkColor(link.source, link));
+    ER_links.attr('stroke', link => getLinkColor(link.target, link));
 }
 
 // hide tool tip
-d3.select('#FD_diagram').on('click', function () {
+d3.select('#ER_diagram').on('click', function () {
     //alert(d3.select('.tooltip').style("opacity"));
     if (d3.select('.tooltip').style("opacity") == 0.9) {
         tooltip.transition()
             .duration(100)
             .style("opacity", 0)
-        .style("left", (width + 10) + "px")
+            .style("left", (width + 10) + "px")
             .style("top", (height + 10) + "px");
     }
 });
 
 
-// Set-up the export button for FD_diagram
-d3.select('#FD_saveAsPNG').on('click', function () {
-    saveSvgAsPng(document.getElementById("FD_diagram"), "FD_diagram.png", {scale: 4});
+// Set-up the export button for ER_diagram
+d3.select('#ER_saveAsPNG').on('click', function () {
+    saveSvgAsPng(document.getElementById("ER_diagram"), "ER_diagram.png", {scale: 4});
 });
-d3.select("#FD_saveAsSVG")
+d3.select("#ER_saveAsSVG")
     .on("click", function () {
         try {
             var isFileSaverSupported = !!new Blob();
@@ -348,12 +350,12 @@ d3.select("#FD_saveAsSVG")
             alert("blob not supported");
         }
 
-        var html = d3.select("#FD_diagram")
+        var html = d3.select("#ER_diagram")
             .attr("title", "saveAsSVG")
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/cn_svg")
             .node().parentNode.innerHTML;
 
         var blob = new Blob([html], {type: "image/cn_svg+xml"});
-        saveAs(blob, "FD_diagram.svg");
+        saveAs(blob, "ER_diagram.svg");
     });
