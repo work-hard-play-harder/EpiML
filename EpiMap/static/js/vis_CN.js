@@ -90,8 +90,9 @@ function mouseouted(d) {
         .classed("cn_node--source", false);
 }
 
+
 function mouseclicked(d) {
-    console.log(d)
+    // interact with epistatic table
     $('#epis_effect').DataTable().search(d.data.key)
         .draw();
 

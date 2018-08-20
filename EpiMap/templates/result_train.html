@@ -186,7 +186,6 @@
                         <div class=" col-sm-6">
                             <!-- automatically add legend in vis_ER_legend.js -->
                             <div id="ER_legendDiv" class="row"></div>
-
                             <!--
                             <label>
                                 <input type="checkbox" class="filter-ckb" value="Main effect" checked> Main
@@ -200,6 +199,8 @@
                         <div class=" col-sm-6" align="right">
                             <button id='ER_saveAsPNG'>Save as PNG</button>
                             <button id='ER_saveAsSVG'>Save as SVG</button>
+                            <label>Search: <input id="searchNode" name="searchNode" type="text"
+                                                  oninput="searchERNode(this.value)"/></label>
                         </div>
                     </div>
                     <div style="padding-top: 10px">

@@ -1,16 +1,17 @@
 function rowToNetLink(row) {
+    console.log(row.data());
     cn_nodes
         .each(function (n) {
             n.target = n.source = false;
         });
 
     cn_links
-        .classed("cn_link--target", function (l) {
-
-            if (l.target.data.key === row.data()[2]) return l.source.source = true;
+        .classed("cn_click_link--target", function (l) {
+            console.log(l.target.data, l.source);
+            if (l.target.data.key === row.data()[2]) return l.source.target= true;
         })
-        .classed("cn_link--source", function (l) {
-            if (l.source.data.key === row.data()[1]) return l.target.target = true;
+        .classed("cn_click_link--source", function (l) {
+            if (l.source.data.key === row.data()[1]) return l.target.source  = true;
         })
         .filter(function (l) {
             return l.target.data.key === row.data()[2] || l.source.data.key === row.data()[1];
@@ -18,16 +19,15 @@ function rowToNetLink(row) {
         .raise();
 
     cn_nodes
-        .classed("cn_node--target", function (n) {
+        .classed("cn_click_node--target", function (n) {
             return n.target;
         })
-        .classed("cn_node--source", function (n) {
+        .classed("cn_click_node--source", function (n) {
             return n.source;
         });
 }
 
 function rowToMatCell(row) {
-    console.log(row.data())
     var sourceIndex, targetIndex;
     am_nodes.forEach(function (n) {
         if (n.name === row.data()[1]) {
@@ -37,7 +37,6 @@ function rowToMatCell(row) {
             targetIndex = n.index;
         }
     });
-    console.log(sourceIndex, targetIndex)
     d3.selectAll(".am_row text").classed("click", function (d, i) {
         return i === targetIndex;
     });

@@ -106,9 +106,13 @@ function update() {
         .attr("fill", d => ER_color(d.group))
         // mouse event
         .on('click', mouseClickNodeTooltip)
-        .on('mouseover', fade(0.1))
+        .on('mouseover', function (d) {
+            return fade(d, 0.1)
+        })
         //.on('mouseover.tooltip', mouseOverNodeTooltip)
-        .on('mouseout', fade(1))
+        .on('mouseout', function (d) {
+            return fade(d, 1)
+        })
         //.on("mouseout.tooltip",mouseOutNodeTooltip)
         .call(d3.drag()
             .on('start', node => {
@@ -245,17 +249,32 @@ function isConnected(a, b) {
     return linkedByID[`${a.id},${b.id}`] || linkedByID[`${b.id},${a.id}`] || a.id === b.id;
 }
 
-function fade(opacity) {
-    return d => {
-        ER_nodes.style('stroke-opacity', function (o) {
-            var thisOpacity = isConnected(d, o) ? 1 : opacity;
+function fade(d, opacity) {
 
-            this.setAttribute('fill-opacity', thisOpacity);
-            return thisOpacity;
-        });
+    console.log(d);
+    ER_nodes.style('stroke-opacity', function (o) {
+        var thisOpacity = isConnected(d, o) ? 1 : opacity;
+        this.setAttribute('fill-opacity', thisOpacity);
+        return thisOpacity;
+    });
 
-        ER_links.style('stroke-opacity', o => (o.source === d || o.target === d ? 1 : opacity));
-    };
+    ER_links.style('stroke-opacity', o => (o.source === d || o.target === d ? 1 : opacity));
+
+}
+
+function searchERNode(val) {
+    console.log(ER_graph.nodes);
+
+    var targetNode;
+    ER_graph.nodes.forEach(function (n) {
+        console.log;
+        if (n.id.toLowerCase() === val.toLowerCase()) {
+            targetNode = n
+        }
+    });
+    console.log(val, targetNode);
+    return fade(targetNode, 0.1);
+
 }
 
 function mouseOverNodeTooltip(node) {

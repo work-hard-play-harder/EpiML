@@ -34,11 +34,11 @@ d3.json(legends_json, function (err, g) {
     // add shape
     ER_legendsSvg = ER_legends.append('svg')
         .attr('width', '150px')
-        .attr('height', '15px')
+        .attr('height', '13px')
         .append('g')
         .attr('class', 'legend')
         .attr('transform', function (d, i) {
-            return 'translate(12,10)';
+            return 'translate(12,8)';
         });
 
 
