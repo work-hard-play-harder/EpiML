@@ -3,6 +3,8 @@ library('EBEN')
 workspace <- '~/Downloads/EBEN-epistasis-master-4/'
 x_filename <- 'bc_x.txt'
 y_filename <- 'bc_y.txt'
+nFolds <- 5
+seed <- 28213
 
 args <- commandArgs(trailingOnly = TRUE)
 workspace <- args[1]

@@ -23,7 +23,7 @@ class Config(object):
 
     EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'EBEN_train.R')
     EBEN_PREDICT_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'EBEN_predict.R')
-    LASSO_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'lasso_train.R')
+    SSLASSO_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'ssLASSO.R')
     MATRIX_EQTL_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'Matrix_eQTL_train.R')
 
     # for mail
@@ -33,3 +33,7 @@ class Config(object):
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'junjie.chen.hit@gmail.com'
     MAIL_PASSWORD = 'Keepsmile_520'
+
+    # for celery
+    CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL') or 'redis://localhost:6379/0'
+    CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND') or 'redis://localhost:6379/0'

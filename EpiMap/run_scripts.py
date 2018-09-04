@@ -7,8 +7,10 @@ from datetime import datetime, timezone
 
 from flask_login import current_user
 
-from EpiMap import app, db
+from EpiMap import app, db, celery
+
 from EpiMap.db_tables import User, Job, Model
+
 
 def create_job_folder(upload_folder='', userid=None, jobid=None):
     # create upload_folder
@@ -31,16 +33,31 @@ def create_job_folder(upload_folder='', userid=None, jobid=None):
     return job_dir
 
 
-def call_train_scripts(category, method, params=None, job_dir='', x_filename='', y_filename=''):
-    print(method)
+@celery.task()
+def call_train_scripts(jobid, category, method, params=None, job_dir='', x_filename='', y_filename=''):
+    print('Background start...')
+    job = Job.query.filter_by(id=jobid).first_or_404()
+    job.status = 'Running'
+    db.session.add(job)
+    db.session.commit()
     if category == 'General':
         if method == 'EBEN':
+            print('run EBEN')
             with open(os.path.join(job_dir, 'EBEN_train.stdout'), 'w') as EBEN_stdout, \
                     open(os.path.join(job_dir, 'EBEN_train.stderr'), 'w') as EBEN_stderr:
-                subprocess.Popen(['Rscript', app.config['GENERAL_EBEN_TRAIN_SCRIPT'], job_dir, x_filename, y_filename,
-                                  params['fold_number'], params['seed_number']],
-                                 stdout=EBEN_stdout,
-                                 stderr=EBEN_stderr)
+                subprocess.run(['Rscript', app.config['EBEN_TRAIN_SCRIPT'], job_dir, x_filename, y_filename,
+                                params['fold_number'], params['seed_number']],
+                               stdout=EBEN_stdout,
+                               stderr=EBEN_stderr)
+
+        if method == 'SSLASSO':
+            print('run SSLASSO')
+            with open(os.path.join(job_dir, 'SSLASSO_train.stdout'), 'w') as SSLASSO_stdout, \
+                    open(os.path.join(job_dir, 'SSLASSO_train.stderr'), 'w') as SSLASSO_stderr:
+                subprocess.run(['Rscript', app.config['SSLASSO_SCRIPT'], job_dir, x_filename, y_filename,
+                                params['fold_number'], params['seed_number']],
+                               stdout=SSLASSO_stdout,
+                               stderr=SSLASSO_stderr)
     else:
         if method == 'EBEN':
             with open(os.path.join(job_dir, 'EBEN_train.stdout'), 'w') as EBEN_stdout, \
@@ -64,6 +81,12 @@ def call_train_scripts(category, method, params=None, job_dir='', x_filename='',
                 subprocess.Popen(['Rscript', app.config['MATRIX_EQTL_TRAIN_SCRIPT'], job_dir, x_filename, y_filename],
                                  stdout=Matrix_eQTL_stdout,
                                  stderr=Matrix_eQTL_stderr)
+
+    job.status = 'Done'
+    job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
+    db.session.add(job)
+    db.session.commit()
+    print('Background Done!')
 
 
 def call_predict_scripts(job_dir='', model_dir='', method=None, x_filename=''):
@@ -92,6 +115,7 @@ def call_predict_scripts(job_dir='', model_dir='', method=None, x_filename=''):
                              stderr=Matrix_eQTL_stderr)
 
 
+'''
 def check_job_status(jobid, methods):
     # Every method should output a finished sign when it finished.
     job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
@@ -126,3 +150,4 @@ def check_job_status(jobid, methods):
         job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
         db.session.add(job)
         db.session.commit()
+'''

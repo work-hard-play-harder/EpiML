@@ -56,7 +56,7 @@
                         'orderable': false,
                     },
                     {
-                        'targets': 7, // This is the column number
+                        'targets': 8, // This is the column number
                         'searchable': false,
                         'orderable': false,
                     }],
@@ -145,6 +145,7 @@
                     <th>Category</th>
                     <!--<th width="7%">Type</th>-->
                     <th>Methods</th>
+                    <th>Description</th>
                     <th>Submit time</th>
                     <th width="12%">Status</th>
                     <th width="7%">Results</th>
@@ -163,7 +164,9 @@
                         <td>
                             <div class="scrollable">{{ job.selected_algorithm }}</div>
                         </td>
-
+                        <td>
+                            <div class="scrollable">{{ job.description }}</div>
+                        </td>
                         <td>{{ momentjs(job.timestamp).calendar() }} </td>
                         <td>{{ job.status }} </td>
                         <td style="text-align: center">

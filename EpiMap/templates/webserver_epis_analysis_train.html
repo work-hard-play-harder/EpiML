@@ -32,7 +32,8 @@
         -->
         <div class="tab-content">
             <div id="training" class="tab-pane fade in active" style="padding-top: 20px">
-                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are required.</strong></p>
+                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are
+                    required.</strong></p>
                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="control-label col-sm-2" for="jobname">Job Name:</label>
@@ -75,7 +76,8 @@
                                         href="{{ url_for('download_sample_data', filename='general_x.txt') }}"
                                         target="_blank">Training data</a> and <a
                                         href="{{ url_for('download_sample_data', filename='general_y.txt') }}"
-                                        target="_blank">Training label</a>). This data is from 'EBEN' package of R. It was
+                                        target="_blank">Training label</a>). This data is from 'EBEN' package of R. It
+                                    was
                                     simulated on a 2400cM chromosome, each column corresponded to an even spaced QTL.
                                 </p>
                             </div>
@@ -90,10 +92,17 @@
                             <label for="LASSO">Elastic Net</label>
                         </div>
                         -->
-                        <div class=" col-sm-3" style="padding: 15px">
-                            <input type="checkbox" id="EBEN" name="methods" value="EBEN" checked>
-                            <label for="EBEN">Empirical Bayesian Elastic Net</label>
+                        <div class="row" style="padding: 15px">
+                            <div class=" col-sm-3">
+                                <input type="radio" id="EBEN" name="method" value="EBEN">
+                                <label for="EBEN">Empirical Bayesian Elastic Net</label>
+                            </div>
+                            <div class=" col-sm-3" >
+                                <input type="radio" id="ssLASSO" name="method" value="SSLASSO" checked>
+                                <label for="ssLASSO">ssLASSO</label>
+                            </div>
                         </div>
+
                         <!---
                         <div class=" col-sm-3">
                             <input class="form-control" type="checkbox" id="Matrix_eQTL" name="methods"

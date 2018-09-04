@@ -8,8 +8,8 @@ args <- commandArgs(trailingOnly = TRUE)
 workspace <- args[1]
 x_filename <- args[2]
 y_filename <- args[3]
-nFolds <- args[4]
-seed <- args[5]
+nFolds <- as.integer(args[4])
+seed <- as.integer(args[5])
 
 cat('EBEN_train parameters:', '\n')
 cat('\tworkspace:', workspace, '\n')
