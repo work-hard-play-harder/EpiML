@@ -45,8 +45,8 @@ class MiRNAJson(object):
 
     def __init__(self, job_dir):
         self.job_dir = job_dir
-        main_results_filename = os.path.join(self.job_dir, 'EBEN.main_result.txt')
-        epis_results_filename = os.path.join(self.job_dir, 'EBEN.epis_result.txt')
+        main_results_filename = os.path.join(self.job_dir, 'main_result.txt')
+        epis_results_filename = os.path.join(self.job_dir, 'epis_result.txt')
 
         self.main_results = load_results(main_results_filename)
         self.epis_results = load_results(epis_results_filename)
@@ -210,8 +210,8 @@ class SNPJson(object):
 
     def __init__(self, job_dir):
         self.job_dir = job_dir
-        main_results_filename = os.path.join(self.job_dir, 'EBEN.main_result.txt')
-        epis_results_filename = os.path.join(self.job_dir, 'EBEN.epis_result.txt')
+        main_results_filename = os.path.join(self.job_dir, 'main_result.txt')
+        epis_results_filename = os.path.join(self.job_dir, 'epis_result.txt')
 
         self.main_results = load_results(main_results_filename)
         self.epis_results = load_results(epis_results_filename)

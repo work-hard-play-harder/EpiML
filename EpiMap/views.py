@@ -635,12 +635,12 @@ def webserver_testing():
 
     return render_template('webserver_testing.html', models=models, jobnames=jobnames, usernames=usernames)
 
-
+'''
 @app.route('/predict')
 @login_required
 def predict():
     return render_template('predict.html')
-
+'''
 
 @app.route('/processing/<jobid>')
 @login_required
@@ -670,8 +670,8 @@ def result_train(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.main_result.txt')), 1)
-    EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')), 2)
+    EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'main_result.txt')), 1)
+    EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'epis_result.txt')), 2)
 
     miR_json = MiRNAJson(job_dir)
     # for external resources network
@@ -711,7 +711,7 @@ def result_train(jobid):
     '''
 
     '''
-    # for visulization
+    # for visualization
     fit_file = os.path.join(job_dir, 'lasso.fit')
     lasso_figure = create_lasso_figure(fit_file)
     lasso_script, lasso_div = components(lasso_figure)

@@ -166,7 +166,7 @@ for (i in 1:nrow(idma)) {
 cat('Ouput the final result including main and epistatic effect', '\n')
 write.table(
   main_result,
-  file = file.path(workspace, 'EBEN.main_result.txt'),
+  file = file.path(workspace, 'main_result.txt'),
   quote = F,
   sep = '\t',
   row.names = F,
@@ -174,7 +174,7 @@ write.table(
 )
 write.table(
   epsi_result,
-  file = file.path(workspace, 'EBEN.epis_result.txt'),
+  file = file.path(workspace, 'epis_result.txt'),
   quote = F,
   sep = '\t',
   row.names = F,
@@ -183,7 +183,7 @@ write.table(
 
 write.table(
   Blup_full[2:6],
-  file = file.path(workspace, 'EBEN.blup_full_hyperparams.txt'),
+  file = file.path(workspace, 'blup_full_hyperparams.txt'),
   quote = F,
   sep = '\t',
   row.names = F,

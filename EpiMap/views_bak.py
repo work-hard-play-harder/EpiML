@@ -667,8 +667,8 @@ def result_train(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.main_result.txt')), 1)
-    EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'EBEN.epis_result.txt')), 2)
+    EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'main_result.txt')), 1)
+    EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'epis_result.txt')), 2)
 
     miR_json = MiRNAJson(job_dir)
     # for external resources network
