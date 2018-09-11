@@ -45,77 +45,77 @@ y <- read.table(
 sprintf('y size: (%d, %d)', nrow(y), ncol(y))
 
 features <- as.matrix(x);
-colnames(features) = seq(1,ncol(features));
+colnames(features) <- seq(1,ncol(features));
 pheno <- as.matrix(y);
 
 geno_stand <- scale(features);
 new_y <- scale(pheno);
-new_y_in = new_y[,1,drop=F];
+new_y_in <- new_y[,1,drop=F];
 
 ### Pre-specify s0 and s1:
-s0 = 0.03;
-s1 = 0.5;
+s0 <- 0.03;
+s1 <- 0.5;
 
 ###### Main effect-single locus:
-sig_index = which(abs(t(new_y_in) %*% geno_stand/(nrow(geno_stand)-1)) > 0.20);
+sig_index <- which(abs(t(new_y_in) %*% geno_stand/(nrow(geno_stand)-1)) > 0.20);
 sig_main <- sig_index;
 
 ######Epistasis effect-single locus:
 sig_epi_sum <- NULL;
 for(k in 1:(ncol(features)-1)){
-  single_new = features[,k,drop=FALSE];
-  new=features[,(k+1):ncol(features)];
-  new_combine = cbind(new,single_new);
-  pseudo_allmat = transform(new_combine,subpseudo=new_combine[,1:(ncol(features)-k)] * new_combine[,ncol(new_combine)]);
+  single_new <- features[,k,drop=FALSE];
+  new <- features[,(k+1):ncol(features)];
+  new_combine <- cbind(new,single_new);
+  pseudo_allmat <- transform(new_combine,subpseudo=new_combine[,1:(ncol(features)-k)] * new_combine[,ncol(new_combine)]);
   colnames(pseudo_allmat) <- paste(colnames(pseudo_allmat), colnames(single_new),sep = "*");
-  pseudo_mat = pseudo_allmat[,grep("subpseudo",colnames(pseudo_allmat)),drop=FALSE];
-  pseudo_mat = as.matrix(pseudo_mat);
-  pseudo_mat_stand = scale(pseudo_mat);
+  pseudo_mat <- pseudo_allmat[,grep("subpseudo",colnames(pseudo_allmat)),drop=FALSE];
+  pseudo_mat <- as.matrix(pseudo_mat);
+  pseudo_mat_stand <- scale(pseudo_mat);
   
-  epi_index = which(abs(t(new_y_in) %*% pseudo_mat_stand/(nrow(pseudo_mat_stand)-1)) > 0.20);
-  pseudo_mat_stand_epi = pseudo_mat[,epi_index,drop=FALSE];
-  sig_epi_sum = c(sig_epi_sum,colnames(pseudo_mat_stand_epi));
+  epi_index <- which(abs(t(new_y_in) %*% pseudo_mat_stand/(nrow(pseudo_mat_stand)-1)) > 0.20);
+  pseudo_mat_stand_epi <- pseudo_mat[,epi_index,drop=FALSE];
+  sig_epi_sum <- c(sig_epi_sum,colnames(pseudo_mat_stand_epi));
 }
 res <- matrix(c(sig_main,sig_epi_sum),ncol=1);
-res = gsub("subpseudo.","",res)
+res <- gsub("subpseudo.","",res)
 
 new_matrix <- NULL;
 for(i in 1:nrow(res)){
   if(length(grep("\\*",res[i,1])) == 0){
     tmp1 = features[,(as.numeric(res[i,1])),drop=F];
-    colnames(tmp1) = res[i,1];
+    colnames(tmp1) <- res[i,1];
     new_matrix <-cbind(new_matrix,tmp1);
   }
   if(length(grep("\\*",res[i,1])) == 1){
-    indexes = strsplit(res[i,1],"\\*");
-    tmp1 = features[,as.numeric(indexes[[1]][1]),drop=F] * features[,as.numeric(indexes[[1]][2]),drop=F];
-    colnames(tmp1) = res[i,1];
-    new_matrix <-cbind(new_matrix,tmp1);
+    indexes <- strsplit(res[i,1],"\\*");
+    tmp1 <- features[,as.numeric(indexes[[1]][1]),drop=F] * features[,as.numeric(indexes[[1]][2]),drop=F];
+    colnames(tmp1) <- res[i,1];
+    new_matrix <- cbind(new_matrix,tmp1);
   }
 }
-new_matrix = as.matrix(new_matrix);
+new_matrix <- as.matrix(new_matrix);
 
-f2 = bmlasso(new_matrix, new_y_in, family = "gaussian", prior = "mde", ss = c(s0,s1),verbose = TRUE);
-cv = cv.bh(f2,ncv=1,nfolds = 3,verbose = TRUE);
-tmp_mse =  cv$measures["mse"];
-tmp_dev = cv$measures["deviance"];
-Blup = matrix(f2$beta,ncol=1);
-rownames(Blup) = res;
-Blup_estimate = Blup[which(Blup != 0),1,drop=F];
-main_index = setdiff(1:nrow(Blup_estimate),grep("\\*",rownames(Blup_estimate)));
-epi_index = grep("\\*",rownames(Blup_estimate))
-output_main = matrix("NA",length(main_index),5);
-output_epi = matrix("NA",length(epi_index),6);
+f2 <- bmlasso(new_matrix, new_y_in, family = "gaussian", prior = "mde", ss = c(s0,s1),verbose = TRUE);
+cv <- cv.bh(f2,ncv=1,nfolds = 3,verbose = TRUE);
+tmp_mse <- cv$measures["mse"];
+tmp_dev <- cv$measures["deviance"];
+Blup <- matrix(f2$beta,ncol=1);
+rownames(Blup) <- res;
+Blup_estimate <- Blup[which(Blup != 0),1,drop=F];
+main_index <- setdiff(1:nrow(Blup_estimate),grep("\\*",rownames(Blup_estimate)));
+epi_index <- grep("\\*",rownames(Blup_estimate))
+output_main <- matrix("NA",length(main_index),5);
+output_epi <- matrix("NA",length(epi_index),6);
 output_main[,1] <- matrix(rownames(Blup_estimate),ncol=1)[main_index,,drop=F];
 output_main[,2] <- Blup_estimate[main_index,1,drop=F]
-epi_ID = matrix(rownames(Blup_estimate),ncol=1)[epi_index,,drop=F];
+epi_ID <- matrix(rownames(Blup_estimate),ncol=1)[epi_index,,drop=F];
 output_epi[,1:2] <- matrix(unlist(strsplit(epi_ID,"\\*")),ncol=2);
 output_epi[,3] <- Blup_estimate[epi_index,1,drop=F];
-colnames(output_main) = c("feature",	"coefficent value",	"posterior variance",	"t-value","p-value");
-colnames(output_epi) = c("feature1","feature2",	"coefficent value",	"posterior variance",	"t-value","p-value");
-output_main[,1]=colnames(x)[as.integer(output_main[,1])]
-output_epi[,1]=colnames(x)[as.integer(output_epi[,1])]
-output_epi[,2]=colnames(x)[as.integer(output_epi[,2])]
+colnames(output_main) <- c("feature", "coefficent value", "posterior variance",	"t-value","p-value");
+colnames(output_epi) <- c("feature1","feature2", "coefficent value", "posterior variance", "t-value","p-value");
+output_main[, 1] <- colnames(x)[as.integer(output_main[, 1])]
+output_epi[, 1] <- colnames(x)[as.integer(output_epi[, 1])]
+output_epi[, 2] <- colnames(x)[as.integer(output_epi[, 2])]
 
 
 write.table(

@@ -682,6 +682,7 @@ def result_train(jobid):
     miR_json.write_forceDirect_legends_json()
     # for circle network
     cn_graph_json = miR_json.generate_miR_HEB_json()
+    print(cn_graph_json)
     # for adjacency matrix
     miR_json.write_am_graph_json()
 

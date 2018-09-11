@@ -186,9 +186,9 @@ class MiRNAJson(object):
             am_graph_links_json.append({'source': source_index,
                                         'target': target_index,
                                         'coff': link['coefficent value'],
-                                        'post': link['posterior variance'],
-                                        'tvalue': link['t-value'],
-                                        'pvalue': link['p-value'],
+                                        #'post': link['posterior variance'],
+                                        #'tvalue': link['t-value'],
+                                        #'pvalue': link['p-value'],
                                         })
 
         filename = os.path.join(self.job_dir, 'am_graph.json')
