@@ -5,9 +5,22 @@
 {% endblock %}
 {% block content %}
     <div>
-        <div style="background-color: whitesmoke;padding: 30px">
-            <h1>Epistasis Analysis Server: An open machine learning web service and model repository for
-                epistasis analysis </h1>
+        <div style="background-color: whitesmoke;padding: 20px">
+
+            <div class="row">
+                <div class="col-sm-6">pics</div>
+                <div class="col-sm-6" align="center">
+                    <h1>EpiML: An open machine learning web service and model repository for
+                        epistasis analysis </h1>
+                    <p>With EpiML you can find epistasis interactions in your data by using several
+                        machine learning methods and
+                        produce interactive visualizations, no matter what kind of data is. Especially for some study
+                        cases
+                        like
+                        gene and miRNA data, external resources are embedded for epistasis analysis.</p>
+                </div>
+            </div>
+
             <!--
             <p> Epistasis analysis is a foundation in the analysis of genetic networks. The concept of epistasis was
                 introduced nearly 100 years ago and today underpins our interpretation of genetic pathways. If a
@@ -16,6 +29,7 @@
                 particular cellular process or pathway and to establish an order‐of‐function map that reflects the
                 sequence of events in a pathway controlled by several genes. </p>
                 -->
+            <!--
             <p> Epistasis analysis is a foundation in the analysis of genetic networks. The term “epistasis” is
                 sometimes used to describe some form of statistical interaction between genetic factors and is
                 alternatively sometimes used to describe instances in which the effect of a particular genetic variant
@@ -28,7 +42,7 @@
                 significant main effect from the original phenotype. Third, we select features with epistatic effect on
                 the corrected phenotype. Finally, we run the full model with main and epistatic effects on the
                 previously selected main and epistatic features.</p>
-            <!--
+
             <p> By using this server, biologists and biomedical researchers can identify a set of main and epistatic
                 effects based on their own data. To help analysis results, we provide many interactive visualization,
                 with options to zoom in and out for diverse views of the data and results. Besides, many external
@@ -40,22 +54,26 @@
             <div class="row">
                 <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/upload.png') }}">
-                    <p style="padding: 10px"><strong>Upload training data. All user’s data will be kept
-                        private.</strong></p>
+                    <p style="padding: 10px"><strong>Describe your job and upload your data. </strong> <br>
+                        All user’s data will be kept private.</p>
                 </div>
                 <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/submit.png') }}">
-                    <p style="padding: 10px"><strong>Select methods and submit jobs.</strong>
+                    <p style="padding: 10px"><strong>Select machine learning method. </strong> <br>
+                        Popular methods are provided.
                     </p>
                 </div>
                 <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/processing.png') }}">
-                    <p style="padding: 10px"><strong>Multiple threads to process. All processing is automated.</strong>
+                    <p style="padding: 10px"><strong>Automatically process in background. </strong> <br>
+                        When job is submitted or done, you will receive an email notification.
                     </p>
                 </div>
                 <div class="col-xs-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/finished.png') }}">
-                    <p style="padding: 10px"><strong>Download results when your jobs is finished.</strong></p>
+                    <p style="padding: 10px"><strong>Check out results. </strong> <br>
+                        You can analysis results on result page and PDF report, or customize and rerun pipeline in
+                        docker.</p>
                 </div>
                 <!--
                 <div class="col-xs-3" align="center">
@@ -65,6 +83,7 @@
                 -->
             </div>
         </div>
+        <!--
         <hr>
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Model Repository</h2>
@@ -81,6 +100,7 @@
                 </div>
             </div>
         </div>
+        -->
         <hr>
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Interactive Visualization</h2>
@@ -89,10 +109,16 @@
                     <img width="40%" src="{{ url_for('static',filename='img/home/visualization.png') }}">
                 </div>
                 <div class="col-xs-8">
+                    <!--
                     <p><strong>Results are visualized.</strong> To help understand the results, we will provide
                         interactive visualization of
                         intermediate results and final results, with options to zoom in and out for diverse views of the
                         data and results. </p>
+                        -->
+                    <p>Visualizations are very useful tools to help understand the results. This web server provides
+                        many friendly interactive visualizations, like circle network, adjacent matrix and dynamic
+                        network. When you move mouse over one node, more detailed information and linked nodes will be
+                        high light. When you click one node, other visualizations will high light the same node.</p>
                 </div>
             </div>
         </div>
@@ -108,6 +134,22 @@
                         are embedded in results visualization. We also provide links to metadata of omics data and
                         external resources, such as gene annotations and biological pathways, to help interpret the
                         results. </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div style=" padding-bottom: 20px; ">
+            <h2 align="center" style="padding: 20px"> Customize Your Analysis </h2>
+            <div class="row">
+                <div class="col-xs-4" align="center">
+                    <img width="40%" src="{{ url_for('static',filename='img/home/integration.png') }}">
+                </div>
+                <div class="col-xs-8">
+                    <p>For each job, its corresponding Jupyter notebook is automatically generated. All notebooks can be
+                        downloaded, modified and rerun, allowing users to fully customize their epistasis analysis on
+                        local computers. To achieve this, we provide a pre-configured Docker container containing a
+                        fully functional Jupyter server with all the Python and R libraries necessary to run the
+                        notebooks. </p>
                 </div>
             </div>
         </div>
