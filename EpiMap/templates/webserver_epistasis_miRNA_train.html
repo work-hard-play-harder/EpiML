@@ -20,8 +20,10 @@
 {% block content %}
     <div>
         <h2>Case Study</h2>
-        <p>Epistasis analysis of case studies on miRNAs and SNPs based on an Empirical Bayesian Elastic
-            Net method</p>
+        <p>This page provides specific epistasis analysis for some case studies. It can find out those significant the
+            main effects and epistasis effects in your upload data, and provide circle network and adjacent matrix
+            visualization. Bedises, it also integrates some metadata of omics data and external resources in
+            visualization, such as gene annotations and biological pathways, to help interpret the results.</p>
         <hr>
         <!-- Tab links-->
         <!--
@@ -68,7 +70,7 @@
                         <label class="control-label col-sm-2" for="description">Description:</label>
                         <div class="col-sm-10">
                             <textarea style="height: 100px" class="form-control" name="description" id="description"
-                                      placeholder="Add description for your job, like data, method and parameters."
+                                      placeholder="Add your job purpose and describe your data, method and parameters."
                                       required></textarea>
                         </div>
                     </div>
@@ -77,21 +79,21 @@
                         <label class="control-label col-sm-2" for="upload">Upload files:</label>
                         <div class="col-sm-10">
                             <div class="col-sm-6">
-                                <label class="control-label" for="input-x">Choose your training data: X</label>
+                                <label class="control-label" for="input-x">Choose your feature matrix X:</label>
                                 <input class="form-control" type="file" id="input-x" name="input-x"
-                                       placeholder="choose your training data: X" required>
+                                       required>
                             </div>
                             <div class="col-sm-6">
-                                <label class="control-label" for="input-y">Choose your training label: Y</label>
+                                <label class="control-label" for="input-y">Choose your label matrix Y:</label>
                                 <input class="form-control" type="file" id="input-y" name="input-y"
-                                       placeholder="choose your training label: Y" required>
+                                       required>
                             </div>
                             <div class="col-sm-6" style="padding-top: 10px">
                                 <p style="font-size: small"> Here is sample data, <a
                                         href="{{ url_for('download_sample_data', filename='bc_x.txt') }}"
-                                        target="_blank"> Training data</a> and <a
+                                        target="_blank">feature matrix</a> and <a
                                         href="{{ url_for('download_sample_data', filename='bc_y.txt') }}"
-                                        target="_blank"> Testing data</a>.
+                                        target="_blank">label matrix</a>.
                                 </p>
                             </div>
                         </div>
@@ -104,9 +106,15 @@
                             <label for="LASSO">LASSO</label>
                         </div>
                         -->
-                        <div class=" col-sm-3" style="padding: 15px">
-                            <input type="checkbox" id="EBEN" name="methods" value="EBEN" checked>
-                            <label for="EBEN">Empirical Bayesian Elastic Net</label>
+                        <div class="row" style="padding: 15px">
+                            <div class=" col-sm-3">
+                                <input type="radio" id="EBEN" name="method" value="EBEN">
+                                <label for="EBEN">Empirical Bayesian Elastic Net</label>
+                            </div>
+                            <div class=" col-sm-3">
+                                <input type="radio" id="ssLASSO" name="method" value="SSLASSO" checked>
+                                <label for="ssLASSO">ssLASSO</label>
+                            </div>
                         </div>
                         <!--
                         <div class=" col-sm-3">
