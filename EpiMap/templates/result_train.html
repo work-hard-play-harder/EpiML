@@ -19,16 +19,7 @@
             background-color: coral;
         }
     </style>
-{% endblock %}
-
-{% block content %}
-    <div>
-        <section>
-            <h2>Summary</h2>
-            <p>Your job is finished, and the summaries are listed in following. You can download results and report
-                through corresponding links, or directly check your results using following interactive tables and
-                visualizations.</p>
-            <style type="text/css">
+    <style type="text/css">
                 .tg {
                     border-collapse: collapse;
                     border-spacing: 0;
@@ -106,6 +97,16 @@
                     vertical-align: top
                 }
             </style>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <section>
+            <h2>Summary</h2>
+            <p>Your job is finished, and summaries are listed in following. You can download results and report
+                through corresponding links, or directly check your results using following interactive result tables and
+                visualizations.</p>
+
             <table class="tg" width="100%">
                 <tr>
                     <th class="tg-odlp">Job name</th>
@@ -180,16 +181,13 @@
                     <td class="tg-iu9n">0.5 MB</td>
                 </tr>
             </table>
-
-
         </section>
-
 
         <section>
             <hr>
             <h2>Result</h2>
-
             <h3>Main Effect</h3>
+
             <div>
                 <table id="main_effect" name="main_effect" class="table table-hover stripe">
                     <thead>
