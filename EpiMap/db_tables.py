@@ -47,6 +47,8 @@ class Job(db.Model):
     selected_algorithm = db.Column(db.String(64))  # format like algorithm1|algorithm2|algorithm3
     status = db.Column(db.String(32))
     running_time = db.Column(db.String(32))
+    feature_file=db.Column(db.String(32))
+    label_file = db.Column(db.String(32))
     celery_id = db.Column(db.String(64))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

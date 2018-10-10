@@ -24,6 +24,7 @@
                     navbar.addClass('responsive');
                 }
             }
+
             jQuery(document).on('ready', autocollapse);
             jQuery(window).on('resize', autocollapse);
         </script>
@@ -70,7 +71,8 @@
             </button>
             <a class="navbar-brand" href="#">
                 <span>
-                    <img style="max-height: 75px" src="{{ url_for('static', filename='img/base/EpiML_logo_white.png') }}">
+                    <img style="max-height: 75px"
+                         src="{{ url_for('static', filename='img/base/EpiML_logo_white.png') }}">
                 </span>
             </a>
         </div>
@@ -158,10 +160,47 @@
     {% block content %}{% endblock %}
     <div style="height: 50px "></div>
 </div>
+
+
 <footer class="footer modal-footer" style="background-color: #155724">
-    <div class="container">
-        <p style="color:white">Author: Junjie Chen</p>
-        <p style="color:white">06/20/2018</p>
+    <div class="container" style="color:white; font-size: large" align="center">
+        <div class="row">
+            <div class="col-xs-4">
+                <h3 style="color: #c0a16b">Affiliation</h3>
+                <a href="https://shilab.uncc.edu/" target="_blank" style="color: white"> <u>Shi Lab</u></a> <br>
+                <a href="https://cci.uncc.edu/" target="_blank" style="color: white"> <u>College of Computing and
+                    Informatics</u> </a>
+                <a href="https://www.uncc.edu/" target="_blank" style="color: white">
+                    <img style="height: 70px" src="{{ url_for('static', filename='img/base/uncc_logo.png') }}"></a>
+
+            </div>
+
+            <div class="col-xs-4">
+                <h3 style="color: #c0a16b">License</h3>
+                <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                    <img alt="Creative Commons License" style="border-width:0;"
+                         src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+                </a>
+                <p>All contents on this site are covered by the <a rel="license"
+                                                                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                                                                   target="_blank" style="color: white"> <u> Creative
+                    Commons Attribution 4.0 International License </u> </a>.</p>
+
+
+            </div>
+            <div class="col-xs-4">
+                <h3 style="color: #c0a16b">Acknowledgement</h3>
+                <div class="col-xs-6" align="right">
+                    <img width="80%" alt="Creative Commons License" style="border-width:0;"
+                         src="{{ url_for('static', filename='img/base/NIH.png') }}">
+                </div>
+                <div class="col-xs-6" align="left">
+                    <img width="80%" alt="Creative Commons License" style="border-width:0;"
+                         src="{{ url_for('static', filename='img/base/NSF.png') }}">
+                </div>
+
+            </div>
+        </div>
     </div>
 </footer>
 </body>

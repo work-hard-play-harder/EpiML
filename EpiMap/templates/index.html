@@ -8,9 +8,9 @@
         <div style="background-color: whitesmoke;padding: 20px">
 
             <div class="row">
-                <div class="col-sm-6">pics</div>
-                <div class="col-sm-6" align="center">
-                    <img width="65%" src="{{ url_for('static', filename='img/home/EpiML_logo.png') }}">
+                <!--<div class="col-sm-6">pics</div>-->
+                <div  align="center">
+                    <img width="30%" src="{{ url_for('static', filename='img/home/EpiML_logo.png') }}">
                     <p style="font-size: xx-large;">An open machine learning web service for epistasis analysis </p>
                     <p>EpiML can detect main effect and epistatic effect features in your data by using several machine
                         learning methods and produce many interactive visualizations to help understand results.
@@ -50,24 +50,24 @@
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Easy to Use</h2>
             <div class="row">
-                <div class="col-xs-3" align="center">
+                <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/upload.png') }}">
                     <p style="padding: 10px"><strong>Describe your job and upload your data. </strong> <br>
                         All user’s data will be kept private.</p>
                 </div>
-                <div class="col-xs-3" align="center">
+                <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/submit.png') }}">
                     <p style="padding: 10px"><strong>Select machine learning method. </strong> <br>
-                        Popular methods are provided.
+                        Popular methods are built-in.
                     </p>
                 </div>
-                <div class="col-xs-3" align="center">
+                <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/processing.png') }}">
                     <p style="padding: 10px"><strong>Automatically process in background. </strong> <br>
                         When job is submitted or done, you will receive an email notification.
                     </p>
                 </div>
-                <div class="col-xs-3" align="center">
+                <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/finished.png') }}">
                     <p style="padding: 10px"><strong>Check out results. </strong> <br>
                         You can analysis results on result page and PDF report, or customize and rerun pipeline in
@@ -152,10 +152,12 @@
             </div>
         </div>
         <hr>
+        <!--
         <div style=" padding-bottom: 20px; ">
             <h2 style=" padding-bottom: 20px; ">News</h2>
             <p>Jun. 5 2018 >> update log
             </p>
         </div>
+        -->
     </div>
 {% endblock %}

@@ -75,6 +75,7 @@
                                 <input class="form-control" type="file" id="input-y" name="input-y"
                                        required>
                             </div>
+
                             <div class="col-sm-12" style="padding-top: 10px">
                                 <p style="font-size: small"> Here is a sample data (<a
                                         href="{{ url_for('download_sample_data', filename='general_x.txt') }}"
@@ -89,7 +90,7 @@
 
                     </div>
                     <div class="form-group form-inline">
-                        <label class="control-label col-sm-2" for="methods">Select Methods:</label>
+                        <label class="control-label col-sm-2" for="methods">Select Method:</label>
                         <!--
                         <div class="col-sm-3">
                             <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
@@ -103,8 +104,13 @@
                             </div>
                             <div class=" col-sm-3">
                                 <input type="radio" id="ssLASSO" name="method" value="SSLASSO" checked>
+                                <label for="ssLASSO">LASSO</label>
+                            </div>
+                            <div class=" col-sm-3">
+                                <input type="radio" id="ssLASSO" name="method" value="SSLASSO" checked>
                                 <label for="ssLASSO">ssLASSO</label>
                             </div>
+
                         </div>
 
                         <!---
@@ -124,15 +130,19 @@
                                    name="fold_number" maxlength="2" value="5">
                         </div>
                     </div>
+                    <!--
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-4 form-inline">
                             <input type="checkbox" id="ss" name="ss" CHECKED
                                    onclick="ShowHideSeedNum(this)">
+
                             <label for="ss"> Specify Seed: </label>
                             <input class="form-control" style="width: 100px;" type="text" id="seed_number" value="28213"
                                    name="seed_number">
                         </div>
+
                     </div>
+                    -->
                     <hr>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">

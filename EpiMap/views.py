@@ -453,7 +453,8 @@ def webserver_epistasis_miRNA_train():
 
         # add job into Job database
         job = Job(name=jobname, category=jobcategory, type='Train', description=description,
-                  selected_algorithm=';'.join(methods), status=0, user_id=current_user.id)
+                  selected_algorithm=';'.join(methods), status=0, feature_file=x_filename, label_file=y_filename,
+                  user_id=current_user.id)
         db.session.add(job)
         db.session.commit()
 
@@ -635,12 +636,14 @@ def webserver_testing():
 
     return render_template('webserver_testing.html', models=models, jobnames=jobnames, usernames=usernames)
 
+
 '''
 @app.route('/predict')
 @login_required
 def predict():
     return render_template('predict.html')
 '''
+
 
 @app.route('/processing/<jobid>')
 @login_required
@@ -686,12 +689,30 @@ def result_train(jobid):
     # for adjacency matrix
     miR_json.write_am_graph_json()
 
+    return render_template('result_train.html', job=job,
+                           feature_file_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, job.feature_file)) / 1024),
+                           lable_file_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, job.label_file)) / 1024),
+                           main_result_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, 'main_result.txt')) / 1024),
+                           epis_result_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, 'epis_result.txt')) / 1024),
+
+                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
+                           nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
+                           legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
+                           cn_graph_json=cn_graph_json,
+                           am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
+
+    '''
     return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
                            nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
                            legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
                            cn_graph_json=cn_graph_json,
                            am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
+    '''
 
     '''
     if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
