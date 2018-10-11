@@ -4,9 +4,9 @@ EpiML can detect main effect and epistatic effect features in your data by using
 
 An illustration for EpiML is as shown in following:
 ![alt text](EpiMap/static/img/epiml.png)
+*Figure 1. The workflow of epistasis web service. a. Our epistasis analysis server allows users describe their job, upload data and select a machine learning method for analysis. b. We provide interactive tools for visualizing and downloading results. c. Customize analysis. All automatically generated Jupyter notebooks and pre-configured Docker containers can be downloaded, modified and rerun, allowing users to fully customize their analysis code on local computers. d. Generate bioRxiv report that provides detailed information about the models.*
 
-
------------
+---------------------------------
 Here is a quick tutorial to deploy a Flask application on Ubuntu 16.04LTS using Apache2 and mod-wsgi. 
 
 Requirements
