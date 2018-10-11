@@ -1,6 +1,8 @@
 # EpiML
 
-EpiML can detect main effect and epistatic effect features in your data by using several build-in machine learning methods and produce many interactive visualizations to help understand results. Especially for some case studies like SNP and miRNA data, external resources are embedded for epistasis analysis. An illustration for EpiML is as shown in following:
+EpiML can detect main effect and epistatic effect features in your data by using several build-in machine learning methods and produce many interactive visualizations to help understand results. Especially for some case studies like SNP and miRNA data, external resources are embedded for epistasis analysis. 
+
+An illustration for EpiML is as shown in following:
 ![alt text](EpiMap/static/img/epiml.png)
 
 
