@@ -188,7 +188,7 @@
             <hr>
             <h2>Result</h2>
             <p>EpiML can detect main effect and epistatic effect features in your data based on your selected machine
-                learning method. These results are shown in interactive tables which is easy way to explore and compare
+                learning method. These results are shown in interactive tables by which you can easily explore and compare
                 results.</p>
             <h3>Main Effect</h3>
             <p>A main effect is the effect of an independent variant on a dependent variable across the levels of any
@@ -311,7 +311,8 @@
             <div>
                 <p> Epistatic effect results also can be represented by an adjacency matrix, where row and column names
                     are the features in epistatic effect table, each cell (<i>i</i>, <i>j</i>) represents an edge from
-                    vertex <i>i</i> to vertex <i>j</i>.
+                    vertex <i>i</i> to vertex <i>j</i>. Matrix cell depicts coefficent value in epistatic effect table. The darker cells indicate strong
+                    interaction.
                     While circle network can give a good view for node-link relationship, adjacency matrix
                     has other advantages:</p>
                 <ol style="font-size: large">
@@ -331,8 +332,7 @@
                     <svg id="adjacency_matrix" name="adjacency_matrix"></svg>
                 </div>
                 <div class="col-sm-offset-1 col-sm-3">
-                    Matrix cell depicts coefficent value in epistatic effect table. The darker cells indicate strong
-                    interaction.
+
                     <br><br>
                     Use the drop-down menu to reorder the matrix.<br>
                     Order:
