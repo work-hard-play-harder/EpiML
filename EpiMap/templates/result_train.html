@@ -20,83 +20,83 @@
         }
     </style>
     <style type="text/css">
-                .tg {
-                    border-collapse: collapse;
-                    border-spacing: 0;
-                }
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
 
-                .tg td {
-                    font-family: Arial, sans-serif;
-                    font-size: 14px;
-                    padding: 10px 20px;
-                    border-style: solid;
-                    border-width: 1px;
-                    overflow: hidden;
-                    word-break: normal;
-                    border-color: black;
-                }
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
 
-                .tg th {
-                    font-family: Arial, sans-serif;
-                    font-size: 14px;
-                    font-weight: normal;
-                    padding: 10px 20px;
-                    border-style: solid;
-                    border-width: 1px;
-                    overflow: hidden;
-                    word-break: normal;
-                    border-color: black;
-                }
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 20px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
 
-                .tg .tg-odlp {
-                    font-size: medium;
-                    background-color: #ecf4ff;
-                    color: #333333;
-                    border-color: inherit;
-                    text-align: center;
-                    vertical-align: top
-                }
+        .tg .tg-odlp {
+            font-size: medium;
+            background-color: #ecf4ff;
+            color: #333333;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
 
-                .tg .tg-iu9n {
-                    font-size: medium;
-                    background-color: #ffffff;
-                    border-color: inherit;
-                    text-align: left;
-                    vertical-align: top
-                }
+        .tg .tg-iu9n {
+            font-size: medium;
+            background-color: #ffffff;
+            border-color: inherit;
+            text-align: left;
+            vertical-align: top
+        }
 
-                .tg .tg-t70x {
-                    font-size: medium;
-                    background-color: #ecf4ff;
-                    border-color: #333333;
-                    text-align: center;
-                    vertical-align: top
-                }
+        .tg .tg-t70x {
+            font-size: medium;
+            background-color: #ecf4ff;
+            border-color: #333333;
+            text-align: center;
+            vertical-align: top
+        }
 
-                .tg .tg-o36v {
-                    font-size: medium;
-                    background-color: #ecf4ff;
-                    border-color: inherit;
-                    text-align: center;
-                    vertical-align: top
-                }
+        .tg .tg-o36v {
+            font-size: medium;
+            background-color: #ecf4ff;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
 
-                .tg .tg-wq9i {
-                    font-size: medium;
-                    background-color: #ecf4ff;
-                    color: #333333;
-                    border-color: inherit;
-                    text-align: center
-                }
+        .tg .tg-wq9i {
+            font-size: medium;
+            background-color: #ecf4ff;
+            color: #333333;
+            border-color: inherit;
+            text-align: center
+        }
 
-                .tg .tg-vg4w {
-                    font-size: medium;
-                    background-color: #efefef;
-                    border-color: inherit;
-                    text-align: center;
-                    vertical-align: top
-                }
-            </style>
+        .tg .tg-vg4w {
+            font-size: medium;
+            background-color: #efefef;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -104,7 +104,8 @@
         <section>
             <h2>Summary</h2>
             <p>Your job is finished, and summaries are listed in following. You can download results and report
-                through corresponding links, or directly check your results using following interactive result tables and
+                through corresponding links, or directly check your results using following interactive result tables
+                and
                 visualizations.</p>
 
             <table class="tg" width="100%">
@@ -130,19 +131,19 @@
                 </tr>
                 <tr>
                     <td class="tg-wq9i" rowspan="2">Input</td>
-                    <td class="tg-vg4w">feature matrix</td>
+                    <td class="tg-vg4w">Feature matrix</td>
                     <td class="tg-iu9n" colspan="2"><a
                             href="{{ url_for('download_result',jobid= job.id , filename=job.feature_file) }}"
                             target="_blank">{{ job.feature_file }}</a></td>
-                    <td class="tg-o36v">size</td>
+                    <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ feature_file_size }} KB</td>
                 </tr>
                 <tr>
-                    <td class="tg-vg4w">label matrix</td>
+                    <td class="tg-vg4w">Label matrix</td>
                     <td class="tg-iu9n" colspan="2"><a
                             href="{{ url_for('download_result',jobid= job.id , filename=job.label_file) }}"
                             target="_blank">{{ job.label_file }}</a></td>
-                    <td class="tg-o36v">size</td>
+                    <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ lable_file_size }} KB</td>
                 </tr>
                 <tr>
@@ -151,7 +152,7 @@
                     <td class="tg-iu9n" colspan="2"><a
                             href="{{ url_for('download_result',jobid= job.id , filename='main_result.txt') }}"
                             target="_blank">Main effect</a></td>
-                    <td class="tg-o36v">size</td>
+                    <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ main_result_size }} KB</td>
                 </tr>
                 <tr>
@@ -159,25 +160,25 @@
                     <td class="tg-iu9n" colspan="2"><a
                             href="{{ url_for('download_result',jobid=job.id, filename='epis_result.txt') }}"
                             target="_blank">Epistatic effect</a></td>
-                    <td class="tg-o36v">size</td>
+                    <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ epis_result_size }} KB</td>
                 </tr>
                 <tr>
                     <td class="tg-odlp">Report</td>
                     <td class="tg-iu9n" colspan="3">bioRxiv report</td>
-                    <td class="tg-o36v">size</td>
+                    <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">0.5 MB</td>
                 </tr>
                 <tr>
                     <td class="tg-odlp">Notebook</td>
                     <td class="tg-iu9n" colspan="3">Jupyter notebook; pre-configured docker container</td>
-                    <td class="tg-o36v">size</td>
+                    <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">0.5 MB</td>
                 </tr>
                 <tr>
                     <td class="tg-odlp">Zip archive</td>
                     <td class="tg-iu9n" colspan="3"></td>
-                    <td class="tg-o36v">size</td>
+                    <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">0.5 MB</td>
                 </tr>
             </table>
@@ -186,8 +187,12 @@
         <section>
             <hr>
             <h2>Result</h2>
+            <p>EpiML can detect main effect and epistatic effect features in your data based on your selected machine
+                learning method. These results are shown in interactive tables which is easy way to explore and compare
+                results.</p>
             <h3>Main Effect</h3>
-
+            <p>A main effect is the effect of an independent variant on a dependent variable across the levels of any
+                other effects.</p>
             <div>
                 <table id="main_effect" name="main_effect" class="table table-hover stripe">
                     <thead>
@@ -217,6 +222,8 @@
         </section>
         <section>
             <h3>Epistatic Effect</h3>
+            <p>Epistatic effect is the phenomenon where the effect of one variant is dependent on the presence of one or
+                more 'modifier variants'. </p>
             <div>
                 <table id="epis_effect" name="epis_effect" class="table table-hover stripe ">
                     <thead>
@@ -244,24 +251,30 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                <br>
+                Note: This table can interact with following visualizations. When you click one row
+                in this table, the corresponding features will be highlight in circle network and adjacent matrix
+                visualizations.
             </div>
         </section>
         <section>
             <hr>
             <h2>Visualization</h2>
             <h3>Circle Network</h3>
-            <p> A circle network shows the interactions between epistatic features.
+            <p> This circle network shows the interactions of features in epistatic effect table. One node in network
+                represents a feature in epistatic effect table. All nodes are arranged as a circle. Two nodes that have
+                epistatic relationship are linked by an undirected edge. One node may have more than one edge, because
+                it has epistatic with
             </p>
 
             <div class="row" style="padding: 10px">
                 <div class="col-sm-3">
-                    <p style="font-size: medium">
-                        Mouseover any of nodes in this network to see its <span style="color: #d62728;">associative features in red</span>.
-                    </p>
-                    <p style="font-size: medium">
-                        Click one node to find details in above Epistatic Effect table. Double click on graph back
-                        to default.
-                    </p>
+
+                    Mouseover any of nodes in this network to see its <span style="color: #d62728;">associative features in red</span>.
+                    <br> <br>
+                    Click one node to find details in above Epistatic Effect table. Double click on graph back
+                    to default.
+
 
                     <!--//TODO: add datatables mouseover events -->
                     <p></p>
