@@ -261,16 +261,23 @@
             <hr>
             <h2>Visualization</h2>
             <h3>Circle Network</h3>
-            <p> This circle network shows the interactions of features in epistatic effect table. One node in network
+            <p> Epistatic effect results can be represented in circle network. One node in network
                 represents a feature in epistatic effect table. All nodes are arranged as a circle. Two nodes that have
                 epistatic relationship are linked by an undirected edge. It is easy to know that the number of edges of
                 one node equals to the number of epsitatic effects that one feature has on other features.
+                Circle network has two main advantages comparing to table:
+            <ol style="font-size: large">
+                <li>It is easy to find out which feature has the most epistatic effects on other features.</li>
+                <li>It is easy to find complex indirected relationship among features.</li>
+
+            </ol>
             </p>
 
             <div class="row" style="padding: 10px">
                 <div class="col-sm-3">
 
-                    Mouseover any of nodes in this network to see its associative features in <span style="color: #d62728;">red</span>.
+                    Mouse over any of nodes in this network to see its associative features in <span
+                        style="color: #d62728;">red</span>.
                     <br> <br>
                     Click one node to find details in above Epistatic Effect table. Double click on graph back
                     to default.
@@ -299,11 +306,9 @@
         <section>
             <h3>Adjacency Matrix</h3>
             <div>
-                <p> A network can be represented by an adjacency matrix, where each cell (<i>i</i>, <i>j</i>)
-                    represents an
-                    edge from vertex <i>i</i> to vertex <i>j</i>. Here, vertices represent features in epistatic
-                    effect, while
-                    edges represent coefficient value.</p>
+                <p> Epistatic effect results also can be represented by an adjacency matrix, where row and column names
+                    are the features in epistatic effect table, each cell (<i>i</i>, <i>j</i>) represents an edge from
+                    vertex <i>i</i> to vertex <i>j</i>. </p>
                 <p> While network diagram can give a good view for node-link relationship, adjacency matrix diagram
                     has other advantages. As networks get large and highly connected, diagrams
                     often devolve into giant hairballs of line crossings. Line crossings are impossible with
