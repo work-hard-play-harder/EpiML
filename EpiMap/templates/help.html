@@ -152,25 +152,31 @@
                 </p>
             </section>
             <section class="anchor" id="visualization">
-                <h2>Visualization</h2>
-                <p> We provides three kind of interactive visualizations, including circle network, adjacent matrix and
-                    dynamic network. When you move mouse over one node, more detailed information and linked nodes will
-                    be high light. When you click one node, other visualizations will high light the same node.
+                <h2>3. Visualization</h2>
+                <p> We provides three kind of interactive visualizations, including circle network, adjacency matrix and
+                    force-directed graph. When you move mouse over one node, more detailed information and linked nodes
+                    will be high light. When you click one node in one diagram, the corresponding nodes in other two
+                    diagrams will also be high light.
                 </p>
-                <h4>Circle Network</h4>
-                <p>  </p>
+                <h4>3.1. Circle Network</h4>
+                <p>One node in circle network
+                represents a feature in epistatic effect results table. All nodes are arranged as a circle. Two nodes that have
+                epistatic relationship are linked by an undirected edge. Circle network has two main advantages comparing to table:
+
+1) It is easy to find out which feature has the most epistatic effects on other features.
+2) It is easy to find complex indirected relationship among features.</p>
                 <div align="center">
                     <img width="100%" src="{{ url_for('static',filename='img/help/circle_network.png') }}">
                 </div>
 
-                <h4>Circle Network</h4>
-                <p>  </p>
+                <h4>Adjacency Matrix</h4>
+                <p></p>
                 <div align="center">
                     <img width="100%" src="{{ url_for('static',filename='img/help/adjacency_matrix.png') }}">
                 </div>
 
-                <h4>Circle Network</h4>
-                <p>  </p>
+                <h4>Force-directed Graph</h4>
+                <p></p>
                 <div align="center">
                     <img width="100%" src="{{ url_for('static',filename='img/help/forced-direct_graph.png') }}">
                 </div>
