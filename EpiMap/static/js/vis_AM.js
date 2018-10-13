@@ -244,3 +244,25 @@ d3.json(am_graph_json, function (am_graph) {
     }
 });
 
+// Set-up the export button for circle_network
+d3.select('#am_saveAsPNG').on('click', function () {
+    saveSvgAsPng(document.getElementById("adjacency_matrix"), "adjacency_matrix.png", {scale: 4});
+});
+
+d3.select("#am_saveAsSVG")
+    .on("click", function () {
+        try {
+            var isFileSaverSupported = !!new Blob();
+        } catch (e) {
+            alert("blob not supported");
+        }
+
+        var html = d3.select("#adjacency_matrix")
+            .attr("title", "saveAsSVG")
+            .attr("version", 1.1)
+            .attr("xmlns", "http://www.w3.org/2000/cn_svg")
+            .node().parentNode.innerHTML;
+
+        var blob = new Blob([html], {type: "image/cn_svg+xml"});
+        saveAs(blob, "adjacency_matrix.svg");
+    });
