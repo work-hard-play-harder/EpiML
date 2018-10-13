@@ -33,7 +33,7 @@
     <div class="col-sm-9">
         <main>
             <section class="anchor" id="introduction">
-                <h2>Introduction</h2>
+                <h2>1. Introduction</h2>
                 <p> Epistasis is the phenomenon where the effect of one gene (locus) is dependent on the presence of one
                     or more 'modifier genes', i.e. the genetic background.[1] Originally the term meant that the
                     phenotypic effect of one gene is masked by a different gene (locus).[2] Thus, epistatic mutations
@@ -59,11 +59,11 @@
             </section>
             <hr>
             <section class="anchor" id="getting_started">
-                <h2>Getting Started</h2>
+                <h2>2. Getting Started</h2>
                 <p> This is a step-by-step tutorial how to use EpiML to find out main and epistasis effects in your
                     data.</p>
                 <br>
-                <h4>0. Prepare your data</h4>
+                <h4>2.0. Prepare your data</h4>
                 <p>Input files include two parts: feature matrix <strong>X</strong>, and label matrix <strong>Y</strong>.
                     Both of them are table separated files with row and column names. An example for SNP file is shown
                     in following:</p>
@@ -94,7 +94,7 @@
                     </p>
                 -->
                 <hr>
-                <h4>1. Upload data</h4>
+                <h4>2.1. Upload data</h4>
                 <p>Some basic information is required when you upload data. </p>
                 <ul>
                     <li><strong>Job name</strong> is used to retrieve results when you submitted job is done.
@@ -118,7 +118,7 @@
                 </div>
                 <hr>
 
-                <h4>2. Submit and check job status</h4>
+                <h4>2.2. Submit and check job status</h4>
                 <p> After submit your job, it will be added into job queue waiting for execution in background. The
                     browser will jump to a processing page where you can check your job status, as following figure
                     shown. Meanwhile, you will receive an Email notification with security code.
@@ -136,7 +136,7 @@
 
                 <hr>
 
-                <h4>3. Results</h4>
+                <h4>2.3. Results</h4>
                 <p>EpiML can detect main effects and epistatic effects in your data. These detected results will be list
                     in two interactive tables correspondingly, as following figure shown, where you can rank whole table
                     by
@@ -145,7 +145,7 @@
                 <img width="100%" src="{{ url_for('static',filename='img/help/result_table.png') }}">
                 <!--<img width="100%" src="{{ url_for('static',filename='img/help/epi_effect.png') }}">-->
                 <hr>
-                <h4>4.Download results</h4>
+                <h4>2.4. Download results</h4>
                 <hr>
                 <p>
 
@@ -155,28 +155,42 @@
                 <h2>3. Visualization</h2>
                 <p> We provides three kind of interactive visualizations, including circle network, adjacency matrix and
                     force-directed graph. When you move mouse over one node, more detailed information and linked nodes
-                    will be high light. When you click one node in one diagram, the corresponding nodes in other two
-                    diagrams will also be high light.
+                    will be highlighted. When you click one node in one diagram, the corresponding nodes in other two
+                    diagrams will also be highlighted.
                 </p>
                 <h4>3.1. Circle Network</h4>
-                <p>One node in circle network
-                represents a feature in epistatic effect results table. All nodes are arranged as a circle. Two nodes that have
-                epistatic relationship are linked by an undirected edge. Circle network has two main advantages comparing to table:
-
-1) It is easy to find out which feature has the most epistatic effects on other features.
-2) It is easy to find complex indirected relationship among features.</p>
+                <p>One node in circle network represents a feature in epistatic effect results table. All nodes are
+                    arranged as a circle. Two nodes that have epistatic relationship are linked by an undirected edge.
+                    Circle network has two main advantages comparing to table:
+                    1) It is easy to find out which feature has the most epistatic effects on other features;
+                    2) It is easy to find complex indirected relationship among features.</p>
+                <p> You can move mouse over one node to find its epistatic nodes in red. When you
+                    click one node, the node and its associated nodes will be highlighted in green. </p>
                 <div align="center">
                     <img width="100%" src="{{ url_for('static',filename='img/help/circle_network.png') }}">
                 </div>
 
-                <h4>Adjacency Matrix</h4>
-                <p></p>
+                <h4>3.2. Adjacency Matrix</h4>
+                <p>The row and column names in adjacency matrix both are the features in epistatic effect table. Each
+                    cell (i, j) represents an edge from vertex i to vertex j. Matrix cell depicts coefficient value in
+                    epistatic effect table. The darker cells indicate strong interaction. Adjacency matrix has two
+                    advantages comparing to circle network:
+                    1) Adjacency matrix can give a whole picture of epistatic relationship, especially for large number
+                    of epistatic features; 2) Matrix cell value can represent the strength of epistatic relationship.
+                    And it also can be encoded to show additional data.</p>
+
+                <p> You can move mouse over one node to check its epistatic feature and coefficient value.</p>
                 <div align="center">
                     <img width="100%" src="{{ url_for('static',filename='img/help/adjacency_matrix.png') }}">
                 </div>
 
-                <h4>Force-directed Graph</h4>
-                <p></p>
+                <h4>3.3. Force-directed Graph</h4>
+                <p>Force-directed graph is a more flexible way to represent epistatic relationship. One node in graph
+                    represents a feature in epistatic effect table. Two nodes that have epistatic relationship are
+                    linked by an edge. All kinds of information can be
+                    embedded in force-directed graph, like coefficient value and external resources.</p>
+                <p> You can move mouse over and drag one node to check its linked epistatic features. Click one node to
+                    show more information.</p>
                 <div align="center">
                     <img width="100%" src="{{ url_for('static',filename='img/help/forced-direct_graph.png') }}">
                 </div>
