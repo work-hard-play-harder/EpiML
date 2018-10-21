@@ -687,6 +687,7 @@ def result_train(jobid):
     cn_graph_json = miR_json.generate_miR_HEB_json()
     print(cn_graph_json)
     # for adjacency matrix
+
     miR_json.write_am_graph_json()
 
     return render_template('result_train.html', job=job,
