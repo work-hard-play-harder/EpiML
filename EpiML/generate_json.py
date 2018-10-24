@@ -3,7 +3,7 @@ import json
 import decimal
 import pandas as pd
 import random
-from EpiMap.datasets import MiRNA2Disease
+from EpiML.datasets import MiRNA2Disease
 
 
 def load_results(filename):

@@ -1,0 +1,19 @@
+{
+    "legends": [
+        {
+            "label": "Main effect",
+            "shape": "triangle",
+            "color": "red"
+        },
+        {
+            "label": "Epistatic effect",
+            "shape": "triangle",
+            "color": "green"
+        },
+        {
+            "label": "Target gene",
+            "shape": "circle",
+            "color": "blue"
+        }
+    ]
+}

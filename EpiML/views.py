@@ -2,7 +2,8 @@ import os
 import shutil
 import random
 import time
-from EpiMap import app, db
+from EpiML import app, db, celery
+from celery.result import AsyncResult
 
 # third-parties packages
 from flask import render_template, request, redirect, url_for, flash, make_response, abort, send_file
@@ -13,12 +14,12 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 
 # customized functions
-from EpiMap.run_scripts import call_train_scripts, call_predict_scripts, create_job_folder, check_job_status
-from EpiMap.generate_json import load_results, load_json, MiRNAJson, scitific_notation
-from EpiMap.create_figures import create_pca_figure, create_lasso_figure
-from EpiMap.db_tables import User, Job, Model
-from EpiMap.safety_check import is_safe_url, is_allowed_file, security_code_generator
-from EpiMap.email import send_email
+from EpiML.run_scripts import call_train_scripts, call_predict_scripts, create_job_folder  # , check_job_status
+from EpiML.generate_json import load_results, load_json, MiRNAJson, scitific_notation
+from EpiML.create_figures import create_pca_figure, create_lasso_figure
+from EpiML.db_tables import User, Job, Model
+from EpiML.safety_check import is_safe_url, is_allowed_file, security_code_generator
+from EpiML.email import send_email, send_submit_job_email
 
 
 @app.route('/')
@@ -250,7 +251,8 @@ def webserver_epistatic_analysis_train():
         description = request.form['description']
         input_x = request.files['input-x']
         input_y = request.files['input-y']
-        methods = request.form.getlist('methods')
+        # methods = request.form.getlist('methods')
+        method = request.form['method']
 
         params = {}
         if request.form.get('cv') == 'on':
@@ -262,7 +264,7 @@ def webserver_epistatic_analysis_train():
         else:
             params['seed_number'] = random.randint(0, 28213)
 
-        print(jobname, description, email, methods, input_x, input_y, params['fold_number'], params['seed_number'])
+        print(jobname, description, email, method, input_x, input_y, params['fold_number'], params['seed_number'])
 
         if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
             x_filename = secure_filename(input_x.filename)
@@ -274,11 +276,11 @@ def webserver_epistatic_analysis_train():
         if x_filename == y_filename:
             flash("Training data have the same file name.")
             return redirect(request.url)
-
-        if len(methods) == 0:
+        '''
+        if len(method) == 0:
             flash("You must choose at least one method!")
             return redirect(request.url)
-
+        '''
         # return security_code when user exists, otherwise add user into User database
         # then login
         user = User.query.filter_by(email=email).first()
@@ -294,7 +296,7 @@ def webserver_epistatic_analysis_train():
 
         # add job into Job database
         job = Job(name=jobname, category='General', type='Train', description=description,
-                  selected_algorithm=';'.join(methods), status=0,
+                  selected_algorithm=method, status='Queuing',
                   user_id=current_user.id)
         db.session.add(job)
         db.session.commit()
@@ -306,19 +308,20 @@ def webserver_epistatic_analysis_train():
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        print(methods)
-        for method in methods:
-            call_train_scripts('General', method, params, job_dir, x_filename, y_filename)
-            params_str = ';'.join([key + '=' + value for key, value in params.items()])
-            model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
-                          job_id=job.id)
-            db.session.add(model)
+        celery_task = call_train_scripts.apply_async(
+            [job.id, 'General', method, params, job_dir, x_filename, y_filename],
+            countdown=30)
+        job.celery_id = celery_task.id
+        db.session.add(job)
+
+        params_str = ';'.join([key + '=' + value for key, value in params.items()])
+        model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
+                      job_id=job.id)
+        db.session.add(model)
         db.session.commit()
 
         # send result link and security code via email
-        result_link = str(url_for('processing', jobid=job.id))
-        send_email(recipients=[email],
-                   result_link=result_link, security_code=security_code)
+        send_submit_job_email([email], security_code)
 
         return redirect(url_for('processing', jobid=job.id))
 
@@ -450,7 +453,8 @@ def webserver_epistasis_miRNA_train():
 
         # add job into Job database
         job = Job(name=jobname, category=jobcategory, type='Train', description=description,
-                  selected_algorithm=';'.join(methods), status=0, user_id=current_user.id)
+                  selected_algorithm=';'.join(methods), status=0, feature_file=x_filename, label_file=y_filename,
+                  user_id=current_user.id)
         db.session.add(job)
         db.session.commit()
 
@@ -633,10 +637,12 @@ def webserver_testing():
     return render_template('webserver_testing.html', models=models, jobnames=jobnames, usernames=usernames)
 
 
+'''
 @app.route('/predict')
 @login_required
 def predict():
     return render_template('predict.html')
+'''
 
 
 @app.route('/processing/<jobid>')
@@ -644,14 +650,14 @@ def predict():
 def processing(jobid):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
-    if job.status == 2:
+    if job.status == 'Done':
         if job.type == 'Train':
             return redirect(url_for('result_train', jobid=job.id))
         if job.type == 'Predict':
             return redirect(url_for('result_predict', jobid=job.id))
     else:
         methods = job.selected_algorithm
-        check_job_status(jobid, methods)
+        # check_job_status(jobid, methods)
         return render_template('processing.html', jobid=job.id)
 
 
@@ -679,15 +685,34 @@ def result_train(jobid):
     miR_json.write_forceDirect_legends_json()
     # for circle network
     cn_graph_json = miR_json.generate_miR_HEB_json()
+    print(cn_graph_json)
     # for adjacency matrix
     miR_json.write_am_graph_json()
 
+    return render_template('result_train.html', job=job,
+                           feature_file_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, job.feature_file)) / 1024),
+                           lable_file_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, job.label_file)) / 1024),
+                           main_result_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, 'main_result.txt')) / 1024),
+                           epis_result_size='{0:.2f}'.format(
+                               os.path.getsize(os.path.join(job_dir, 'epis_result.txt')) / 1024),
+
+                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
+                           nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
+                           legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
+                           cn_graph_json=cn_graph_json,
+                           am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
+
+    '''
     return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
                            nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
                            legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
                            cn_graph_json=cn_graph_json,
                            am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
+    '''
 
     '''
     if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
@@ -708,7 +733,7 @@ def result_train(jobid):
     '''
 
     '''
-    # for visulization
+    # for visualization
     fit_file = os.path.join(job_dir, 'lasso.fit')
     lasso_figure = create_lasso_figure(fit_file)
     lasso_script, lasso_div = components(lasso_figure)
@@ -753,21 +778,27 @@ def jobs():
         choosed_jobs = request.form.getlist('id[]')
         print(choosed_jobs)
         for id in choosed_jobs:
+            job = Job.query.filter_by(id=int(id)).first_or_404()
+            print(job)
+            # terminate background running task
+            if job.status != 'Done':
+                print('terminate background running task')
+                celery.control.revoke(job.celery_id, terminate=True)
+
             # must delete related models first, otherwise foreigner key will be delete then can't link to related model
             models = Model.query.filter_by(job_id=id).all()
             if models:
                 for model in models:
                     db.session.delete(model)
 
-            job = Job.query.filter_by(id=int(id)).first_or_404()
-            print(job)
             db.session.delete(job)
 
             # delete job_dir
             job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
                                    '_'.join(['userid', str(current_user.id)]),
                                    '_'.join(['jobid', str(id)]))
-            shutil.rmtree(job_dir)
+            if os.path.exists(job_dir):
+                shutil.rmtree(job_dir)
         db.session.commit()
 
     user = User.query.filter_by(id=current_user.id).first_or_404()
@@ -788,7 +819,7 @@ def models():
         db.session.commit()
 
     models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
-    # print(models)
+
     jobnames = []
     for model in models:
         jobname = Job.query.filter_by(id=model.job_id).first_or_404().name

@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from EpiMap import app
+from EpiML import app
 
 
 class MiRNA2Disease():

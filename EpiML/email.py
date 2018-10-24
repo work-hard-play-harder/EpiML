@@ -1,7 +1,7 @@
 from flask import render_template
 from flask_mail import Message
 
-from EpiMap import mail, app, celery
+from EpiML import mail, app, celery
 
 
 @celery.task()

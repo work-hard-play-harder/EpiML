@@ -4,7 +4,7 @@ import string
 from urllib.parse import urlparse, urljoin
 from flask import request
 
-from EpiMap import app
+from EpiML import app
 
 
 def is_safe_url(target):

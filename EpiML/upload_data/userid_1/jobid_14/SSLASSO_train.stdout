@@ -1,0 +1,14 @@
+/Users/jchen67/Experiment/ShiLab_securityCode 
+ssLasso parameters: 
+	workspace: /Users/jchen67/Experiment/ShiLab_securityCode/EpiMap/upload_data/userid_1/jobid_14 
+	x_filename: Geno.txt 
+	y_filename: Pheno.txt 
+	nFolds: 5 
+	seed: 28213 
+read data 
+[1] "features size: (150, 283)"
+[1] "y size: (150, 1)"
+EM Coordinate Decent Iterations: 7 
+Computational time: 0.001 minutes 
+1/32/33/3
+Cross-validation time: 0.003 minutes 

@@ -7,7 +7,7 @@ from flask_mail import Mail
 from redis import Redis
 from celery import Celery
 
-from EpiMap.momentjs import momentjs
+from EpiML.momentjs import momentjs
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -25,4 +25,4 @@ mail = Mail(app)
 # Keep this under the statement of app variable.
 # because views module will import app,
 
-from EpiMap import views,run_scripts, db_tables
+from EpiML import views,run_scripts, db_tables

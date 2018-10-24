@@ -7,9 +7,9 @@ from datetime import datetime, timezone
 
 from flask_login import current_user
 
-from EpiMap import app, db, celery
+from EpiML import app, db, celery
 
-from EpiMap.db_tables import User, Job, Model
+from EpiML.db_tables import User, Job, Model
 
 
 def create_job_folder(upload_folder='', userid=None, jobid=None):
