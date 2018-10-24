@@ -1,146 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23d6d21b-8e88-4746-8d9f-66a712f61b92" name="Default" comment="test">
-      <change beforePath="$PROJECT_DIR$/../EpiML/.idea/ShiLab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../EpiML/.idea/ShiLab.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/create_figures.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/miR2Disease/AllEntries.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/miR2Disease/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/miR2Disease/all_mirna_and_targets.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/miR2Disease/diseaseList.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/miR2Disease/miRNAlist.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/miR2Disease/miRtar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/miRBase/miRNA.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/sample_data/bc_x.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/sample_data/bc_y.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/sample_data/general_x.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/datasets/sample_data/general_y.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/db_tables.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/email.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/generate_json.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/momentjs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/run_scripts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/safety_check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/.RData" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/.Rhistory" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/EBEN_predict.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/EBEN_train.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/EBEN_train.bak.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/Matrix_eQTL_train.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/cv.bh.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/general_EBEN_train.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/lasso_train.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/scripts/ssLASSO.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/css/boostrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/css/nav-custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/css/vis_AM.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/css/vis_CN.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/css/vis_ER.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/base/EpiML_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/base/EpiML_logo_white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/base/NIH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/base/NSF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/base/shilab_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/base/shilab_logo.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/base/uncc_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/epiml.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/adjacency_matrix.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/circle_network.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/epi_effect.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/feature_matrix_X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/forced-direct_graph.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/job_list.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/job_table.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/label_matrix_Y.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/main_effect.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/result_table.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/schematic diagram.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/schematic_graph.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/start_job.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/help/upload_data.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/EpiML_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/customize.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/download.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/finished.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/integration.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/process.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/processing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/repository.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/submit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/upload.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/img/home/visualization.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/jquery-3.3.1.slim.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/moment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/offset_height_for_help_nav.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/saveSvgAsPng.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_AM.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_CN.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_ER.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_ER_legend.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_ER_legend_bak.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_interaction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_miRNA_FD_d3_bak.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/static/js/vis_miRNA_FD_d3_bak2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/base2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/base3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/base4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/help.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/jobs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/jobs2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/jobs_bak.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/login_wtf.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/models.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/page_not_found.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/pca.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/predict.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/processing.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/repository.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/result2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/result3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/result_predict.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/result_train.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/result_train_mirna.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/result_train_snps.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/signup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_elasticNet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_epis_analysis_predict.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_epis_analysis_train.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_epistasis_miRNA_predict.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_epistasis_miRNA_train.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_epistasis_miRNA_train2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_lasso_test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_lasso_train.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_testing.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/templates/webserver_training.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_1/EBEN.stderr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_1/EBEN.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_1/bc_x.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_1/bc_y.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_1/blup_full_hyperparams.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_1/epis_result.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_1/main_result.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_12/EBEN_train.stderr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_12/EBEN_train.stdout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_12/blup_full_hyperparams.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_12/epis_result.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_12/main_result.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_12/yeast_x.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/upload_data/userid_1/jobid_12/yeast_y.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/EpiMap/views_bak.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../EpiML/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EpiML/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EpiML/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EpiML/run.py" afterDir="false" />
+    <list default="true" id="23d6d21b-8e88-4746-8d9f-66a712f61b92" name="Default" comment="change project name">
+      <change beforePath="$PROJECT_DIR$/../EpiML/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EpiML/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +19,7 @@
     <session id="599392338">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="61" />
+          <entry key="project.closed" value="62" />
           <entry key="project.open.time.0" value="9" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.13" value="1" />
@@ -206,7 +68,7 @@
           <entry key="HTML" value="14357" />
           <entry key="JavaScript" value="6823" />
           <entry key="Markdown" value="37" />
-          <entry key="PLAIN_TEXT" value="992" />
+          <entry key="PLAIN_TEXT" value="1015" />
           <entry key="Python" value="4610" />
         </counts>
       </usages-collector>
@@ -219,7 +81,7 @@
           <entry key="js" value="6823" />
           <entry key="md" value="37" />
           <entry key="py" value="3416" />
-          <entry key="txt" value="976" />
+          <entry key="txt" value="999" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -230,20 +92,7 @@
     <favorites_list name="ShiLab_securityCode" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../EpiML/EpiML/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="24" column="15" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -495,20 +344,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528919842558</updated>
-    </task>
-    <task id="LOCAL-00053" summary="change color of icons in home.html&#10;add subtitle in help.html">
-      <created>1532710292051</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1532710292051</updated>
-    </task>
-    <task id="LOCAL-00054" summary="enlarge icons">
-      <created>1532729237862</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1532729237862</updated>
     </task>
     <task id="LOCAL-00055" summary="add hierarchical edge bunlding graph">
       <created>1532993421306</created>
@@ -839,7 +674,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540160346333</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="change project name">
+      <created>1540396898580</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1540396898581</updated>
+    </task>
+    <task id="LOCAL-00103" summary="change project name">
+      <created>1540396956172</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1540396956172</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TodoView">
@@ -854,12 +703,12 @@
   <component name="ToolWindowManager">
     <frame x="1280" y="23" width="1280" height="1336" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.58382875" visible="true" weight="0.19547658" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.58382875" weight="0.19547658" />
       <window_info id="Structure" order="1" sideWeight="0.41346154" side_tool="true" weight="0.2313702" />
       <window_info id="Favorites" order="2" sideWeight="0.41617122" side_tool="true" weight="0.23917526" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3279743" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49588868" visible="true" weight="0.21141478" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49588868" weight="0.21141478" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -898,7 +747,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="change size of icons" />
     <MESSAGE value="interactive evens between HEB graph and epis effect table" />
     <MESSAGE value="fd update" />
     <MESSAGE value="fix visualization: mouse over function" />
@@ -923,7 +771,8 @@
     <MESSAGE value="add document in result page" />
     <MESSAGE value="add document" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="change project name" />
+    <option name="LAST_COMMIT_MESSAGE" value="change project name" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../EpiML/EpiML/upload_data/userid_1/jobid_1/main_result.txt">
@@ -1210,7 +1059,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../EpiML/EpiML/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
+        <state relative-caret-position="388">
           <caret line="24" column="15" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
