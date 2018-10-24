@@ -667,7 +667,7 @@ def result_train(jobid):
     job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
                            '_'.join(['userid', str(current_user.id)]),
                            '_'.join(['jobid', str(jobid)]))
-    print(job_dir)
+
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
