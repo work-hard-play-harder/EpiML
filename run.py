@@ -1,5 +1,5 @@
-from EpiMap import app, db
-from EpiMap.db_tables import User, Job, Model
+from EpiML import app, db
+from EpiML.db_tables import User, Job, Model
 
 
 @app.shell_context_processor

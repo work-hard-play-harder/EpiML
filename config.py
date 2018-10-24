@@ -10,21 +10,21 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # for upload file
-    UPLOAD_FOLDER = os.path.join(basedir, 'EpiMap', 'upload_data')
+    UPLOAD_FOLDER = os.path.join(basedir, 'EpiMLML', 'upload_data')
     ALLOWED_EXTENSIONS = set(['txt', 'csv'])
 
     # for datasets
-    SAMPLE_DATA_DIR = os.path.join(basedir, 'EpiMap', 'datasets', 'sample_data')
-    MIR2DISEASE_DIR = os.path.join(basedir, 'EpiMap', 'datasets', 'miR2Disease')
-    MIR2BASE_DIR = os.path.join(basedir, 'EpiMap', 'datasets', 'miRBase')
+    SAMPLE_DATA_DIR = os.path.join(basedir, 'EpiMLL', 'datasets', 'sample_data')
+    MIR2DISEASE_DIR = os.path.join(basedir, 'EpiMLL', 'datasets', 'miR2Disease')
+    MIR2BASE_DIR = os.path.join(basedir, 'EpiMLL', 'datasets', 'miRBase')
 
     # for run scripts
-    GENERAL_EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'general_EBEN_train.R')
+    GENERAL_EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMLL', 'scripts', 'general_EBEN_train.R')
 
-    EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'EBEN_train.R')
-    EBEN_PREDICT_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'EBEN_predict.R')
-    SSLASSO_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'ssLASSO.R')
-    MATRIX_EQTL_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMap', 'scripts', 'Matrix_eQTL_train.R')
+    EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMLL', 'scripts', 'EBEN_train.R')
+    EBEN_PREDICT_SCRIPT = os.path.join(basedir, 'EpiMLL', 'scripts', 'EBEN_predict.R')
+    SSLASSO_SCRIPT = os.path.join(basedir, 'EpiMLL', 'scripts', 'ssLASSO.R')
+    MATRIX_EQTL_TRAIN_SCRIPT = os.path.join(basedir, 'EpiMLL', 'scripts', 'Matrix_eQTL_train.R')
 
     # for mail
     MAIL_SERVER = 'smtp.gmail.com'
