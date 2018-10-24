@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}
+        <title>Shilab web server</title>
+    {% endblock %}
+    {% block metas %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+        <script src="{{ url_for('static',filename='js/moment.js') }}"></script>
+        <script>
+            function autocollapse() {
+                var navbar = $('.navbar-autocollapse');
+                navbar.removeClass('collapsed');
+                if (navbar.innerHeight() > 113)
+                    navbar.addClass('collapsed');
+            }
+
+            jQuery(document).on('ready', autocollapse);
+            jQuery(window).on('resize', autocollapse);
+        </script>
+    {% endblock %}
+    {% block styles %}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/nav-custom.css') }}">
+        <style>
+            body {
+                /* to make the container go al the way to
+                           the bottom of the topbar*/
+                padding-top: 90px;
+
+            }
+
+            .navbar-toggle .icon-bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: #cccccc;
+                border-radius: 1px;
+            }
+
+            p {
+                font-size: large;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-fixed-top navbar-autocollapse">
+    <div class="container container-fluid">
+        <div class="nav navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <span>
+                    <img style="max-height: 75px" src="{{ url_for('static', filename='img/base/shilab_logo.png') }}">
+                </span>
+            </a>
+        </div>
+        <div id="menu" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('webserver_epistatic_analysis_train') }}">Epistatic Analysis</a></li>
+                <li><a href="{{ url_for('webserver_epistasis_miRNA_train') }}">Case Study</a></li>
+                <!--
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Server
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href={{ url_for('webserver_epistatic_analysis_train') }}> Epistatic Analysis </a></li>
+                        <li class="divider"></li>
+                        <li><a href={{ url_for('webserver_epistasis_miRNA_train') }}> Case Study </a>
+                        </li>
+                    </ul>
+                </li>
+                -->
+
+                <!--
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Server
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href={{ url_for('webserver_lasso_train') }}> LASSO-based methods</a></li>
+                        <li class="divider"></li>
+                        <li><a href={{ url_for('webserver_epistasis_miRNA_train') }}> Epistasis Analysis of
+                            MicroRNAs</a>
+                        </li>
+                        <li><a href='#'> Epistasis Analysis of SNP</a>
+                        </li>
+
+                    </ul>
+                </li>
+                -->
+                <li><a href="{{ url_for('jobs') }}">Jobs</a></li>
+                <li><a href="{{ url_for('models') }}">Models</a></li>
+                <!--<li><a href="{{ url_for('repository') }}">Repository</a></li> -->
+                <li><a href="{{ url_for('help') }}">Help</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+            <!-- following code is used for login  -->
+            <!--
+        <ul class="nav navbar-nav navbar-right">
+            {% if not current_user.is_authenticated %}
+                <li><a href={{ url_for('login') }}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href={{ url_for('signup') }}><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            {% else %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                        <span class="glyphicon glyphicon-user"></span> {{ current_user.username }} <span
+                            class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href={{ url_for('profile') }}><span
+                                class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href={{ url_for('jobs') }}><span
+                                class="glyphicon glyphicon-th-list"></span> Jobs</a></li>
+                        <li class="divider"></li>
+                        <li><a href={{ url_for('logout') }}><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+        -->
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+    <div style="height: 50px "></div>
+</div>
+<footer class="footer modal-footer" style="background-color: #155724">
+    <div class="container container-fluid">
+        <p style="color:white">Author: Junjie Chen</p>
+        <p style="color:white">06/20/2018</p>
+    </div>
+</footer>
+</body>
+</html>

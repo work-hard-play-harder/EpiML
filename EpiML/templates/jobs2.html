@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Jobs | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <style>
+        .table-hover tbody .tr_hover:hover td, .table-hover tbody .tr_hover:hover th {
+            background-color: coral;
+            cursor: pointer;
+        }
+
+        .hiddenRow {
+            padding: 0 !important;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#job_table').DataTable();
+        });
+    </script>
+{% endblock %}
+{% block content %}
+    <div>
+        <h2>Jobs</h2>
+        <p>This page lists all submitted jobs. There are total {{ jobs|length }} jobs</p>
+        <hr>
+        <table class="table-hover table-condense stripe" id="job_table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Selected Methods</th>
+                <th>Submit time</th>
+                <th>Running status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for job in jobs %}
+                <tr class="tr_hover accordion-toggle collapsible" data-toggle="collapse"
+                    data-target="#row{{ loop.index0 + 1 }}">
+                    <td>{{ loop.index0 + 1 }}</td>
+                    <td>{{ job.jobname }}</td>
+                    <td>{{ job.selected_algorithm }}</td>
+                    <td>{{ momentjs(job.timestamp).calendar() }} </td>
+                    <td>{% if job.status==0 %}
+                        Waiting...
+                    {% elif job.status==1 %}
+                        Running...
+                    {% elif job.status==2 %}
+                        Done! Use time: {{ job.running_time }}
+                    {% else %}
+                        Don't exist!
+                    {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="hiddenRow" colspan="5">
+                        <div class="accordian-body collapse" id="row{{ loop.index0 + 1 }}">
+                            <div class="col-sm-10">
+                                <p align="center"><strong>Job Description</strong></p>
+                                <p>{{ job.description }}</p>
+                            </div>
+                            <div class="col-sm-2" align="center" style="vertical-align: middle; display: table-cell">
+                                <a href="{{ url_for('result',jobid=job.id) }}">
+                                    <button name="submit" type="submit" class="btn btn-default" value="{{ job.id }}">
+                                        View Results
+                                    </button>
+                                </a>
+                            </div>
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

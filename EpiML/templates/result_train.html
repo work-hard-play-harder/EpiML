@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Result | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='css/vis_CN.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='css/vis_ER.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='css/vis_AM.css') }}">
+    <style>
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+    </style>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 20px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg .tg-odlp {
+            font-size: medium;
+            background-color: #ecf4ff;
+            color: #333333;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+
+        .tg .tg-iu9n {
+            font-size: medium;
+            background-color: #ffffff;
+            border-color: inherit;
+            text-align: left;
+            vertical-align: top
+        }
+
+        .tg .tg-t70x {
+            font-size: medium;
+            background-color: #ecf4ff;
+            border-color: #333333;
+            text-align: center;
+            vertical-align: top
+        }
+
+        .tg .tg-o36v {
+            font-size: medium;
+            background-color: #ecf4ff;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+
+        .tg .tg-wq9i {
+            font-size: medium;
+            background-color: #ecf4ff;
+            color: #333333;
+            border-color: inherit;
+            text-align: center
+        }
+
+        .tg .tg-vg4w {
+            font-size: medium;
+            background-color: #efefef;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <section>
+            <h2>Summary</h2>
+            <p>Your job is finished, and summaries are listed in following. You can download results and report
+                through corresponding links, or directly check your results using following interactive result tables
+                and
+                visualizations.</p>
+
+            <table class="tg" width="100%">
+                <tr>
+                    <th class="tg-odlp">Job name</th>
+                    <th class="tg-iu9n">{{ job.name }}</th>
+                    <th class="tg-t70x">Category</th>
+                    <th class="tg-iu9n">{{ job.category }}</th>
+                    <th class="tg-o36v">Method</th>
+                    <th class="tg-iu9n">{{ job.selected_algorithm }}</th>
+                </tr>
+                <tr>
+                    <td class="tg-odlp">Started</td>
+                    <td class="tg-iu9n">{{ momentjs(job.timestamp).calendar() }}</td>
+                    <td class="tg-t70x">Execution time</td>
+                    <td class="tg-iu9n">{{ job.running_time }}</td>
+                    <td class="tg-o36v">Status</td>
+                    <td class="tg-iu9n">{{ job.status }}</td>
+                </tr>
+                <tr>
+                    <td class="tg-odlp">Description</td>
+                    <td class="tg-iu9n" colspan="5">{{ job.description }}</td>
+                </tr>
+                <tr>
+                    <td class="tg-wq9i" rowspan="2">Input</td>
+                    <td class="tg-vg4w">Feature matrix</td>
+                    <td class="tg-iu9n" colspan="2"><a
+                            href="{{ url_for('download_result',jobid= job.id , filename=job.feature_file) }}"
+                            target="_blank">{{ job.feature_file }}</a></td>
+                    <td class="tg-o36v">File size</td>
+                    <td class="tg-iu9n">{{ feature_file_size }} KB</td>
+                </tr>
+                <tr>
+                    <td class="tg-vg4w">Label matrix</td>
+                    <td class="tg-iu9n" colspan="2"><a
+                            href="{{ url_for('download_result',jobid= job.id , filename=job.label_file) }}"
+                            target="_blank">{{ job.label_file }}</a></td>
+                    <td class="tg-o36v">File size</td>
+                    <td class="tg-iu9n">{{ lable_file_size }} KB</td>
+                </tr>
+                <tr>
+                    <td class="tg-wq9i" rowspan="2">Output</td>
+                    <td class="tg-vg4w">Main effect</td>
+                    <td class="tg-iu9n" colspan="2"><a
+                            href="{{ url_for('download_result',jobid= job.id , filename='main_result.txt') }}"
+                            target="_blank">Main effect</a></td>
+                    <td class="tg-o36v">File size</td>
+                    <td class="tg-iu9n">{{ main_result_size }} KB</td>
+                </tr>
+                <tr>
+                    <td class="tg-vg4w">Epistatic effect</td>
+                    <td class="tg-iu9n" colspan="2"><a
+                            href="{{ url_for('download_result',jobid=job.id, filename='epis_result.txt') }}"
+                            target="_blank">Epistatic effect</a></td>
+                    <td class="tg-o36v">File size</td>
+                    <td class="tg-iu9n">{{ epis_result_size }} KB</td>
+                </tr>
+                <tr>
+                    <td class="tg-odlp">Report</td>
+                    <td class="tg-iu9n" colspan="3">bioRxiv report</td>
+                    <td class="tg-o36v">File size</td>
+                    <td class="tg-iu9n">0.5 MB</td>
+                </tr>
+                <tr>
+                    <td class="tg-odlp">Notebook</td>
+                    <td class="tg-iu9n" colspan="3">Jupyter notebook; pre-configured docker container</td>
+                    <td class="tg-o36v">File size</td>
+                    <td class="tg-iu9n">0.5 MB</td>
+                </tr>
+                <tr>
+                    <td class="tg-odlp">Zip archive</td>
+                    <td class="tg-iu9n" colspan="3"></td>
+                    <td class="tg-o36v">File size</td>
+                    <td class="tg-iu9n">0.5 MB</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <hr>
+            <h2>Result</h2>
+            <p>EpiML can detect main effect and epistatic effect features in your data based on your selected machine
+                learning method. These results are shown in interactive tables by which you can easily explore and compare
+                results.</p>
+            <h3>Main Effect</h3>
+            <p>A main effect is the effect of an independent variant on a dependent variable across the levels of any
+                other effects.</p>
+            <div>
+                <table id="main_effect" name="main_effect" class="table table-hover stripe">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Feature</th>
+                        <th>Coefficent value</th>
+                        <th>Posterior variance</th>
+                        <th>t-value</th>
+                        <th>p-value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line in EBEN_main_result %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ line[0] }}</td>
+                            <td>{{ line[1] }}</td>
+                            <td>{{ line[2] }}</td>
+                            <td>{{ line[3] }}</td>
+                            <td>{{ line[4] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section>
+            <h3>Epistatic Effect</h3>
+            <p>Epistatic effect is the phenomenon where the effect of one variant is dependent on the presence of one or
+                more 'modifier variants'. </p>
+            <div>
+                <table id="epis_effect" name="epis_effect" class="table table-hover stripe ">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Feature 1</th>
+                        <th>Feature 2</th>
+                        <th>Coefficent value</th>
+                        <th>Posterior variance</th>
+                        <th>t-value</th>
+                        <th>p-value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line in EBEN_epis_result %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ line[0] }}</td>
+                            <td>{{ line[1] }}</td>
+                            <td>{{ line[2] }}</td>
+                            <td>{{ line[3] }}</td>
+                            <td>{{ line[4] }}</td>
+                            <td>{{ line[5] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                Note: This table can interact with following visualizations. When you click one row
+                in this table, the corresponding features will be highlight in circle network and adjacent matrix
+                visualizations.
+            </div>
+        </section>
+        <section>
+            <hr>
+            <h2>Visualization</h2>
+            <h3>Circle Network</h3>
+            <p> Epistatic effect results can be represented in circle network. One node in circle network
+                represents a feature in epistatic effect results table. All nodes are arranged as a circle. Two nodes that have
+                epistatic relationship are linked by an undirected edge. It is easy to know that the number of edges of
+                one node equals to the number of epsitatic effects that one feature has on other features.
+                Circle network has two main advantages comparing to table: </p>
+            <ol style="font-size: large">
+                <li>It is easy to find out which feature has the most epistatic effects on other features.</li>
+                <li>It is easy to find complex indirected relationship among features.</li>
+
+            </ol>
+
+            <div class="row" style="padding: 10px">
+
+
+                <div id="vis_cn" class="col-sm-9" align="center">
+                    <svg name="circle_network" id="circle_network"></svg>
+                </div>
+                <div class="col-sm-3">
+
+                    Mouse over any of nodes in this network to see its associative features in <span
+                        style="color: #d62728;">red</span>.
+                    <br> <br>
+                    Click one node to find details in above Epistatic Effect table. Double click on graph back
+                    to default.
+
+                    <!--//TODO: add datatables mouseover events -->
+                    <p></p>
+                    <div>
+                        <button id='cn_saveAsPNG' style="margin: 10px">Save as PNG</button>
+                        <button id='cn_saveAsSVG' style="margin: 10px">Save as SVG</button>
+                    </div>
+                </div>
+
+                <!-- for hierarchical edge bundling graph -->
+                <script>
+                    var cn_graph_json = {{ cn_graph_json|safe }};
+                </script>
+                <script type="text/javascript" charset="utf8"
+                        src="{{ url_for('static', filename='js/vis_CN.js') }}">
+                </script>
+            </div>
+        </section>
+        <section>
+            <h3>Adjacency Matrix</h3>
+            <div>
+                <p> Epistatic effect results also can be represented by an adjacency matrix, where row and column names
+                    are the features in epistatic effect table, each cell (<i>i</i>, <i>j</i>) represents an edge from
+                    vertex <i>i</i> to vertex <i>j</i>. Matrix cell depicts coefficent value in epistatic effect table. The darker cells indicate strong
+                    interaction.
+                    While circle network can give a good view for node-link relationship, adjacency matrix
+                    has other advantages:</p>
+                <ol style="font-size: large">
+                    <li>Adjacency matrix can give a whole picture of epistatic relationship, especially for large number
+                        of epistatic features. As circle network gets large and highly connected, it
+                        often becomes into giant hairballs of line crossings.
+                    </li>
+                    <li> Matrix cell value can represent the strength of epistatic relationship. And it also can be
+                        encoded to show additional data.
+                    </li>
+                </ol>
+                <!-- <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>-->
+            </div>
+            <div class="row" style="padding: 10px">
+
+                <div class="col-sm-offset-1 col-sm-7" id="vis_am" name="vis_am">
+                    <svg id="adjacency_matrix" name="adjacency_matrix"></svg>
+                </div>
+                <div class="col-sm-offset-1 col-sm-3">
+                    <br><br>
+                    Use the drop-down menu to reorder the matrix.<br>
+                    Order:
+                    <select id="order">
+                        <option value="name">by Name</option>
+                        <option value="count">by Count</option>
+                        <option value="rank">by Position</option>
+                    </select>
+                    <p></p>
+                    <div>
+                        <button id='am_saveAsPNG' style="margin: 10px">Save as PNG</button>
+                        <button id='am_saveAsSVG' style="margin: 10px">Save as SVG</button>
+                    </div>
+                </div>
+                <script>
+                    var am_graph_json = '{{ am_graph_json}}';
+                </script>
+                <script src="{{ url_for('static',filename='js/vis_AM.js') }}"></script>
+            </div>
+        </section>
+
+        <section>
+            <h3>Force-directed Graph</h3>
+            <p>Force-directed graph is a more flexible way to represent epistatic relationship. One node in graph
+                represents a feature in epistatic effect table. Two nodes that have epistatic relationship are linked by
+                an edge. It is to position the nodes of a graph in two-dimensional space so that all the edges are of
+                equal length and there are as few crossing edges as possible, by assigning forces among the set of edges
+                and nodes, based on their relative positions.
+            </p>
+
+
+            <!--
+                The mega data can be download
+                <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}"
+                   target="_blank">here</a> in JSON format.-->
+            <div id="visualization" class="container">
+
+                <div class="row">
+                    <div class=" col-sm-6">
+                        <!-- automatically add legend in vis_ER_legend.js -->
+                        <div id="ER_legendDiv" class="row"></div>
+                        <!--
+                        <label>
+                            <input type="checkbox" class="filter-ckb" value="Main effect" checked> Main
+                            effect</label>
+                        <label><input type="checkbox" class="filter-ckb" value="Epistatic effect" checked>
+                            Epistatic effect</label>
+                        <label> <input type="checkbox" class="filter-ckb" value="Target gene" checked> Target
+                            gene</label>
+                        -->
+                    </div>
+                    <div class=" col-sm-6" align="right">
+                        <button id='ER_saveAsPNG'>Save as PNG</button>
+                        <button id='ER_saveAsSVG'>Save as SVG</button>
+                        <label>Search: <input id="searchNode" name="searchNode" type="text"
+                                              oninput="searchERNode(this.value)"/></label>
+                    </div>
+                </div>
+                <div style="padding-top: 10px">
+                    <!--<svg name="ER_legend" id="ER_legend"></svg>-->
+                    <svg name="ER_diagram" id="ER_diagram"></svg>
+                </div>
+                <!-- for d3 visualization. This script must be after svg tag-->
+                <script>
+                    var nodes_links_json = '{{ nodes_links_json }}';
+                    var legends_json = '{{ legends_json }}';
+                </script>
+
+                <script type="text/javascript" charset="utf8"
+                        src="{{ url_for('static', filename='js/vis_ER_legend.js') }}"></script>
+                <script type="text/javascript" charset="utf8"
+                        src="{{ url_for('static', filename='js/vis_ER.js') }}"></script>
+            </div>
+            Note:
+            <ol>
+                <li>Check the items that you want to explore in figure legend</li>
+                <li>Zoom in and drag nodes to find out your interested nodes.</li>
+                <li>Mouse over one node to highlight it and its linked nodes by fading out other nodes and links.</li>
+                <li>Click one node to show more information, including links to external resources.</li>
+            </ol>
+        </section>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <!-- for datatables -->
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+
+    <!-- for visualization -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- for interaction -->
+    <script src="{{ url_for('static',filename='js/vis_interaction.js') }}"></script>
+    <!-- for save as -->
+    <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
+    <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+
+{% endblock %}

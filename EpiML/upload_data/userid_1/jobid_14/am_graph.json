@@ -1,0 +1,106 @@
+{
+    "nodes": [
+        {
+            "name": "X4804357_chrVII_1065367_C_A",
+            "group": "Epistatic effect",
+            "rank": 77
+        },
+        {
+            "name": "X1977864_chrIV_617842_C_T",
+            "group": "Epistatic effect",
+            "rank": 81
+        },
+        {
+            "name": "X6317908_chrX_485447_G_A",
+            "group": "Epistatic effect",
+            "rank": 98
+        },
+        {
+            "name": "X2412904_chrIV_1052882_T_C",
+            "group": "Epistatic effect",
+            "rank": 46
+        },
+        {
+            "name": "X2467466_chrIV_1107444_C_T",
+            "group": "Epistatic effect",
+            "rank": 33
+        },
+        {
+            "name": "X6439984_chrX_607523_G_T",
+            "group": "Epistatic effect",
+            "rank": 84
+        },
+        {
+            "name": "X2824228_chrIV_1464206_G_A",
+            "group": "Epistatic effect",
+            "rank": 80
+        },
+        {
+            "name": "X3926164_chrVII_187174_A_G",
+            "group": "Epistatic effect",
+            "rank": 33
+        },
+        {
+            "name": "X2867628_chrIV_1507606_T_C",
+            "group": "Epistatic effect",
+            "rank": 69
+        },
+        {
+            "name": "X7217302_chrXI_639090_C_T",
+            "group": "Epistatic effect",
+            "rank": 22
+        },
+        {
+            "name": "X4134872_chrVII_395882_C_T",
+            "group": "Epistatic effect",
+            "rank": 76
+        },
+        {
+            "name": "X11494032_chrXVI_370772_T_A",
+            "group": "Epistatic effect",
+            "rank": 37
+        },
+        {
+            "name": "X6674764_chrXI_96552_C_T",
+            "group": "Epistatic effect",
+            "rank": 77
+        }
+    ],
+    "links": [
+        {
+            "source": 0,
+            "target": 6,
+            "coff": -0.00881040933226657
+        },
+        {
+            "source": 1,
+            "target": 7,
+            "coff": 0.0510337721711994
+        },
+        {
+            "source": 2,
+            "target": 8,
+            "coff": 0.0264301695374038
+        },
+        {
+            "source": 3,
+            "target": 9,
+            "coff": 0.0910480874488587
+        },
+        {
+            "source": 2,
+            "target": 10,
+            "coff": 0.0123160503370293
+        },
+        {
+            "source": 4,
+            "target": 11,
+            "coff": 0.324412122116439
+        },
+        {
+            "source": 5,
+            "target": 12,
+            "coff": 0.0153415932742849
+        }
+    ]
+}

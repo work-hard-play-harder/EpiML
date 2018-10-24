@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Models | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css"
+          rel="stylesheet" type="text/css">
+    <style>
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#model_table').DataTable({
+                'columnDefs': [{
+                    'targets': 0,
+                    'checkboxes': {
+                        'selectRow': true
+                    },
+                    'searchable': false,
+                    'orderable': false,
+
+                }],
+                'select': {
+                    'style': 'multi'
+                },
+                'order': [[1, 'asc']],
+            });
+
+
+            $("#delete").on("click", function () {
+                var rows_selected = table.column(0).checkboxes.selected();
+                if (rows_selected.length == 0) {
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_WARNING,
+                        title: 'No model is selected',
+                        message: 'Please selected models to delete.',
+                        buttons: [{
+                            label: 'Close',
+                            action: function (dialogItself) {
+                                dialogItself.close();
+                            }
+                        }]
+                    });
+                } else {
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_DANGER,
+                        title: 'Delete selected models',
+                        message: 'Are you sure to permanently delete selected models? It can\'t be recovered.',
+                        buttons: [{
+                            label: 'Delete',
+                            action: function () {
+                                $("#form_model").submit();
+                            }
+                        }, {
+                            label: 'Cancel',
+                            action: function (dialogItself) {
+                                dialogItself.close();
+                            }
+                        }]
+                    });
+                }
+                return false // !important, keep dialog blocking and prevent submit event
+            });
+
+            // Handle form submission event
+            $('#form_model').on('submit', function (e) {
+                var form = this;
+                var rows_selected = table.column(0).checkboxes.selected();
+
+                // Iterate over all selected checkboxes
+                $.each(rows_selected, function (index, rowId) {
+                    // Create a hidden element
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'id[]')
+                            .val(rowId)
+                    );
+                });
+
+                // FOR DEMONSTRATION ONLY
+                // The code below is not needed in production
+
+                // Output form data to a console
+                //$('#example-console-rows').text(rows_selected.join(","));
+
+                // Output form data to a console
+                //$('#example-console-form').text($(form).serialize());
+            });
+        });
+    </script>
+
+
+{% endblock %}
+{% block content %}
+    <div>
+        <h2>Model Repository</h2>
+        <p>This page lists all shared models. There are total {{ models|length }} shared models.</p>
+        <hr>
+        <form name="form_model" id="form_model" method="post" enctype="multipart/form-data">
+            <table class="table-hover table-condense stripe" id="model_table" data-page-length='25'>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>Method</th>
+                    <th>Description</th>
+                    <th>Performance</th>
+                    <th>Recall times</th>
+                    <th>Submit time</th>
+                    <th>Training time</th>
+                    <th>Job Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for model in models %}
+                    <tr>
+                        <td> {{ model.id }}</td>
+                        <!-- input checkbox value-->
+                        <td>{{ loop.index0 + 1 }}</td>
+                        <td>{{ model.algorithm }}</td>
+                        <td>{{ model.description }}</td>
+                        <td>{{ model.performance }}</td>
+                        <td>{{ model.recall_times }}</td>
+                        <td>{{ momentjs(model.timestamp).calendar() }} </td>
+                        <td>{{ model.training_time }}</td>
+                        <td>{{ jobnames[loop.index0] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div style="padding-top: 10px">
+                <button id="delete" name="delete" type="submit">Delete Models</button>
+            </div>
+            <!--
+                        <p><b>Selected rows data:</b></p>
+                        <pre id="example-console-rows"></pre>
+
+                        <p><b>Form data as submitted to the server:</b></p>
+                        <pre id="example-console-form"></pre>
+            -->
+        </form>
+    </div>
+
+    <!-- for boostrap dialog -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body…</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}

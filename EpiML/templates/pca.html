@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>PCA | Shilab web server</title>
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    {{ css_resources|indent(4)|safe }}
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    {{ js_resources|indent(4)|safe }}
+    {{ plot_script|indent(4)|safe }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <main>
+            <section class="anchor" id="PCA">
+                <h2>PCA analysis</h2>
+                <p>This page show the PCA result.</p>
+                <p>The job submitted by {{ user_dir }} is finished, and the results are shown in following </p>
+
+
+                {{ plot_div|indent(4)|safe }}
+
+
+            </section>
+        </main>
+
+    </div>
+{% endblock %}

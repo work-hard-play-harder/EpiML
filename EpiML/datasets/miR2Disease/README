@@ -1,0 +1,6 @@
+
+wget http://watson.compbio.iupui.edu:8080/miR2Disease/download/AllEntries.txt
+wget http://watson.compbio.iupui.edu:8080/miR2Disease/download/miRtar.txt
+
+Jiang Q., Wang Y., Hao Y., Juan L., Teng M., Zhang X., Li M., Wang G., Liu Y., (2009) miR2Disease: a manually curated database for microRNA deregulation in human disease. Nucleic Acids Res.
+       

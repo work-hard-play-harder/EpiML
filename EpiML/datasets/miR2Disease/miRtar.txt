@@ -1,0 +1,812 @@
+The following miRNA-target pairs, validated by luciferase reporter experiments, were extracted manually from the corresponding reference. A few target genes not documented here may be available in "TarBase" and "miRecords" database system.
+
+miRNA	Validated target	Pub Date	Reference
+hsa-let-7a	KRAS	2008	A SNP in a let-7 microRNA complementary site in the KRAS 3' untranslated region increases non-small cell lung cancer risk.
+hsa-let-7a	HMGA2	2008	Clinical significance of high mobility group A2 in human gastric cancer and its relationship to let-7 microRNA family.
+hsa-let-7a	integrin beta(3)	2008	Integrin beta(3) expression is regulated by let-7a miRNA in malignant melanoma.
+hsa-let-7a	caspase-3	2008	Let-7a microRNA suppresses therapeutics-induced cancer cell death by targeting caspase-3.
+hsa-let-7a	PRDM1/Blimp-1	2008	MicroRNA-mediated down-regulation of PRDM1/Blimp-1 in Hodgkin/Reed-Sternberg cells: a potential pathogenetic lesion in Hodgkin lymphomas.
+hsa-let-7a	HMGA2	2007	Disrupting the pairing between let-7 and Hmga2 enhances oncogenic transformation.
+hsa-let-7a	IGF-II	2007	Hypermethylation of let-7a-3 in epithelial ovarian cancer is associated with low insulin-like growth factor-II expression and favorable prognosis.
+hsa-let-7a	HMGA2	2007	Let-7 expression defines two differentiation stages of cancer.
+hsa-let-7a	HMGA2	2007	let-7 regulates self renewal and tumorigenicity of breast cancer cells.
+hsa-let-7a	RAS	2007	let-7 regulates self renewal and tumorigenicity of breast cancer cells.
+hsa-let-7a	BCL2	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-let-7a	RAS	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-let-7a	MYC	2007	MicroRNA let-7a down-regulates MYC and reverts MYC-induced growth in Burkitt lymphoma cells.
+hsa-let-7a	CDC25A	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7a	CDK6	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7a	NF2	2007	The MicroRNA let-7a modulates interleukin-6-dependent STAT-3 survival signaling in malignant human cholangiocytes.
+hsa-let-7a	c-myc	2006	let-7 microRNA functions as a potential growth suppressor in human colon cancer cells.
+hsa-let-7a	RAS	2006	let-7 microRNA functions as a potential growth suppressor in human colon cancer cells.
+hsa-let-7a	RAS	2005	RAS is regulated by the let-7 microRNA family.
+hsa-let-7a	NIRF	2009	Let-7a elevates p21(WAF1) levels by targeting of NIRF and suppresses the growth of A549 lung cancer cells
+hsa-let-7b	Cdc34	2009	let-7 overexpression leads to an increased fraction of cells in G2/M, direct down-regulation of Cdc34 and stabilization of Wee1 kinase in primary fibroblasts.
+hsa-let-7b	Dicer	2008	A search for conserved sequences in coding regions reveals that the let-7 microRNA targets Dicer within its coding sequence
+hsa-let-7b	KRAS	2008	A SNP in a let-7 microRNA complementary site in the KRAS 3' untranslated region increases non-small cell lung cancer risk.
+hsa-let-7b	CCND1	2008	MicroRNA let-7b targets important cell cycle molecules in malignant melanoma cells and interferes with anchorage-independent growth.
+hsa-let-7b	CDC25A	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7b	CDK6	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7b	HMGA2	2007	The tumor suppressor microRNA let-7 represses the HMGA2 oncogene.
+hsa-let-7c	HMGA2	2008	Antiproliferative effects by Let-7 repression of high-mobility group A2 in uterine leiomyoma.
+hsa-let-7c	HMGA2	2007	A micro-RNA signature associated with race, tumor size, and target gene activity in human uterine leiomyomas.
+hsa-let-7c	HMGA2	2007	Let-7 expression defines two differentiation stages of cancer.
+hsa-let-7c	BCL2	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-let-7c	RAS	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-let-7c	CDC25A	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7c	CDK6	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7c	RAS	2007	Widespread deregulation of microRNA expression in human prostate cancer.
+hsa-let-7d	KRAS	2008	A SNP in a let-7 microRNA complementary site in the KRAS 3' untranslated region increases non-small cell lung cancer risk.
+hsa-let-7d	HMGA2	2007	Let-7 prevents early cancer progression by suppressing expression of the embryonic gene HMGA2.
+hsa-let-7d	BCL2	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-let-7d	RAS	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-let-7d	CDC25A	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7d	CDK6	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7d 	BDNF	2009	microRNAs miR-124, let-7d and miR-181a regulate Cocaine-induced Plasticity
+hsa-let-7d 	D3R	2009	microRNAs miR-124, let-7d and miR-181a regulate Cocaine-induced Plasticity
+hsa-let-7e	HMGA2	2007	The tumor suppressor microRNA let-7 represses the HMGA2 oncogene.
+hsa-let-7g	KRAS	2008	A SNP in a let-7 microRNA complementary site in the KRAS 3' untranslated region increases non-small cell lung cancer risk.
+hsa-let-7g	HMGA2	2008	Suppression of non-small cell lung tumor development by the let-7 microRNA family.
+hsa-let-7g	Ras	2008	Suppression of non-small cell lung tumor development by the let-7 microRNA family.
+hsa-let-7g	HMGA2	2007	Let-7 expression defines two differentiation stages of cancer.
+hsa-let-7g	CDC25A	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-let-7g	CDK6	2007	The let-7 microRNA represses cell proliferation pathways in human cells.
+hsa-miR-1	c-Met	2009	MicroRNA-1/206 targets c-Met and inhibits rhabdomyosarcoma development.
+hsa-miR-1	calmodulin	2009	MicroRNA-1 negatively regulates expression of the hypertrophy-associated calmodulin and Mef2a genes
+hsa-miR-1	Gata4	2009	MicroRNA-1 negatively regulates expression of the hypertrophy-associated calmodulin and Mef2a genes
+hsa-miR-1	Mef2a	2009	MicroRNA-1 negatively regulates expression of the hypertrophy-associated calmodulin and Mef2a genes
+hsa-miR-1	BCL2	2009	MicroRNA-1 Regulates Cardiomyocyte Apoptosis by Targeting Bcl-2
+hsa-miR-1	Gata4	2009	MicroRNA-27a functions as an oncogene in gastric adenocarcinoma by targeting prohibitin.
+hsa-miR-1	calmodulin	2009	Post-transcriptional regulation of mouse mu opioid receptor (MOR1) via its 3'untranslated region: a role for microRNA23b.
+hsa-miR-1	Mef2a	2009	Up-regulation of micro-RNA-221 (miRNA-221; chr Xp11.3) and caspase-3 accompanies down-regulation of the survivin-1 homolog BIRC1 (NAIP) in glioblastoma multiforme(GBM).
+hsa-miR-1	C/EBPa	2008	Downregulation of microRNA-1 (miR-1) in lung cancer: Suppression of tumorigenic property of lung cancer cells and their sensitization to doxorubicin induced apoptosis bymiR-1.
+hsa-miR-1	FoxP1	2008	Downregulation of microRNA-1 (miR-1) in lung cancer: Suppression of tumorigenic property of lung cancer cells and their sensitization to doxorubicin induced apoptosis bymiR-1.
+hsa-miR-1	HDAC4	2008	Downregulation of microRNA-1 (miR-1) in lung cancer: Suppression of tumorigenic property of lung cancer cells and their sensitization to doxorubicin induced apoptosis bymiR-1.
+hsa-miR-1	MET	2008	Downregulation of microRNA-1 (miR-1) in lung cancer: Suppression of tumorigenic property of lung cancer cells and their sensitization to doxorubicin induced apoptosis bymiR-1.
+hsa-miR-1	HCN4	2008	Down-regulation of miR-1/miR-133 contributes to re-expression of pacemaker channel genes HCN2 and HCN4 in hypertrophic heart.
+hsa-miR-1	FoxP1	2008	Methylation mediated silencing of MicroRNA-1 gene and its role in hepatocellular carcinogenesis.
+hsa-miR-1	HDAC4	2008	Methylation mediated silencing of MicroRNA-1 gene and its role in hepatocellular carcinogenesis.
+hsa-miR-1	MET	2008	Methylation mediated silencing of MicroRNA-1 gene and its role in hepatocellular carcinogenesis.
+hsa-miR-1	Cdk9	2008	MicroRNAs play an essential role in the development of cardiac hypertrophy.
+hsa-miR-1	fibronectin	2008	MicroRNAs play an essential role in the development of cardiac hypertrophy.
+hsa-miR-1	RasGAP	2008	MicroRNAs play an essential role in the development of cardiac hypertrophy.
+hsa-miR-1	Rheb	2008	MicroRNAs play an essential role in the development of cardiac hypertrophy.
+hsa-miR-1	MEF-2	2008	The microRNA miR-1 regulates a MEF-2-dependent retrograde signal at neuromuscular junctions.
+hsa-miR-1	nAChR	2008	The microRNA miR-1 regulates a MEF-2-dependent retrograde signal at neuromuscular junctions.
+hsa-miR-1	GAJ1	2007	The muscle-specific microRNA miR-1 regulates cardiac arrhythmogenic potential by targeting GJA1 and KCNJ2.
+hsa-miR-1	KCNJ2	2007	The muscle-specific microRNA miR-1 regulates cardiac arrhythmogenic potential by targeting GJA1 and KCNJ2.
+hsa-miR-1	HSP60	2007	The muscle-specific microRNAs miR-1 and miR-133 produce opposing effects on apoptosis by targeting HSP60, HSP70 and caspase-9 in cardiomyocytes.
+hsa-miR-1	HSP70	2007	The muscle-specific microRNAs miR-1 and miR-133 produce opposing effects on apoptosis by targeting HSP60, HSP70 and caspase-9 in cardiomyocytes.
+hsa-miR-1	Hand2	2005	Serum response factor regulates a muscle-specific microRNA that targets Hand2 during cardiogenesis.
+hsa-miR-1	Kir2.1	2009	Tanshinone IIA protects against sudden cardiac death induced by lethal arrhythmias via repression of microRNA-1
+hsa-miR-100	Plk1	2009	Significance of Plk1 regulation by miR-100 in human nasopharyngeal cancer
+hsa-miR-101	EZH2	2009	The tumor suppressor microRNA-101 becomes an epigenetic player by targeting the polycomb group protein EZH2 in cancer
+hsa-miR-101	EZH2	2009	Detection of metastatic head and neck squamous cell carcinoma using the relative  expression of tissue-specific mir-205.
+hsa-miR-101	Mcl-1	2009	Down-regulation of hsa-miR-10a in chronic myeloid leukemia CD34+ cells increases  USF2-mediated cell growth.
+hsa-miR-101	FOS	2009	MicroRNA-101 regulates expression of the v-fos FBJ murine osteosarcoma viral oncogene homolog (FOS) oncogene in human hepatocellular carcinoma.
+hsa-miR-101	EZH2	2009	The putative tumor suppressor microRNA-101 modulates the cancer epigenome by repressing the polycomb group protein EZH2.
+hsa-miR-101	FOS	2009	The role of microRNA expression pattern in human intrahepatic cholangiocarcinoma.
+hsa-miR-101	ATXN1	2008	miR-19, miR-101 and miR-130 co-regulate ATXN1 levels to potentially modulate SCA1 pathogenesis.
+hsa-miR-101	MYCN	2007	MicroRNA signatures in human ovarian cancer.
+hsa-miR-101	Ezh2	2010	MicroRNA-101 negatively regulates Ezh2 and its expression is modulated by androgen receptor and HIF-1alpha/HIF-1beta.
+hsa-miR-101b	ATXN1	2009	Regulation of microRNA expression by HMGA1 proteins
+hsa-miR-101b	STC1	2009	Regulation of microRNA expression by HMGA1 proteins
+hsa-miR-106a	IL-10 	2009	Posttranscriptional regulation of interleukin-10 expression by hsa-miR-106a
+hsa-miR-106a	E2F1	2008	Deregulated expression of miR-106a predicts survival in human colon cancer patients.
+hsa-miR-106a	Mylip	2006	Oncogenic potential of the miR-106-363 cluster and its implication in human T-cell leukemia.
+hsa-miR-106b	p21	2009	Functional links between clustered microRNAs: suppression of cell-cycle inhibitors by microRNA clusters in gastric cancer.
+hsa-miR-106b	APP	2009	MicroRNA regulation of Alzheimer's Amyloid precursor protein expression.
+hsa-miR-106b	Itch	2009	MicroRNA-regulated pathways associated with endometriosis.
+hsa-miR-106b	E2F1	2009	Role of the miR-106b-25 microRNA cluster in hepatocellular carcinoma.
+hsa-miR-106b	E2F1	2008	E2F1-regulated microRNAs impair TGFbeta-dependent cell-cycle arrest and apoptosis in gastric cancer.
+hsa-miR-106b	PCAF	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-107	PLAG1	2009	miRNA deregulation by epigenetic silencing disrupts suppression of the oncogene PLAG1 in chronic lymphocytic leukemia.
+hsa-miR-107	BACE1	2008	The expression of microRNA miR-107 decreases early in Alzheimer's disease and may accelerate disease progression through regulation of beta-site amyloid precursor protein-cleaving enzyme 1.
+hsa-miR-10b	HOXD10	2007	Tumour invasion and metastasis initiated by microRNA-10b in breast cancer.
+hsa-miR-10b	PPAR-alpha	2009	Effect of miRNA-10b in regulating cellular steatosis level by targeting PPAR-alpha expression, a novel mechanism for the pathogenesis of NAFLD
+hsa-miR-1-2	Hand2	2007	Dysregulation of cardiogenesis, cardiac conduction, and cell cycle in mice lacking miRNA-1-2.
+hsa-miR-1-2	Irx5	2007	Dysregulation of cardiogenesis, cardiac conduction, and cell cycle in mice lacking miRNA-1-2.
+hsa-miR-1-2	Kcnd2	2007	Dysregulation of cardiogenesis, cardiac conduction, and cell cycle in mice lacking miRNA-1-2.
+hsa-miR-122	Bcl-w	2008	miR-122 targets an anti-apoptotic gene, Bcl-w, in human hepatocellular carcinoma cell lines.
+hsa-miR-122	ADAM-10	2009	MicroRNA-122 inhibits tumorigenic properties of hepatocellular carcinoma cells and sensitizes these cells to Sorafenib
+hsa-miR-122	SRF	2009	MicroRNA-122 inhibits tumorigenic properties of hepatocellular carcinoma cells and sensitizes these cells to Sorafenib
+hsa-miR-122	Igf1R	2009	MicroRNA-122 inhibits tumorigenic properties of hepatocellular carcinoma cells and sensitizes these cells to Sorafenib
+hsa-miR-122a	CCNG1	2009	MiR-122/cyclin G1 interaction modulates p53 activity and affects doxorubicin sensitivity of human hepatocarcinoma cells.
+hsa-miR-122a	CCNG1	2007	Cyclin G1 is a target of miR-122a, a microRNA frequently down-regulated in human hepatocellular carcinoma.
+hsa-miR-122a	AMPK	2006	miR-122 regulation of lipid metabolism revealed by in vivo antisense targeting.
+hsa-miR-124	BDNF	2009	microRNAs miR-124, let-7d and miR-181a regulate Cocaine-induced Plasticity
+hsa-miR-124	D3R	2009	microRNAs miR-124, let-7d and miR-181a regulate Cocaine-induced Plasticity
+hsa-miR-124	Sox9	2009	miR-124 regulates adult neurogenesis in the subventricular zone stem cell niche
+hsa-miR-124a	Rb	2009	Epigenetic silencing of the tumor suppressor microRNA Hsa-miR-124a regulates CDK6 expression and confers a poor prognosis in acute lymphoblastic leukemia.
+hsa-miR-124a	IkappaBzeta	2009	IkappaBzeta expression is regulated by miR-124a
+hsa-miR-124a	CDK6	2008	miR-124 and miR-137 inhibit proliferation of glioblastoma multiforme cells and induce differentiation of brain tumor stem cells.
+hsa-miR-124a	CDK6	2008	Regulation of cyclin dependent kinase 6 by microRNA 124 in medulloblastoma.
+hsa-miR-124a	CDK6	2007	CpG island hypermethylation of tumor suppressor microRNAs in human cancer.
+hsa-miR-124a	CDK6	2007	Genetic unmasking of an epigenetically silenced microRNA in human cancer cells.
+hsa-miR-125a	TrkC	2009	Low-Level Expression of MicroRNAs let-7d and miR-205 Are Prognostic Markers of Head and Neck Squamous Cell Carcinoma.
+hsa-miR-125a	TrkC	2008	MicroRNA profiling in human medulloblastoma.
+hsa-miR-125a	ERBB2	2006	Coordinate suppression of ERBB2 and ERBB3 by enforced expression of micro-RNA miR-125a or miR-125b.
+hsa-miR-125a	ERBB3	2006	Coordinate suppression of ERBB2 and ERBB3 by enforced expression of micro-RNA miR-125a or miR-125b.
+hsa-miR-125a	p53	2009	MicroRNA 125a and its regulation of the p53 tumor suppressor gene
+hsa-miR-125a	HuR	2009	MicroRNA-125a represses cell growth by targeting HuR in breast cancer
+hsa-miR-125a	ARID3B	2009	The epidermal growth factor receptor responsive miR-125a represses mesenchymal morphology in ovarian cancer cells
+hsa-miR-125b	VDR	2009	MicroRNA regulates human vitamin D receptor
+hsa-miR-125b	p53	2009	MicroRNA-125b is a novel negative regulator of p53
+hsa-miR-125b	BAK1	2009	MicroRNAs and their potential for translation in prostate cancer.
+hsa-miR-125b	CDK6	2009	MicroRNAs and their potential for translation in prostate cancer.
+hsa-miR-125b	Gli1	2008	Concerted microRNA control of Hedgehog signalling in cerebellar neuronal progenitor and tumour cells.
+hsa-miR-125b	Bak1	2007	An androgen-regulated miRNA suppresses Bak1 expression and induces androgen-independent growth of prostate cancer cells.
+hsa-miR-125b	HMGA1	2007	Specific microRNAs are downregulated in human thyroid anaplastic carcinomas.
+hsa-miR-125b	HMGA2	2007	Specific microRNAs are downregulated in human thyroid anaplastic carcinomas.
+hsa-miR-125b	EIF4EBP1	2007	Widespread deregulation of microRNA expression in human prostate cancer.
+hsa-miR-125b	ERBB2	2006	Coordinate suppression of ERBB2 and ERBB3 by enforced expression of micro-RNA miR-125a or miR-125b.
+hsa-miR-125b	ERBB3	2006	Coordinate suppression of ERBB2 and ERBB3 by enforced expression of micro-RNA miR-125a or miR-125b.
+hsa-miR-125b	BMPR1B	2009	A risk variant in an miR-125b binding site in BMPR1B is associated with breast cancer pathogenesis
+hsa-miR-126	IRS-1	2009	Regulation of epidermal growth factor receptor signaling in human cancer cells by microRNA-7.
+hsa-miR-126	p85beta	2008	Attribution of vascular phenotypes of the murine Egfl7 locus to the microRNA miR-126
+hsa-miR-126	PLK2	2008	Distinct microRNA expression profiles in acute myeloid leukemia with common translocations.
+hsa-miR-126	CRK	2008	MicroRNA-126 inhibits invasion in non-small cell lung carcinoma cell lines.
+hsa-miR-126	HOXA9	2008	MicroRNA-126 regulates HOXA9 by binding to the homeobox.
+hsa-miR-126	SPRED1	2008	miR-126 regulates angiogenic signaling and vascular integrity
+hsa-miR-126	p85beta	2008	The noncoding RNA, miR-126, suppresses the growth of neoplastic cells by targeting phosphatidylinositol 3-kinase signaling and is frequently lost in colon cancers.
+hsa-miR-126	p85beta	2008	The noncoding RNA, miR-126, suppresses the growth of neoplastic cells by targeting phosphatidylinositol 3-kinase signaling and is frequently lost in colon cancers.
+hsa-miR-126	Crk	2009	Regulation of miRNA expression by Src and contact normalization: effects on nonanchored cell growth and migration
+hsa-miR-126*	prostein	2007	Ectopic expression of miR-126*, an intronic product of the vascular endothelial EGF-like 7 gene, regulates prostein translation and invasiveness of prostate cancer LNCaP cells.
+hsa-miR-127	BLIMP1	2009	B cell differentiation in EBV-positive Burkitt Lymphoma is impaired at post-transcriptional level by miRNA altered expression.
+hsa-miR-127	XBP1	2009	B cell differentiation in EBV-positive Burkitt Lymphoma is impaired at post-transcriptional level by miRNA altered expression.
+hsa-miR-127	BCL6	2008	Down-regulation of the microRNAs miR-34a, miR-127, and miR-200b in rat liver during hepatocarcinogenesis induced by a methyl-deficient diet.
+hsa-miR-127	BCL6	2007	CpG island hypermethylation of tumor suppressor microRNAs in human cancer.
+hsa-miR-127	BCL6	2006	Specific activation of microRNA-127 with downregulation of the proto-oncogene BCL6 by chromatin-modifying drugs in human cancer cells.
+hsa-miR-128	DCX	2009	MiR-128 up-regulation inhibits Reelin and DCX expression and reduces neuroblastoma cell motility and invasiveness.
+hsa-miR-128	Reelin	2009	MiR-128 up-regulation inhibits Reelin and DCX expression and reduces neuroblastoma cell motility and invasiveness.
+hsa-miR-128	NTRK3	2009	Allele variants in functional MicroRNA target sites of the neurotrophin-3 receptor gene (NTRK3) as susceptibility factors for anxiety disorders.
+hsa-miR-128	E2F3a	2009	MicroRNA-21 down-regulates the expression of tumor suppressor PDCD4 in human glioblastoma cell T98G.
+hsa-miR-128	E2F3a	2008	MicroRNA-128 inhibits glioma cells proliferation by targeting transcription factor E2F3a.
+hsa-miR-128b	EGFR	2008	EGFR regulation by microRNA in lung cancer: correlation with clinical response and survival to gefitinib and EGFR expression in cell lines.
+hsa-miR-128b	MLL	2009	miR-128b is a potent glucocorticoid sensitizer in MLL-AF4 acute lymphocytic leukemia cells and exerts cooperative effects with miR-221
+hsa-miR-128b	AF4	2009	miR-128b is a potent glucocorticoid sensitizer in MLL-AF4 acute lymphocytic leukemia cells and exerts cooperative effects with miR-221
+hsa-miR-128b	MLL-AF4	2009	miR-128b is a potent glucocorticoid sensitizer in MLL-AF4 acute lymphocytic leukemia cells and exerts cooperative effects with miR-221
+hsa-miR-128b	AF4-MLL	2009	miR-128b is a potent glucocorticoid sensitizer in MLL-AF4 acute lymphocytic leukemia cells and exerts cooperative effects with miR-221
+hsa-miR-129	GALNT1	2009	Genomic profiling of microRNAs in bladder cancer: miR-129 is associated with poor outcome and promotes cell death in vitro.
+hsa-miR-129	SOX4	2009	Genomic profiling of microRNAs in bladder cancer: miR-129 is associated with poor outcome and promotes cell death in vitro.
+hsa-miR-130	ATXN1	2008	miR-19, miR-101 and miR-130 co-regulate ATXN1 levels to potentially modulate SCA1 pathogenesis.
+hsa-miR-130a	FOG-2	2009	Translational control of FOG-2 expression in cardiomyocytes by microRNA-130a
+hsa-miR-130b	TP53INP1	2008	Roles for microRNAs, miR-93 and miR-130b, and tumor protein 53-induced nuclear protein 1 tumor suppressor in cell growth dysregulation by human T-cell lymphotrophic virus 1.
+hsa-miR-132	p250GAP	2007	A microRNA-based gene dysregulation pathway in Huntington's disease.
+hsa-miR-132	MeCP2	2009	MeCP2 controls an epigenetic pathway that promotes myofibroblast transdifferentiation and fibrosis
+hsa-miR-132	p250GAP	2009	An activity-induced microRNA controls dendritic spine formation by regulating Rac1-PAK signaling
+hsa-miR-132	SirT1	2009	MicroRNA 132 regulates nutritional stress-induced chemokine production through repression of SirT1
+hsa-miR-133	KLF15	2009	MicroRNA-133 regulates the expression of GLUT4 by targeting KLF15 and is involved in metabolic control in cardiac myocytes
+hsa-miR-133	KLF15	2009	MicroRNA-133 regulates the expression of GLUT4 by targeting KLF15 and is involved in metabolic control in cardiac myocytes
+hsa-miR-133a	KRT7	2009	Identification of novel microRNA targets based on microRNA signatures in bladder cancer.
+hsa-miR-133a	UCP2 	2009	In vitro evidence suggests that miR-133a-mediated regulation of uncoupling protein 2 (UCP2) is an indispensable step in myogenic differentiation
+hsa-miR-133a	HCN2	2008	Down-regulation of miR-1/miR-133 contributes to re-expression of pacemaker channel genes HCN2 and HCN4 in hypertrophic heart.
+hsa-miR-133a	HCN4	2008	Down-regulation of miR-1/miR-133 contributes to re-expression of pacemaker channel genes HCN2 and HCN4 in hypertrophic heart.
+hsa-miR-133a	PKM2	2008	Identification of pyruvate kinase type M2 as potential oncoprotein in squamous cell carcinoma of tongue through microRNA profiling.
+hsa-miR-133a	ERG	2007	MicroRNA miR-133 represses HERG K+ channel expression contributing to QT prolongation in diabetic hearts.
+hsa-miR-133a	Cdc42	2007	MicroRNA-133 controls cardiac hypertrophy.
+hsa-miR-133a	Nelf-A/WHSC2	2007	MicroRNA-133 controls cardiac hypertrophy.
+hsa-miR-133a	RhoA	2007	MicroRNA-133 controls cardiac hypertrophy.
+hsa-miR-133a	Casp9	2007	The muscle-specific microRNAs miR-1 and miR-133 produce opposing effects on apoptosis by targeting HSP60, HSP70 and caspase-9 in cardiomyocytes.
+hsa-miR-133b	Mcl-1	2009	MicroRNA 133B targets pro-survival molecules MCL-1 and BCL2L2 in lung cancer.
+hsa-miR-133b	BCL2L2	2009	MicroRNA 133B targets pro-survival molecules MCL-1 and BCL2L2 in lung cancer.
+hsa-miR-133b	IGF-IR	2009	MicroRNA regulation of neuron-like differentiation of adipose tissue-derived stem cells
+hsa-miR-133b	PKM2	2008	Identification of pyruvate kinase type M2 as potential oncoprotein in squamous cell carcinoma of tongue through microRNA profiling.
+hsa-miR-133b	Pitx3	2007	A MicroRNA feedback circuit in midbrain dopamine neurons.
+hsa-miR-135a	JAK2	2009	Regulation of JAK2 by miR-135a: prognostic impact in classical Hodgkin lymphoma.
+hsa-miR-137	CDK6	2008	Exploration of tumor-suppressive microRNAs silenced by DNA hypermethylation in oral cancer.
+hsa-miR-137	CDK6	2008	miR-124 and miR-137 inhibit proliferation of glioblastoma multiforme cells and induce differentiation of brain tumor stem cells.
+hsa-miR-138	hTERT	2008	Downregulation of miR-138 is associated with overexpression of human telomerase reverse transcriptase protein in human anaplastic thyroid carcinoma cell lines.
+hsa-miR-140	Cxcl12	2008	Experimental identification of microRNA-140 targets by silencing and overexpressing miR-140
+hsa-miR-140	HDAC4	2009	Mechanism of chemoresistance mediated by miR-140 in human osteosarcoma and colon cancer cells
+hsa-miR-140*	Dnm1	2008	Nicotine modulates expression of miR-140*, which targets the 3'-untranslated region of dynamin 1 gene ( Dnm1)
+hsa-miR-141	Dlx5	2009	MicroRNA-141 and -200a are involved in bone morphogenetic protein-2-induced mouse Pre-osteoblast differentiation by targeting distal-less homeobox 5
+hsa-miR-141	ZEB1(deltaEF1)	2008	A reciprocal repression between ZEB1 and members of the miR-200 family promotes EMT and invasion in cancer cells.
+hsa-miR-141	SIP1(ZEB2)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-141	ZEB1(deltaEF1)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-141	SIP1(ZEB2)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-141	ZEB1(deltaEF1)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-141	CLOCK	2006	Involvement of human micro-RNA in growth and response to chemotherapy in human cholangiocarcinoma cell lines.
+hsa-miR-141	SIP1	2009	MicroRNA-141 Regulates Smad Interacting Protein 1 (SIP1) and Inhibits Migration and Invasion of Colorectal Cancer Cells
+hsa-miR-141	ZEB1	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-141	ZEB2	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-142-3p	AC9 	2009	miR-142-3p restricts cAMP production in CD4+CD25- T cells and CD4+CD25+ TREG cells by targeting AC9 mRNA
+hsa-miR-143	DNMT3A	2009	MicroRNA-143 targets DNA methyltransferases 3A in colorectal cancer.
+hsa-miR-143	Klf4	2009	miR-145 and miR-143 regulate smooth muscle cell fate and plasticity
+hsa-miR-143	Elk-1	2009	miR-145 and miR-143 regulate smooth muscle cell fate and plasticity
+hsa-miR-143	KRAS	2009	Role of miR-143 targeting KRAS in colorectal tumorigenesis
+hsa-miR-143	ERK5	2009	Role of microRNA-143 in Fas-mediated apoptosis in human T-cell leukemia Jurkat cells.
+hsa-miR-143	KRAS	2009	Role of miR-143 targeting KRAS in colorectal tumorigenesis.
+hsa-miR-143	FNDC3B	2009	Up-regulated microRNA-143 transcribed by nuclear factor kappa B enhances hepatocarcinoma metastasis by repressing fibronectin expression.
+hsa-miR-143	ERK5	2007	Downregulation of microRNAs-143 and -145 in B-cell malignancies.
+hsa-miR-143	ERK5	2007	Downregulation of microRNAs-143 and -145 in B-cell malignancies.
+hsa-miR-143	ERK5	2007	MicroRNA-143 and -145 in colon cancer.
+hsa-miR-143	ERK5	2006	MicroRNAs 143 and 145 are possible common onco-microRNAs in human cancers.
+hsa-miR-143	ERK5	2004	MicroRNA-143 regulates adipocyte differentiation.
+hsa-miR-144	Klfd	2008	Mir-144 selectively regulates embryonic {alpha}-hemoglobin synthesis during primitive erythropoiesis.
+hsa-miR-145	Klf4	2009	miR-145 and miR-143 regulate smooth muscle cell fate and plasticity
+hsa-miR-145	Elk-1	2009	miR-145 and miR-143 regulate smooth muscle cell fate and plasticity
+hsa-miR-145	IGF-IR	2009	Mechanism of growth inhibition by MicroRNA 145: the role of the IGF-I receptor signaling pathway.
+hsa-miR-145	IRS-1	2009	Mechanism of growth inhibition by MicroRNA 145: the role of the IGF-I receptor signaling pathway.
+hsa-miR-145	KLF4	2009	MicroRNA-145 regulates OCT4, SOX2, and KLF4 and represses pluripotency in human embryonic stem cells
+hsa-miR-145	SOX2	2009	MicroRNA-145 regulates OCT4, SOX2, and KLF4 and represses pluripotency in human embryonic stem cells
+hsa-miR-145	KLF5	2009	MicroRNA-145, a Novel Smooth Muscle Cell Phenotypic Marker and Modulator, Controls Vascular Neointimal Lesion Formation.
+hsa-miR-145	IRS-1	2007	Micro RNA 145 targets the insulin receptor substrate-1 and inhibits the growth of colon cancer cells.
+hsa-miR-145	BNIP3	2010	MicroRNA145 targets BNIP3 and suppresses prostate cancer progression.
+hsa-miR-146a	TRAF6	2009	MicroRNA-146a feedback inhibits RIG-I-dependent Type I IFN production in macrophages by targeting TRAF6, IRAK1, and IRAK2
+hsa-miR-146a	IRAK1	2009	MicroRNA-146a feedback inhibits RIG-I-dependent Type I IFN production in macrophages by targeting TRAF6, IRAK1, and IRAK2
+hsa-miR-146a	IRAK2	2009	MicroRNA-146a feedback inhibits RIG-I-dependent Type I IFN production in macrophages by targeting TRAF6, IRAK1, and IRAK2
+hsa-miR-146a	CFH	2009	Characterization of an NF-kappaB-regulated, miRNA-146a-mediated down-regulation of complement factor H (CFH) in metal-sulfate-stressed human brain cells.
+hsa-miR-146a	BRCA1	2008	A functional polymorphism in the miR-146a gene and age of familial breast/ovarian cancer diagnosis.
+hsa-miR-146a	BRCA2	2008	A functional polymorphism in the miR-146a gene and age of familial breast/ovarian cancer diagnosis.
+hsa-miR-146a	CFH	2008	An NF-kB-sensitive microRNA-146a-mediated inflammatory circuit in Alzheimer's disease and in stressed human brain cells.
+hsa-miR-146a	NF-kappaB	2008	Expression of microRNA-146 suppresses NF-kappaB activity with reduction of metastatic potential in breast cancer cells.
+hsa-miR-146a	ROCK1	2008	Loss of mir-146a function in hormone-refractory prostate cancer.
+hsa-miR-146a	IRAK1	2006	NF-kappaB-dependent induction of microRNA miR-146, an inhibitor targeted to signaling proteins of innate immune responses.
+hsa-miR-146a	TRAF6	2006	NF-kappaB-dependent induction of microRNA miR-146, an inhibitor targeted to signaling proteins of innate immune responses.
+hsa-miR-146a	KIT	2005	The role of microRNA genes in papillary thyroid carcinoma.
+hsa-miR-146b	MMP16	2009	microRNA-146b inhibits glioma cell migration and invasion by targeting MMPs.
+hsa-miR-146b	NF-kappaB	2008	Expression of microRNA-146 suppresses NF-kappaB activity with reduction of metastatic potential in breast cancer cells.
+hsa-miR-148a	TGIF2	2008	A microRNA DNA methylation signature for human cancer metastasis
+hsa-miR-148a	HLA-G	2007	Allele-specific targeting of microRNAs to HLA-G and risk of asthma.
+hsa-miR-148a	DNMT-1	2010	MicroRNA-dependent regulation of DNA methyltransferase-1 and tumor suppressor gene expression by interleukin-6 in human malignant cholangiocytes.
+hsa-miR-148b	HLA-G	2007	Allele-specific targeting of microRNAs to HLA-G and risk of asthma.
+hsa-miR-15	c-myb	2009	Genome-wide microRNA expression profiling in renal cell carcinoma: significant down-regulation of miR-141 and miR-200c.
+hsa-miR-150	P2X7	2008	MicroRNAs miR-186 and miR-150 down-regulate expression of the pro-apoptotic purinergic P2X7 receptor by activation of instability sites at the 3'-untranslated region of the gene that decrease steady-state levels of the transcript
+hsa-miR-152	HLA-G	2007	Allele-specific targeting of microRNAs to HLA-G and risk of asthma.
+hsa-miR-152	DNMT-1	2010	MicroRNA-dependent regulation of DNA methyltransferase-1 and tumor suppressor gene expression by interleukin-6 in human malignant cholangiocytes.
+hsa-miR-153	Mcl-1	2009	Down-regulations of B-cell lymphoma 2 (Bcl-2) and myeloid cell leukemia sequence 1 (Mcl-1) by MicroRNA 153 induce apoptosis in a glioblastoma cell line DBTRG-05MG.
+hsa-miR-153	BCL2	2009	Down-regulations of B-cell lymphoma 2 (Bcl-2) and myeloid cell leukemia sequence 1 (Mcl-1) by MicroRNA 153 induce apoptosis in a glioblastoma cell line DBTRG-05MG.
+hsa-miR-155	SOCS1	2009	Foxp3-dependent microRNA155 confers competitive fitness to regulatory T cells by targeting SOCS1 protein
+hsa-miR-155	SHIP1	2009	Inositol phosphatase SHIP1 is a primary target of miR-155
+hsa-miR-155	TAB2	2009	MicroRNA-155 modulates the interleukin-1 signaling pathway in activated human monocyte-derived dendritic cells
+hsa-miR-155	AGTR1	2008	Human microRNA-155 on chromosome 21 differentially interacts with its polymorphic target in the AGTR1 3' untranslated region: a mechanism for functional single-nucleotide polymorphisms related to phenotypes.
+hsa-miR-155	Ets-1	2008	MicroRNA 155 modulates megakaryopoiesis at progenitor and precursor level by targeting Ets-1 and Meis1 transcription factors
+hsa-miR-155	Meis1	2008	MicroRNA 155 modulates megakaryopoiesis at progenitor and precursor level by targeting Ets-1 and Meis1 transcription factors
+hsa-miR-155	RhoA	2008	MicroRNA-155 Is Regulated by TGF{beta}/Smad Pathway and Contributes to Epithelial Cell Plasticity by Targeting RhoA
+hsa-miR-155	RhoA	2008	MicroRNA-155 is regulated by the transforming growth factor beta/Smad pathway and contributes to epithelial cell plasticity by targeting RhoA.
+hsa-miR-155	TP53INP1	2007	Tumor protein 53-induced nuclear protein 1 expression is repressed by miR-155, and its restoration inhibits pancreatic tumor development.
+hsa-miR-155	hAT1R	2006	MicroRNA-155 regulates human angiotensin II type 1 receptor expression in fibroblasts.
+hsa-miR-155	ET-1	2009	Ethanol-induced expression of ET-1 and ET-BR in liver sinusoidal endothelial cells and human endothelial cells involves hypoxia-inducible factor-1alpha and microrNA-199
+hsa-miR-155	JARID2	2009	Reticuloendotheliosis virus strain T induces miR-155 which targets JARID2 and promotes cell survival
+hsa-miR-155 	KGF	2009	Identification of keratinocyte growth factor as a target of microRNA-155 in lung fibroblasts: implication in epithelial-mesenchymal interactions
+hsa-miR-15a	CCND1	2009	miR-15a and miR-16 are implicated in cell cycle regulation in a Rb-dependent manner and are frequently deleted or down-regulated in non-small cell lung cancer.
+hsa-miR-15a	CCND2	2009	miR-15a and miR-16 are implicated in cell cycle regulation in a Rb-dependent manner and are frequently deleted or down-regulated in non-small cell lung cancer.
+hsa-miR-15a	CCNE1	2009	miR-15a and miR-16 are implicated in cell cycle regulation in a Rb-dependent manner and are frequently deleted or down-regulated in non-small cell lung cancer.
+hsa-miR-15a	CCND1	2009	miR-15a and miR-16 are implicated in cell cycle regulation in a Rb-dependent manner and are frequently deleted or down-regulated in non-small cell lung cancer.
+hsa-miR-15a	CCND2	2009	miR-15a and miR-16 are implicated in cell cycle regulation in a Rb-dependent manner and are frequently deleted or down-regulated in non-small cell lung cancer.
+hsa-miR-15a	CCNE1	2009	miR-15a and miR-16 are implicated in cell cycle regulation in a Rb-dependent manner and are frequently deleted or down-regulated in non-small cell lung cancer.
+hsa-miR-15a	CCND1	2009	miR-15a and miR-16 Are Implicated in Cell Cycle Regulation in a Rb-Dependent Manner and Are Frequently Deleted or Down-regulated in Non-Small Cell Lung Cancer.
+hsa-miR-15a	Cdc25A	2008	MicroRNA15a modulates expression of the cell-cycle regulator Cdc25A and affects hepatic cystogenesis in a rat model of polycystic kidney disease.
+hsa-miR-15a	Myb	2008	The c-myb Protooncogene and microRNA (miR)-15a comprise an active autoregulatory feedback loop in human hematopoietic cells
+hsa-miR-15a	CCND1	2008	The miR-15a-miR-16-1 cluster controls prostate cancer by targeting multiple oncogenic activities.
+hsa-miR-15a	WNT3A	2008	The miR-15a-miR-16-1 cluster controls prostate cancer by targeting multiple oncogenic activities.
+hsa-miR-15a	BCL2	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-miR-15a	RAS	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-miR-15a	BCL2	2007	The role of microRNA and other non-coding RNA in the pathogenesis of chronic lymphocytic leukemia.
+hsa-miR-15a	BCL2	2005	miR-15 and miR-16 induce apoptosis by targeting BCL2.
+hsa-miR-15a	RAS	2005	miR-15a and miR-16-1 down-regulation in pituitary adenomas.
+hsa-miR-15a	BMI1	2009	MiR-15a and MiR-16 control Bmi-1 expression in ovarian cancer.
+hsa-miR-15b	CCNE1	2009	MicroRNA-15b regulates cell cycle progression by targeting cyclins in glioma cells.
+hsa-miR-15b	BCL2	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-15b	caspases-3	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-15b	caspases-8	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-15b	caspases-9	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-15b	CCNE1	2009	miR-21 plays a pivotal role in gastric cancer pathogenesis and progression.
+hsa-miR-15b	BCL2	2008	miR-15b and miR-16 modulate multidrug resistance by targeting BCL2 in human gastric cancer cells.
+hsa-miR-15b	eIF-4A	2006	Differentially regulated micro-RNAs and actively translated messenger RNA transcripts by tumor suppressor p53 in colon cancer.
+hsa-miR-16	BCL2	2009	Epigallocatechin gallate up-regulation of miR-16 and induction of apoptosis in human cancer cells.
+hsa-miR-16	CCND1	2009	miR-15a and miR-16 Are Implicated in Cell Cycle Regulation in a Rb-Dependent Manner and Are Frequently Deleted or Down-regulated in Non-Small Cell Lung Cancer.
+hsa-miR-16	BCL2	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-16	caspases-3	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-16	caspases-8	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-16	caspases-9	2009	miR-15b and miR-16 are implicated in activation of the rat hepatic stellate cell: An essential role for apoptosis
+hsa-miR-16	Caprin-1	2009	Two new miR-16 targets: Caprin-1 and HMGA1, proteins implicated in cell proliferation
+hsa-miR-16	HMGA1	2009	Two new miR-16 targets: Caprin-1 and HMGA1, proteins implicated in cell proliferation
+hsa-miR-16	BCL2	2008	miR-15b and miR-16 modulate multidrug resistance by targeting BCL2 in human gastric cancer cells.
+hsa-miR-16	CCND1	2008	miR-16 family induces cell cycle arrest by regulating multiple cell cycle genes
+hsa-miR-16	CCND3	2008	miR-16 family induces cell cycle arrest by regulating multiple cell cycle genes
+hsa-miR-16	CCNE1	2008	miR-16 family induces cell cycle arrest by regulating multiple cell cycle genes
+hsa-miR-16	CDK6	2008	miR-16 family induces cell cycle arrest by regulating multiple cell cycle genes
+hsa-miR-16	CCND1	2008	Truncation in CCND1 mRNA alters miR-16-1 regulation in mantle cell lymphoma.
+hsa-miR-16	BCL2	2007	Abnormal microRNA-16 locus with synteny to human 13q14 linked to CLL in NZB mice.
+hsa-miR-16	BCL2	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-miR-16	RAS	2007	MicroRNA gene expression during retinoic acid-induced differentiation of human acute promyelocytic leukemia.
+hsa-miR-16	BCL2	2007	The role of microRNA and other non-coding RNA in the pathogenesis of chronic lymphocytic leukemia.
+hsa-miR-16	BCL2	2005	miR-15 and miR-16 induce apoptosis by targeting BCL2.
+hsa-miR-16	RAS	2005	miR-15a and miR-16-1 down-regulation in pituitary adenomas.
+hsa-miR-16	RARS	2002	Frequent deletions and down-regulation of micro-RNA genes miR15 and miR16 at 13q14 in chronic lymphocytic leukemia.
+hsa-miR-16	CDK1	2009	Systemic Delivery of Synthetic MicroRNA-16 Inhibits the Growth of Metastatic Prostate Tumors via Downregulation of Multiple Cell-cycle Genes
+hsa-miR-16	CDK2	2009	Systemic Delivery of Synthetic MicroRNA-16 Inhibits the Growth of Metastatic Prostate Tumors via Downregulation of Multiple Cell-cycle Genes
+hsa-miR-16	BMI1	2009	MiR-15a and MiR-16 control Bmi-1 expression in ovarian cancer.
+hsa-miR-16-1	CCND1	2008	The miR-15a-miR-16-1 cluster controls prostate cancer by targeting multiple oncogenic activities.
+hsa-miR-16-1	WNT3A	2008	The miR-15a-miR-16-1 cluster controls prostate cancer by targeting multiple oncogenic activities.
+hsa-miR-16a	BCL2	2008	Down-regulation of the microRNAs miR-34a, miR-127, and miR-200b in rat liver during hepatocarcinogenesis induced by a methyl-deficient diet.
+hsa-miR-17	E2F1 	2009	miR-17 and miR-20a temper an E2F1-induced G1 checkpoint to regulate cell cycle progression
+hsa-miR-17	CDKN1A	2008	MicroRNA-17-92 downregulates expression of distinct targets in different B-cell lymphoma subtypes.
+hsa-miR-17	p21	2008	MicroRNA-17-92 downregulates expression of distinct targets in different B-cell lymphoma subtypes.
+hsa-miR-17	YES1	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	RBJ	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	NPAT	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	FBX031	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	OBFC2A	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	GPR137B	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	CCL1	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	ZNFX1	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-17	PKD2 	2009	MicroRNA-17 post-transcriptionally regulates polycystic kidney disease-2 gene and promotes cell proliferation.
+hsa-miR-17-3p	T¦ÂRII	2007	Synergistic action of the microRNA-17 polycistron and Myc in aggressive cancer development.
+hsa-miR-17-3p	vimentin	2009	MicroRNA-17-3p is a prostate tumor suppressor in vitro and in vivo, and is decreased in high grade prostate tumors analyzed by laser capture microdissection
+hsa-miR-17-5p	BMPR2	2009	Interleukin-6 modulates the expression of the bone morphogenic protein receptor type II through a novel STAT3-microRNA cluster 17/92 pathway.
+hsa-miR-17-5p	CCND1	2008	A cyclin D1/microRNA 17/20 regulatory feedback loop in control of breast cancer cell proliferation.
+hsa-miR-17-5p	BIM	2008	Antagomir-17-5p abolishes the growth of therapy-resistant neuroblastoma through p21 and BIM
+hsa-miR-17-5p	p21	2008	Antagomir-17-5p abolishes the growth of therapy-resistant neuroblastoma through p21 and BIM
+hsa-miR-17-5p	E2F1	2008	Deregulated expression of miR-106a predicts survival in human colon cancer patients.
+hsa-miR-17-5p	PTPRO	2008	Protein tyrosine phosphatase receptor-type O (PTPRO) is co-regulated by E2F1 and miR-17-92.
+hsa-miR-17-5p	T¦ÂRII	2007	Synergistic action of the microRNA-17 polycistron and Myc in aggressive cancer development.
+hsa-miR-17-5p	AIB1	2006	Mir-17-5p regulates breast cancer cell proliferation by inhibiting translation of AIB1 mRNA.
+hsa-miR-18	CTGF	2006	Comprehensive analysis of microRNA expression patterns in hepatocellular carcinoma and non-tumorous tissues.
+hsa-miR-18	RANKL	2006	Comprehensive analysis of microRNA expression patterns in hepatocellular carcinoma and non-tumorous tissues.
+hsa-miR-181a	CDX2	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181a	GATA6	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181a	NLK	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181a	PLAG1	2009	miRNA deregulation by epigenetic silencing disrupts suppression of the oncogene PLAG1 in chronic lymphocytic leukemia.
+hsa-miR-181a	BDNF	2009	microRNAs miR-124, let-7d and miR-181a regulate Cocaine-induced Plasticity
+hsa-miR-181a	D3R	2009	microRNAs miR-124, let-7d and miR-181a regulate Cocaine-induced Plasticity
+hsa-miR-181a	PCAF	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-181b	CDX2	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181b	GATA6	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181b	NLK	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181b	PLAG1	2009	miRNA deregulation by epigenetic silencing disrupts suppression of the oncogene PLAG1 in chronic lymphocytic leukemia.
+hsa-miR-181b	PCAF	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-181b	AID	2008	miR-181b negatively regulates activation-induced cytidine deaminase in B cells
+hsa-miR-181b	Tcl1	2006	Tcl1 expression in chronic lymphocytic leukemia is regulated by miR-29 and miR-181.
+hsa-miR-181c	CDX2	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181c	GATA6	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-181c	NLK	2009	Identification of microRNA-181 by genome-wide screening as a critical player in EpCAM-positive hepatic cancer stem cells.
+hsa-miR-182	FOXO1	2009	Coordinate Regulation of FOXO1 by miR-27a, miR-96, and miR-182 in Breast Cancer Cells.
+hsa-miR-183	Ezrin	2008	MicroRNA-183 regulates Ezrin expression in lung cancer cells.
+hsa-miR-184	NFAT1	2009	MicroRNA 184 regulates expression of NFAT1 in umbilical cord blood CD4+ T-cells
+hsa-miR-186	P2X7	2008	MicroRNAs miR-186 and miR-150 down-regulate expression of the pro-apoptotic purinergic P2X7 receptor by activation of instability sites at the 3'-untranslated region of the gene that decrease steady-state levels of the transcript
+hsa-miR-189	SLITRK1	2008	Sequence variants in SLITRK1 are associated with Tourette's syndrome.
+hsa-miR-18a*	KRAS	2009	The miR-18a* microRNA functions as a potential tumor suppressor by targeting on K-Ras
+hsa-miR-18a*	KRAS	2009	The miR-18a* microRNA functions as a potential tumor suppressor by targeting on K-Ras.
+hsa-miR-19	ATXN1	2008	miR-19, miR-101 and miR-130 co-regulate ATXN1 levels to potentially modulate SCA1 pathogenesis.
+hsa-miR-192	CDKN1A/p21	2009	MicroRNA alterations in head and neck squamous cell carcinoma.
+hsa-miR-192	MIP-2 alpha	2008	MicroRNAs are differentially expressed in ulcerative colitis and alter expression of macrophage inflammatory peptide-2 alpha.
+hsa-miR-193a	E2F6	2008	Exploration of tumor-suppressive microRNAs silenced by DNA hypermethylation in oral cancer.
+hsa-miR-193b	CCND1	2010	MicroRNA-193b represses cell proliferation and regulates cyclin D1 in melanoma.
+hsa-miR-195	CCND1	2009	MicroRNA-195 suppresses tumorigenicity and regulates G(1)/S transition of human hepatocellular carcinoma cells.
+hsa-miR-195	CDK6	2009	MicroRNA-195 suppresses tumorigenicity and regulates G(1)/S transition of human hepatocellular carcinoma cells.
+hsa-miR-195	E2F3	2009	MicroRNA-195 suppresses tumorigenicity and regulates G(1)/S transition of human hepatocellular carcinoma cells.
+hsa-miR-195	WEE1	2009	microRNAs regulate human embryonic stem cell division
+hsa-miR-196a	KRT5	2009	MicroRNA-196a is a Potential Marker of Progression during Barrett's Metaplasia-Dysplasia-Invasive Adenocarcinoma Sequence in Esophagus.
+hsa-miR-196a	S100A9	2009	MicroRNA-196a is a Potential Marker of Progression during Barrett's Metaplasia-Dysplasia-Invasive Adenocarcinoma Sequence in Esophagus.
+hsa-miR-196a	SPRR2C	2009	MicroRNA-196a is a Potential Marker of Progression during Barrett's Metaplasia-Dysplasia-Invasive Adenocarcinoma Sequence in Esophagus.
+hsa-miR-196a	HOXC8	2009	miR-196a Regulates Proliferation and Osteogenic Differentiation in Mesenchymal Stem Cells Derived From Human Adipose Tissue
+hsa-miR-196a	ANXA1	2008	MicroRNA-196a targets annexin A1: a microRNA-mediated mechanism of annexin A1 downregulation in cancers.
+hsa-miR-196a	BMP4	2010	MicroRNA miR-196a is a central regulator of HOX-B7 and BMP4 expression in malignant melanoma.
+hsa-miR-196a-2	HOXB8	2009	Functional variant in microRNA-196a2 contributes to the susceptibility of congenital heart disease in a Chinese population.
+hsa-miR-197	FUS1	2009	miR-93, miR-98, and miR-197 regulate expression of tumor suppressor gene FUS1.
+hsa-miR-197	ACVR1	2006	A limited set of human MicroRNA is deregulated in follicular thyroid carcinoma.
+hsa-miR-197	TSPAN3	2006	A limited set of human MicroRNA is deregulated in follicular thyroid carcinoma.
+hsa-miR-199	ET-1	2009	Ethanol-induced expression of ET-1 and ET-BR in liver sinusoidal endothelial cells and human endothelial cells involves hypoxia-inducible factor-1alpha and microrNA-199
+hsa-miR-199a	IKK-beta	2008	Regulation of IKKbeta by miR-199a affects NF-kappaB activity in ovarian cancer cells.
+hsa-miR-199a*	Smad1	2009	miR-199a*, a bone morphogenic protein 2 responsive microRNA, regulates chondrogenesis via direct targeting to Smad1
+hsa-miR-199a*	ERK2	2008	MicroRNA miR-199a* regulates the MET proto-oncogene and the downstream extracellular signal-regulated kinase 2 (ERK2).
+hsa-miR-199a*	MET	2008	MicroRNA miR-199a* regulates the MET proto-oncogene and the downstream extracellular signal-regulated kinase 2 (ERK2).
+hsa-miR-199b	SET	2010	Decreased expression of microRNA-199b increases protein levels of SET (protein phosphatase 2A inhibitor) in human choriocarcinoma.
+hsa-miR-199b-5p	HES1	2009	MicroRNA-199b-5p impairs cancer stem cells through negative regulation of HES1 in medulloblastoma.
+hsa-miR-19a	PTEN	2008	Differential expression of PTEN-targeting microRNAs miR-19a and miR-21 in Cowden syndrome.
+hsa-miR-19a	BIM	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-19a	SOCS-1	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-19b	BIM	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-19b	SOCS-1	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-200a	beta-catenin	2009	"Down-regulated microRNA-200a in Meningiomas Promotes Tumor Growth by Reducing E-cadherin and Activating the Wnt/{beta} catenin Signaling Pathway.
+hsa-miR-200a	Dlx5	2009	MicroRNA-141 and -200a are involved in bone morphogenetic protein-2-induced mouse Pre-osteoblast differentiation by targeting distal-less homeobox 5
+hsa-miR-200a	SIP1/ZEB2	2008	A double-negative feedback loop between ZEB1-SIP1 and the microRNA-200 family regulates epithelial-mesenchymal transition
+hsa-miR-200a	ZEB1/deltaEF1	2008	A double-negative feedback loop between ZEB1-SIP1 and the microRNA-200 family regulates epithelial-mesenchymal transition
+hsa-miR-200a	SIP1(ZEB2)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-200a	ZEB1(deltaEF1)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-200a	SIP1(ZEB2)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-200a	ZEB1(deltaEF1)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-200a	WAVE3	2009	The miR200 family of microRNAs regulates WAVE3-dependent cancer cell invasion
+hsa-miR-200a	ZEB1	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-200a	ZEB2	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-200b	SIP1/ZEB3	2008	A double-negative feedback loop between ZEB1-SIP1 and the microRNA-200 family regulates epithelial-mesenchymal transition
+hsa-miR-200b	ZEB1/deltaEF1	2008	A double-negative feedback loop between ZEB1-SIP1 and the microRNA-200 family regulates epithelial-mesenchymal transition
+hsa-miR-200b	SIP1(ZEB2)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-200b	ZEB1(deltaEF1)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-200b	SIP1(ZEB2)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-200b	ZEB1(deltaEF1)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-200b	PTPN12	2006	Involvement of human micro-RNA in growth and response to chemotherapy in human cholangiocarcinoma cell lines.
+hsa-miR-200b	WAVE3	2009	The miR200 family of microRNAs regulates WAVE3-dependent cancer cell invasion
+hsa-miR-200b	ZEB1 	2009	E-cadherin transcriptional down-regulation by epigenetic and microRNA-200 family alterations is related to mesenchymal and drug-resistant phenotypes in human breast cancer cells.
+hsa-miR-200b	ZEB2	2009	E-cadherin transcriptional down-regulation by epigenetic and microRNA-200 family alterations is related to mesenchymal and drug-resistant phenotypes in human breast cancer cells.
+hsa-miR-200b	ZEB1	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-200b	ZEB2	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-200c	BMI1	2009	Downregulation of miRNA-200c links breast cancer stem cells with normal stem cells.
+hsa-miR-200c	TUBB3	2009	MicroRNA-200c mitigates invasiveness and restores sensitivity to microtubule-targeting chemotherapeutic agents.
+hsa-miR-200c	E-cadherin	2009	Stable expression of miR-200c alone is sufficient to regulate TCF8 (ZEB1) and restore E-cadherin expression
+hsa-miR-200c	ZEB1	2009	Stable expression of miR-200c alone is sufficient to regulate TCF8 (ZEB1) and restore E-cadherin expression
+hsa-miR-200c	ZEB1(deltaEF1)	2008	A reciprocal repression between ZEB1 and members of the miR-200 family promotes EMT and invasion in cancer cells.
+hsa-miR-200c	SIP1(ZEB2)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-200c	ZEB1(deltaEF1)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-200c	SIP1(ZEB2)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-200c	ZEB1(deltaEF1)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-200c	ZEB1 	2009	E-cadherin transcriptional down-regulation by epigenetic and microRNA-200 family alterations is related to mesenchymal and drug-resistant phenotypes in human breast cancer cells.
+hsa-miR-200c	ZEB2	2009	E-cadherin transcriptional down-regulation by epigenetic and microRNA-200 family alterations is related to mesenchymal and drug-resistant phenotypes in human breast cancer cells.
+hsa-miR-200c	ZEB1	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-200c	ZEB2	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-203	p63	2008	A skin microRNA promotes differentiation by repressing 'stemness'.
+hsa-miR-203	ABL1	2008	Genetic and epigenetic silencing of microRNA-203 enhances ABL1 and BCR-ABL1 oncogene expression.
+hsa-miR-203	ABL1	2008	Genetic and epigenetic silencing of microRNA-203 enhances ABL1 and BCR-ABL1 oncogene expression.
+hsa-miR-203	BCR-ABL1	2008	Genetic and epigenetic silencing of microRNA-203 enhances ABL1 and BCR-ABL1 oncogene expression.
+hsa-miR-203	BCR-ABL1	2008	Genetic and epigenetic silencing of microRNA-203 enhances ABL1 and BCR-ABL1 oncogene expression.
+hsa-miR-203	SOCS-3	2007	MicroRNAs: novel regulators involved in the pathogenesis of Psoriasis?
+hsa-miR-204	BCL2	2009	MicroRNA microarray identifies Let-7i as a novel biomarker and therapeutic target in human epithelial ovarian cancer.
+hsa-miR-204	Mcl-1	2009	p53-Responsive micrornas 192 and 215 are capable of inducing cell cycle arrest.
+hsa-miR-204	HOXA10	2008	Distinctive microRNA signature of acute myeloid leukemia bearing cytoplasmic mutated nucleophosmin.
+hsa-miR-204	MEIS1	2008	Distinctive microRNA signature of acute myeloid leukemia bearing cytoplasmic mutated nucleophosmin.
+hsa-miR-204	PDEF	2008	MicroRNA-mediated inhibition of prostate-derived Ets factor messenger RNA translation affects prostate-derived Ets factor regulatory networks in human breast cancer.
+hsa-miR-205	LRP1	2009	MicroRNA-205 inhibits tumor cell migration through down-regulating the expression of the LDL receptor-related protein 1
+hsa-miR-205	HER3	2009	microRNA-205 regulates HER3 in human breast cancer.
+hsa-miR-205	SHIP2	2009	MicroRNA-184 antagonizes microRNA-205 to maintain SHIP2 levels in epithelia
+hsa-miR-205	SIP1(ZEB2)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-205	ZEB1(deltaEF1)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-206	MET	2009	"The muscle-specific microRNA miR-206 blocks human rhabdomyosarcoma growth in
+xenotransplanted mice by promoting myogenic differentiation."
+hsa-miR-206	c-Met	2009	MicroRNA-1/206 targets c-Met and inhibits rhabdomyosarcoma development.
+hsa-miR-206	ER-alpha	2008	miR-206 Expression is down-regulated in estrogen receptor alpha-positive human breast cancer.
+hsa-miR-206	ER-alpha	2007	The micro-ribonucleic acid (miRNA) miR-206 targets the human estrogen receptor-alpha (ERalpha) and represses ERalpha messenger RNA and protein expression in breast cancer cell lines.
+hsa-miR-206	NOTCH3	2009	MICRORNA-206 targets NOTCH3, activates apoptosis, inhibits tumor cell migration and foci formation
+hsa-miR-208	THRAP1	2007	Control of stress-dependent cardiac growth and gene expression by a microRNA.
+hsa-miR-20a	BMPR2	2009	Interleukin-6 modulates the expression of the bone morphogenic protein receptor type II through a novel STAT3-microRNA cluster 17/92 pathway.
+hsa-miR-20a	E2F1 	2009	miR-17 and miR-20a temper an E2F1-induced G1 checkpoint to regulate cell cycle progression
+hsa-miR-20a	CCND1	2008	A cyclin D1/microRNA 17/20 regulatory feedback loop in control of breast cancer cell proliferation.
+hsa-miR-20a	CDKN1A	2008	MicroRNA-17-92 downregulates expression of distinct targets in different B-cell lymphoma subtypes.
+hsa-miR-20a	p21	2008	MicroRNA-17-92 downregulates expression of distinct targets in different B-cell lymphoma subtypes.
+hsa-miR-20b	Mylip	2006	Oncogenic potential of the miR-106-363 cluster and its implication in human T-cell leukemia.
+hsa-miR-21	LRRFIP1	2009	MicroRNA-21 targets LRRFIP1 and contributes to VM-26 resistance in glioblastoma multiforme.
+hsa-miR-21	PTEN	2009	Cholesteatoma Growth and Proliferation: Posttranscriptional Regulation by MicroRNA-21.
+hsa-miR-21	PDCD4	2009	Cholesteatoma Growth and Proliferation: Posttranscriptional Regulation by MicroRNA-21.
+hsa-miR-21	PDCD4	2009	MicroRNA-21 promotes cell proliferation and down-regulates the expression of programmed cell death 4 (PDCD4) in HeLa cervical carcinoma cells.
+hsa-miR-21	BMPRII	2009	BMPRII is a direct target of miR-21
+hsa-miR-21	PDCD4	2009	An autoregulatory loop mediated by miR-21 and PDCD4 controls the AP-1 activity in RAS transformation
+hsa-miR-21	PTEN	2009	An autoregulatory loop mediated by miR-21 and PDCD4 controls the AP-1 activity in RAS transformation
+hsa-miR-21	REST	2009	Is REST a regulator of pluripotency?
+hsa-miR-21	PDCD4	2009	Locked nucleic acid in situ hybridization analysis of miR-21 expression during colorectal cancer development.
+hsa-miR-21	JAG1	2009	MicroRNA profiling identifies miR-34a and miR-21 and their target genes JAG1 and WNT1 in the co-ordinate regulation of dendritic cell differentiation
+hsa-miR-21	WNT1	2009	MicroRNA profiling identifies miR-34a and miR-21 and their target genes JAG1 and WNT1 in the co-ordinate regulation of dendritic cell differentiation
+hsa-miR-21	PDCD4	2009	MicroRNA-101 regulates expression of the v-fos FBJ murine osteosarcoma viral oncogene homolog (FOS) oncogene in human hepatocellular carcinoma.
+hsa-miR-21	Spry1	2009	MicroRNA-143 as a Tumor Suppressor for Bladder Cancer.
+hsa-miR-21	RECK	2009	MicroRNA-15b regulates cell cycle progression by targeting cyclins in glioma cells.
+hsa-miR-21	MARCKS	2009	MicroRNA-21 directly targets MARCKS and promotes apoptosis resistance and invasion in prostate cancer cells.
+hsa-miR-21	PDCD4	2009	MicroRNA-21 regulates the proliferation and invasion in esophageal squamous cell carcinoma.
+hsa-miR-21	LRRFIP1	2009	MicroRNA-21 targets LRRFIP1 and contributes to VM-26 resistance in glioblastoma multiforme.
+hsa-miR-21	BASP1	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	DERL1	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	Maspin	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	NCAPG	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	PDCD4	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	PDHA2	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	PLOD3	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	PTEN	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	RPS7	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	RTN4	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	TM9SF3	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	TPM1	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	Vector	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	WFS1	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	WIBG	2009	Nuclear hormone receptor regulation of microRNAs controls developmental progression
+hsa-miR-21	BTG2	2009	Regulation of the cell cycle gene, BTG2, by miR-21 in human laryngeal carcinoma.
+hsa-miR-21	PTEN	2009	Unsaturated fatty acids inhibit the expression of tumor suppressor phosphatase and tensin homolog (PTEN) via microRNA-21 up-regulation in hepatocytes
+hsa-miR-21	PDCD4	2009	Up-regulation of miR-21 by HER2/neu Signaling Promotes Cell Invasion.
+hsa-miR-21	PDCD4	2008	An autoregulatory loop mediated by miR-21 and PDCD4 controls the AP-1 activity in RAS transformation
+hsa-miR-21	PTEN	2008	Differential expression of PTEN-targeting microRNAs miR-19a and miR-21 in Cowden syndrome.
+hsa-miR-21	RECK	2008	MicroRNA 21 promotes glioma invasion by targeting matrix metalloproteinase regulators.
+hsa-miR-21	TIMP3	2008	MicroRNA 21 promotes glioma invasion by targeting matrix metalloproteinase regulators.
+hsa-miR-21	PDCD4	2008	MicroRNA-21 (miR-21) post-transcriptionally downregulates tumor suppressor Pdcd4 and stimulates invasion, intravasation and metastasis in colorectal cancer.
+hsa-miR-21	PDCD4	2008	MicroRNA-21 promotes cell transformation by targeting the programmed cell death 4 gene.
+hsa-miR-21	HNRPK	2008	MicroRNA-21 targets a network of key tumor-suppressive pathways in glioblastoma cells.
+hsa-miR-21	TAp63	2008	MicroRNA-21 targets a network of key tumor-suppressive pathways in glioblastoma cells.
+hsa-miR-21	TGF-beta	2008	MicroRNA-21 targets a network of key tumor-suppressive pathways in glioblastoma cells.
+hsa-miR-21	SPRY2	2008	MicroRNA-21 Targets Sprouty2 and Promotes Cellular Outgrowths.
+hsa-miR-21	maspin	2008	MicroRNA-21 targets tumor suppressor genes in invasion and metastasis.
+hsa-miR-21	PDCD4	2008	MicroRNA-21 targets tumor suppressor genes in invasion and metastasis.
+hsa-miR-21	TPM1	2008	MicroRNA-21 targets tumor suppressor genes in invasion and metastasis.
+hsa-miR-21	BCL2	2007	MicroRNA expression signature and antisense-mediated depletion reveal an essential role of MicroRNA in vascular neointimal lesion formation.
+hsa-miR-21	PTEN	2007	MicroRNA expression signature and antisense-mediated depletion reveal an essential role of MicroRNA in vascular neointimal lesion formation.
+hsa-miR-21	PTEN	2007	MicroRNA-21 regulates expression of the PTEN tumor suppressor gene in human hepatocellular cancer.
+hsa-miR-21	TPM1	2007	MicroRNA-21 targets the tumor suppressor gene tropomyosin 1 (TPM1).
+hsa-miR-21	BCL2	2007	miR-21-mediated tumor growth.
+hsa-miR-21	PDCD4	2007	Programmed cell death 4 (PDCD4) is an important functional target of the microRNA miR-21 in breast cancer cells.
+hsa-miR-21	PTEN	2006	Involvement of human micro-RNA in growth and response to chemotherapy in human cholangiocarcinoma cell lines.
+hsa-miR-21	PDCD4	2006	MicroRNA expression abnormalities in pancreatic endocrine and acinar tumors are associated with distinctive pathologic features and clinical behavior.
+hsa-miR-21	PDCD4	2009	Pdcd4, a colon cancer prognostic that is regulated by a microRNA
+hsa-miR-21	p53	2009	Distinct microRNA alterations characterize high- and low-grade bladder cancer
+hsa-miR-21	Cdc25A	2009	microRNA-21 negatively regulates Cdc25A and cell cycle progression in colon cancer cells
+hsa-miR-210	RAD52	2009	MicroRNA regulation of DNA repair gene expression in hypoxic stress
+hsa-miR-210	Ephrin-A3	2008	MicroRNA-210 modulates endothelial cell response to hypoxia and inhibits the receptor tyrosine kinase ligand Ephrin-A3.
+hsa-miR-210	ISCU1/2	2009	MicroRNA-210 controls mitochondrial metabolism during hypoxia by repressing the iron-sulfur cluster assembly proteins ISCU1/2
+hsa-miR-210	FGFRL1	2009	Hypoxia-inducible mir-210 regulates normoxic gene expression involved in tumor initiation
+hsa-miR-210	HOXA1	2009	Hypoxia-inducible mir-210 regulates normoxic gene expression involved in tumor initiation
+hsa-miR-210	PIM1	2009	Hypoxia-inducible mir-210 regulates normoxic gene expression involved in tumor initiation
+hsa-miR-210	TP53I11	2009	Hypoxia-inducible mir-210 regulates normoxic gene expression involved in tumor initiation
+hsa-miR-210	HOXA9 	2009	Hypoxia-inducible mir-210 regulates normoxic gene expression involved in tumor initiation
+hsa-miR-212	ZO-1	2008	Effect of alcohol on miR-212 expression in intestinal epithelial cells and its potential role in alcoholic liver disease.
+hsa-miR-214	PTEN	2008	MicroRNA expression profiling in human ovarian cancer: miR-214 induces cell survival and cisplatin resistance by targeting PTEN.
+hsa-miR-214	Ezh2	2009	Mir-214-dependent regulation of the polycomb protein Ezh2 in skeletal muscle and embryonic stem cells
+hsa-miR-214	MEK3	2009	MicroRNA-214 is aberrantly expressed in cervical cancers and inhibits the growth of HeLa cells
+hsa-miR-214	JNK1	2009	MicroRNA-214 is aberrantly expressed in cervical cancers and inhibits the growth of HeLa cells
+hsa-miR-215	CDKN1A/p21	2009	MicroRNA-128 inhibits glioma cells proliferation by targeting transcription factor E2F3a.
+hsa-miR-216a	PTEN	2009	TGF-beta activates Akt kinase through a microRNA-dependent amplifying circuit targeting PTEN
+hsa-miR-217	PTEN	2009	TGF-beta activates Akt kinase through a microRNA-dependent amplifying circuit targeting PTEN
+hsa-miR-217	SirT1	2009	MicroRNA 217 modulates endothelial cell senescence via silent information regulator 1
+hsa-miR-218	LAMB3	2008	Human papillomavirus type 16 reduces the expression of microRNA-218 in cervical carcinoma cells.
+hsa-miR-219	CaMKIIgamma	2009	MicroRNA-219 modulates NMDA receptor-mediated neurobehavioral dysfunction
+hsa-miR-22	ERalpha	2009	miR-22 inhibits estrogen signaling by directly targeting the estrogen receptor alpha mRNA.
+hsa-miR-221	Bmf	2009	MicroRNA-221 targets Bmf in hepatocellular carcinoma and correlates with tumor multifocality.
+hsa-miR-221	p27	2009	A necessary role of miR-221 and miR-222 in vascular smooth muscle cell proliferation and neointimal hyperplasia
+hsa-miR-221	p27	2009	Co-suppression of miR-221/222 cluster suppresses human glioma cell growth by targeting p27kip1 in vitro and in vivo.
+hsa-miR-221	p27(Kip1)	2009	Effects of miR-34a on cell growth and chemoresistance in prostate cancer PC3 cells.
+hsa-miR-221	p27	2009	Functional links between clustered microRNAs: suppression of cell-cycle inhibitors by microRNA clusters in gastric cancer.
+hsa-miR-221	p57	2009	Functional links between clustered microRNAs: suppression of cell-cycle inhibitors by microRNA clusters in gastric cancer.
+hsa-miR-221	c-KIT	2009	Induction of MicroRNA-221 by Platelet-derived Growth Factor Signaling Is Critical for Modulation of Vascular Smooth Muscle Phenotype
+hsa-miR-221	p27Kip1	2009	Induction of MicroRNA-221 by Platelet-derived Growth Factor Signaling Is Critical for Modulation of Vascular Smooth Muscle Phenotype
+hsa-miR-221	Bim	2009	Sustained activation of ERK1/2 by NGF induces microRNA-221 and 222 in PC12 cells
+hsa-miR-221	c-KIT	2009	The c-myb proto-oncogene and microRNA-15a comprise an active autoregulatory feedback loop in human hematopoietic cells.
+hsa-miR-221	CDKN1B/p27/Kip1	2008	MicroRNA signatures of TRAIL resistance in human non-small cell lung cancer.
+hsa-miR-221	KIT	2008	MicroRNA signatures of TRAIL resistance in human non-small cell lung cancer.
+hsa-miR-221	c-KIT	2008	MicroRNA-221 and -222 pathway controls melanoma progression.
+hsa-miR-221	p27(Kip1)	2008	MicroRNA-221 and -222 pathway controls melanoma progression.
+hsa-miR-221	p27(Kip1)	2008	MicroRNA-221/222 Confers Tamoxifen Resistance in Breast Cancer by Targeting p27Kip1.
+hsa-miR-221	ERalpha	2008	MicroRNA-221/222 Negatively Regulates Estrogen Receptor{alpha} and Is Associated with Tamoxifen Resistance in Breast Cancer.
+hsa-miR-221	CDKN1B/p27/Kip1	2008	MiR-221 controls CDKN1C/p57 and CDKN1B/p27 expression in human hepatocellular carcinoma.
+hsa-miR-221	CDKN1C/p57	2008	MiR-221 controls CDKN1C/p57 and CDKN1B/p27 expression in human hepatocellular carcinoma.
+hsa-miR-221	CDKN1B/p27/Kip1	2008	The promyelocytic leukemia zinc finger-microRNA-221/-222 pathway controls melanoma progression through multiple oncogenic mechanisms.
+hsa-miR-221	c-KIT	2008	The promyelocytic leukemia zinc finger-microRNA-221/-222 pathway controls melanoma progression through multiple oncogenic mechanisms.
+hsa-miR-221	KIT	2008	The promyelocytic leukemia zinc finger-microRNA-221/-222 pathway controls melanoma progression through multiple oncogenic mechanisms.
+hsa-miR-221	BIRC1	2008	Up-regulation of micro-RNA-221 (miRNA-221; chr Xp11.3) and caspase-3 accompanies  down-regulation of the survivin-1 homolog BIRC1 (NAIP) in glioblastoma multiforme (GBM).
+hsa-miR-221	CDKN1B/p27/Kip1	2007	miR-221 and miR-222 expression affects the proliferation potential of human prostate carcinoma cell lines by targeting p27Kip1.
+hsa-miR-221	CDKN1B/p27/Kip1	2007	Regulation of p27Kip1 by miRNA 221/222 in glioblastoma.
+hsa-miR-221	KIT	2005	The role of microRNA genes in papillary thyroid carcinoma.
+hsa-miR-221	p27	2009	Microrna-221 and microrna-222 modulate differentiation and maturation of skeletal muscle cells
+hsa-miR-221	CDKN1B	2009	miR-128b is a potent glucocorticoid sensitizer in MLL-AF4 acute lymphocytic leukemia cells and exerts cooperative effects with miR-221
+hsa-miR-222	p27	2009	A necessary role of miR-221 and miR-222 in vascular smooth muscle cell proliferation and neointimal hyperplasia
+hsa-miR-222	p27	2009	Co-suppression of miR-221/222 cluster suppresses human glioma cell growth by targeting p27kip1 in vitro and in vivo.
+hsa-miR-222	p27	2009	Functional links between clustered microRNAs: suppression of cell-cycle inhibitors by microRNA clusters in gastric cancer.
+hsa-miR-222	p57	2009	Functional links between clustered microRNAs: suppression of cell-cycle inhibitors by microRNA clusters in gastric cancer.
+hsa-miR-222	MMP1	2009	"MicroRNA-222 regulates cell invasion by targeting matrix metalloproteinase 1(MMP1) and manganese superoxide dismutase 2 (SOD2) in tongue squamous cell
+carcinoma cell lines."
+hsa-miR-222	SOD2	2009	"MicroRNA-222 regulates cell invasion by targeting matrix metalloproteinase 1(MMP1) and manganese superoxide dismutase 2 (SOD2) in tongue squamous cell
+carcinoma cell lines."
+hsa-miR-222	Bim	2009	Sustained activation of ERK1/2 by NGF induces microRNA-221 and 222 in PC12 cells
+hsa-miR-222	CDKN1B/p27/Kip1	2008	MicroRNA signatures of TRAIL resistance in human non-small cell lung cancer.
+hsa-miR-222	KIT	2008	MicroRNA signatures of TRAIL resistance in human non-small cell lung cancer.
+hsa-miR-222	c-KIT	2008	MicroRNA-221 and -222 pathway controls melanoma progression.
+hsa-miR-222	p27(Kip1)	2008	MicroRNA-221 and -222 pathway controls melanoma progression.
+hsa-miR-222	p27(Kip1)	2008	MicroRNA-221/222 Confers Tamoxifen Resistance in Breast Cancer by Targeting p27Kip1.
+hsa-miR-222	ERalpha	2008	MicroRNA-221/222 Negatively Regulates Estrogen Receptor{alpha} and Is Associated with Tamoxifen Resistance in Breast Cancer.
+hsa-miR-222	CDKN1C/p57	2008	MicroRNAs 221 and 222 Bypass Quiescence and Compromise Cell Survival.
+hsa-miR-222	CDKN1B/p27/Kip1	2008	The promyelocytic leukemia zinc finger-microRNA-221/-222 pathway controls melanoma progression through multiple oncogenic mechanisms.
+hsa-miR-222	c-KIT	2008	The promyelocytic leukemia zinc finger-microRNA-221/-222 pathway controls melanoma progression through multiple oncogenic mechanisms.
+hsa-miR-222	KIT	2008	The promyelocytic leukemia zinc finger-microRNA-221/-222 pathway controls melanoma progression through multiple oncogenic mechanisms.
+hsa-miR-222	CDKN1B/p27/Kip1	2007	miR-221 and miR-222 expression affects the proliferation potential of human prostate carcinoma cell lines by targeting p27Kip1.
+hsa-miR-222	CDKN1B/p27/Kip1	2007	Regulation of p27Kip1 by miRNA 221/222 in glioblastoma.
+hsa-miR-222	KIT	2005	The role of microRNA genes in papillary thyroid carcinoma.
+hsa-miR-222	p27	2009	Microrna-221 and microrna-222 modulate differentiation and maturation of skeletal muscle cells
+hsa-miR-223	LMO2	2009	MicroRNA 223-dependent expression of LMO2 regulates normal erythropoiesis
+hsa-miR-223	STMN1	2008	MicroRNA-223 is commonly repressed in hepatocellular carcinoma and potentiates expression of Stathmin1.
+hsa-miR-223	Mef2c	2008	Regulation of progenitor cell proliferation and granulocyte function by microRNA-223.
+hsa-miR-223	NFI-A	2007	Epigenetic silencing of the myelopoiesis regulator microRNA-223 by the AML1/ETO oncoprotein.
+hsa-miR-223	RhoB	2009	Sequence context outside the target region influences the effectiveness of miR-223 target sites in the RhoB 3'UTR
+hsa-miR-224	API-5	2008	Profiling microRNA expression in hepatocellular carcinoma reveals microRNA-224 up-regulation and apoptosis inhibitor-5 as a microRNA-224-specific target.
+hsa-miR-23	LMNB1	2009	miR-23 regulation of lamin B1 is crucial for oligodendrocyte development and myelination
+hsa-miR-23a	RING1	2009	miR-23a functions downstream of NFATc3 to regulate cardiac hypertrophy.
+hsa-miR-23b	MOR1	2009	MicroRNA-dependent regulation of cKit in cutaneous melanoma.
+hsa-miR-23b	MOR1	2008	Post-transcriptional regulation of mouse {micro} opioid receptor (MOR1) via its 3' untranslated region: a role for microRNA23b
+hsa-miR-24	L protein	2007	Hypersusceptibility to vesicular stomatitis virus infection in Dicer1-deficient mice is due to impaired miR24 and miR93 expression.
+hsa-miR-24	P protein	2007	Hypersusceptibility to vesicular stomatitis virus infection in Dicer1-deficient mice is due to impaired miR24 and miR93 expression.
+hsa-miR-24	DHFR	2004	A miR-24 microRNA binding-site polymorphism in dihydrofolate reductase gene leads to methotrexate resistance.
+hsa-miR-24	E2F2	2009	miR-24 Inhibits cell proliferation by targeting E2F2, MYC, and other cell-cycle genes via binding to "seedless" 3'UTR microRNA recognition elements
+hsa-miR-24	MYC	2009	miR-24 Inhibits cell proliferation by targeting E2F2, MYC, and other cell-cycle genes via binding to "seedless" 3'UTR microRNA recognition elements
+hsa-miR-24	AURKB	2009	miR-24 Inhibits cell proliferation by targeting E2F2, MYC, and other cell-cycle genes via binding to "seedless" 3'UTR microRNA recognition elements
+hsa-miR-24	CCNA2	2009	miR-24 Inhibits cell proliferation by targeting E2F2, MYC, and other cell-cycle genes via binding to "seedless" 3'UTR microRNA recognition elements
+hsa-miR-24	CDC2	2009	miR-24 Inhibits cell proliferation by targeting E2F2, MYC, and other cell-cycle genes via binding to "seedless" 3'UTR microRNA recognition elements
+hsa-miR-24	CDK4	2009	miR-24 Inhibits cell proliferation by targeting E2F2, MYC, and other cell-cycle genes via binding to "seedless" 3'UTR microRNA recognition elements
+hsa-miR-24	FEN1	2009	miR-24 Inhibits cell proliferation by targeting E2F2, MYC, and other cell-cycle genes via binding to "seedless" 3'UTR microRNA recognition elements
+hsa-miR-24a	apaf1	2009	microRNA-24a is required to repress apoptosis in the developing neural retina
+hsa-miR-24a	Casp9	2009	microRNA-24a is required to repress apoptosis in the developing neural retina
+hsa-miR-25	p57	2009	Functional links between clustered microRNAs: suppression of cell-cycle inhibitors by microRNA clusters in gastric cancer.
+hsa-miR-25	Bim	2009	Role of the miR-106b-25 microRNA cluster in hepatocellular carcinoma.
+hsa-miR-25	PCAF	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-26a	PTEN	2009	The PTEN-regulating microRNA miR-26a is amplified in high-grade glioma and facilitates gliomagenesis in vivo.
+hsa-miR-26a	CCND2	2009	Therapeutic microRNA delivery suppresses tumorigenesis in a murine liver cancer model.
+hsa-miR-26a	CCNE2	2009	Therapeutic microRNA delivery suppresses tumorigenesis in a murine liver cancer model.
+hsa-miR-26a	EZH2	2008	MYC stimulates EZH2 expression by repression of its negative regulator miR-26a.
+hsa-miR-26a	HMGA1	2007	Specific microRNAs are downregulated in human thyroid anaplastic carcinomas.
+hsa-miR-26a	HMGA2	2007	Specific microRNAs are downregulated in human thyroid anaplastic carcinomas.
+hsa-miR-27	Runx1	2009	MicroRNA-27 enhances differentiation of myeloblasts into granulocytes by post-transcriptionally downregulating Runx1
+hsa-miR-27a	FOXO1	2009	Coordinate Regulation of FOXO1 by miR-27a, miR-96, and miR-182 in Breast Cancer Cells.
+hsa-miR-27a	Runx1	2009	A regulatory interplay between miR-27a and Runx1 during megakaryopoiesis
+hsa-miR-27a	prohibitin	2009	miR-320 targets transferrin receptor 1 (CD71) and inhibits cell proliferation.
+hsa-miR-27a	Myt-1	2007	The oncogenic microRNA-27a targets genes that regulate specificity protein transcription factors and the G2-M checkpoint in MDA-MB-231 breast cancer cells.
+hsa-miR-27a	ZBTB10	2007	The oncogenic microRNA-27a targets genes that regulate specificity protein transcription factors and the G2-M checkpoint in MDA-MB-231 breast cancer cells.
+hsa-miR-27b	PPARgamma	2009	microRNA miR-27b impairs human adipocyte differentiation and targets PPARgamm
+hsa-miR-296	HGS	2008	miR-296 regulates growth factor receptor overexpression in angiogenic endothelial cells.
+hsa-miR-298	BACE1	2009	MicroRNA-21 is overexpressed in pancreatic cancer and a potential predictor of survival.
+hsa-miR-298	BACE1	2008	MicroRNA-298 and microRNA-328 regulate expression of mouse beta -amyloid precursor protein converting enzyme 1.
+hsa-miR-29a	B7-H3	2009	MicroRNA miR-29 modulates expression of immunoinhibitory molecule B7-H3: potential implications for immune based therapy of human solid tumors.
+hsa-miR-29a	BACE1	2008	Loss of microRNA cluster miR-29a/b-1 in sporadic Alzheimer's disease correlates with increased BACE1/beta-secretase expression.
+hsa-miR-29a	DNMT3A	2007	MicroRNA-29 family reverts aberrant methylation in lung cancer by targeting DNA methyltransferases 3A and 3B.
+hsa-miR-29a	DNMT3B	2007	MicroRNA-29 family reverts aberrant methylation in lung cancer by targeting DNA methyltransferases 3A and 3B.
+hsa-miR-29b	ACVR2A	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	ACVR2A	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	COL1A1	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	COL4A2	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	COL5A3	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	CTNNBIP1	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	CTNNBIP1	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	HDAC4	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	HDAC4	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	TGFss3	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	TGFss3	2009	Biological functions of miR-29b contribute to positive regulation of osteoblast differentiation
+hsa-miR-29b	DNMT3B	2009	Detection of miR-106a in gastric carcinoma and its clinical significance.
+hsa-miR-29b	Sp1	2009	Genomic loss of microRNA-101 leads to overexpression of histone methyltransferase EZH2 in cancer.
+hsa-miR-29b	DNMT3A	2009	MicroRNA-298 and MicroRNA-328 Regulate Expression of Mouse {beta}-Amyloid Precursor Protein-converting Enzyme 1.
+hsa-miR-29b	BACE1	2008	Loss of microRNA cluster miR-29a/b-1 in sporadic Alzheimer's disease correlates with increased BACE1/beta-secretase expression.
+hsa-miR-29b	DNMT3A	2007	MicroRNA-29 family reverts aberrant methylation in lung cancer by targeting DNA methyltransferases 3A and 3B.
+hsa-miR-29b	DNMT3B	2007	MicroRNA-29 family reverts aberrant methylation in lung cancer by targeting DNA methyltransferases 3A and 3B.
+hsa-miR-29b	Mcl-1	2007	mir-29 regulates Mcl-1 protein expression and apoptosis.
+hsa-miR-29b	Tcl1	2007	The role of microRNA and other non-coding RNA in the pathogenesis of chronic lymphocytic leukemia.
+hsa-miR-29b	Tcl1	2006	Tcl1 expression in chronic lymphocytic leukemia is regulated by miR-29 and miR-181.
+hsa-miR-29b	Mcl-1	2009	MicroRNA 29b functions in acute myeloid leukemia
+hsa-miR-29c	COL15A1	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	COL1A1	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	COL1A2	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	COL3A1	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	COL4A1	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	COL4A2	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	FUSIP1iso1	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	LAMININ gamma1	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	SPARC	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	TDG	2008	MicroRNA 29c is down-regulated in nasopharyngeal carcinomas, up-regulating mRNAs encoding extracellular matrix proteins.
+hsa-miR-29c	DNMT3A	2007	MicroRNA-29 family reverts aberrant methylation in lung cancer by targeting DNA methyltransferases 3A and 3B.
+hsa-miR-29c	DNMT3B	2007	MicroRNA-29 family reverts aberrant methylation in lung cancer by targeting DNA methyltransferases 3A and 3B.
+hsa-miR-302d	KLF13	2009	Target identification of microRNAs expressed highly in human embryonic stem cells
+hsa-miR-302d	MBNL2	2009	Target identification of microRNAs expressed highly in human embryonic stem cells
+hsa-miR-302d	TRPS1	2009	Target identification of microRNAs expressed highly in human embryonic stem cells
+hsa-miR-30-3p	KRT7	2009	Identification of novel microRNA targets based on microRNA signatures in bladder cancer.
+hsa-miR-30a	beclin 1	2009	Regulation of autophagy by a beclin 1-targeted microRNA, miR-30a, in cancer cells
+hsa-miR-30e	Ubc9	2009	MicroRNA-mediated regulation of Ubc9 expression in cancer cells
+hsa-miR-31	RhoA	2009	A pleiotropically acting microRNA, miR-31, inhibits breast cancer metastasis.
+hsa-miR-31	FOXP3	2009	Human natural Treg microRNA signature: Role of microRNA-31 and microRNA-21 in FOXP3 expression
+hsa-miR-32	PCAF	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-320	Hsp20	2009	MicroRNA-320 is involved in the regulation of cardiac ischemia/reperfusion injury by targeting heat-shock protein 20.
+hsa-miR-320	TfR-1	2009	Polymorphic mature microRNAs from passenger strand of pre-miR-146a contribute to thyroid cancer.
+hsa-miR-320	Mcl-1	2009	Specific activation of microRNA106b enables the p73 apoptotic response in chronic lymphocytic leukemia by targeting the ubiquitin ligase, Itch for degradation.
+hsa-miR-320	BCL2	2009	The bifunctional microRNA miR-9/miR-9* regulates REST and CoREST and is downregulated in Huntington's disease.
+hsa-miR-320	CD71	2008	The genomic analysis of erythrocyte microRNA expression in sickle cell diseases.
+hsa-miR-324-5p	Gli1	2008	Concerted microRNA control of Hedgehog signalling in cerebellar neuronal progenitor and tumour cells.
+hsa-miR-326	Gli1	2008	Concerted microRNA control of Hedgehog signalling in cerebellar neuronal progenitor and tumour cells.
+hsa-miR-328	ABCG2	2009	MicroRNA-328 Negatively Regulates the Expression of Breast Cancer Resistance Protein (BCRP/ABCG2) in Human Cancer Cells.
+hsa-miR-328	BACE1	2009	MicroRNA-377 is up-regulated and can lead to increased fibronectin production in diabetic nephropathy.
+hsa-miR-328	CD44	2008	MicroRNA miR-328 regulates zonation morphogenesis by targeting CD44 expression.
+hsa-miR-328	BACE1	2008	MicroRNA-298 and microRNA-328 regulate expression of mouse beta -amyloid precursor protein converting enzyme 1.
+hsa-miR-330	E2F1	2009	MicroRNA-330 acts as tumor suppressor and induces apoptosis of prostate cancer cells through E2F1-mediated suppression of Akt phosphorylation.
+hsa-miR-335	SOX4	2008	Endogenous human microRNAs that suppress breast cancer metastasis.
+hsa-miR-338	COXIV	2009	MicroRNA-338 regulates local cytochrome c oxidase IV mRNA levels and oxidative phosphorylation in the axons of sympathetic neurons
+hsa-miR-34	SIRT1	2009	MiR-34, SIRT1 and p53: the feedback loop
+hsa-miR-346	EFEMP2	2006	A limited set of human MicroRNA is deregulated in follicular thyroid carcinoma.
+hsa-miR-346	RIP140	2009	An Epigenetic Switch Involving NF-kappaB, Lin28, Let-7 MicroRNA, and IL6 Links Inflammation to Cell Transformation
+hsa-miR-34a	BCL2	2009	miR-34a, a microRNA up-regulated in a double transgenic mouse model of Alzheimer's disease, inhibits bcl2 translation.
+hsa-miR-34a	JAG1	2009	MicroRNA profiling identifies miR-34a and miR-21 and their target genes JAG1 and WNT1 in the co-ordinate regulation of dendritic cell differentiation
+hsa-miR-34a	WNT1	2009	MicroRNA profiling identifies miR-34a and miR-21 and their target genes JAG1 and WNT1 in the co-ordinate regulation of dendritic cell differentiation
+hsa-miR-34a	c-Met	2009	MicroRNA-34a inhibits uveal melanoma cell proliferation and migration through downregulation of c-Met.
+hsa-miR-34a	c-Met	2009	miR-34a inhibits migration and invasion by down-regulation of c-Met expression in human hepatocellular carcinoma cells.
+hsa-miR-34a	BCL2	2008	A functional screen identifies miR-34a as a candidate neuroblastoma tumor suppressor gene.
+hsa-miR-34a	MYCN	2008	A functional screen identifies miR-34a as a candidate neuroblastoma tumor suppressor gene.
+hsa-miR-34a	E2F3	2008	Down-regulation of the microRNAs miR-34a, miR-127, and miR-200b in rat liver during hepatocarcinogenesis induced by a methyl-deficient diet.
+hsa-miR-34a	NOTCH1	2008	Down-regulation of the microRNAs miR-34a, miR-127, and miR-200b in rat liver during hepatocarcinogenesis induced by a methyl-deficient diet.
+hsa-miR-34a	SIRT1	2008	Effects of miR-34a on cell growth and chemoresistance in prostate cancer PC3 cells.
+hsa-miR-34a	GRM7	2008	Evidence for Selective microRNAs and their Effectors as Common Long-Term Targets for the Actions of Mood Stabilizers
+hsa-miR-34a	SIRT1	2008	MicroRNA-101, down-regulated in hepatocellular carcinoma, promotes apoptosis and suppresses tumorigenicity.
+hsa-miR-34a	c-Met	2008	The cell growth suppressor, mir-126, targets IRS-1.
+hsa-miR-34a	MYCN	2008	The MYCN oncogene is a direct target of miR-34a.
+hsa-miR-34a	E2F	2007	MicroRNA-34a functions as a potential tumor suppressor by inducing apoptosis in neuroblastoma cells.
+hsa-miR-34a	E2F3	2007	MicroRNA-34a functions as a potential tumor suppressor by inducing apoptosis in neuroblastoma cells.
+hsa-miR-34a	BCL2	2007	p53-mediated activation of miRNA34 candidate tumor-suppressor genes.
+hsa-miR-34a	BCL2	2007	Transactivation of miR-34a by p53 broadly influences gene expression and promotes apoptosis.
+hsa-miR-34a	BIRC3	2007	Transactivation of miR-34a by p53 broadly influences gene expression and promotes apoptosis.
+hsa-miR-34a	DcR3	2007	Transactivation of miR-34a by p53 broadly influences gene expression and promotes apoptosis.
+hsa-miR-34a	E2F	2007	Tumor-suppressive miR-34a induces senescence-like growth arrest through modulation of the E2F pathway in human colon cancer cells.
+hsa-miR-34a	c-Met	2009	MicroRNA-34a inhibits glioblastoma growth by targeting multiple oncogenes
+hsa-miR-34a	Notch-1	2009	MicroRNA-34a inhibits glioblastoma growth by targeting multiple oncogenes
+hsa-miR-34a	Notch-2	2009	MicroRNA-34a inhibits glioblastoma growth by targeting multiple oncogenes
+hsa-miR-34a	CDK6	2009	MicroRNA-34a inhibits glioblastoma growth by targeting multiple oncogenes
+hsa-miR-34b	CREB	2009	miR-34b targets cyclic AMP-responsive element binding protein in acute myeloid leukemia.
+hsa-miR-34b	CDK6	2008	A microRNA DNA methylation signature for human cancer metastasis
+hsa-miR-34b	c-myc	2008	A microRNA DNA methylation signature for human cancer metastasis
+hsa-miR-34b	c-myc	2008	MYC translocation-negative classical Burkitt lymphoma cases: an alternative pathogenetic mechanism involving miRNA deregulation.
+hsa-miR-34b	BCL2	2007	p53-mediated activation of miRNA34 candidate tumor-suppressor genes.
+hsa-miR-34c	c-myc	2008	A microRNA DNA methylation signature for human cancer metastasis
+hsa-miR-34c	E2F3	2008	A microRNA DNA methylation signature for human cancer metastasis
+hsa-miR-34c	BCL2	2007	p53-mediated activation of miRNA34 candidate tumor-suppressor genes.
+hsa-miR-34c	c-Met	2010	Hsa-miR-34c suppresses growth and invasion of human laryngeal carcinoma cells via targeting c-Met.
+hsa-miR-370	MAP3K8	2008	Epigenetic regulation of microRNA-370 by interleukin-6 in malignant human cholangiocytes.
+hsa-miR-372	KLF13	2009	Target identification of microRNAs expressed highly in human embryonic stem cells
+hsa-miR-372	MBNL2	2009	Target identification of microRNAs expressed highly in human embryonic stem cells
+hsa-miR-372	TRPS1	2009	Target identification of microRNAs expressed highly in human embryonic stem cells
+hsa-miR-372	LATS2	2006	A genetic screen implicates miRNA-372 and miRNA-373 as oncogenes in testicular germ cell tumors.
+hsa-miR-372	WEE1	2009	microRNAs regulate human embryonic stem cell division
+hsa-miR-373	RAD23B	2009	MicroRNA regulation of DNA repair gene expression in hypoxic stress
+hsa-miR-373	LATS2	2009	"MicroRNA-373 (miR-373) post-transcriptionally regulates large tumor suppressor, homolog 2 (LATS2) and stimulates proliferation in human esophageal cancer.
+"
+hsa-miR-373	CD44	2008	The microRNAs miR-373 and miR-520c promote tumour invasion and metastasis.
+hsa-miR-373	LATS2	2006	A genetic screen implicates miRNA-372 and miRNA-373 as oncogenes in testicular germ cell tumors.
+hsa-miR-375	PDK1	2008	miR-375 targets PDK1 and regulates glucose-induced biological responses in pancreatic {beta}-cells.
+hsa-miR-375	Mtpn	2004	A pancreatic islet-specific microRNA regulates insulin secretion.
+hsa-miR-375	TIMM8A	2009	A high throughput experimental approach to identify miRNA targets in human cells
+hsa-miR-378	GalNT-7	2009	MicroRNA miR-378 regulates nephronectin expression modulating osteoblast differentiation by targeting GalNT-7
+hsa-miR-424	PLAG1	2009	miRNA deregulation by epigenetic silencing disrupts suppression of the oncogene PLAG1 in chronic lymphocytic leukemia.
+hsa-miR-429	SIP1/ZEB4	2008	A double-negative feedback loop between ZEB1-SIP1 and the microRNA-200 family regulates epithelial-mesenchymal transition
+hsa-miR-429	ZEB1/deltaEF1	2008	A double-negative feedback loop between ZEB1-SIP1 and the microRNA-200 family regulates epithelial-mesenchymal transition
+hsa-miR-429	SIP1(ZEB2)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-429	ZEB1(deltaEF1)	2008	The miR-200 family and miR-205 regulate epithelial to mesenchymal transition by targeting ZEB1 and SIP1.
+hsa-miR-429	SIP1(ZEB2)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-429	ZEB1(deltaEF1)	2008	The miR-200 family inhibits epithelial-mesenchymal transition and cancer cell migration by direct targeting of E-cadherin transcriptional repressors ZEB1 and ZEB2.
+hsa-miR-429	WAVE3	2009	The miR200 family of microRNAs regulates WAVE3-dependent cancer cell invasion
+hsa-miR-429	ZEB1	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-429	ZEB2	2009	Regulation of miR-200 family microRNAs and ZEB transcription factors in ovarian cancer: Evidence supporting a mesothelial-to-epithelial transition
+hsa-miR-433	FGF20	2008	Variation in the miRNA-433 binding site of FGF20 confers risk for Parkinson disease by overexpression of alpha-synuclein.
+hsa-miR-449a	HDAC-1	2009	miR-449a targets HDAC-1 and induces growth arrest in prostate cancer.
+hsa-miR-451	MIF	2009	microRNA-451 regulates macrophage migration inhibitory factor production and proliferation of gastrointestinal cancer cells.
+hsa-miR-451	MIF	2009	microRNA-451 regulates macrophage migration inhibitory factor production and proliferation of gastrointestinal cancer cells.
+hsa-miR-485-3p	NTRK3	2009	Allele variants in functional MicroRNA target sites of the neurotrophin-3 receptor gene (NTRK3) as susceptibility factors for anxiety disorders.
+hsa-miR-504	DRD1	2009	Differential allelic expression of dopamine D1 receptor gene (DRD1) is modulated by microRNA miR-504
+hsa-miR-504	DRD1	2009	Differential Allelic Expression of Dopamine D1 Receptor Gene (DRD1) Is Modulated by microRNA miR-504
+hsa-miR-509	NTRK3	2009	Allele variants in functional MicroRNA target sites of the neurotrophin-3 receptor gene (NTRK3) as susceptibility factors for anxiety disorders.
+hsa-miR-510	HTR3E	2008	First evidence for an association of a functional variant in the microRNA-510 target site of the serotonin receptor type 3E gene with diarrhea predominant irritable bowel syndrome.
+hsa-miR-510	PDEF	2008	MicroRNA-mediated inhibition of prostate-derived Ets factor messenger RNA translation affects prostate-derived Ets factor regulatory networks in human breast cancer.
+hsa-miR-512-5p	Mcl-1	2009	Chromatin remodeling at Alu repeats by epigenetic treatment activates silenced microRNA-512-5p with downregulation of Mcl-1 in human gastric cancer cells.
+hsa-miR-513	B7-H	2009	MicroRNA-513 regulates B7-H1 translation and is involved in IFN-gamma-induced B7-H1 expression in cholangiocytes
+hsa-miR-519	HuR	2010	miR-519 suppresses tumor growth by reducing HuR levels.
+hsa-miR-519c	ABCG2	2009	Escape from hsa-miR-519c enables drug-resistant cells to maintain high expression of ABCG2
+hsa-miR-520c	CD44	2008	The microRNAs miR-373 and miR-520c promote tumour invasion and metastasis.
+hsa-miR-520h	ABCG2	2009	Escape from hsa-miR-519c enables drug-resistant cells to maintain high expression of ABCG2
+hsa-miR-521	CSA	2008	Radiation modulation of microRNA in prostate cancer cell lines.
+hsa-miR-532-5p	RUNX3	2009	Regulation of RUNX3 Tumor Suppressor Gene Expression in Cutaneous Melanoma.
+hsa-miR-548d-3p	ERBB2	2009	Preliminary validation of ERBB2 expression regulated by miR-548d-3p and miR-559
+hsa-miR-559	ERBB2	2009	Preliminary validation of ERBB2 expression regulated by miR-548d-3p and miR-559
+hsa-miR-562	EYA1	2009	Loss of heterozygosity at 2q37 in sporadic Wilms' tumor: putative role for miR-562
+hsa-miR-659	GRN	2008	Common variation in the miR-659 binding-site of GRN is a major risk factor for TDP43-positive frontotemporal dementia.
+hsa-miR-661	MTA1	2009	MicroRNA-661, a c/EBPalpha target, inhibits metastatic tumor antigen 1 and regulates its functions.
+hsa-miR-7	SNCA	2009	Repression of alpha-synuclein expression and toxicity by microRNA-7.
+hsa-miR-7	EGFR	2009	MicroRNA-184 antagonizes microRNA-205 to maintain SHIP2 levels in epithelia.
+hsa-miR-7	EGFR	2009	MicroRNA-21 contributes to myocardial disease by stimulating MAP kinase signalling in fibroblasts.
+hsa-miR-7	EGFR	2009	MicroRNA-34a Inhibits Uveal Melanoma Cell Proliferation and Migration through Downregulation of c-Met.
+hsa-miR-7	EGFR	2009	Regulation of epidermal growth factor receptor signaling in human cancer cells by microRNA-7.
+hsa-miR-7	EGFR	2008	microRNA-7 inhibits the epidermal growth factor receptor and the Akt pathway and is down-regulated in glioblastoma.
+hsa-miR-7	Pak1	2008	MicroRNA-7, a homeobox D10 target, inhibits p21-activated kinase 1 and regulates its functions.
+hsa-miR-709	BORIS	2009	DNA damage-induced upregulation of miR-709 in the germline downregulates BORIS to counteract aberrant DNA hypomethylation
+hsa-miR-765	NTRK3	2009	Allele variants in functional MicroRNA target sites of the neurotrophin-3 receptor gene (NTRK3) as susceptibility factors for anxiety disorders.
+hsa-miR-9	E-cadherin	2009	MicroRNA-9 reduces cell invasion and E-cadherin secretion in SK-Hep-1 cell.
+hsa-miR-9	NF-kappaB1	2009	MicroRNA-9 inhibits ovarian cancer cell growth through regulation of NF-kappaB1.
+hsa-miR-9	TLX	2009	A feedback regulatory loop involving microRNA-9 and nuclear receptor TLX in neural stem cell fate determination
+hsa-miR-9	TrkC	2009	microRNA-1 negatively regulates expression of the hypertrophy-associated genes calmodulin and Mef2a.
+hsa-miR-9	REST	2009	Role of miR-143 targeting KRAS in colorectal tumorigenesis.
+hsa-miR-9	MMP13	2009	The identification of differentially expressed microRNA in osteoarthritic tissue that modulate the production of TNF-alpha and MMP13
+hsa-miR-9	TrkC	2008	MicroRNA profiling in human medulloblastoma.
+hsa-miR-9	PRDM1/Blimp-1	2008	MicroRNA-mediated down-regulation of PRDM1/Blimp-1 in Hodgkin/Reed-Sternberg cells: a potential pathogenetic lesion in Hodgkin lymphomas.
+hsa-miR-9	ONECUT-2	2006	MicroRNA-9 controls the expression of Granuphilin/Slp4 and the secretory response of insulin-producing cells.
+hsa-miR-9*	CoREST	2009	MicroRNA profiling in human medulloblastoma.
+hsa-miR-92b	p57	2009	MicroRNA 92b Controls the G1/S Checkpoint Gene p57 in Human Embryonic Stem Cells
+hsa-miR-93	FUS1	2009	miR-93, miR-98, and miR-197 regulate expression of tumor suppressor gene FUS1.
+hsa-miR-93	p21	2009	Functional links between clustered microRNAs: suppression of cell-cycle inhibitors by microRNA clusters in gastric cancer.
+hsa-miR-93	E2F1	2009	Role of the miR-106b-25 microRNA cluster in hepatocellular carcinoma.
+hsa-miR-93	E2F1	2008	E2F1-regulated microRNAs impair TGFbeta-dependent cell-cycle arrest and apoptosis in gastric cancer.
+hsa-miR-93	PCAF	2008	MicroRNAs regulate critical genes associated with multiple myeloma pathogenesis.
+hsa-miR-93	TP53INP1	2008	Roles for microRNAs, miR-93 and miR-130b, and tumor protein 53-induced nuclear protein 1 tumor suppressor in cell growth dysregulation by human T-cell lymphotrophic virus 1.
+hsa-miR-96	FOXO1	2009	Coordinate Regulation of FOXO1 by miR-27a, miR-96, and miR-182 in Breast Cancer Cells.
+hsa-miR-98	FUS1	2009	miR-93, miR-98, and miR-197 regulate expression of tumor suppressor gene FUS1.
+hsa-miR-98	HMGA2	2007	High mobility group A2 is a target for miRNA-98 in head and neck squamous cell carcinoma.

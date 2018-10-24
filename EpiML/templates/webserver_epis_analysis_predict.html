@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Web Server | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+
+    <style>
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script>
+        // limit check number
+        $(document).ready(function () {
+            $("input[name='choose']").change(function () {
+                var maxAllowed = 3;
+                var cnt = $("input[name='choose']:checked").length;
+                if (cnt > maxAllowed) {
+                    $(this).prop("checked", "");
+                    alert('Select maximum ' + maxAllowed + ' Models!');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#model_table').DataTable({
+                'columnDefs': [{
+                    'targets': 0,
+                    'checkboxes': {
+                        'selectRow': true
+                    },
+                    'searchable': false,
+                    'orderable': false,
+
+                }],
+                'select': {
+                    'style': 'multi'
+                },
+                "order": [[1, 'asc']]
+            });
+
+            // handle row click
+            table.on('select', function (e, dt, type, ix) {
+                var selected = dt.rows({selected: true});
+                if (selected.count() > 3) {
+                    dt.rows(ix).deselect();
+                }
+            });
+
+            // Handle form submission event
+            $('#form_model').on('submit', function (e) {
+                var form = this;
+                var rows_selected = table.column(0).checkboxes.selected();
+                // Iterate over all selected checkboxes
+                $.each(rows_selected, function (index, rowId) {
+                    // Create a hidden element
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'id[]')
+                            .val(rowId)
+                    );
+                });
+                // FOR DEMONSTRATION ONLY
+                // The code below is not needed in production
+
+                // Output form data to a console
+                //$('#example-console-rows').text(rows_selected.join(","));
+
+                // Output form data to a console
+                //$('#example-console-form').text($(form).serialize());
+            });
+        });
+
+    </script>
+{% endblock %}
+{% block content %}
+    <div>
+       <h2>Epistatic analysis -- General Purpose</h2>
+        <p>Epistatic analysis for general purpose.</p>
+        <hr>
+        <!-- Tab links-->
+        <ul class="nav nav-tabs">
+            <li><a href="{{ url_for('webserver_epistatic_analysis_train') }}">Train</a></li>
+            <li class="active"><a href="{{ url_for('webserver_epistatic_analysis_predict') }}">Predict</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="testing" class="tab-pane fade active in" style="padding-top: 20px">
+
+                <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are
+                    required.</strong></p>
+                <form class="form-horizontal" method="post" enctype="multipart/form-data" id="form_model">
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2" for="jobname">Job Name:</label>
+                        <div class="col-sm-4">
+                            <input name="jobname" class="form-control" id="jobname" placeholder="Enter your job name"
+                                   required>
+                        </div>
+                    </div>
+                    <!--usernames
+                        <div class="form-group row">
+                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-4">
+                                <input name="email" type="email" class="form-control" id="email"
+                                       placeholder="Enter your Email"
+                                       required>
+                            </div>
+                        </div>
+                        -->
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2" for="description">Description:</label>
+                        <div class="col-sm-10">
+                    <textarea style="height: 100px" name="description" class="form-control" id="description"
+                              placeholder="Add description for your job, like data, method and parameters."
+                              required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="upload">Upload files:</label>
+                        <div class=" col-sm-5">
+                            <label class="control-label" for="input-x">Choose your unknown data: X</label>
+                            <input class="form-control" type="file" id="input-x" name="input-x"
+                                   placeholder="choose your unknown data: X" required>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label class="control-label col-sm-2" for="methods">Choose Models:</label>
+                        <div class="col-sm-10">
+                            <p>Select maximum 3 models</p>
+                            <table class="table-hover table-condense stripe" id="model_table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th>Job Name</th>
+                                    <th>Method</th>
+                                    <th>Performance</th>
+                                    <th>Recall times</th>
+                                    <th>Submit time</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for model in models %}
+                                    <tr>
+                                        <!-- input checkbox value-->
+                                        <td> {{ model.id }} </td>
+                                        <td>{{ loop.index0 + 1 }}</td>
+                                        <td>{{ jobnames[loop.index0] }}</td>
+                                        <td>{{ model.algorithm }}</td>
+                                        <td>{{ model.performance }}</td>
+                                        <td>{{ model.recall_times }}</td>
+                                        <td>{{ momentjs(model.timestamp).calendar() }} </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                    <!--
+                                        <p><b>Selected rows data:</b></p>
+                                        <pre id="example-console-rows"></pre>
+
+                                        <p><b>Form data as submitted to the server:</b></p>
+                                        <pre id="example-console-form"></pre>
+                                        -->
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

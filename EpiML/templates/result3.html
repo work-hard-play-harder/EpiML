@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Result | Shilab web server</title>
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+    <style>
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: coral;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <!-- for datatables -->
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#main_effect').DataTable();
+            $('#epis_effect').DataTable();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Results</h2>
+        <hr>
+        <p>Your job is finished, and the results are shown in following. Result can be downloaded
+            <a href="{{ url_for('download_result',jobid=jobid, filename='main_result.txt') }}">Main effect</a>,
+            <a href="{{ url_for('download_result',jobid=jobid, filename='epis_result.txt') }}">Epistatic effect</a>
+        </p>
+
+        <div class="container">
+            <h4>Main Effect</h4>
+            <div>
+                <table id="main_effect" name="main_effect" class="table table-hover stripe">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Main effect features</th>
+                        <th>coefficent value</th>
+                        <th>posterior variance</th>
+                        <th>t-value</th>
+                        <th>p-value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line in EBEN_main_result %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ line[0] }}</td>
+                            <td>{{ line[1] }}</td>
+                            <td>{{ line[2] }}</td>
+                            <td>{{ line[3] }}</td>
+                            <td>{{ line[4] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h4>Epistatic Effect</h4>
+                <table id="epis_effect" name="epis_effect" class="table table-hover stripe">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Epistasic effect features1</th>
+                        <th>Epistasic effect features2</th>
+                        <th>coefficent value</th>
+                        <th>posterior variance</th>
+                        <th>t-value</th>
+                        <th>p-value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line in EBEN_epis_result %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ line[0] }}</td>
+                            <td>{{ line[1] }}</td>
+                            <td>{{ line[2] }}</td>
+                            <td>{{ line[3] }}</td>
+                            <td>{{ line[4] }}</td>
+                            <td>{{ line[5] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h3>Visualization</h3>
+        <div id="visualization" class="container">
+            <p>Red circles are main effects, and blue circles are epistasis effects.</p>
+            <div>
+                <button id='saveAsPNG'>save as PNG</button>
+                <button id='saveAsSVG'>save as SVG</button>
+            </div>
+            <div style="padding: 10px">
+                <svg id="diagram"></svg>
+            </div>
+            <!-- for d3 visualization.
+                        This script must be after cn_svg tag-->
+            <script src="https://d3js.org/d3.v4.min.js"></script>
+            <script>
+                var nodes = {{ nodes|safe }};
+                var links = {{ links|safe }};
+            </script>
+            <script type="text/javascript" charset="utf8"
+                    src="{{ url_for('static', filename='js/vis_ER.js') }}"></script>
+
+            <!-- for save as -->
+            <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
+            <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
+            <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+            <script>
+                // Set-up the export button
+                d3.select('#saveAsPNG').on('click', function () {
+                    saveSvgAsPng(document.getElementById("diagram"), "diagram.png", {scale: 4});
+                });
+
+                d3.select("#saveAsSVG")
+                    .on("click", function () {
+                        try {
+                            var isFileSaverSupported = !!new Blob();
+                        } catch (e) {
+                            alert("blob not supported");
+                        }
+
+                        var html = d3.select("cn_svg")
+                            .attr("title", "saveAsSVG")
+                            .attr("version", 1.1)
+                            .attr("xmlns", "http://www.w3.org/2000/cn_svg")
+                            .node().parentNode.innerHTML;
+
+                        var blob = new Blob([html], {type: "image/cn_svg+xml"});
+                        saveAs(blob, "diagram.svg");
+                    });
+            </script>
+        </div>
+    </div>
+{% endblock %}
