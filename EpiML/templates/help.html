@@ -9,31 +9,56 @@
         ul {
             font-size: large;
         }
+        ol {
+            font-size: large;
+            counter-reset: item
+        }
+        li {
+            display: block
+        }
+        li:before {
+            content: counters(item, ".") " ";
+            counter-increment: item
+        }
     </style>
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static',filename='css/back_to_top.css') }}">
 {% endblock %}
 {% block scripts %}
     {{ super() }}
     <script src='{{ url_for('static', filename='js/offset_height_for_help_nav.js') }}'></script>
+    <script src='{{ url_for('static', filename='js/back_to_top.js') }}'></script>
 {% endblock %}
 
 {% block content %}
-    <div class="col-sm-3">
-        <ul class="nav nav-stacked nav-pills  affix">
-            <h2>Help</h2>
-            <hr>
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#getting_started">Getting Started</a></li>
 
+    <!-- for back2top -->
+    <a id="back2Top" title="Back to top" href="#">&#10148;</a>
+
+    <h2>Help</h2>
+    <hr>
+    <div>
+        <h3>Table of Contents</h3>
+        <ol>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#getting_started">Getting Started</a>
+            <ol>
+                <li><a href="#prepare">Prepare your data</a> </li>
+                <li><a href="#upload"> Upload data</a></li>
+                <li><a href="#submit"> Submit and check job status</a></li>
+                <li><a href="#result"> Results</a></li>
+            </ol>
+            </li>
             <li><a href="#visualization">Visualization</a></li>
-            <li><a href="#model_repository">Model Repository</a></li>
+            <li><a href="#customize_code">Customize Code</a></li>
             <li><a href="#machine_learning_methods">Machine Learning Methods</a></li>
             <li><a href="#FAQ">FAQ</a></li>
-        </ul>
+        </ol>
     </div>
-    <div class="col-sm-9">
+    <div>
         <main>
             <section class="anchor" id="introduction">
-                <h2>1. Introduction</h2>
+                <h3>1. Introduction</h3>
                 <p> Epistasis is the phenomenon where the effect of one gene (locus) is dependent on the presence of one
                     or more 'modifier genes', i.e. the genetic background.[1] Originally the term meant that the
                     phenotypic effect of one gene is masked by a different gene (locus).[2] Thus, epistatic mutations
@@ -59,11 +84,11 @@
             </section>
             <hr>
             <section class="anchor" id="getting_started">
-                <h2>2. Getting Started</h2>
+                <h3>2. Getting Started</h3>
                 <p> This is a step-by-step tutorial how to use EpiML to find out main and epistasis effects in your
                     data.</p>
-                <br>
-                <h4>2.0. Prepare your data</h4>
+
+                <h4 class="anchor" id="prepare">2.0. Prepare your data</h4>
                 <p>Input files include two parts: feature matrix <strong>X</strong>, and label matrix <strong>Y</strong>.
                     Both of them are table separated files with row and column names. An example for SNP file is shown
                     in following:</p>
@@ -94,7 +119,7 @@
                     </p>
                 -->
                 <hr>
-                <h4>2.1. Upload data</h4>
+                <h4 class="anchor" id="upload">2.1. Upload data</h4>
                 <p>Some basic information is required when you upload data. </p>
                 <ul>
                     <li><strong>Job name</strong> is used to retrieve results when you submitted job is done.
@@ -118,7 +143,7 @@
                 </div>
                 <hr>
 
-                <h4>2.2. Submit and check job status</h4>
+                <h4 class="anchor" id="submit">2.2. Submit and check job status</h4>
                 <p> After submit your job, it will be added into job queue waiting for execution in background. The
                     browser will jump to a processing page where you can check your job status, as following figure
                     shown. Meanwhile, you will receive an Email notification with security code.
@@ -136,7 +161,7 @@
 
                 <hr>
 
-                <h4>2.3. Results</h4>
+                <h4 class="anchor" id="result">2.3. Results</h4>
                 <p>EpiML can detect main effects and epistatic effects in your data. These detected results will be list
                     in two interactive tables correspondingly, as following figure shown, where you can rank whole table
                     by
@@ -152,7 +177,7 @@
                 </p>
             </section>
             <section class="anchor" id="visualization">
-                <h2>3. Visualization</h2>
+                <h3>3. Visualization</h3>
                 <p> We provides three kind of interactive visualizations, including circle network, adjacency matrix and
                     force-directed graph. When you move mouse over one node, more detailed information and linked nodes
                     will be highlighted. When you click one node in one diagram, the corresponding nodes in other two
@@ -196,15 +221,52 @@
                 </div>
 
             </section>
-            <!--
-            <section class="anchor" id="model_repository">
-                <h2>Model Repository</h2>
-                <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
-                </p>
+
+            <section class="anchor" id="customize_code">
+                <h3>4. Customize Code</h3>
+                <p>For each job, its corresponding Jupyter notebook is automatically generated. All notebooks can be
+                    downloaded, modified and rerun, allowing users to fully customize their epistasis analysis on local
+                    computers. To achieve this, we provide a pre-configured Docker container containing a fully
+                    functional Jupyter server with all the Python and R libraries necessary to run the notebooks.</p>
+
+                <h4>4.1. Install Docker</h4>
+                <p>Docker is a Container-as-a-Service (CaaS) platform that enables a secure software supply chain and
+                    deploys diverse applications for high availability across disparate infrastructure.
+                    Download, install and run Docker on your computer from the official
+                    <a href="https://www.docker.com/products/docker-engine" target="_blank">Docker website</a> depending
+                    on your OS.</p>
+
+                <h4>4.2. Generate job notebook</h4>
+                <p>You can submit a small data set following <a href="#getting_started">Get Started</a> section. After
+                    your job is done, a Jupyter notebook is automatically generated, and you can download from result
+                    page.</p>
+
+                <h4>4.3. Launch a Docker Container</h4>
+                <ol>
+                    <li> Open a new terminal window.</li>
+                    <li>Change directory (cd) that includes your job notebook. Strongly recommend to create a new
+                        directory, and copy notebook into the new directory.
+                    </li>
+                    <li>Launch the Docker container by entering the following command
+                        <pre>docker run -it --rm -p 8888:8888 -v "$PWD":/home/jovyan/work workhardplayharder/epiml:v1</pre>
+                        This command pulls the <code>workhardplayharder/epiml</code> image tagged <code>v1</code> from
+                        Docker Hub if it is not already present on the local host. It then starts a container running a
+                        Jupyter Notebook server, and exposes the server on host port 8888. The server logs appear in the
+                        terminal.
+                    </li>
+                </ol>
+                <h4>4.4. Customize your Notebook</h4>
+                <p>Copy/paste <code>http://&lt;hostname&gt;:8888/?token=&lt;token&gt;</code> in a browser
+                    loads the Jupyter Notebook dashboard page, where hostname is the name of the computer running
+                    docker and token is the secret token printed in the console. Customize and save your notebook in
+                    Jupyter. Once you are done, stop the Docker container by pressing <code>Ctrl+C</code> on the
+                    previously opened
+                    Terminal window.</p>
+
+                <hr>
             </section>
-            -->
             <section class="anchor" id="machine_learning_methods">
-                <h2>Machine Learning Methods</h2>
+                <h3>5. Machine Learning Methods</h3>
                 <p>We build-in several machine learning methods for epistatic analysis. In general, you only need to
                     upload your data, select one machine learning method, and then submit your job. You don't need to
                     care about the algorithm detail. Our server will handel all the procedure in backend. For you better
@@ -219,7 +281,7 @@
                 <p></p>
             </section>
             <section class="anchor" id="FAQ">
-                <h2>FAQ</h2>
+                <h3>6. FAQ</h3>
                 <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
                 </p>
             </section>

@@ -18,13 +18,16 @@ class Config(object):
     MIR2DISEASE_DIR = os.path.join(basedir, 'EpiML', 'datasets', 'miR2Disease')
     MIR2BASE_DIR = os.path.join(basedir, 'EpiML', 'datasets', 'miRBase')
 
-    # for run scripts
-    GENERAL_EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiML', 'scripts', 'general_EBEN_train.R')
+    # scripts dir
+    SCRIPTS_DIR=os.path.join(basedir, 'EpiML', 'scripts')
 
-    EBEN_TRAIN_SCRIPT = os.path.join(basedir, 'EpiML', 'scripts', 'EBEN_train.R')
-    EBEN_PREDICT_SCRIPT = os.path.join(basedir, 'EpiML', 'scripts', 'EBEN_predict.R')
-    SSLASSO_SCRIPT = os.path.join(basedir, 'EpiML', 'scripts', 'ssLASSO.R')
-    MATRIX_EQTL_TRAIN_SCRIPT = os.path.join(basedir, 'EpiML', 'scripts', 'Matrix_eQTL_train.R')
+    # for run scripts
+    GENERAL_EBEN_TRAIN_SCRIPT = os.path.join(SCRIPTS_DIR, 'general_EBEN_train.R')
+
+    EBEN_TRAIN_SCRIPT = os.path.join(SCRIPTS_DIR, 'EBEN_train.R')
+    EBEN_PREDICT_SCRIPT = os.path.join(SCRIPTS_DIR, 'EBEN_predict.R')
+    SSLASSO_SCRIPT = os.path.join(SCRIPTS_DIR, 'ssLASSO.R')
+    MATRIX_EQTL_TRAIN_SCRIPT = os.path.join(SCRIPTS_DIR, 'Matrix_eQTL_train.R')
 
     # for mail
     MAIL_SERVER = 'smtp.gmail.com'

@@ -690,6 +690,17 @@ def result_train(jobid):
     # for adjacency matrix
     miR_json.write_am_graph_json()
 
+    jupyter_notebook_size = 0
+    if job.selected_algorithm == 'EBEN':
+        jupyter_notebook_size = '{0:.2f}'.format(
+            os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
+    if job.selected_algorithm == 'Lasso':
+        jupyter_notebook_size = '{0:.2f}'.format(
+            os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
+    if job.selected_algorithm == 'ssLasso':
+        jupyter_notebook_size = '{0:.2f}'.format(
+            os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
+
     return render_template('result_train.html', job=job,
                            feature_file_size='{0:.2f}'.format(
                                os.path.getsize(os.path.join(job_dir, job.feature_file)) / 1024),
@@ -699,12 +710,17 @@ def result_train(jobid):
                                os.path.getsize(os.path.join(job_dir, 'main_result.txt')) / 1024),
                            epis_result_size='{0:.2f}'.format(
                                os.path.getsize(os.path.join(job_dir, 'epis_result.txt')) / 1024),
+                           jupyter_notebook_size=jupyter_notebook_size,
 
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
-                           nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
-                           legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
+                           nodes_links_json=url_for('download_result',
+                                                    jobid=jobid,
+                                                    filename='nodes_links.json'),
+                           legends_json=url_for(
+                               'download_result', jobid=jobid, filename='legends.json'),
                            cn_graph_json=cn_graph_json,
-                           am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
+                           am_graph_json=url_for(
+                               'download_result', jobid=jobid, filename='am_graph.json'))
 
     '''
     return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
@@ -976,3 +992,26 @@ def download_sample_data(filename):
         return send_file(os.path.join(app.config['SAMPLE_DATA_DIR'], filename), attachment_filename=filename)
     except Exception as e:
         return str(e)
+
+
+@app.route('/download/r_notebook/<method>_r_notebook.ipynb')
+def download_r_notebook(method):
+    if method == 'EBEN':
+        filename = 'EBEN_r_notebook.ipynb'
+        try:
+            return send_file(os.path.join(app.config['SCRIPTS_DIR'], filename), add_etags=False,
+                             attachment_filename=filename)
+        except Exception as e:
+            return str(e)
+    if method == 'Lasso':
+        filename = 'Lasso_r_notebook.ipynb'
+        try:
+            return send_file(os.path.join(app.config['SCRIPTS_DIR'], filename), attachment_filename=filename)
+        except Exception as e:
+            return str(e)
+    if method == 'ssLasso':
+        filename = 'ssLasso_r_notebook.ipynb'
+        try:
+            return send_file(os.path.join(app.config['SCRIPTS_DIR'], filename), attachment_filename=filename)
+        except Exception as e:
+            return str(e)
