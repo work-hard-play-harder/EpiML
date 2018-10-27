@@ -9,14 +9,17 @@
         ul {
             font-size: large;
         }
+
         ol {
             font-size: large;
             counter-reset: item
         }
+
         li {
             display: block
         }
-        li:before {
+
+        li.mlutilLevel:before {
             content: counters(item, ".") " ";
             counter-increment: item
         }
@@ -40,21 +43,22 @@
     <div>
         <h3>Table of Contents</h3>
         <ol>
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#getting_started">Getting Started</a>
-            <ol>
-                <li><a href="#prepare">Prepare your data</a> </li>
-                <li><a href="#upload"> Upload data</a></li>
-                <li><a href="#submit"> Submit and check job status</a></li>
-                <li><a href="#result"> Results</a></li>
-            </ol>
+            <li class="mlutilLevel"><a href="#introduction">Introduction</a></li>
+            <li class="mlutilLevel"><a href="#getting_started">Getting Started</a>
+                <ol>
+                    <li class="mlutilLevel"><a href="#prepare">Prepare your data</a></li>
+                    <li class="mlutilLevel"><a href="#upload"> Upload data</a></li>
+                    <li class="mlutilLevel"><a href="#submit"> Submit and check job status</a></li>
+                    <li class="mlutilLevel"><a href="#result"> Results</a></li>
+                </ol>
             </li>
-            <li><a href="#visualization">Visualization</a></li>
-            <li><a href="#customize_code">Customize Code</a></li>
-            <li><a href="#machine_learning_methods">Machine Learning Methods</a></li>
-            <li><a href="#FAQ">FAQ</a></li>
+            <li class="mlutilLevel"><a href="#visualization">Visualization</a></li>
+            <li class="mlutilLevel"><a href="#customize_code">Customize Code</a></li>
+            <li class="mlutilLevel"><a href="#machine_learning_methods">Machine Learning Methods</a></li>
+            <li class="mlutilLevel"><a href="#FAQ">FAQ</a></li>
         </ol>
     </div>
+    <hr>
     <div>
         <main>
             <section class="anchor" id="introduction">
@@ -118,7 +122,7 @@
                     <code>test </code>
                     </p>
                 -->
-                <hr>
+
                 <h4 class="anchor" id="upload">2.1. Upload data</h4>
                 <p>Some basic information is required when you upload data. </p>
                 <ul>
@@ -141,7 +145,7 @@
                 <div>
                     <img width="100%" src="{{ url_for('static',filename='img/help/upload_data.png') }}">
                 </div>
-                <hr>
+
 
                 <h4 class="anchor" id="submit">2.2. Submit and check job status</h4>
                 <p> After submit your job, it will be added into job queue waiting for execution in background. The
@@ -159,7 +163,6 @@
                     through the <strong>Results</strong> button in each end of line.</p>
                 <div><img width="100%" src="{{ url_for('static',filename='img/help/job_table.png') }}"></div>
 
-                <hr>
 
                 <h4 class="anchor" id="result">2.3. Results</h4>
                 <p>EpiML can detect main effects and epistatic effects in your data. These detected results will be list
@@ -169,7 +172,7 @@
 
                 <img width="100%" src="{{ url_for('static',filename='img/help/result_table.png') }}">
                 <!--<img width="100%" src="{{ url_for('static',filename='img/help/epi_effect.png') }}">-->
-                <hr>
+
                 <h4>2.4. Download results</h4>
                 <hr>
                 <p>
@@ -219,9 +222,8 @@
                 <div align="center">
                     <img width="100%" src="{{ url_for('static',filename='img/help/forced-direct_graph.png') }}">
                 </div>
-
             </section>
-
+            <hr>
             <section class="anchor" id="customize_code">
                 <h3>4. Customize Code</h3>
                 <p>For each job, its corresponding Jupyter notebook is automatically generated. All notebooks can be
