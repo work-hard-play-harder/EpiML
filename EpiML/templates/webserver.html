@@ -3,6 +3,57 @@
 {% block title %}
     <title>Web Server | Shilab web server</title>
 {% endblock %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        /* Tooltip container */
+        .question_tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+        }
+
+        /* Tooltip text */
+        .question_tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* Position the tooltip text */
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+
+            /* Fade in tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Tooltip arrow */
+        .question_tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .question_tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+{% endblock %}
 {% block scripts %}
     {{ super() }}
     <script>
@@ -22,7 +73,7 @@
         <h2>Server</h2>
         <div>
             <p>You can upload feature matrix X and label matrix Y, and submit your job in this page. A step-by-step
-                tutorial can be found in <a href="{{ url_for('help') }}"> help</a>. When you submit the job, it will be
+                tutorial can be found in <a href="{{ url_for('help') }}"> Help</a>. When you submit the job, it will be
                 run in background. And an Email notification with processing link and security code will sent to you.
                 You can check the running status and get final report by the link. When your job is done, you will
                 receive another Email notification.
@@ -34,13 +85,17 @@
                 required.</strong></p>
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" for="jobname">Job Category:</label>
+                    <label class="control-label col-sm-2 " for="jobname">Job Category:
+                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </label>
                     <div class="col-sm-10">
                         <label class="radio-inline col-sm-2">
-                            <input id="jobcategory" name="jobcategory" type="radio" value="gene"> Gene
+                            <input id="jobcategory" name="jobcategory" type="radio" value="gene" CHECKED> Gene
                         </label>
                         <label class="radio-inline col-sm-2">
-                            <input id="jobcategory" name="jobcategory" type="radio" value="microRNA" CHECKED>
+                            <input id="jobcategory" name="jobcategory" type="radio" value="microRNA">
                             microRNA
                         </label>
                         <label class="radio-inline col-sm-2">
@@ -49,14 +104,22 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" for="jobname">Job Name:</label>
+                    <label class="control-label col-sm-2" for="jobname">Job Name:
+                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </label>
                     <div class="col-sm-4">
                         <input name="jobname" class="form-control" id="jobname" placeholder="Enter your job name"
                                required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <label class="control-label col-sm-2" for="email">Email:
+                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </label>
                     <div class="col-sm-4">
                         <input name="email" type="email" class="form-control" id="email"
                                placeholder="Enter your Email"
@@ -64,7 +127,11 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" for="description">Description:</label>
+                    <label class="control-label col-sm-2" for="description">Description:
+                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </label>
                     <div class="col-sm-10">
                             <textarea style="height: 100px" class="form-control" name="description" id="description"
                                       placeholder="Add your job purpose and describe your data, method and parameters."
@@ -73,7 +140,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="upload">Upload files:</label>
+                    <label class="control-label col-sm-2" for="upload">Upload files:
+                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </label>
                     <div class="col-sm-10">
                         <div class="col-sm-6">
                             <label class="control-label" for="input-x">Choose your feature matrix X:</label>
@@ -96,7 +167,11 @@
                     </div>
                 </div>
                 <div class="form-group form-inline">
-                    <label class="control-label col-sm-2" for="methods">Select Method:</label>
+                    <label class="control-label col-sm-2" for="methods">Select Method:
+                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </label>
                     <!--
                     <div class="col-sm-3">
                         <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
@@ -105,7 +180,7 @@
                     -->
                     <div class="row" style="padding: 15px">
                         <div class=" col-sm-2">
-                            <input type="radio" id="EBEN" name="method" value="EBEN">
+                            <input type="radio" id="EBEN" name="method" value="EBEN" checked>
                             <label for="EBEN">EBEN</label>
                         </div>
                         <div class=" col-sm-2">
@@ -113,7 +188,7 @@
                             <label for="EBEN">Lasso</label>
                         </div>
                         <div class=" col-sm-2">
-                            <input type="radio" id="ssLASSO" name="method" value="SSLASSO" checked>
+                            <input type="radio" id="ssLASSO" name="method" value="SSLASSO">
                             <label for="ssLASSO">ssLASSO</label>
                         </div>
                     </div>
