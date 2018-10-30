@@ -6,186 +6,150 @@
 {% block scripts %}
     {{ super() }}
     <script>
-        function ShowHideCV(chkCV) {
+        function ShowHideFoldNum(chkCV) {
             var fold_number = document.getElementById("fold_number");
-            fold_number.style.visibility = chkCV.checked ? "visible" : "hidden";
+            fold_number.disabled = chkCV.checked ? false : true;
         }
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var arr = new Array();
-            $("select[multiple]").change(function() {
-                $(this).find("option:selected")
-                if ($(this).find("option:selected").length > 3) {
-                    $(this).find("option").removeAttr("selected");
-                    $(this).val(arr);
-                }
-                else {
-                    arr = new Array();
-                    $(this).find("option:selected").each(function(index, item) {
-                        arr.push($(item).val());
-                    });
-                }
-            });
-        });
+
+        function ShowHideSeedNum(chkCV) {
+            var seed_number = document.getElementById("seed_number");
+            seed_number.disabled = chkCV.checked ? false : true;
+        }
     </script>
 {% endblock %}
 {% block content %}
     <div>
-        <h2>Web Server</h2>
-webserver.html
+        <h2>Server</h2>
+        <div>
+            <p>You can upload feature matrix X and label matrix Y, and submit your job in this page. A step-by-step
+                tutorial can be found in <a href="{{ url_for('help') }}"> help</a>. When you submit the job, it will be
+                run in background. And an Email notification with processing link and security code will sent to you.
+                You can check the running status and get final report by the link. When your job is done, you will
+                receive another Email notification.
+            </p>
+        </div>
         <hr>
-        <!-- Tab links-->
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#training">Training</a></li>
-            <li><a data-toggle="tab" href="#testing">Testing</a></li>
-        </ul>
+        <div style="padding-top: 20px">
+            <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields are
+                required.</strong></p>
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="jobname">Job Category:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline col-sm-2">
+                            <input id="jobcategory" name="jobcategory" type="radio" value="gene"> Gene
+                        </label>
+                        <label class="radio-inline col-sm-2">
+                            <input id="jobcategory" name="jobcategory" type="radio" value="microRNA" CHECKED>
+                            microRNA
+                        </label>
+                        <label class="radio-inline col-sm-2">
+                            <input id="jobcategory" name="jobcategory" type="radio" value="other"> Other
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="jobname">Job Name:</label>
+                    <div class="col-sm-4">
+                        <input name="jobname" class="form-control" id="jobname" placeholder="Enter your job name"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <div class="col-sm-4">
+                        <input name="email" type="email" class="form-control" id="email"
+                               placeholder="Enter your Email"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="description">Description:</label>
+                    <div class="col-sm-10">
+                            <textarea style="height: 100px" class="form-control" name="description" id="description"
+                                      placeholder="Add your job purpose and describe your data, method and parameters."
+                                      required></textarea>
+                    </div>
+                </div>
 
-        <div class="tab-content">
-            <div id="training" class="tab-pane fade in active" style="padding-top: 20px">
-                <p>Upload labeled data and choose some methods to train your models. </p>
-                <hr>
-                <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
-                <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2" for="jobname">Job Name:</label>
-                        <div class="col-sm-4">
-                            <input name="jobname" class="form-control" id="jobname" placeholder="Enter your job name"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2" for="email">Email:</label>
-                        <div class="col-sm-4">
-                            <input name="email" type="email" class="form-control" id="email"
-                                   placeholder="Enter your Email"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2" for="description">Description:</label>
-                        <div class="col-sm-10">
-                    <textarea style="height: 100px" name="description" class="form-control" id="description"
-                              placeholder="Add description for your job, like data, method and parameters."
-                              required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="upload">Upload files:</label>
-                        <div class=" col-sm-5">
-                            <label class="control-label" for="input-x">Choose your training data: X</label>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="upload">Upload files:</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="input-x">Choose your feature matrix X:</label>
                             <input class="form-control" type="file" id="input-x" name="input-x"
-                                   placeholder="choose your training data: X" required>
+                                   required>
                         </div>
-                        <div class=" col-sm-5">
-                            <label class="control-label" for="input-y">Choose your training label: Y</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" for="input-y">Choose your label matrix Y:</label>
                             <input class="form-control" type="file" id="input-y" name="input-y"
-                                   placeholder="choose your training label: Y" required>
+                                   required>
+                        </div>
+                        <div class="col-sm-6" style="padding-top: 10px">
+                            <p style="font-size: small"> Here is sample data, <a
+                                    href="{{ url_for('download_sample_data', filename='bc_x.txt') }}"
+                                    target="_blank">feature matrix</a> and <a
+                                    href="{{ url_for('download_sample_data', filename='bc_y.txt') }}"
+                                    target="_blank">label matrix</a>.
+                            </p>
                         </div>
                     </div>
-                    <div class="form-group form-inline">
-                        <label class="control-label col-sm-2" for="methods">Select Methods:</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
-                            <label for="LASSO">LASSO</label>
-
-                        </div>
-                        <div class=" col-sm-3">
-                            <input class="form-control" type="checkbox" id="EBEN" name="methods" value="EBEN">
+                </div>
+                <div class="form-group form-inline">
+                    <label class="control-label col-sm-2" for="methods">Select Method:</label>
+                    <!--
+                    <div class="col-sm-3">
+                        <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
+                        <label for="LASSO">LASSO</label>
+                    </div>
+                    -->
+                    <div class="row" style="padding: 15px">
+                        <div class=" col-sm-2">
+                            <input type="radio" id="EBEN" name="method" value="EBEN">
                             <label for="EBEN">EBEN</label>
-
                         </div>
-
-                        <div class=" col-sm-3">
-                            <input class="form-control" type="checkbox" id="Matrix_eQTL" name="methods"
-                                   value="Matrix_eQTL">
-                            <label for="Matrix_eQTL">Matrix eQTL</label>
+                        <div class=" col-sm-2">
+                            <input type="radio" id="lasso" name="method" value="lasso">
+                            <label for="EBEN">Lasso</label>
                         </div>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-4 form-inline">
-                            <input type="checkbox" id="cv" name="cv" onclick="ShowHideCV(this)" CHECKED>
-                            <label for="validation"> Cross Validation </label>
-                            <input class="form-control" style="width: 50px;" type="text" id="fold_number"
-                                   name="fold_number"
-                                   maxlength="2" value="5">
+                        <div class=" col-sm-2">
+                            <input type="radio" id="ssLASSO" name="method" value="SSLASSO" checked>
+                            <label for="ssLASSO">ssLASSO</label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-4 form-inline">
-                            <input type="checkbox" id="seed" name="seed" CHECKED>
-                            <label for="validation"> Specify Seed </label>
-                            <input class="form-control" style="width: 100px;" type="text" id="seed_number"
-                                   name="seed_number">
-                        </div>
+                    <!--
+                    <div class=" col-sm-3">
+                        <input class="form-control" type="checkbox" id="Matrix_eQTL" name="methods"
+                               value="Matrix_eQTL">
+                        <label for="Matrix_eQTL">Matrix eQTL</label>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                    -->
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-4 form-inline">
+                        <input type="checkbox" id="cv" name="cv" CHECKED
+                               onclick="ShowHideFoldNum(this)">
+                        <label for="cv"> Cross Validation: </label>
+                        <input class="form-control" style="width: 50px;" type="text" id="fold_number"
+                               name="fold_number" maxlength="2" value="5">
                     </div>
-                </form>
-            </div>
-
-            <div id="testing" class="tab-pane fade" style="padding-top: 20px">
-                <p>Upload unknown data and choose a model to predict your samples. </p>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-4 form-inline">
+                        <input type="checkbox" id="ss" name="ss" CHECKED
+                               onclick="ShowHideSeedNum(this)">
+                        <label for="ss"> Specify Seed: </label>
+                        <input class="form-control" style="width: 100px;" type="text" id="seed_number" value="28213"
+                               name="seed_number">
+                    </div>
+                </div>
                 <hr>
-                <p class="col-sm-offset-2" style="color: red;"><strong>All fields are required.</strong></p>
-                <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2" for="jobname">Job Name:</label>
-                        <div class="col-sm-4">
-                            <input name="jobname" class="form-control" id="jobname" placeholder="Enter your job name"
-                                   required>
-                        </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2" for="email">Email:</label>
-                        <div class="col-sm-4">
-                            <input name="email" type="email" class="form-control" id="email"
-                                   placeholder="Enter your Email"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2" for="description">Description:</label>
-                        <div class="col-sm-10">
-                    <textarea style="height: 100px" name="description" class="form-control" id="description"
-                              placeholder="Add description for your job, like data, method and parameters."
-                              required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="upload">Upload files:</label>
-                        <div class=" col-sm-5">
-                            <label class="control-label" for="input-x">Choose your unknown data: X</label>
-                            <input class="form-control" type="file" id="input-x" name="input-x"
-                                   placeholder="choose your unknown data: X" required>
-                        </div>
-                    </div>
-                    <div class="form-group form-inline">
-                        <label class="control-label col-sm-2" for="methods">Choose Models:</label>
-                        <div class="col-sm-5">
-                            <select multiple>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
 
     </div>

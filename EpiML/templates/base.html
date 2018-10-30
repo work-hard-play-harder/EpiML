@@ -79,70 +79,15 @@
         <div id="menu" class="navbar-right navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('webserver_epistatic_analysis_train') }}">Epistasis Analysis</a></li>
-                <li><a href="{{ url_for('webserver_epistasis_miRNA_train') }}">Case Study</a></li>
-                <!--
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Server
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href={{ url_for('webserver_epistatic_analysis_train') }}> Epistatic Analysis </a></li>
-                        <li class="divider"></li>
-                        <li><a href={{ url_for('webserver_epistasis_miRNA_train') }}> Case Study </a>
-                        </li>
-                    </ul>
-                </li>
-                -->
+                <li><a href="{{ url_for('webserver') }}">Server</a></li>
 
-                <!--
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Server
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href={{ url_for('webserver_lasso_train') }}> LASSO-based methods</a></li>
-                        <li class="divider"></li>
-                        <li><a href={{ url_for('webserver_epistasis_miRNA_train') }}> Epistasis Analysis of
-                            MicroRNAs</a>
-                        </li>
-                        <li><a href='#'> Epistasis Analysis of SNP</a>
-                        </li>
-
-                    </ul>
-                </li>
-                -->
                 <li><a href="{{ url_for('jobs') }}">Jobs</a></li>
                 <!--<li><a href="{{ url_for('models') }}">Models</a></li>-->
                 <!--<li><a href="{{ url_for('repository') }}">Repository</a></li> -->
                 <li><a href="{{ url_for('help') }}">Help</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
             </ul>
-            <!-- following code is used for login  -->
-            <!--
-        <ul class="nav navbar-nav navbar-right">
-            {% if not current_user.is_authenticated %}
-                <li><a href={{ url_for('login') }}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li><a href={{ url_for('signup') }}><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            {% else %}
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                        <span class="glyphicon glyphicon-user"></span> {{ current_user.username }} <span
-                            class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href={{ url_for('profile') }}><span
-                                class="glyphicon glyphicon-user"></span> Profile</a></li>
-                        <li><a href={{ url_for('jobs') }}><span
-                                class="glyphicon glyphicon-th-list"></span> Jobs</a></li>
-                        <li class="divider"></li>
-                        <li><a href={{ url_for('logout') }}><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            {% endif %}
-        </ul>
-        -->
+
         </div>
     </div>
 </nav>

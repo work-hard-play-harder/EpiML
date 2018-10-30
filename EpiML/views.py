@@ -32,87 +32,24 @@ def index():
 def webserver():
     if request.method == 'POST':
         jobname = request.form['jobname']
-        description = request.form['description']
         email = request.form['email']
-        methods = request.form.getlist('methods')
-
+        description = request.form['description']
         input_x = request.files['input-x']
         input_y = request.files['input-y']
-        if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
-            x_filename = secure_filename(input_x.filename)
-            y_filename = secure_filename(input_y.filename)
+        # methods = request.form.getlist('methods')
+        method = request.form['method']
 
-            if x_filename == y_filename:
-                flash("Training data have the same file name.")
-                return redirect(request.url)
-
-            if len(methods) == 0:
-                flash("You must choose at least one method!")
-                return redirect(request.url)
-
-            # return security_code when user exists, otherwise add user into User database
-            # then login
-            user = User.query.filter_by(email=email).first()
-            if user is not None:
-                security_code = user.security_code
-            else:
-                security_code = security_code_generator()
-                user = User(username='anonymous', email=email, security_code=security_code)
-                # user.set_password(request.form['password'])
-                db.session.add(user)
-                db.session.commit()
-            login_user(user)
-
-            # add job into Job database
-            job = Job(jobname=jobname, description=description, selected_algorithm=';'.join(methods), status=0,
-                      user_id=current_user.id)
-            db.session.add(job)
-            db.session.commit()
-
-            # upload training data
-            job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
-            input_x.save(os.path.join(job_dir, x_filename))
-            input_y.save(os.path.join(job_dir, y_filename))
-            # flash("File has been upload!")
-
-            # call scripts and update Model database
-            print(methods)
-            for method in methods:
-                params = {'alpha': '1'}
-                call_train_scripts(method, params, job_dir, x_filename, y_filename)
-                params_str = ';'.join([key + '=' + value for key, value in params.items()])
-                model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
-                              job_id=job.id)
-                db.session.add(model)
-            db.session.commit()
-
-            # send result link and security code via email
-            result_link = str(url_for('processing', jobid=job.id))
-            send_email(recipients=[email],
-                       result_link=result_link, security_code=security_code)
-
-            return redirect(url_for('processing', jobid=job.id))
+        params = {}
+        if request.form.get('cv') == 'on':
+            params['fold_number'] = request.form['fold_number']
         else:
-            flash("Only .txt and .csv file types are valid!")
-    return render_template('webserver.html')
+            params['fold_number'] = 5
+        if request.form.get('ss') == 'on':
+            params['seed_number'] = request.form['seed_number']
+        else:
+            params['seed_number'] = random.randint(0, 28213)
 
-
-@app.route('/webserver/lasso/train', methods=['GET', 'POST'])
-def webserver_lasso_train():
-    if request.method == 'POST':
-        jobname = request.form['jobname']
-        email = request.form['email']
-        description = request.form['description']
-        input_x = request.files['input-x']
-        input_y = request.files['input-y']
-        methods = request.form.getlist('methods')
-        params = {'lasso_alpha': request.form['lasso_alpha'],
-                  'sslasso_s1': request.form['sslasso_s1'],
-                  'sslasso_s2': request.form['sslasso_s2'],
-                  'grouplasso_alpha': request.form['grouplasso_alpha'],
-                  'fold_number': request.form['fold_number'],
-                  'seed_number': request.form['seed_number']
-                  }
+        print(jobname, description, email, method, input_x, input_y, params['fold_number'], params['seed_number'])
 
         if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
             x_filename = secure_filename(input_x.filename)
@@ -124,11 +61,11 @@ def webserver_lasso_train():
         if x_filename == y_filename:
             flash("Training data have the same file name.")
             return redirect(request.url)
-
-        if len(methods) == 0:
+        '''
+        if len(method) == 0:
             flash("You must choose at least one method!")
             return redirect(request.url)
-
+        '''
         # return security_code when user exists, otherwise add user into User database
         # then login
         user = User.query.filter_by(email=email).first()
@@ -143,8 +80,9 @@ def webserver_lasso_train():
         login_user(user)
 
         # add job into Job database
-        job = Job(name=jobname, category='lasso-based method', type='train', description=description,
-                  selected_algorithm=';'.join(methods), status=0, user_id=current_user.id)
+        job = Job(name=jobname, category='General', type='Train', description=description,
+                  selected_algorithm=method, status='Queuing',
+                  user_id=current_user.id)
         db.session.add(job)
         db.session.commit()
 
@@ -155,92 +93,24 @@ def webserver_lasso_train():
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        print(methods)
-        for method in methods:
-            call_train_scripts(method, params, job_dir, x_filename, y_filename)
-            params_str = ';'.join([key + '=' + value for key, value in params.items()])
-            model = Model(algorithm=method, parameters=params_str, user_id=current_user.id,
-                          job_id=job.id)
-            db.session.add(model)
+        celery_task = call_train_scripts.apply_async(
+            [job.id, 'General', method, params, job_dir, x_filename, y_filename],
+            countdown=30)
+        job.celery_id = celery_task.id
+        db.session.add(job)
+
+        params_str = ';'.join([key + '=' + value for key, value in params.items()])
+        model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
+                      job_id=job.id)
+        db.session.add(model)
         db.session.commit()
 
         # send result link and security code via email
-        result_link = str(url_for('processing', jobid=job.id))
-        send_email(recipients=[email],
-                   result_link=result_link, security_code=security_code)
+        send_submit_job_email([email], security_code)
 
         return redirect(url_for('processing', jobid=job.id))
 
-    return render_template('webserver_lasso_train.html')
-
-
-@app.route('/webserver/lasso/predict', methods=['GET', 'POST'])
-def webserver_lasso_predict():
-    if request.method == 'POST':
-        jobname = request.form['jobname']
-        description = request.form['description']
-        email = request.form['email']
-        methods = request.form.getlist('methods')
-
-        input_x = request.files['input-x']
-        input_y = request.files['input-y']
-        if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
-            x_filename = secure_filename(input_x.filename)
-            y_filename = secure_filename(input_y.filename)
-
-            if x_filename == y_filename:
-                flash("Training data have the same file name.")
-                return redirect(request.url)
-
-            if len(methods) == 0:
-                flash("You must choose at least one method!")
-                return redirect(request.url)
-
-            # return security_code when user exists, otherwise add user into User database
-            # then login
-            user = User.query.filter_by(email=email).first()
-            if user is not None:
-                security_code = user.security_code
-            else:
-                security_code = security_code_generator()
-                user = User(username='anonymous', email=email, security_code=security_code)
-                # user.set_password(request.form['password'])
-                db.session.add(user)
-                db.session.commit()
-            login_user(user)
-
-            # add job into Job database
-            job = Job(jobname=jobname, description=description, selected_algorithm=';'.join(methods), status=0,
-                      user_id=current_user.id)
-            db.session.add(job)
-            db.session.commit()
-
-            # upload training data
-            job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
-            input_x.save(os.path.join(job_dir, x_filename))
-            input_y.save(os.path.join(job_dir, y_filename))
-            # flash("File has been upload!")
-
-            # call scripts and update Model database
-            print(methods)
-            for method in methods:
-                params = {'alpha': '1'}
-                call_train_scripts(method, params, job_dir, x_filename, y_filename)
-                params_str = ';'.join([key + '=' + value for key, value in params.items()])
-                model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
-                              job_id=job.id)
-                db.session.add(model)
-            db.session.commit()
-
-            # send result link and security code via email
-            result_link = str(url_for('processing', jobid=job.id))
-            send_email(recipients=[email],
-                       result_link=result_link, security_code=security_code)
-
-            return redirect(url_for('processing', jobid=job.id))
-        else:
-            flash("Only .txt and .csv file types are valid!")
-    return render_template('webserver_lasso_test.html')
+    return render_template('webserver.html')
 
 
 @app.route('/webserver/epistatic_analysis/train', methods=['GET', 'POST'])
