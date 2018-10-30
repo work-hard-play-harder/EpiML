@@ -9,11 +9,6 @@
             "label": "Epistatic effect",
             "shape": "triangle",
             "color": "green"
-        },
-        {
-            "label": "Target gene",
-            "shape": "circle",
-            "color": "blue"
         }
     ]
 }
