@@ -58,22 +58,20 @@ colnames(x_filtered)<-x_filtered_colnames
 # colnames of x_filtered is same with x
 
 cat('Quantile normalization', '\n')
-x_filtered_normed <- x_filtered
-for (sl in 1:ncol(x_filtered_normed)) {
-  mat = matrix(as.numeric(x_filtered_normed[, sl]), 1)
+x_filtered_qnormed <- x_filtered
+for (sl in 1:ncol(x_filtered_qnormed)) {
+  mat = matrix(as.numeric(x_filtered_qnormed[, sl]), 1)
   mat = t(apply(mat, 1, rank, ties.method = "average"))
-  mat = qnorm(mat / (nrow(x_filtered_normed) + 1))
-  x_filtered_normed[, sl] = mat
+  mat = qnorm(mat / (nrow(x_filtered_qnormed) + 1))
+  x_filtered_qnormed[, sl] = mat
 }
-
-x_preprocessed <- x_filtered_normed
-rm(x_filtered, x_filtered_normed, sl, mat)
+x_preprocessed <- x_filtered_qnormed
+rm(x_filtered, x_filtered_qnormed, sl, mat)
 
 
 cat('Main effect estimated using EBEN', '\n')
-#x4 <- matrix(as.numeric(x3), nrow = nrow(x3))
 CV = EBelasticNet.GaussianCV(x_preprocessed, y, nFolds = nFolds, Epis = "no")
-Blup1 = EBelasticNet.Gaussian(
+Blup_main = EBelasticNet.Gaussian(
   x_preprocessed,
   y,
   lambda = CV$Lambda_optimal,
@@ -81,14 +79,12 @@ Blup1 = EBelasticNet.Gaussian(
   Epis = "no",
   verbose = 0
 )
-Blup_main_sig = Blup1$weight[which(Blup1$weight[, 6] <= 0.05), ]
+Blup_main_sig = Blup_main$weight[which(Blup_main$weight[, 6] <= 0.05), ]
 
 cat('Substract the main effect', '\n')
-#x5 <- t(x4)
 index_main <- Blup_main_sig[, 1]
 effect_main <- Blup_main_sig[, 3]
-y_new <-
-  as.matrix(y) - x_preprocessed[, index_main] %*% (as.matrix(effect_main))
+y_new <- as.matrix(y) - x_preprocessed[, index_main] %*% (as.matrix(effect_main))
 
 cat('Epistatic effect estimated using EBEN', '\n')
 CV_epis = EBelasticNet.GaussianCV(x_preprocessed, y_new, nFolds = nFolds, Epis = "yes")
@@ -102,57 +98,51 @@ Blup_epis = EBelasticNet.Gaussian(
 )
 Blup_epis_sig = Blup_epis$weight[which(Blup_epis$weight[, 6] <= 0.05), ]
 
-
 cat('Final run', '\n')
-mir <- as.matrix(x_preprocessed)
-mir <- matrix(as.numeric(mir), nrow = nrow(mir))
-main_epi_miR_id = rbind(Blup_main_sig[, 1:2], Blup_epis_sig[, 1:2])
+main_epi_sig_id = rbind(Blup_main_sig[, 1:2], Blup_epis_sig[, 1:2])
 
-new_x6 <- NULL
-for (i in 1:nrow(main_epi_miR_id)) {
-  if (main_epi_miR_id[i, 1] == main_epi_miR_id[i, 2]) {
-    new_x6 <- cbind(new_x6, mir[, main_epi_miR_id[i, 1]])
+x_sig <- NULL
+for (i in 1:nrow(main_epi_sig_id)) {
+  if (main_epi_sig_id[i, 1] == main_epi_sig_id[i, 2]) {
+    x_sig <- cbind(x_sig, x_preprocessed[, main_epi_sig_id[i, 1]])
   }
-  if (main_epi_miR_id[i, 1] != main_epi_miR_id[i, 2]) {
-    col <- mir[, main_epi_miR_id[i, 1]] * mir[, main_epi_miR_id[i, 2]]
-    new_x6 <- cbind(new_x6, col)
+  if (main_epi_sig_id[i, 1] != main_epi_sig_id[i, 2]) {
+    col <- x_preprocessed[, main_epi_sig_id[i, 1]] * x_preprocessed[, main_epi_sig_id[i, 2]]
+    x_sig <- cbind(x_sig, col)
   }
 }
 
-new_x7 <- t(new_x6)
-for (sl in 1:nrow(new_x7)) {
-  mat = matrix(as.numeric(new_x7[sl,]), 1)
+cat('Quantile normalization', '\n')
+x_sig_qnorm <- x_sig
+for (sl in 1:ncol(x_sig_qnorm)) {
+  mat = matrix(as.numeric(x_sig_qnorm[, sl]), 1)
   mat = t(apply(mat, 1, rank, ties.method = "average"))
-  mat = qnorm(mat / (ncol(new_x7) + 1))
-  new_x7[sl,] = mat
+  mat = qnorm(mat / (nrow(x_sig_qnorm) + 1))
+  x_sig_qnorm[, sl] = mat
 }
-rm(sl, mat)
+rm(x_sig, sl, mat)
 
-new_x8 <- t(new_x7)
-CV_full = EBelasticNet.GaussianCV(new_x8, target1, nFolds = nFolds, Epis = "no")
+# full model
+CV_full = EBelasticNet.GaussianCV(x_sig_qnorm, y, nFolds = nFolds, Epis = "no")
 Blup_full = EBelasticNet.Gaussian(
-  new_x8,
-  target1,
+  x_sig_qnorm,
+  y,
   lambda =  CV_full$Lambda_optimal,
   alpha = CV_full$Alpha_optimal,
   Epis = "no",
   verbose = 0
 )
 Blup_full_sig =  Blup_full$weight[which(Blup_full$weight[, 6] <= 0.05),]
-
-idma <- matrix(NA, nrow = nrow(Blup_full_sig), 6)
-for (i in 1:nrow(Blup_full_sig)) {
-  idma[i,] = c(main_epi_miR_id[Blup_full_sig[i, 1], 1:2], Blup_full_sig[i, 3:6])
-}
+Blup_full_sig[,1:2] <- main_epi_sig_id[Blup_full_sig[, 1], 1:2]
 
 main_result <- NULL
 epsi_result <- NULL
-for (i in 1:nrow(idma)) {
-  if (idma[i, 1] == idma[i, 2]) {
-    main_result <- rbind(main_result, c(rownames(x3)[idma[i, 1]],idma[i,3:6]))
+for (i in 1:nrow(Blup_full_sig)) {
+  if (Blup_full_sig[i, 1] == Blup_full_sig[i, 2]) {
+    main_result <- rbind(main_result, c(colnames(x_preprocessed)[Blup_full_sig[i, 1]],Blup_full_sig[i,3:6]))
   }
-  if (idma[i, 1] != idma[i, 2]) {
-    epsi_result <- rbind(epsi_result, c(rownames(x3)[idma[i, 1]],rownames(x3)[idma[i, 2]],idma[i,3:6]))
+  if (Blup_full_sig[i, 1] != Blup_full_sig[i, 2]) {
+    epsi_result <- rbind(epsi_result, c(colnames(x_preprocessed)[Blup_full_sig[i, 1]],colnames(x_preprocessed)[Blup_full_sig[i, 2]],Blup_full_sig[i,3:6]))
   }
 }
 
@@ -182,6 +172,5 @@ write.table(
   row.names = F,
   col.names = T
 )
-
 
 cat('Done!')
