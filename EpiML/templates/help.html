@@ -63,15 +63,25 @@
         <main>
             <section class="anchor" id="introduction">
                 <h3>1. Introduction</h3>
-                <p> Epistasis is the phenomenon where the effect of one gene (locus) is dependent on the presence of one
-                    or more 'modifier genes', i.e. the genetic background.[1] Originally the term meant that the
-                    phenotypic effect of one gene is masked by a different gene (locus).[2] Thus, epistatic mutations
-                    have different effects in combination than individually. It was originally a concept from genetics
-                    but is now used in biochemistry, computational biology and evolutionary biology. It arises due to
-                    interactions, either between genes, or within them, leading to non-linear effects. Epistasis has a
-                    large influence on the shape of evolutionary landscapes, which leads to profound consequences for
-                    evolution and evolvability of phenotypic traits. This server detects epistatic features in your
-                    upload data by using statistic methods and machine learning methods.
+                <p> Epistasis was originally a concept from genetics in which it refers to the phenomenon that the
+                    effect of one gene (locus) is dependent on the presence of one or more 'modifier genes'. As the
+                    study of genetics developed, and with the advent of molecular biology, epistasis starts to be
+                    studied in relation to Quantitative Trait Loci (QTL) and polygenic inheritance. Increasingly
+                    sophisticated computational and evolutionary biology models aim to describe the effects of epistasis
+                    on a genome-wide scale and the consequences of this for evolution. Thus, identification of epistatic
+                    pairs has large research significance.</p>
+                <p> We proposed an open machine learning web service for epistasis analysis, call EpiML, which can
+                    detect main effect and epistatic effect features by using several machine learning methods and
+                    produce many interactive visualizations. Especially for some case studies like SNP and miRNA data,
+                    external resources are embedded for epistasis analysis. EpiML has many advantages: 1) it is easy to
+                    use. The users only need to upload their data, select a method and submit their job. Our server will
+                    handle all the processing in background. 2) It will provide many friendly interactive
+                    visualizations, like circle network, adjacent matrix and force-directed network. 3) For some case
+                    study, multiple external resources are integrated in results visualization for analysis. 4) User can
+                    customize their analysis. For each job, its corresponding Jupyter notebook is automatically
+                    generated. All notebooks can be downloaded, modified and rerun, allowing users to fully customize
+                    their epistasis analysis on local computers.
+
                 </p>
                 <!--
                 <p> Epistasis analysis is used to determine if genes with related mutant phenotypes act
@@ -82,9 +92,26 @@
                     genes. [Ref. Genetic Techniques for Biological Research]
                 </p>
                 -->
-                <p> Epistasis Analysis Server is a free web service.
-                    The schematic diagram is following:</p>
-                <img width="80%" src="{{ url_for('static',filename='img/help/schematic_graph.png') }}">
+                <p> Epistasis Analysis Server is a free web service. The schematic diagram is following:</p>
+                <div align="center">
+                    <figure>
+                        <img width="80%" src="{{ url_for('static',filename='img/help/epiml.png') }}">
+                        <figcaption style="text-align: justify"><strong>Figure 1. The workflow of our epistasis web
+                            service and an illustration of a yeast epistatic
+                            network.</strong> <strong>a</strong>. Our epistasis analysis server allows users describe
+                            their job, upload
+                            data and select a machine learning method for analysis. <strong>b</strong>. We provide
+                            interactive
+                            tools for visualizing and downloading results. <strong>c</strong>. Customize analysis. All
+                            automatically generated Jupyter notebooks and pre-configured Docker containers can be
+                            downloaded, modified and rerun, allowing users to fully customize their analysis code on
+                            local computers. <strong>d</strong>. Generate bioRxiv report that provides detailed
+                            information
+                            about the models.
+                        </figcaption>
+                    </figure>
+                </div>
+
             </section>
             <hr>
             <section class="anchor" id="getting_started">
@@ -92,22 +119,20 @@
                 <p> This is a step-by-step tutorial how to use EpiML to find out main and epistasis effects in your
                     data.</p>
 
-                <h4 class="anchor" id="prepare">2.0. Prepare your data</h4>
+                <h4 class="anchor" id="prepare">2.1. Prepare your data</h4>
                 <p>Input files include two parts: feature matrix <strong>X</strong>, and label matrix <strong>Y</strong>.
                     Both of them are table separated files with row and column names. An example for SNP file is shown
                     in following:</p>
-
                 <div class="row">
-                    <div class="col-xs-12">
-                        <p> Feature matrix X:
-                            <img width="100%"
-                                 src="{{ url_for('static',filename='img/help/feature_matrix_X.png') }}"></p>
-                    </div>
-                    <div class="col-xs-3">
-                        <p>Label matrix Y: <br>
-                            <img width="90%"
-                                 src="{{ url_for('static',filename='img/help/label_matrix_Y.png') }}">
-                        </p>
+                    <div class="col-xs-2" align="right"><p> Feature matrix X:</p></div>
+                    <div class="col-xs-10">
+                        <img width="80%"
+                             src="{{ url_for('static',filename='img/help/feature_matrix_X.png') }}"></div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-xs-2" align="right"><p>Label matrix Y:</p></div>
+                    <div class="col-xs-10"><img width="18%"
+                                                src="{{ url_for('static',filename='img/help/label_matrix_Y.png') }}">
                     </div>
                 </div>
                 <p><strong>Important notes:</strong></p>
@@ -115,15 +140,13 @@
                     <li>Only files with .txt or .csv extensions are accepted.</li>
                     <li>File size is limited to no more than 5MB.</li>
                 </ul>
-
                 <!--
                     <p>
                     <pre>plink --ped mystudy_chr1.ped --map mystudy_chr1.map --recode vcf --out mystudy_chr1</pre>
                     <code>test </code>
                     </p>
                 -->
-
-                <h4 class="anchor" id="upload">2.1. Upload data</h4>
+                <h4 class="anchor" id="upload">2.2. Upload data</h4>
                 <p>Some basic information is required when you upload data. </p>
                 <ul>
                     <li><strong>Job name</strong> is used to retrieve results when you submitted job is done.
@@ -147,7 +170,7 @@
                 </div>
 
 
-                <h4 class="anchor" id="submit">2.2. Submit and check job status</h4>
+                <h4 class="anchor" id="submit">2.3. Submit and check job status</h4>
                 <p> After submit your job, it will be added into job queue waiting for execution in background. The
                     browser will jump to a processing page where you can check your job status, as following figure
                     shown. Meanwhile, you will receive an Email notification with security code.
@@ -164,7 +187,7 @@
                 <div><img width="100%" src="{{ url_for('static',filename='img/help/job_table.png') }}"></div>
 
 
-                <h4 class="anchor" id="result">2.3. Results</h4>
+                <h4 class="anchor" id="result">2.4. Results</h4>
                 <p>EpiML can detect main effects and epistatic effects in your data. These detected results will be list
                     in two interactive tables correspondingly, as following figure shown, where you can rank whole table
                     by
@@ -173,7 +196,7 @@
                 <img width="100%" src="{{ url_for('static',filename='img/help/result_table.png') }}">
                 <!--<img width="100%" src="{{ url_for('static',filename='img/help/epi_effect.png') }}">-->
 
-                <h4>2.4. Download results</h4>
+                <h4>2.5. Download results</h4>
                 <hr>
                 <p>
 
@@ -284,7 +307,8 @@
             </section>
             <section class="anchor" id="FAQ">
                 <h3>6. FAQ</h3>
-                <p>For any question about this service please email <a href="mailto:an_example@gmail.com">an_example@gmail.com</a>
+                <p>For any question about this service please email <a
+                        href="mailto:an_example@gmail.com">an_example@gmail.com</a>
                 </p>
             </section>
         </main>

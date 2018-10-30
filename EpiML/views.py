@@ -690,6 +690,8 @@ def result_train(jobid):
     # for adjacency matrix
     miR_json.write_am_graph_json()
 
+
+
     jupyter_notebook_size = 0
     if job.selected_algorithm == 'EBEN':
         jupyter_notebook_size = '{0:.2f}'.format(
