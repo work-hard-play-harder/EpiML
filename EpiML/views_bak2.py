@@ -14,7 +14,7 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 
 # customized functions
-from EpiML.run_scripts import call_train_scripts, create_job_folder  # , check_job_status
+from EpiML.run_scripts import call_train_scripts, call_predict_scripts, create_job_folder  # , check_job_status
 from EpiML.generate_json import load_results, load_json, MiRNAJson, scitific_notation
 from EpiML.create_figures import create_pca_figure, create_lasso_figure
 from EpiML.db_tables import User, Job, Model
@@ -50,8 +50,7 @@ def webserver():
         else:
             params['seed_number'] = random.randint(0, 28213)
 
-        print(jobcategory, jobname, description, email, method, input_x, input_y, params['fold_number'],
-              params['seed_number'])
+        print(jobcategory, jobname, description, email, method, input_x, input_y, params['fold_number'], params['seed_number'])
 
         if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
             x_filename = secure_filename(input_x.filename)
@@ -115,6 +114,320 @@ def webserver():
     return render_template('webserver.html')
 
 
+@app.route('/webserver/epistatic_analysis/train', methods=['GET', 'POST'])
+def webserver_epistatic_analysis_train():
+    if request.method == 'POST':
+        jobname = request.form['jobname']
+        email = request.form['email']
+        description = request.form['description']
+        input_x = request.files['input-x']
+        input_y = request.files['input-y']
+        # methods = request.form.getlist('methods')
+        method = request.form['method']
+
+        params = {}
+        if request.form.get('cv') == 'on':
+            params['fold_number'] = request.form['fold_number']
+        else:
+            params['fold_number'] = 5
+        if request.form.get('ss') == 'on':
+            params['seed_number'] = request.form['seed_number']
+        else:
+            params['seed_number'] = random.randint(0, 28213)
+
+        print(jobname, description, email, method, input_x, input_y, params['fold_number'], params['seed_number'])
+
+        if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
+            x_filename = secure_filename(input_x.filename)
+            y_filename = secure_filename(input_y.filename)
+        else:
+            flash("Only .txt and .csv file types are valid!")
+            return redirect(request.url)
+
+        if x_filename == y_filename:
+            flash("Training data have the same file name.")
+            return redirect(request.url)
+        '''
+        if len(method) == 0:
+            flash("You must choose at least one method!")
+            return redirect(request.url)
+        '''
+        # return security_code when user exists, otherwise add user into User database
+        # then login
+        user = User.query.filter_by(email=email).first()
+        if user is not None:
+            security_code = user.security_code
+        else:
+            security_code = security_code_generator()
+            user = User(username='anonymous', email=email, security_code=security_code)
+            # user.set_password(request.form['password'])
+            db.session.add(user)
+            db.session.commit()
+        login_user(user)
+
+        # add job into Job database
+        job = Job(name=jobname, category='General', type='Train', description=description,
+                  selected_algorithm=method, status='Queuing',
+                  user_id=current_user.id)
+        db.session.add(job)
+        db.session.commit()
+
+        # upload training data
+        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
+        input_x.save(os.path.join(job_dir, x_filename))
+        input_y.save(os.path.join(job_dir, y_filename))
+        # flash("File has been upload!")
+
+        # call scripts and update Model database
+        celery_task = call_train_scripts.apply_async(
+            [job.id, 'General', method, params, job_dir, x_filename, y_filename],
+            countdown=30)
+        job.celery_id = celery_task.id
+        db.session.add(job)
+
+        params_str = ';'.join([key + '=' + value for key, value in params.items()])
+        model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
+                      job_id=job.id)
+        db.session.add(model)
+        db.session.commit()
+
+        # send result link and security code via email
+        send_submit_job_email([email], security_code)
+
+        return redirect(url_for('processing', jobid=job.id))
+
+    return render_template('webserver_epis_analysis_train.html')
+
+
+@app.route('/webserver/epistatic_analysis/predict', methods=['GET', 'POST'])
+@login_required
+def webserver_epistatic_analysis_predict():
+    if request.method == 'POST':
+        jobname = request.form['jobname']
+        description = request.form['description']
+        input_x = request.files['input-x']
+        models_id = request.form.getlist('id[]')
+        print(jobname, description, input_x, models_id)
+
+        if input_x and is_allowed_file(input_x.filename):
+            x_filename = secure_filename(input_x.filename)
+        else:
+            flash("Only .txt and .csv file types are valid!")
+            return redirect(request.url)
+
+        if len(models_id) == 0:
+            flash("You must choose at least one model!")
+            return redirect(request.url)
+
+        models = []
+        for id in models_id:
+            model = Model.query.filter_by(id=id, user_id=current_user.id).first_or_404()
+            models.append(model)
+        print(models)
+
+        # add job into Job database
+
+        job = Job(name=jobname, category='General', type='Predict', description=description,
+                  selected_algorithm=';'.join([model.algorithm for model in models]), status=0, user_id=current_user.id)
+        db.session.add(job)
+        db.session.commit()
+
+        # upload training data
+        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
+        input_x.save(os.path.join(job_dir, x_filename))
+
+        # call scripts and update Model database
+        for model in models:
+            train_job_id = model.job_id
+            model_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                                     '_'.join(['userid', str(current_user.id)]),
+                                     '_'.join(['jobid', str(train_job_id)]))
+            if not os.path.exists(model_dir):
+                flash(model.algorithm + " model doesn't exist!", category='error')
+                return redirect(request.url)
+
+            call_predict_scripts(job_dir, model_dir, model.algorithm, x_filename)
+
+        # send result link and security code via email
+        result_link = str(url_for('processing', jobid=job.id))
+        send_email(recipients=[current_user.email],
+                   result_link=result_link, security_code=current_user.security_code)
+
+        return redirect(url_for('processing', jobid=job.id))
+
+    # for GET method return
+    users_models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
+    # print(models)
+    jobnames = []
+    valid_models = []
+    for model in users_models:
+        job = Job.query.filter_by(id=model.job_id).first_or_404()
+        if job.category != 'General':
+            continue
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().name
+        jobnames.append(jobname)
+        valid_models.append(model)
+
+    return render_template('webserver_epis_analysis_predict.html', models=valid_models, jobnames=jobnames)
+
+
+@app.route('/webserver/epistasis_miRNA/training', methods=['GET', 'POST'])
+def webserver_epistasis_miRNA_train():
+    if request.method == 'POST':
+        jobcategory = request.form['jobcategory']
+        jobname = request.form['jobname']
+        email = request.form['email']
+        description = request.form['description']
+        input_x = request.files['input-x']
+        input_y = request.files['input-y']
+        methods = request.form.getlist('methods')
+
+        params = {}
+        if request.form.get('cv') == 'on':
+            params['fold_number'] = request.form['fold_number']
+        else:
+            params['fold_number'] = 5
+        if request.form.get('ss') == 'on':
+            params['seed_number'] = request.form['seed_number']
+        else:
+            params['seed_number'] = random.randint(0, 28213)
+
+        print(jobname, description, email, methods, input_x, input_y, params['fold_number'], params['seed_number'])
+
+        if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
+            x_filename = secure_filename(input_x.filename)
+            y_filename = secure_filename(input_y.filename)
+        else:
+            flash("Only .txt and .csv file types are valid!")
+            return redirect(request.url)
+
+        if x_filename == y_filename:
+            flash("Training and label data must have the different file names.")
+            return redirect(request.url)
+
+        if len(methods) == 0:
+            flash("You must choose at least one method!")
+            return redirect(request.url)
+
+        # return security_code when user exists, otherwise add user into User database
+        # then login
+        user = User.query.filter_by(email=email).first()
+        if user is not None:
+            security_code = user.security_code
+        else:
+            security_code = security_code_generator()
+            user = User(username='anonymous', email=email, security_code=security_code)
+            # user.set_password(request.form['password'])
+            db.session.add(user)
+            db.session.commit()
+        login_user(user)
+
+        # add job into Job database
+        job = Job(name=jobname, category=jobcategory, type='Train', description=description,
+                  selected_algorithm=';'.join(methods), status=0, feature_file=x_filename, label_file=y_filename,
+                  user_id=current_user.id)
+        db.session.add(job)
+        db.session.commit()
+
+        # upload training data
+        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
+        input_x.save(os.path.join(job_dir, x_filename))
+        input_y.save(os.path.join(job_dir, y_filename))
+        # flash("File has been upload!")
+
+        # call scripts and update Model database
+        print(methods)
+        for method in methods:
+            call_train_scripts(jobcategory, method, params, job_dir, x_filename, y_filename)
+            params_str = ';'.join([key + '=' + value for key, value in params.items()])
+            model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
+                          job_id=job.id)
+            db.session.add(model)
+        db.session.commit()
+
+        # send result link and security code via email
+        result_link = str(url_for('processing', jobid=job.id))
+        send_email(recipients=[email], result_link=result_link, security_code=security_code)
+
+        return redirect(url_for('processing', jobid=job.id))
+
+    return render_template('webserver_epistasis_miRNA_train.html')
+
+
+@app.route('/webserver/epistasis_miRNA/predict', methods=['GET', 'POST'])
+@login_required
+def webserver_epistasis_miRNA_predict():
+    if request.method == 'POST':
+        jobname = request.form['jobname']
+        # email = request.form['email']
+        description = request.form['description']
+        input_x = request.files['input-x']
+        models_id = request.form.getlist('id[]')
+        print(jobname, description, input_x, models_id)
+
+        if input_x and is_allowed_file(input_x.filename):
+            x_filename = secure_filename(input_x.filename)
+        else:
+            flash("Only .txt and .csv file types are valid!")
+            return redirect(request.url)
+
+        if len(models_id) == 0:
+            flash("You must choose at least one model!")
+            return redirect(request.url)
+
+        models = []
+        for id in models_id:
+            model = Model.query.filter_by(id=id, user_id=current_user.id).first_or_404()
+            models.append(model)
+        print(models)
+
+        # add job into Job database
+        job = Job(name=jobname, category='epistatic analysis of miRNAs', type='Predict', description=description,
+                  selected_algorithm=';'.join([model.algorithm for model in models]), status=0, user_id=current_user.id)
+        db.session.add(job)
+        db.session.commit()
+
+        # upload training data
+        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
+        input_x.save(os.path.join(job_dir, x_filename))
+
+        # call scripts and update Model database
+        for model in models:
+            train_job_id = model.job_id
+            model_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                                     '_'.join(['userid', str(current_user.id)]),
+                                     '_'.join(['jobid', str(train_job_id)]))
+            if not os.path.exists(model_dir):
+                flash(model.algorithm + " model doesn't exist!", category='error')
+                return redirect(request.url)
+
+            call_predict_scripts(job_dir, model_dir, model.algorithm, x_filename)
+
+        # send result link and security code via email
+        result_link = str(url_for('processing', jobid=job.id))
+
+        send_email(recipients=[current_user.email],
+                   result_link=result_link, security_code=current_user.security_code)
+
+        return redirect(url_for('processing', jobid=job.id, type='predict'))
+
+    # for GET method return
+    users_models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
+    # print(models)
+    jobnames = []
+    valid_models = []
+    for model in users_models:
+        job = Job.query.filter_by(id=model.job_id).first_or_404()
+        if job.category != 'epistatic analysis of miRNAs':
+            continue
+        jobname = Job.query.filter_by(id=model.job_id).first_or_404().name
+        jobnames.append(jobname)
+        valid_models.append(model)
+
+    return render_template('webserver_epistasis_miRNA_predict.html', models=valid_models, jobnames=jobnames)
+
+
+
 @app.route('/processing/<jobid>')
 @login_required
 def processing(jobid):
@@ -159,6 +472,8 @@ def result_train(jobid):
     print(cn_graph_json)
     # for adjacency matrix
     miR_json.write_am_graph_json()
+
+
 
     jupyter_notebook_size = 0
     if job.selected_algorithm == 'EBEN':
