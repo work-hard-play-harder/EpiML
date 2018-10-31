@@ -22,12 +22,9 @@ class Config(object):
     SCRIPTS_DIR=os.path.join(basedir, 'EpiML', 'scripts')
 
     # for run scripts
-    GENERAL_EBEN_TRAIN_SCRIPT = os.path.join(SCRIPTS_DIR, 'general_EBEN_train.R')
-
-    EBEN_TRAIN_SCRIPT = os.path.join(SCRIPTS_DIR, 'EBEN_train.R')
-    EBEN_PREDICT_SCRIPT = os.path.join(SCRIPTS_DIR, 'EBEN_predict.R')
+    EBEN_SCRIPT = os.path.join(SCRIPTS_DIR, 'EBEN.R')
+    LASSO_SCRIPT = os.path.join(SCRIPTS_DIR, 'LASSO.R')
     SSLASSO_SCRIPT = os.path.join(SCRIPTS_DIR, 'ssLASSO.R')
-    MATRIX_EQTL_TRAIN_SCRIPT = os.path.join(SCRIPTS_DIR, 'Matrix_eQTL_train.R')
 
     # for mail
     MAIL_SERVER = 'smtp.gmail.com'

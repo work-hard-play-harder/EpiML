@@ -1,4 +1,4 @@
-import os
+import os, glob
 import shutil
 import random
 import time
@@ -14,7 +14,7 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 
 # customized functions
-from EpiML.run_scripts import call_train_scripts, create_job_folder  # , check_job_status
+from EpiML.run_scripts import call_scripts, create_job_folder  # , check_job_status
 from EpiML.generate_json import load_results, load_json, MiRNAJson, scitific_notation
 from EpiML.create_figures import create_pca_figure, create_lasso_figure
 from EpiML.db_tables import User, Job, Model
@@ -26,7 +26,6 @@ from EpiML.email import send_email, send_submit_job_email
 @app.route('/index')
 def index():
     return render_template('index.html')
-
 
 
 @app.route('/webserver', methods=['GET', 'POST'])
@@ -84,7 +83,7 @@ def webserver():
 
         # add job into Job database
         job = Job(name=jobname, category=jobcategory, type='Train', description=description,
-                  selected_algorithm=method, status='Queuing',
+                  selected_algorithm=method, status='Queuing', feature_file=x_filename, label_file=y_filename,
                   user_id=current_user.id)
         db.session.add(job)
         db.session.commit()
@@ -96,9 +95,9 @@ def webserver():
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        celery_task = call_train_scripts.apply_async(
-            [job.id, 'General', method, params, job_dir, x_filename, y_filename],
-            countdown=30)
+        celery_task = call_scripts.apply_async(
+            [job.id, method, params, job_dir, x_filename, y_filename],
+            countdown=5)
         job.celery_id = celery_task.id
         db.session.add(job)
 
@@ -122,10 +121,14 @@ def processing(jobid):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
     if job.status == 'Done':
-        if job.type == 'Train':
+        if job.category == 'Gene':
             return redirect(url_for('result_train', jobid=job.id))
-        if job.type == 'Predict':
+        if job.category == 'microRNA':
             return redirect(url_for('result_predict', jobid=job.id))
+        if job.category == 'Other':
+            return redirect(url_for('result_predict', jobid=job.id))
+    elif job.status == 'Error':
+        return redirect(url_for('error', jobid=job.id))
     else:
         methods = job.selected_algorithm
         # check_job_status(jobid, methods)
@@ -161,14 +164,17 @@ def result_train(jobid):
     # for adjacency matrix
     miR_json.write_am_graph_json()
 
+    # Generate r notebook if not exist
+
+
     jupyter_notebook_size = 0
     if job.selected_algorithm == 'EBEN':
         jupyter_notebook_size = '{0:.2f}'.format(
             os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
-    if job.selected_algorithm == 'Lasso':
+    if job.selected_algorithm == 'LASSO':
         jupyter_notebook_size = '{0:.2f}'.format(
             os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
-    if job.selected_algorithm == 'ssLasso':
+    if job.selected_algorithm == 'ssLASSO':
         jupyter_notebook_size = '{0:.2f}'.format(
             os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
 
@@ -257,6 +263,25 @@ def result_predict(jobid):
 
     return render_template('result_predict.html', jobid=jobid, job_dir=job_dir,
                            EBEN_predict_results=EBEN_predict_results)
+
+
+@app.route('/error/<jobid>')
+@login_required
+def error(jobid):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                           '_'.join(['userid', str(current_user.id)]),
+                           '_'.join(['jobid', str(jobid)]))
+    error_files = glob.glob(os.path.join(job_dir, '*.stderr'))
+    print(error_files)
+
+    error_content = []
+    for stderr_file in error_files:
+        with open(os.path.join(job_dir, stderr_file), 'r') as ef:
+            for line in ef:
+                print(line)
+                error_content.append(line)
+    print(error_content)
+    return render_template('error.html', error_content=error_content)
 
 
 @app.route('/user/jobs', methods=['GET', 'POST'])

@@ -14,7 +14,7 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 
 # customized functions
-from EpiML.run_scripts import call_train_scripts, call_predict_scripts, create_job_folder  # , check_job_status
+from EpiML.run_scripts import call_scripts, create_job_folder  # , check_job_status
 from EpiML.generate_json import load_results, load_json, MiRNAJson, scitific_notation
 from EpiML.create_figures import create_pca_figure, create_lasso_figure
 from EpiML.db_tables import User, Job, Model
@@ -94,7 +94,7 @@ def webserver():
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        celery_task = call_train_scripts.apply_async(
+        celery_task = call_scripts.apply_async(
             [job.id, 'General', method, params, job_dir, x_filename, y_filename],
             countdown=30)
         job.celery_id = celery_task.id
@@ -179,7 +179,7 @@ def webserver_epistatic_analysis_train():
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        celery_task = call_train_scripts.apply_async(
+        celery_task = call_scripts.apply_async(
             [job.id, 'General', method, params, job_dir, x_filename, y_filename],
             countdown=30)
         job.celery_id = celery_task.id
@@ -338,7 +338,7 @@ def webserver_epistasis_miRNA_train():
         # call scripts and update Model database
         print(methods)
         for method in methods:
-            call_train_scripts(jobcategory, method, params, job_dir, x_filename, y_filename)
+            call_scripts(jobcategory, method, params, job_dir, x_filename, y_filename)
             params_str = ';'.join([key + '=' + value for key, value in params.items()])
             model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
                           job_id=job.id)

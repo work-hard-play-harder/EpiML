@@ -34,7 +34,7 @@ def create_job_folder(upload_folder='', userid=None, jobid=None):
 
 
 @celery.task()
-def call_train_scripts(jobid, category, method, params=None, job_dir='', x_filename='', y_filename=''):
+def call_scripts(jobid, method, params=None, job_dir='', x_filename='', y_filename=''):
     print('Background start...')
     job = Job.query.filter_by(id=jobid).first_or_404()
     job.status = 'Running'
@@ -43,31 +43,35 @@ def call_train_scripts(jobid, category, method, params=None, job_dir='', x_filen
 
     if method == 'EBEN':
         print('run EBEN')
-        with open(os.path.join(job_dir, 'EBEN_train.stdout'), 'w') as EBEN_stdout, \
-                open(os.path.join(job_dir, 'EBEN_train.stderr'), 'w') as EBEN_stderr:
-            subprocess.run(['Rscript', app.config['EBEN_TRAIN_SCRIPT'], job_dir, x_filename, y_filename,
-                            params['fold_number'], params['seed_number']],
-                           stdout=EBEN_stdout,
-                           stderr=EBEN_stderr)
+        try:
+            with open(os.path.join(job_dir, 'EBEN.stdout'), 'w') as EBEN_stdout, \
+                    open(os.path.join(job_dir, 'EBEN.stderr'), 'w') as EBEN_stderr:
+                print('call EBEN script')
+                subprocess.run(['Rscript', app.config['EBEN_SCRIPT'], job_dir, x_filename, y_filename,
+                                params['fold_number'], '0.2', params['seed_number']],
+                               stdout=EBEN_stdout,
+                               stderr=EBEN_stderr)
+                job.status = 'Done'
+        except:
+            job.status = 'Error'
 
     if method == 'SSLASSO':
         print('run SSLASSO')
-        with open(os.path.join(job_dir, 'SSLASSO_train.stdout'), 'w') as SSLASSO_stdout, \
-                open(os.path.join(job_dir, 'SSLASSO_train.stderr'), 'w') as SSLASSO_stderr:
+        with open(os.path.join(job_dir, 'SSLASSO.stdout'), 'w') as SSLASSO_stdout, \
+                open(os.path.join(job_dir, 'SSLASSO.stderr'), 'w') as SSLASSO_stderr:
             subprocess.run(['Rscript', app.config['SSLASSO_SCRIPT'], job_dir, x_filename, y_filename,
                             params['fold_number'], params['seed_number']],
                            stdout=SSLASSO_stdout,
                            stderr=SSLASSO_stderr)
 
     if method == 'LASSO':
-        with open(os.path.join(job_dir, 'LASSO_train.stdout'), 'w') as LASSO_stdout, \
-                open(os.path.join(job_dir, 'LASSO_train.stderr'), 'w') as LASSO_stderr:
+        with open(os.path.join(job_dir, 'LASSO.stdout'), 'w') as LASSO_stdout, \
+                open(os.path.join(job_dir, 'LASSO.stderr'), 'w') as LASSO_stderr:
             subprocess.Popen(
-                ['Rscript', app.config['LASSO_TRAIN_SCRIPT'], params['alpha'], job_dir, x_filename, y_filename],
+                ['Rscript', app.config['LASSO_SCRIPT'], params['alpha'], job_dir, x_filename, y_filename],
                 stdout=LASSO_stdout,
                 stderr=LASSO_stderr)
 
-    job.status = 'Done'
     job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
     db.session.add(job)
     db.session.commit()

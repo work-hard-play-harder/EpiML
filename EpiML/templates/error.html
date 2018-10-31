@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    <title>Error | Shilab web server</title>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error</h2>
+        <hr>
+        <p>Job is error, please check your data file.</p>
+        <main>
+            <pre>{% for line in error_content %}{{ line }}{% endfor %}</pre>
+        </main>
+    </div>
+{% endblock %}
