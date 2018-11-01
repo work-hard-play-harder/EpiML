@@ -161,8 +161,8 @@ class MiRNAJson(object):
         self.HEB_json = []
         for f1 in self.epis_nodes.values:
             f2_list = self.epis_results[self.epis_results['feature1'] == f1]['feature2'].tolist()
-            element = {'name': 'miRNA.epis.' + f1, 'size': len(f2_list),
-                       'effects': ['miRNA.epis.' + x for x in f2_list]}
+            element = {'name': 'epis.' + f1, 'size': len(f2_list),
+                       'effects': ['epis.' + x for x in f2_list]}
 
             self.HEB_json.append(element)
 

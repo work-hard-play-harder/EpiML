@@ -172,7 +172,7 @@
                 <tr>
                     <td class="tg-odlp">Notebook</td>
                     <td class="tg-iu9n" colspan="3">
-                        <a href="{{ url_for('download_r_notebook', method=job.selected_algorithm) }}"
+                        <a href="{{ url_for('download_r_notebook', jobid=job.id, method=job.selected_algorithm) }}"
                            target="_blank">Jupyter notebook</a>
                     </td>
                     <td class="tg-o36v">File size</td>

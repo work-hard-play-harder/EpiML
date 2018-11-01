@@ -1,5 +1,5 @@
 library('EBEN')
-cat('get in')
+
 workspace <- '~/Desktop/samples/'
 x_filename <- 'Geno.txt'
 y_filename <- 'Pheno.txt'

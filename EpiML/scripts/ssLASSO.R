@@ -1,5 +1,3 @@
-cat(getwd(),'\n')
-
 library("BhGLM");
 library("Matrix");
 library("foreach");

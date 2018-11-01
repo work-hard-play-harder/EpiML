@@ -20,6 +20,7 @@ from EpiML.create_figures import create_pca_figure, create_lasso_figure
 from EpiML.db_tables import User, Job, Model
 from EpiML.safety_check import is_safe_url, is_allowed_file, security_code_generator
 from EpiML.email import send_email, send_submit_job_email
+from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_notebook
 
 
 @app.route('/')
@@ -165,18 +166,20 @@ def result_train(jobid):
     miR_json.write_am_graph_json()
 
     # Generate r notebook if not exist
-
-
     jupyter_notebook_size = 0
     if job.selected_algorithm == 'EBEN':
+        generate_EBEN_notebook(job_dir, job.feature_file, job.label_file)
         jupyter_notebook_size = '{0:.2f}'.format(
-            os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
+            os.path.getsize(os.path.join(job_dir, 'EBEN_r_notebook.ipynb')) / 1024)
     if job.selected_algorithm == 'LASSO':
+
         jupyter_notebook_size = '{0:.2f}'.format(
-            os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
+            os.path.getsize(os.path.join(job_dir, 'LASSO_r_notebook.ipynb')) / 1024)
     if job.selected_algorithm == 'ssLASSO':
+        print('ssLASSO')
+        generate_ssLASSO_notebook(job_dir, job.feature_file, job.label_file)
         jupyter_notebook_size = '{0:.2f}'.format(
-            os.path.getsize(os.path.join(app.config['SCRIPTS_DIR'], 'EBEN_r_notebook.ipynb')) / 1024)
+            os.path.getsize(os.path.join(job_dir, 'ssLASSO_r_notebook.ipynb')) / 1024)
 
     return render_template('result_train.html', job=job,
                            feature_file_size='{0:.2f}'.format(
@@ -490,24 +493,31 @@ def download_sample_data(filename):
         return str(e)
 
 
-@app.route('/download/r_notebook/<method>_r_notebook.ipynb')
-def download_r_notebook(method):
+@app.route('/download/r_notebook/<jobid>/<method>_r_notebook.ipynb')
+def download_r_notebook(jobid, method):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
+                           '_'.join(['userid', str(current_user.id)]),
+                           '_'.join(['jobid', str(jobid)]))
+    if not os.path.exists(job_dir):
+        flash("Job doesn't exist!", category='error')
+        return redirect(request.url)
+
     if method == 'EBEN':
         filename = 'EBEN_r_notebook.ipynb'
         try:
-            return send_file(os.path.join(app.config['SCRIPTS_DIR'], filename), add_etags=False,
+            return send_file(os.path.join(job_dir, filename), add_etags=False,
                              attachment_filename=filename)
         except Exception as e:
             return str(e)
     if method == 'Lasso':
         filename = 'Lasso_r_notebook.ipynb'
         try:
-            return send_file(os.path.join(app.config['SCRIPTS_DIR'], filename), attachment_filename=filename)
+            return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
         except Exception as e:
             return str(e)
-    if method == 'ssLasso':
-        filename = 'ssLasso_r_notebook.ipynb'
+    if method == 'ssLASSO':
+        filename = 'ssLASSO_r_notebook.ipynb'
         try:
-            return send_file(os.path.join(app.config['SCRIPTS_DIR'], filename), attachment_filename=filename)
+            return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
         except Exception as e:
             return str(e)
