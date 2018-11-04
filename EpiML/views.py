@@ -20,7 +20,7 @@ from EpiML.create_figures import create_pca_figure, create_lasso_figure
 from EpiML.db_tables import User, Job, Model
 from EpiML.safety_check import is_safe_url, is_allowed_file, security_code_generator
 from EpiML.email import send_email, send_submit_job_email
-from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_notebook
+from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_notebook,generate_LASSO_notebook
 
 
 @app.route('/')
@@ -172,11 +172,10 @@ def result_train(jobid):
         jupyter_notebook_size = '{0:.2f}'.format(
             os.path.getsize(os.path.join(job_dir, 'EBEN_r_notebook.ipynb')) / 1024)
     if job.selected_algorithm == 'LASSO':
-
+        generate_LASSO_notebook(job_dir, job.feature_file, job.label_file)
         jupyter_notebook_size = '{0:.2f}'.format(
             os.path.getsize(os.path.join(job_dir, 'LASSO_r_notebook.ipynb')) / 1024)
     if job.selected_algorithm == 'ssLASSO':
-        print('ssLASSO')
         generate_ssLASSO_notebook(job_dir, job.feature_file, job.label_file)
         jupyter_notebook_size = '{0:.2f}'.format(
             os.path.getsize(os.path.join(job_dir, 'ssLASSO_r_notebook.ipynb')) / 1024)

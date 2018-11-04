@@ -298,6 +298,42 @@
                     understand difference among build-in machine learning methods for epistatic analysis, they are
                     briefly introduced:
                 </p>
+                <div align="center">
+                    <figure>
+                        <img width="30%" src="{{ url_for('static',filename='img/help/workflow1.jpg') }}">
+                        <figcaption style="text-align: justify"><strong>Figure 2. The overall workflow based on
+                            removing main effect.</strong> <strong>Step 1:</strong> Run the simplified model
+                            including
+                            solely main effect, which means only the significant features from this step are included in
+                            the main effect part of the model at the final step. <strong>Step 2:</strong> Obtain the
+                            corrected phenotype y' through removing main effect of significant features from the
+                            original phenotype y, <strong>Step 3:</strong> The newly corrected y' is used to infer
+                            epistasis. Only the features with significant epistatic effect can be included in the model
+                            in the next step. <strong>Step 4:</strong> Run the full model that includes all the features
+                            with significant features with main effects from the first step and significant features
+                            with epistatic effect identified in third step. Here, y denotes the trait phenotype, X
+                            represents the expression, <i>β<sub>m</sub></i> and <i>β<sub>e</sub></i> represents for the
+                            main effect and epistatic effect separately, <i>μ</i> represents for the phenotype mean and
+                            <i>e</i> represents for the standard error. Many machine learning methods like LASSO and
+                            EBEN can be used as the parameter estimation method in Steps 1, 3 and 4.
+                        </figcaption>
+                    </figure>
+                </div>
+                <div align="center">
+                    <figure>
+                        <img width="30%" src="{{ url_for('static',filename='img/help/workflow2.png') }}">
+                        <figcaption style="text-align: justify"><strong>Figure 2. The overall workflow based on
+                            matrix multiplication.</strong> <strong>Step 1:</strong> Construct an epistasis model
+                            including the marginal and epistasis effects; <strong>Step 2:</strong> Apply a matrix
+                            multiplication strategy to pre-compute the correlations between features and dependent
+                            variable, followed by filtering features with low correlations with the dependent variable;
+                            <strong>Step 3:</strong> Construct the reduced model using the filtered features and apply
+                            ssLasso to solve the reduced model; <strong>Step 4:</strong> Output significant marginal and
+                            epistasis features.
+                        </figcaption>
+                    </figure>
+                </div>
+
                 <h4>Empirical Bayesian Elastic Net (EBEN)</h4>
                 <p></p>
                 <h4>Least Absolute Shrinkage and Selection Operator (LASSO)</h4>

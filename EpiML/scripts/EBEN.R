@@ -47,8 +47,8 @@ y <- as.matrix(y)
 cat('Filter the miRNA data with more than 20% missing data', '\n')
 x_filtered <- NULL
 x_filtered_colnames <- NULL
-criteria <- trunc(nrow(x) * (1 - max_percentages_miss_val))
-for (i in 1:ncol(x)) {
+criteria <- trunc(ncol(x) * (1 - max_percentages_miss_val))
+for (i in 1:nrow(x)) {
   if (sum(as.numeric(x[, i]) != 0) > criteria) {
     x_filtered <- cbind(x_filtered, x[, i])
     x_filtered_colnames<-c(x_filtered_colnames, colnames(x)[i])

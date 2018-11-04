@@ -1,14 +1,19 @@
-library("BhGLM");
-library("Matrix");
-library("foreach");
-library("glmnet");
-source("EpiMap/scripts/cv.bh.R");
+# load library
+library('BhGLM');
+library('Matrix');
+library('foreach');
+library('glmnet');
+source('cv.bh.R');
+library('r2d3')
 
-workspace <- '~/Desktop/'
+workspace <- '~/Desktop/samples/'
 x_filename <- 'Geno.txt'
 y_filename <- 'Pheno.txt'
+s0 <- 0.03;
+s1 <- 0.5;
 nFolds <- 5
 seed <- 28213
+set.seed(seed)
 
 args <- commandArgs(trailingOnly = TRUE)
 workspace <- args[1]
@@ -24,8 +29,6 @@ cat('\ty_filename:', y_filename, '\n')
 cat('\tnFolds:', nFolds, '\n')
 cat('\tseed:', seed, '\n')
 
-set.seed(seed)
-
 cat('read data','\n')
 x <- read.table(
   file = file.path(workspace, x_filename),
@@ -34,6 +37,7 @@ x <- read.table(
   row.names = 1
 )
 sprintf('features size: (%d, %d)', nrow(x), ncol(x))
+
 y <- read.table(
   file = file.path(workspace, y_filename),
   header = TRUE,
@@ -49,10 +53,6 @@ pheno <- as.matrix(y);
 geno_stand <- scale(features);
 new_y <- scale(pheno);
 new_y_in <- new_y[,1,drop=F];
-
-### Pre-specify s0 and s1:
-s0 <- 0.03;
-s1 <- 0.5;
 
 ###### Main effect-single locus:
 sig_index <- which(abs(t(new_y_in) %*% geno_stand/(nrow(geno_stand)-1)) > 0.20);
