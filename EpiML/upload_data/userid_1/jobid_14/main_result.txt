@@ -1,3 +1,0 @@
-feature	coefficent value	posterior variance	t-value	p-value
-X3415134_chrV_523179_A_G	0.0844055337823818	NA	NA	NA
-X5947292_chrX_114831_T_G	0.458865867368173	NA	NA	NA

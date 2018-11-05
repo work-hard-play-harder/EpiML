@@ -47,8 +47,8 @@ y <- as.matrix(y)
 cat('Filter the miRNA data with more than 20% missing data', '\n')
 x_filtered <- NULL
 x_filtered_colnames <- NULL
-criteria <- trunc(ncol(x) * (1 - max_percentages_miss_val))
-for (i in 1:nrow(x)) {
+criteria <- trunc(nrow(x) * (1 - max_percentages_miss_val))
+for (i in 1:ncol(x)) {
   if (sum(as.numeric(x[, i]) != 0) > criteria) {
     x_filtered <- cbind(x_filtered, x[, i])
     x_filtered_colnames<-c(x_filtered_colnames, colnames(x)[i])
@@ -65,10 +65,8 @@ for (sl in 1:ncol(x_filtered_normed)) {
   mat = qnorm(mat / (nrow(x_filtered_normed) + 1))
   x_filtered_normed[, sl] = mat
 }
-
 x_preprocessed <- x_filtered_normed
 rm(x_filtered, x_filtered_normed, sl, mat)
-
 
 cat('Main effect estimated using EBEN', '\n')
 CV = EBelasticNet.GaussianCV(x_preprocessed, y, nFolds = nFolds, Epis = "no")

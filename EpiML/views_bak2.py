@@ -15,7 +15,7 @@ from bokeh.resources import INLINE
 
 # customized functions
 from EpiML.run_scripts import call_scripts, create_job_folder  # , check_job_status
-from EpiML.generate_json import load_results, load_json, MiRNAJson, scitific_notation
+from EpiML.generate_json import load_results, load_json, MiRNAJson, scientific_notation
 from EpiML.create_figures import create_pca_figure, create_lasso_figure
 from EpiML.db_tables import User, Job, Model
 from EpiML.safety_check import is_safe_url, is_allowed_file, security_code_generator
@@ -457,8 +457,8 @@ def result_train(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'main_result.txt')), 1)
-    EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'epis_result.txt')), 2)
+    EBEN_main_result = scientific_notation(load_results(os.path.join(job_dir, 'main_result.txt')), 1)
+    EBEN_epis_result = scientific_notation(load_results(os.path.join(job_dir, 'epis_result.txt')), 2)
 
     miR_json = MiRNAJson(job_dir)
     # for external resources network
@@ -567,7 +567,7 @@ def result_predict(jobid):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
 
-    EBEN_predict_results = scitific_notation(load_results(os.path.join(job_dir, 'EBEN_predict.txt')), 1)
+    EBEN_predict_results = scientific_notation(load_results(os.path.join(job_dir, 'EBEN_predict.txt')), 1)
 
     return render_template('result_predict.html', jobid=jobid, job_dir=job_dir,
                            EBEN_predict_results=EBEN_predict_results)

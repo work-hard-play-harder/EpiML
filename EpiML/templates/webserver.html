@@ -91,9 +91,16 @@
                         </div>
                     </label>
                     <div class="col-sm-10">
-                        <label class="radio-inline col-sm-2">
+                        <label class="radio-inline col-sm-3">
                             <input id="jobcategory" name="jobcategory" type="radio" value="Gene" CHECKED> Gene
+                            <select name="species" id="species">
+                                <option value="Human">Human</option>
+                                <option value="Mouse">Mouse</option>
+                                <option value="C. elegans">C. elegans</option>
+                                <option value="S. cerevisiae" selected>S. cerevisiae</option>
+                            </select>
                         </label>
+
                         <label class="radio-inline col-sm-2">
                             <input id="jobcategory" name="jobcategory" type="radio" value="microRNA">
                             microRNA
@@ -116,7 +123,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-sm-2" for="email">Email:
-                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
                             <span class="tooltiptext">To accept notification and retrieve results</span>
                         </div>
                     </label>
@@ -128,7 +135,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-sm-2" for="description">Description:
-                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
                             <span class="tooltiptext">To help understand job details</span>
                         </div>
                     </label>
@@ -141,7 +148,7 @@
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="upload">Upload files:
-                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
                             <span class="tooltiptext">Upload data for epistasis analysis</span>
                         </div>
                     </label>
@@ -168,16 +175,11 @@
                 </div>
                 <div class="form-group form-inline">
                     <label class="control-label col-sm-2" for="methods">Select Method:
-                    <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
                             <span class="tooltiptext">Select one method for epistasis analysis</span>
                         </div>
                     </label>
-                    <!--
-                    <div class="col-sm-3">
-                        <input class="form-control" type="checkbox" id="LASSO" name="methods" value="LASSO">
-                        <label for="LASSO">LASSO</label>
-                    </div>
-                    -->
+
                     <div class="row" style="padding: 15px">
                         <div class=" col-sm-2">
                             <input type="radio" id="EBEN" name="method" value="EBEN" checked>

@@ -278,8 +278,6 @@
             </ol>
 
             <div class="row" style="padding: 10px">
-
-
                 <div id="vis_cn" class="col-sm-9" align="center">
                     <svg name="circle_network" id="circle_network"></svg>
                 </div>
@@ -350,7 +348,7 @@
                     </div>
                 </div>
                 <script>
-                    var am_graph_json = '{{ am_graph_json}}';
+                    var am_graph_json = '{{ am_graph_json | safe}}';
                 </script>
                 <script src="{{ url_for('static',filename='js/vis_AM.js') }}"></script>
             </div>
@@ -365,11 +363,6 @@
                 and nodes, based on their relative positions.
             </p>
 
-
-            <!--
-                The mega data can be download
-                <a href="{{ url_for('download_result',jobid=jobid, filename='nodes_links.json') }}"
-                   target="_blank">here</a> in JSON format.-->
             <div id="visualization" class="container">
 
                 <div class="row">
@@ -399,8 +392,7 @@
                 </div>
                 <!-- for d3 visualization. This script must be after svg tag-->
                 <script>
-                    var nodes_links_json = '{{ nodes_links_json }}';
-                    var legends_json = '{{ legends_json }}';
+                    var fd_graph_json = '{{ fd_graph_json | safe}}';
                 </script>
 
                 <script type="text/javascript" charset="utf8"

@@ -10,17 +10,14 @@ from flask import render_template, request, redirect, url_for, flash, make_respo
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.utils import secure_filename
 from sqlalchemy import desc
-from bokeh.embed import components
-from bokeh.resources import INLINE
 
 # customized functions
-from EpiML.run_scripts import call_scripts, create_job_folder  # , check_job_status
-from EpiML.generate_json import load_results, load_json, MiRNAJson, scitific_notation
-from EpiML.create_figures import create_pca_figure, create_lasso_figure
+from EpiML.run_scripts import call_scripts, create_job_folder
+from EpiML.generate_json import load_results, scientific_notation, GenerateJson
 from EpiML.db_tables import User, Job, Model
 from EpiML.safety_check import is_safe_url, is_allowed_file, security_code_generator
 from EpiML.email import send_email, send_submit_job_email
-from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_notebook,generate_LASSO_notebook
+from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_notebook, generate_LASSO_notebook
 
 
 @app.route('/')
@@ -33,6 +30,9 @@ def index():
 def webserver():
     if request.method == 'POST':
         jobcategory = request.form['jobcategory']
+        if jobcategory == 'Gene':
+            select_species = request.form.get('species')
+            jobcategory = '{0}({1})'.format(jobcategory, select_species)
         jobname = request.form['jobname']
         email = request.form['email']
         description = request.form['description']
@@ -122,12 +122,13 @@ def processing(jobid):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
     if job.status == 'Done':
-        if job.category == 'Gene':
+        jobcategory = job.category.split('(')[0]  # delete species
+        if jobcategory == 'Gene':
             return redirect(url_for('result_train', jobid=job.id))
-        if job.category == 'microRNA':
-            return redirect(url_for('result_predict', jobid=job.id))
-        if job.category == 'Other':
-            return redirect(url_for('result_predict', jobid=job.id))
+        if jobcategory == 'microRNA':
+            return redirect(url_for('result_train', jobid=job.id))
+        if jobcategory == 'Other':
+            return redirect(url_for('result_train', jobid=job.id))
     elif job.status == 'Error':
         return redirect(url_for('error', jobid=job.id))
     else:
@@ -149,21 +150,25 @@ def result_train(jobid):
 
     job = Job.query.filter_by(id=jobid).first_or_404()
 
-    EBEN_main_result = scitific_notation(load_results(os.path.join(job_dir, 'main_result.txt')), 1)
-    EBEN_epis_result = scitific_notation(load_results(os.path.join(job_dir, 'epis_result.txt')), 2)
+    EBEN_main_result = scientific_notation(load_results(os.path.join(job_dir, 'main_result.txt')), 1)
+    EBEN_epis_result = scientific_notation(load_results(os.path.join(job_dir, 'epis_result.txt')), 2)
 
-    miR_json = MiRNAJson(job_dir)
-    # for external resources network
-    miR_json.generate_nodes_json()
-    miR_json.generate_links_json()
-    miR_json.write_forceDirect_nodes_links_json()
-    miR_json.generate_legend_json()
-    miR_json.write_forceDirect_legends_json()
-    # for circle network
-    cn_graph_json = miR_json.generate_miR_HEB_json()
+    # generate json files for different job categories
+    json_handler = GenerateJson(job_dir, job.category)
+    cn_graph_json = json_handler.generate_cn_graph_json()
     print(cn_graph_json)
-    # for adjacency matrix
-    miR_json.write_am_graph_json()
+    am_graph_json = json_handler.generate_am_graph_json()
+    print(am_graph_json)
+    jobcategory = job.category.split('(')[0]  # delete species
+    print(jobcategory)
+    fd_graph_json = ''
+    if jobcategory == 'Gene':
+        fd_graph_json = json_handler.generate_gene_fd_graph_json()
+        print(fd_graph_json)
+    elif jobcategory == 'microRNA':
+        fd_graph_json = json_handler.generate_microRNA_fd_graph_json()
+    else:
+        fd_graph_json = json_handler.generate_other_fd_graph_json()
 
     # Generate r notebook if not exist
     jupyter_notebook_size = 0
@@ -190,65 +195,12 @@ def result_train(jobid):
                            epis_result_size='{0:.2f}'.format(
                                os.path.getsize(os.path.join(job_dir, 'epis_result.txt')) / 1024),
                            jupyter_notebook_size=jupyter_notebook_size,
-
+                           # for result tables
                            EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
-                           nodes_links_json=url_for('download_result',
-                                                    jobid=jobid,
-                                                    filename='nodes_links.json'),
-                           legends_json=url_for(
-                               'download_result', jobid=jobid, filename='legends.json'),
+                           # for visualization
                            cn_graph_json=cn_graph_json,
-                           am_graph_json=url_for(
-                               'download_result', jobid=jobid, filename='am_graph.json'))
-
-    '''
-    return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
-                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
-                           nodes_links_json=url_for('download_result', jobid=jobid, filename='nodes_links.json'),
-                           legends_json=url_for('download_result', jobid=jobid, filename='legends.json'),
-                           cn_graph_json=cn_graph_json,
-                           am_graph_json=url_for('download_result', jobid=jobid, filename='am_graph.json'))
-    '''
-
-    '''
-    if not os.path.isfile(os.path.join(job_dir, 'nodes_links.json')):
-        miR_json = MiRNAJson(job_dir)
-        nodes = miR_json.generate_nodes_json()
-        links = miR_json.generate_links_json()
-        legends = miR_json.generate_legend_json()
-        miR_json.write_forceDirect_json()
-
-        miRNA_HEB_json = miR_json.generate_miR_HEB_json()
-
-    else:
-        nodes, links, legends = load_json(os.path.join(job_dir, 'nodes_links.json'))
-
-    return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
-                           EBEN_main_result=EBEN_main_result, EBEN_epis_result=EBEN_epis_result,
-                           nodes=nodes, links=links, legends=legends, miRNA_HEB_json=miRNA_HEB_json)
-    '''
-
-    '''
-    # for visualization
-    fit_file = os.path.join(job_dir, 'lasso.fit')
-    lasso_figure = create_lasso_figure(fit_file)
-    lasso_script, lasso_div = components(lasso_figure)
-    EBEN_figure = create_lasso_figure(fit_file)
-    EBEN_script, EBEN_div = components(EBEN_figure)
-    Matrix_eQTL_figure = create_lasso_figure(fit_file)
-    Matrix_eQTL_script, Matrix_eQTL_div = components(Matrix_eQTL_figure)
-    
-
-    return render_template('result_train.html', jobid=jobid, job_dir=job_dir, methods=job.selected_algorithm,
-                           lasso_script=lasso_script,
-                           lasso_div=lasso_div,
-                           EBEN_script=EBEN_script,
-                           EBEN_div=EBEN_div,
-                           Matrix_eQTL_script=Matrix_eQTL_script,
-                           Matrix_eQTL_div=Matrix_eQTL_div,
-                           js_resources=INLINE.render_js(),
-                           css_resources=INLINE.render_css())
-    '''
+                           am_graph_json=am_graph_json,
+                           fd_graph_json=fd_graph_json)
 
 
 @app.route('/result/predict/<jobid>')
@@ -261,7 +213,7 @@ def result_predict(jobid):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
 
-    EBEN_predict_results = scitific_notation(load_results(os.path.join(job_dir, 'EBEN_predict.txt')), 1)
+    EBEN_predict_results = scientific_notation(load_results(os.path.join(job_dir, 'EBEN_predict.txt')), 1)
 
     return render_template('result_predict.html', jobid=jobid, job_dir=job_dir,
                            EBEN_predict_results=EBEN_predict_results)
@@ -356,23 +308,6 @@ def repository():
         usernames.append(username)
 
     return render_template('repository.html', models=models, jobnames=jobnames, usernames=usernames)
-
-
-@app.route('/pca', methods=['GET', 'POST'])
-def pca():
-    x = [1, 2, 3, 4, 5]
-    y = [6, 7, 8, 9, 0]
-    boken_figure = create_pca_figure(x, y)
-
-    script, div = components(boken_figure)
-
-    return render_template('pca.html',
-                           plot_script=script,
-                           plot_div=div,
-                           js_resources=INLINE.render_js(),
-                           css_resources=INLINE.render_css())
-
-    # return render_template('pca.html', userID=userID, mpld3=mpld3.fig_to_html(fig))
 
 
 @app.route('/signup', methods=['GET', 'POST'])

@@ -3,7 +3,7 @@ var legend_width = parseInt(d3.select('#visualization').style('width')), legend_
 var ER_legendDiv = d3.select('#ER_legendDiv').selectAll('.er_legend');
 
 //	d3.v4 color scales. use definition in vis_ER.js
-//var ER_color = d3.scaleOrdinal(d3.schemeCategory10);
+var ER_color = d3.scaleOrdinal(d3.schemeCategory10);
 //var shape = d3.scaleOrdinal(d3.symbols);
 
 /*
@@ -12,9 +12,8 @@ var ER_legends = legend_svg.append('g').attr('class', 'er_legends').attr('transf
 */
 
 //	data read and store
-d3.json(legends_json, function (err, g) {
-    if (err) throw err;
-
+fd_graph=JSON.parse(fd_graph_json);
+function draw_fd_legend( g) {
     // for legend
     ER_legends = ER_legendDiv.data(g.legends)
         .enter().append('div')
@@ -57,7 +56,9 @@ d3.json(legends_json, function (err, g) {
             return d.label;
         });
 
-});
+};
+draw_fd_legend(fd_graph);
+
 
 function getLegendType(legend) {
     if (legend.shape === 'circle') {
@@ -84,7 +85,6 @@ function getLegendType(legend) {
 }
 
 function getLegendColor(legend) {
-
     return ER_color(legend.label); // use color schemeCategory10
     //return node.fill; // directly assign fill color
 }

@@ -63,9 +63,8 @@ $(document).ready(function () {
 });
 
 //	data read and store
-d3.json(nodes_links_json, function (err, g) {
-    if (err) throw err;
-
+fd_graph=JSON.parse(fd_graph_json);
+function draw_fd( g) {
     var nodeByID = {};
     g.nodes.forEach(function (n) {
         nodeByID[n.id] = n;
@@ -85,8 +84,8 @@ d3.json(nodes_links_json, function (err, g) {
     });
 
     update();
-});
-
+};
+draw_fd(fd_graph);
 
 function update() {
     //UPDATE
@@ -272,7 +271,6 @@ function searchERNode(val) {
             targetNode = n
         }
     });
-    console.log(val, targetNode);
     return fade(targetNode, 0.1);
 
 }
@@ -281,18 +279,25 @@ function mouseOverNodeTooltip(node) {
     tooltip.transition()
         .duration(300)
         .style("opacity", .9);
-    if (node.level === 1) {
+    if (node.type === 'gene') {
+        tooltip
+            .html("Name: " + node.id + "<br/>" +
+                "Group: " + node.group + "<br/>" +
+                "<a href=" + node.url + " target='_blank'>UCSC Genome Browser</a>")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY + 10) + "px");
+    } else if (node.type === 'microRNA') {
         tooltip
             .html("Name: " + node.id + "<br/>" +
                 "Group: " + node.group + "<br/>" +
                 "<a href=" + node.url + " target='_blank'>miRBase</a>")
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY + 10) + "px");
-    } else if (node.level === 2) {
+    }else if (node.type === 'miRNA2Disease') {
         tooltip
             .html("Name: " + node.id + "<br/>" +
                 "Group: " + node.group + "<br/>" +
-                "<a href=" + node.url + " target='_blank'>miR2Disease</a>")
+                "<a href=" + node.url + " target='_blank'>miRNA2Disease</a>")
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY + 10) + "px");
     }
@@ -309,18 +314,25 @@ function mouseClickNodeTooltip(node) {
     tooltip.transition()
         .duration(300)
         .style("opacity", .9);
-    if (node.level === 1) {
+    if (node.type === 'gene') {
+        tooltip
+            .html("Name: " + node.id + "<br/>" +
+                "Group: " + node.group + "<br/>" +
+                "<a href=" + node.url + " target='_blank'>UCSC Genome Browser</a>")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY + 10) + "px");
+    } else if (node.type === 'microRNA') {
         tooltip
             .html("Name: " + node.id + "<br/>" +
                 "Group: " + node.group + "<br/>" +
                 "<a href=" + node.url + " target='_blank'>miRBase</a>")
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY + 10) + "px");
-    } else if (node.level === 2) {
+    }else if (node.type === 'miRNA2Disease') {
         tooltip
             .html("Name: " + node.id + "<br/>" +
                 "Group: " + node.group + "<br/>" +
-                "<a href=" + node.url + " target='_blank'>miR2Disease</a>")
+                "<a href=" + node.url + " target='_blank'>miRNA2Disease</a>")
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY + 10) + "px");
     }
@@ -349,7 +361,7 @@ d3.select('#ER_diagram').on('click', function () {
     //alert(d3.select('.tooltip').style("opacity"));
     if (d3.select('.tooltip').style("opacity") == 0.9) {
         tooltip.transition()
-            .duration(100)
+            //.duration(100)
             .style("opacity", 0)
             .style("left", (width + 10) + "px")
             .style("top", (height + 10) + "px");

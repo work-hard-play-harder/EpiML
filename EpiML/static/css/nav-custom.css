@@ -6,13 +6,13 @@ nav-custom is for the nav-bar with green background and white color
     background-color: #155724;
     border: 0px;
     font-size: 18px;
-    min-height: 80px;
+    min-height: 70px;
 }
 
 .nav.navbar-header .navbar-brand {
     padding: 5px 15px;
-    height: 80px;
-    line-height: 80px;
+    height: 70px;
+    line-height: 70px;
     color: black;
 }
 
@@ -30,9 +30,9 @@ nav-custom is for the nav-bar with green background and white color
 @media (min-width: 768px) {
     .navbar-nav > li > a {
         /* (80px - line-height of 27px) / 2 = 26.5px */
-        padding-top: 26.5px;
-        padding-bottom: 26.5px;
-        line-height: 27px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        line-height: 20px;
     }
 }
 
