@@ -156,15 +156,11 @@ def result_train(jobid):
     # generate json files for different job categories
     json_handler = GenerateJson(job_dir, job.category)
     cn_graph_json = json_handler.generate_cn_graph_json()
-    print(cn_graph_json)
     am_graph_json = json_handler.generate_am_graph_json()
-    print(am_graph_json)
-    jobcategory = job.category.split('(')[0]  # delete species
-    print(jobcategory)
     fd_graph_json = ''
+    jobcategory = job.category.split('(')[0]  # delete species
     if jobcategory == 'Gene':
         fd_graph_json = json_handler.generate_gene_fd_graph_json()
-        print(fd_graph_json)
     elif jobcategory == 'microRNA':
         fd_graph_json = json_handler.generate_microRNA_fd_graph_json()
     else:

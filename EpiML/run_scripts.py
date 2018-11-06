@@ -78,6 +78,12 @@ def call_scripts(jobid, method, params=None, job_dir='', x_filename='', y_filena
         except:
             job.status = 'Error'
 
+    # check results
+    if not os.path.exists(os.path.join(job_dir, 'main_result.txt')):
+        job.status = 'Error'
+    if not os.path.exists(os.path.join(job_dir, 'epis_result.txt')):
+        job.status = 'Error'
+
     job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
     db.session.add(job)
     db.session.commit()

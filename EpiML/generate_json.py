@@ -267,7 +267,6 @@ class GenerateJson(object):
     def generate_gene_fd_graph_json(self):
         # for all nodes
         nodes_json = []
-
         for node in self.all_nodes:
             if node in self.main_nodes.values:
                 feature_name = node.split('_')
@@ -301,51 +300,47 @@ class GenerateJson(object):
                                        self.UCSC_genomes_db[self.species], chr_name, chr_position - 10,
                                                                                      chr_position + 10)
                                    })
-                # for epis link
-                links_json = []
-                epis_links = self.epis_results[['feature1', 'feature2']].drop_duplicates()
-                for index, link in epis_links.iterrows():
-                    links_json.append({'id': index,
-                                       'source': link['feature1'],
-                                       'target': link['feature2'],
-                                       'color': 'black',
-                                       'strength': 0.3})
+        # for epis link
+        links_json = []
+        epis_links = self.epis_results[['feature1', 'feature2']].drop_duplicates()
+        for index, link in epis_links.iterrows():
+            links_json.append({'id': index,
+                               'source': link['feature1'],
+                               'target': link['feature2'],
+                               'color': 'black',
+                               'strength': 0.3})
 
-                # for legends
-                legend_json = []
-                if 'main_effect' in self.node_groups:
-                    legend_json.append({
-                        "label": "Main effect",
-                        "shape": "triangle",
-                        "color": "red"
-                    })
-                if 'epis_effect' in self.node_groups:
-                    legend_json.append({
-                        "label": "Epistatic effect",
-                        "shape": "triangle",
-                        "color": "green"
-                    })
-                if 'target' in self.node_groups:
-                    legend_json.append({
-                        "label": "target",
-                        "shape": "circle",
-                        "color": "blue"
-                    })
+        # for legends
+        legend_json = []
+        if 'main_effect' in self.node_groups:
+            legend_json.append({
+                "label": "Main effect",
+                "shape": "triangle",
+                "color": "red"
+            })
+        if 'epis_effect' in self.node_groups:
+            legend_json.append({
+                "label": "Epistatic effect",
+                "shape": "triangle",
+                "color": "green"
+            })
+        if 'target' in self.node_groups:
+            legend_json.append({
+                "label": "Target",
+                "shape": "circle",
+                "color": "blue"
+            })
 
-                # ensemble node, link and legends
-                fd_graph_json = {'nodes': nodes_json, 'links': links_json, 'legends': legend_json}
+        # ensemble node, link and legends
+        fd_graph_json = {'nodes': nodes_json, 'links': links_json, 'legends': legend_json}
 
         return json.dumps(fd_graph_json)
 
     def generate_microRNA_fd_graph_json(self):
         # for all nodes
         nodes_json = []
-
         for node in self.all_nodes:
             if node in self.main_nodes.values:
-                feature_name = node.split('_')
-                chr_name = feature_name[1]
-                chr_position = int(feature_name[2])
                 nodes_json.append({'id': node,
                                    'shape': 'triangle',
                                    'size': 80,
@@ -357,9 +352,6 @@ class GenerateJson(object):
                                    'url': 'http://www.mirbase.org/cgi-bin/query.pl?terms={0}&submit=Search'.format(node)
                                    })
             elif node in self.epis_nodes.values:
-                feature_name = node.split('_')
-                chr_name = feature_name[1]
-                chr_position = int(feature_name[2])
                 nodes_json.append({'id': node,
                                    'shape': 'triangle',
                                    'size': 80,
@@ -416,7 +408,7 @@ class GenerateJson(object):
             })
         if 'target' in self.node_groups:
             legend_json.append({
-                "label": "target",
+                "label": "Target",
                 "shape": "circle",
                 "color": "blue"
             })
@@ -427,4 +419,67 @@ class GenerateJson(object):
         return json.dumps(fd_graph_json)
 
     def generate_other_fd_graph_json(self):
-        pass
+        # for all nodes
+        nodes_json = []
+        for node in self.all_nodes:
+            if node in self.main_nodes.values:
+                nodes_json.append({'id': node,
+                                   'shape': 'triangle',
+                                   'size': 80,
+                                   'fill': 'red',
+                                   'group': 'Main effect',
+                                   'label': node,
+                                   'level': 1,
+                                   'type': 'other',
+                                   'url': ''
+                                   })
+            elif node in self.epis_nodes.values:
+                feature_name = node.split('_')
+                chr_name = feature_name[1]
+                chr_position = int(feature_name[2])
+                nodes_json.append({'id': node,
+                                   'shape': 'triangle',
+                                   'size': 80,
+                                   'fill': 'blue',
+                                   'group': 'Epistatic effect',
+                                   'label': node,
+                                   'level': 1,
+                                   'type': 'other',
+                                   'url': ''
+                                   })
+        # for epis link
+        links_json = []
+        epis_links = self.epis_results[['feature1', 'feature2']].drop_duplicates()
+        for index, link in epis_links.iterrows():
+            links_json.append({'id': index,
+                               'source': link['feature1'],
+                               'target': link['feature2'],
+                               'color': 'black',
+                               'strength': 0.3})
+
+        # for legends
+        legend_json = []
+        if 'main_effect' in self.node_groups:
+            legend_json.append({
+                "label": "Main effect",
+                "shape": "triangle",
+                "color": "red"
+            })
+        if 'epis_effect' in self.node_groups:
+            legend_json.append({
+                "label": "Epistatic effect",
+                "shape": "triangle",
+                "color": "green"
+            })
+        if 'target' in self.node_groups:
+            legend_json.append({
+                "label": "Target",
+                "shape": "circle",
+                "color": "blue"
+            })
+
+        # ensemble node, link and legends
+        fd_graph_json = {'nodes': nodes_json, 'links': links_json, 'legends': legend_json}
+
+        return json.dumps(fd_graph_json)
+
