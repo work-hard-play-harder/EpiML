@@ -102,15 +102,15 @@ rownames(Blup) <- res;
 Blup_estimate <- Blup[which(Blup != 0),1,drop=F];
 main_index <- setdiff(1:nrow(Blup_estimate),grep("\\*",rownames(Blup_estimate)));
 epi_index <- grep("\\*",rownames(Blup_estimate))
-output_main <- matrix("NA",length(main_index),2);
-output_epi <- matrix("NA",length(epi_index),3);
+output_main <- matrix("NA",length(main_index),5);
+output_epi <- matrix("NA",length(epi_index),6);
 output_main[,1] <- matrix(rownames(Blup_estimate),ncol=1)[main_index,,drop=F];
 output_main[,2] <- Blup_estimate[main_index,1,drop=F]
 epi_ID <- matrix(rownames(Blup_estimate),ncol=1)[epi_index,,drop=F];
 output_epi[,1:2] <- matrix(unlist(strsplit(epi_ID,"\\*")),ncol=2);
 output_epi[,3] <- Blup_estimate[epi_index,1,drop=F];
-colnames(output_main) <- c("feature", "coefficent value");
-colnames(output_epi) <- c("feature1","feature2", "coefficent value");
+colnames(output_main) <- c("feature", "coefficent value", "posterior variance",	"t-value","p-value");
+colnames(output_epi) <- c("feature1","feature2", "coefficent value", "posterior variance", "t-value","p-value");
 output_main[, 1] <- colnames(x)[as.integer(output_main[, 1])]
 output_epi[, 1] <- colnames(x)[as.integer(output_epi[, 1])]
 output_epi[, 2] <- colnames(x)[as.integer(output_epi[, 2])]
