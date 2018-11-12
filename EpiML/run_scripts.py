@@ -12,14 +12,14 @@ from EpiML import app, db, celery
 from EpiML.db_tables import Job, Model
 
 
-def create_job_folder(upload_folder='', security_code=None):
+def create_job_folder(upload_folder='', jobid=None, security_code=None):
     # create upload_folder
     if not os.path.exists(upload_folder):
         cmd_args = shlex.split('mkdir ' + upload_folder)
         subprocess.Popen(cmd_args).wait()
 
     # create job dir
-    job_dir = os.path.join(upload_folder, security_code)
+    job_dir = os.path.join(upload_folder, str(jobid) + '_' + security_code)
     if not os.path.exists(job_dir):
         cmd_args = shlex.split('mkdir ' + job_dir)
         subprocess.Popen(cmd_args).wait()
@@ -28,19 +28,21 @@ def create_job_folder(upload_folder='', security_code=None):
 
 
 @celery.task()
-def call_scripts(jobid, method, params=None, job_dir='', x_filename='', y_filename=''):
+def call_scripts(jobid, method, params=None, x_filename='', y_filename='',jobcategory=''):
     print('Background start...')
     job = Job.query.filter_by(id=jobid).first_or_404()
     job.status = 'Running'
     db.session.add(job)
     db.session.commit()
 
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], str(job.id) + '_' + job.security_code)
+    print(job_dir)
     if method == 'EBEN':
         print('run EBEN')
         try:
             with open(os.path.join(job_dir, 'EBEN.stdout'), 'w') as EBEN_stdout, \
                     open(os.path.join(job_dir, 'EBEN.stderr'), 'w') as EBEN_stderr:
-                subprocess.run(['Rscript', app.config['EBEN_SCRIPT'], job_dir, x_filename, y_filename,
+                subprocess.run(['Rscript', app.config['EBEN_SCRIPT'], job_dir, x_filename, y_filename,jobcategory,
                                 params['fold_number'], '0.2', params['seed_number']],
                                stdout=EBEN_stdout, stderr=EBEN_stderr)
                 job.status = 'Done'

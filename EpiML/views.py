@@ -75,13 +75,13 @@ def webserver():
         db.session.commit()
 
         # upload training data
-        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], security_code=security_code)
+        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], jobid=job.id, security_code=security_code)
         input_x.save(os.path.join(job_dir, x_filename))
         input_y.save(os.path.join(job_dir, y_filename))
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        celery_task = call_scripts.apply_async([job.id, method, params, job_dir, x_filename, y_filename],
+        celery_task = call_scripts.apply_async([job.id, method, params, x_filename, y_filename, job.category.split('(')[0]],
                                                countdown=5)
         job.celery_id = celery_task.id
         db.session.add(job)
@@ -116,14 +116,12 @@ def processing(jobid, security_code):
     elif job.status == 'Error':
         return redirect(url_for('error', jobid=job.id, security_code=security_code))
     else:
-        methods = job.selected_algorithm
-        # check_job_status(jobid, methods)
         return render_template('processing.html', jobid=job.id, jobstatus=job.status, security_code=security_code)
 
 
 @app.route('/result/<jobid>_<security_code>')
 def result(jobid, security_code):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], security_code)
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], str(jobid) + '_' + security_code)
 
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
@@ -182,9 +180,8 @@ def result(jobid, security_code):
 
 @app.route('/error/<jobid>_<security_code>')
 def error(jobid, security_code):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], security_code)
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], str(jobid) + '_' + security_code)
     error_files = glob.glob(os.path.join(job_dir, '*.stderr'))
-    print(error_files)
 
     error_content = []
     for stderr_file in error_files:
