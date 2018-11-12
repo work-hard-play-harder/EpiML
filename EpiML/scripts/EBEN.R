@@ -53,9 +53,9 @@ if (category == 'Gene') {
   cat('Filter data with missing data', '\n')
   x_filtered <- t(na.omit(t(x)))
   # no normlization
-  x_preprocessed <- scale(x_filtered)
+  x_preprocessed <- x_filtered
   
-  y_preprocessed <- scale(y)
+  y_preprocessed <- y
 } else if (category == 'microRNA') {
   cat('Filter data with more than 20% missing data', '\n')
   x_filtered <- x[,colMeans(is.na(x)) < max_percentages_miss_val]
