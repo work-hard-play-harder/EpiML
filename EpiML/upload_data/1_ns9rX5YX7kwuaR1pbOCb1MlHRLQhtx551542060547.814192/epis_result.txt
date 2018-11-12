@@ -1,0 +1,2 @@
+feature1	feature2	coefficent value	posterior variance	t-value	p-value
+X4134872_chrVII_395882_C_T	X7217302_chrXI_639090_C_T	3.90243837581803	0.377408825451699	6.35228577726313	2.43291120582967e-09
