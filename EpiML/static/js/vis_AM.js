@@ -1,4 +1,4 @@
-var am_margin = {top: 80, right: 0, bottom: 10, left: 80},
+var am_margin = {top: 180, right: 0, bottom: 10, left: 180},
     am_width = parseInt(d3.select('#vis_am').style('width')),
     am_height = am_width,
     am_legend_width = 80,

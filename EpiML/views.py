@@ -7,7 +7,7 @@ from celery.result import AsyncResult
 
 # third-parties packages
 from flask import render_template, request, redirect, url_for, flash, make_response, abort, send_file
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user
 from werkzeug.utils import secure_filename
 from sqlalchemy import desc
 
@@ -81,8 +81,9 @@ def webserver():
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        celery_task = call_scripts.apply_async([job.id, method, params, x_filename, y_filename, job.category.split('(')[0]],
-                                               countdown=5)
+        celery_task = call_scripts.apply_async(
+            [job.id, method, params, x_filename, y_filename, job.category.split('(')[0]],
+            countdown=5)
         job.celery_id = celery_task.id
         db.session.add(job)
 
@@ -262,11 +263,9 @@ def page_not_found(error):
     return resp
 
 
-@app.route('/show_pic/<jobid>/<filename>')
-def show_pic(jobid, filename):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                           '_'.join(['userid', str(current_user.id)]),
-                           '_'.join(['jobid', str(jobid)]))
+@app.route('/show_pic/<jobid>_<security_code>/<filename>')
+def show_pic(jobid, security_code, filename):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], str(jobid) + '_' + security_code)
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
@@ -277,11 +276,9 @@ def show_pic(jobid, filename):
         return str(e)
 
 
-@app.route('/download/result/<jobid>/<filename>')
-def download_result(jobid, filename):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                           '_'.join(['userid', str(current_user.id)]),
-                           '_'.join(['jobid', str(jobid)]))
+@app.route('/download_result/<jobid>_<security_code>/<filename>')
+def download_result(jobid, security_code, filename):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], str(jobid) + '_' + security_code)
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)
@@ -291,7 +288,7 @@ def download_result(jobid, filename):
         return str(e)
 
 
-@app.route('/download/sample_data/<filename>')
+@app.route('/download_sample_data/<filename>')
 def download_sample_data(filename):
     try:
         return send_file(os.path.join(app.config['SAMPLE_DATA_DIR'], filename), attachment_filename=filename)
@@ -299,11 +296,9 @@ def download_sample_data(filename):
         return str(e)
 
 
-@app.route('/download/r_notebook/<jobid>/<method>_r_notebook.ipynb')
-def download_r_notebook(jobid, method):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                           '_'.join(['userid', str(current_user.id)]),
-                           '_'.join(['jobid', str(jobid)]))
+@app.route('/download_r_notebook/<jobid>_<security_code>/<method>_r_notebook.ipynb')
+def download_r_notebook(jobid, security_code, method):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], str(jobid) + '_' + security_code)
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
         return redirect(request.url)

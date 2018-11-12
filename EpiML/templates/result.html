@@ -133,7 +133,7 @@
                     <td class="tg-wq9i" rowspan="2">Input</td>
                     <td class="tg-vg4w">Feature matrix</td>
                     <td class="tg-iu9n" colspan="2"><a
-                            href="{{ url_for('download_result',jobid= job.id , filename=job.feature_file) }}"
+                            href="{{ url_for('download_result',jobid= job.id, security_code=job.security_code , filename=job.feature_file) }}"
                             target="_blank">{{ job.feature_file }}</a></td>
                     <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ feature_file_size }} KB</td>
@@ -141,7 +141,7 @@
                 <tr>
                     <td class="tg-vg4w">Label matrix</td>
                     <td class="tg-iu9n" colspan="2"><a
-                            href="{{ url_for('download_result',jobid= job.id , filename=job.label_file) }}"
+                            href="{{ url_for('download_result',jobid= job.id, security_code=job.security_code , filename=job.label_file) }}"
                             target="_blank">{{ job.label_file }}</a></td>
                     <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ lable_file_size }} KB</td>
@@ -150,7 +150,7 @@
                     <td class="tg-wq9i" rowspan="2">Output</td>
                     <td class="tg-vg4w">Main effect</td>
                     <td class="tg-iu9n" colspan="2"><a
-                            href="{{ url_for('download_result',jobid= job.id , filename='main_result.txt') }}"
+                            href="{{ url_for('download_result',jobid= job.id, security_code=job.security_code , filename='main_result.txt') }}"
                             target="_blank">Main effect</a></td>
                     <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ main_result_size }} KB</td>
@@ -158,7 +158,7 @@
                 <tr>
                     <td class="tg-vg4w">Epistatic effect</td>
                     <td class="tg-iu9n" colspan="2"><a
-                            href="{{ url_for('download_result',jobid=job.id, filename='epis_result.txt') }}"
+                            href="{{ url_for('download_result',jobid=job.id, security_code=job.security_code, filename='epis_result.txt') }}"
                             target="_blank">Epistatic effect</a></td>
                     <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ epis_result_size }} KB</td>
@@ -172,7 +172,7 @@
                 <tr>
                     <td class="tg-odlp">Notebook</td>
                     <td class="tg-iu9n" colspan="3">
-                        <a href="{{ url_for('download_r_notebook', jobid=job.id, method=job.selected_algorithm) }}"
+                        <a href="{{ url_for('download_r_notebook', jobid=job.id, security_code=job.security_code, method=job.selected_algorithm) }}"
                            target="_blank">Jupyter notebook</a>
                     </td>
                     <td class="tg-o36v">File size</td>

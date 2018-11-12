@@ -1,6 +1,6 @@
 var diameter = parseInt(d3.select('#vis_cn').style('width')),
     radius = diameter / 2,
-    innerRadius = radius - 150;
+    innerRadius = radius - 220;
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);

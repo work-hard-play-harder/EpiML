@@ -5,11 +5,8 @@ import subprocess
 import pandas as pd
 from datetime import datetime, timezone
 
-from flask_login import current_user
-
 from EpiML import app, db, celery
-
-from EpiML.db_tables import Job, Model
+from EpiML.db_tables import Job
 
 
 def create_job_folder(upload_folder='', jobid=None, security_code=None):
