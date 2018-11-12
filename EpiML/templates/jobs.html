@@ -167,7 +167,8 @@
                         <td>{{ momentjs(job.timestamp).calendar() }} </td>
                         <td>{{ job.status }} </td>
                         <td style="text-align: center">
-                            <a href="{{ url_for('processing',jobid=job.id) }}"> Results </a>
+                            <a href="{{ url_for('processing',jobid=job.id,security_code=job.security_code) }}">
+                                Results </a>
                         </td>
                     </tr>
                 {% endfor %}

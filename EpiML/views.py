@@ -14,9 +14,9 @@ from sqlalchemy import desc
 # customized functions
 from EpiML.run_scripts import call_scripts, create_job_folder
 from EpiML.generate_json import load_results, scientific_notation, GenerateJson
-from EpiML.db_tables import User, Job, Model
+from EpiML.db_tables import Job, Model
 from EpiML.safety_check import is_safe_url, is_allowed_file, security_code_generator
-from EpiML.email import send_email, send_submit_job_email
+from EpiML.email import send_submit_job_email
 from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_notebook, generate_LASSO_notebook
 
 
@@ -38,7 +38,6 @@ def webserver():
         description = request.form['description']
         input_x = request.files['input-x']
         input_y = request.files['input-y']
-        # methods = request.form.getlist('methods')
         method = request.form['method']
 
         params = {}
@@ -64,83 +63,67 @@ def webserver():
         if x_filename == y_filename:
             flash("Training data have the same file name.")
             return redirect(request.url)
-        '''
-        if len(method) == 0:
-            flash("You must choose at least one method!")
-            return redirect(request.url)
-        '''
-        # return security_code when user exists, otherwise add user into User database
-        # then login
-        user = User.query.filter_by(email=email).first()
-        if user is not None:
-            security_code = user.security_code
-        else:
-            security_code = security_code_generator()
-            user = User(username='anonymous', email=email, security_code=security_code)
-            # user.set_password(request.form['password'])
-            db.session.add(user)
-            db.session.commit()
-        login_user(user)
+
+        # generate security_code
+        security_code = security_code_generator()
 
         # add job into Job database
         job = Job(name=jobname, category=jobcategory, type='Train', description=description,
                   selected_algorithm=method, status='Queuing', feature_file=x_filename, label_file=y_filename,
-                  user_id=current_user.id)
+                  security_code=security_code)
         db.session.add(job)
         db.session.commit()
 
         # upload training data
-        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], userid=current_user.id, jobid=job.id)
+        job_dir = create_job_folder(app.config['UPLOAD_FOLDER'], security_code=security_code)
         input_x.save(os.path.join(job_dir, x_filename))
         input_y.save(os.path.join(job_dir, y_filename))
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        celery_task = call_scripts.apply_async(
-            [job.id, method, params, job_dir, x_filename, y_filename],
-            countdown=5)
+        celery_task = call_scripts.apply_async([job.id, method, params, job_dir, x_filename, y_filename],
+                                               countdown=5)
         job.celery_id = celery_task.id
         db.session.add(job)
 
         params_str = ';'.join([key + '=' + value for key, value in params.items()])
-        model = Model(algorithm=method, parameters=params_str, is_shared=True, user_id=current_user.id,
-                      job_id=job.id)
+        model = Model(algorithm=method, parameters=params_str, is_shared=True, job_id=job.id)
         db.session.add(model)
         db.session.commit()
 
         # send result link and security code via email
-        send_submit_job_email([email], security_code)
+        if email != '':
+            send_submit_job_email([email], security_code)
 
-        return redirect(url_for('processing', jobid=job.id))
+        return redirect(url_for('processing', jobid=job.id, security_code=security_code))
 
     return render_template('webserver.html')
 
 
-@app.route('/processing/<jobid>')
-def processing(jobid):
+@app.route('/processing/<jobid>_<security_code>')
+def processing(jobid, security_code):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
+    print(security_code)
     if job.status == 'Done':
         jobcategory = job.category.split('(')[0]  # delete species
         if jobcategory == 'Gene':
-            return redirect(url_for('result', jobid=job.id))
+            return redirect(url_for('result', jobid=job.id, security_code=security_code))
         if jobcategory == 'microRNA':
-            return redirect(url_for('result', jobid=job.id))
+            return redirect(url_for('result', jobid=job.id, security_code=security_code))
         if jobcategory == 'Other':
-            return redirect(url_for('result', jobid=job.id))
+            return redirect(url_for('result', jobid=job.id, security_code=security_code))
     elif job.status == 'Error':
-        return redirect(url_for('error', jobid=job.id))
+        return redirect(url_for('error', jobid=job.id, security_code=security_code))
     else:
         methods = job.selected_algorithm
         # check_job_status(jobid, methods)
-        return render_template('processing.html', jobid=job.id)
+        return render_template('processing.html', jobid=job.id, jobstatus=job.status, security_code=security_code)
 
 
-@app.route('/result/train/<jobid>')
-def result(jobid):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                           '_'.join(['userid', str(current_user.id)]),
-                           '_'.join(['jobid', str(jobid)]))
+@app.route('/result/<jobid>_<security_code>')
+def result(jobid, security_code):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], security_code)
 
     if not os.path.exists(job_dir):
         flash("Job doesn't exist!", category='error')
@@ -197,11 +180,9 @@ def result(jobid):
                            fd_graph_json=fd_graph_json)
 
 
-@app.route('/error/<jobid>')
-def error(jobid):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                           '_'.join(['userid', str(current_user.id)]),
-                           '_'.join(['jobid', str(jobid)]))
+@app.route('/error/<jobid>_<security_code>')
+def error(jobid, security_code):
+    job_dir = os.path.join(app.config['UPLOAD_FOLDER'], security_code)
     error_files = glob.glob(os.path.join(job_dir, '*.stderr'))
     print(error_files)
 
@@ -237,9 +218,7 @@ def jobs():
             db.session.delete(job)
 
             # delete job_dir
-            job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                                   '_'.join(['userid', str(current_user.id)]),
-                                   '_'.join(['jobid', str(id)]))
+            job_dir = os.path.join(app.config['UPLOAD_FOLDER'], job.security_code)
             if os.path.exists(job_dir):
                 shutil.rmtree(job_dir)
         db.session.commit()

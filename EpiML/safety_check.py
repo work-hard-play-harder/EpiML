@@ -1,6 +1,6 @@
 import random
 import string
-
+import time
 from urllib.parse import urlparse, urljoin
 from flask import request
 
@@ -18,5 +18,5 @@ def is_allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
-def security_code_generator(size=6, chars=string.ascii_letters + string.digits):
-    return ''.join(random.choices(chars, k=size))
+def security_code_generator(size=32, chars=string.ascii_letters + string.digits):
+    return ''.join(random.choices(chars, k=size)) + str(time.time())

@@ -7,13 +7,13 @@
 {% block content %}
     <div class="container" style="background-color:whitesmoke">
 
-        <h2>Your job is currently running ...</h2>
+        <h2>Job statue: <span style="color: red"> {{ jobstatus }}</span></h2>
         <hr>
         <p style="">The job you submitted is being processed. The results will be shown on your screen when it is
             finished. You also can retrieve the results by using the link:
         <p align="center">
-            <a href={{ url_for('processing', jobid=jobid) }}
-                       target="_blank">http://127.0.0.1:5000{{ url_for('processing', jobid=jobid) }} </a>
+            <a href={{ url_for('processing', jobid=jobid,security_code=security_code) }}>
+                http://127.0.0.1:5000{{ url_for('processing', jobid=jobid,security_code=security_code) }} </a>
         </p>
         <hr>
         <h4><strong>Please note the following:</strong></h4>
@@ -24,7 +24,9 @@
             <li style="line-height:30px">You may press CTRL + D to bookmark this page to view your results
                 later.
             </li>
+            <li style="line-height:30px">If you provide your email address when submit job, you will receive an email
+                with this link.
+            </li>
         </ul>
-
     </div>
 {% endblock %}

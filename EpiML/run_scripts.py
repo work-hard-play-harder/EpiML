@@ -9,23 +9,17 @@ from flask_login import current_user
 
 from EpiML import app, db, celery
 
-from EpiML.db_tables import User, Job, Model
+from EpiML.db_tables import Job, Model
 
 
-def create_job_folder(upload_folder='', userid=None, jobid=None):
+def create_job_folder(upload_folder='', security_code=None):
     # create upload_folder
     if not os.path.exists(upload_folder):
         cmd_args = shlex.split('mkdir ' + upload_folder)
         subprocess.Popen(cmd_args).wait()
 
-    # create user dir
-    user_dir = os.path.join(upload_folder, '_'.join(['userid', str(userid)]))
-    if not os.path.exists(user_dir):
-        cmd_args = shlex.split('mkdir ' + user_dir)
-        subprocess.Popen(cmd_args).wait()
-
     # create job dir
-    job_dir = os.path.join(user_dir, '_'.join(['jobid', str(jobid)]))
+    job_dir = os.path.join(upload_folder, security_code)
     if not os.path.exists(job_dir):
         cmd_args = shlex.split('mkdir ' + job_dir)
         subprocess.Popen(cmd_args).wait()
