@@ -117,18 +117,17 @@ def webserver():
 
 
 @app.route('/processing/<jobid>')
-@login_required
 def processing(jobid):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
     if job.status == 'Done':
         jobcategory = job.category.split('(')[0]  # delete species
         if jobcategory == 'Gene':
-            return redirect(url_for('result_train', jobid=job.id))
+            return redirect(url_for('result', jobid=job.id))
         if jobcategory == 'microRNA':
-            return redirect(url_for('result_train', jobid=job.id))
+            return redirect(url_for('result', jobid=job.id))
         if jobcategory == 'Other':
-            return redirect(url_for('result_train', jobid=job.id))
+            return redirect(url_for('result', jobid=job.id))
     elif job.status == 'Error':
         return redirect(url_for('error', jobid=job.id))
     else:
@@ -138,8 +137,7 @@ def processing(jobid):
 
 
 @app.route('/result/train/<jobid>')
-@login_required
-def result_train(jobid):
+def result(jobid):
     job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
                            '_'.join(['userid', str(current_user.id)]),
                            '_'.join(['jobid', str(jobid)]))
@@ -181,7 +179,7 @@ def result_train(jobid):
         jupyter_notebook_size = '{0:.2f}'.format(
             os.path.getsize(os.path.join(job_dir, 'ssLASSO_r_notebook.ipynb')) / 1024)
 
-    return render_template('result_train.html', job=job,
+    return render_template('result.html', job=job,
                            feature_file_size='{0:.2f}'.format(
                                os.path.getsize(os.path.join(job_dir, job.feature_file)) / 1024),
                            lable_file_size='{0:.2f}'.format(
@@ -199,24 +197,7 @@ def result_train(jobid):
                            fd_graph_json=fd_graph_json)
 
 
-@app.route('/result/predict/<jobid>')
-@login_required
-def result_predict(jobid):
-    job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
-                           '_'.join(['userid', str(current_user.id)]),
-                           '_'.join(['jobid', str(jobid)]))
-    if not os.path.exists(job_dir):
-        flash("Job doesn't exist!", category='error')
-        return redirect(request.url)
-
-    EBEN_predict_results = scientific_notation(load_results(os.path.join(job_dir, 'EBEN_predict.txt')), 1)
-
-    return render_template('result_predict.html', jobid=jobid, job_dir=job_dir,
-                           EBEN_predict_results=EBEN_predict_results)
-
-
 @app.route('/error/<jobid>')
-@login_required
 def error(jobid):
     job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
                            '_'.join(['userid', str(current_user.id)]),
@@ -234,8 +215,7 @@ def error(jobid):
     return render_template('error.html', error_content=error_content)
 
 
-@app.route('/user/jobs', methods=['GET', 'POST'])
-@login_required
+@app.route('/jobs', methods=['GET', 'POST'])
 def jobs():
     if request.method == 'POST':
         choosed_jobs = request.form.getlist('id[]')
@@ -264,14 +244,12 @@ def jobs():
                 shutil.rmtree(job_dir)
         db.session.commit()
 
-    user = User.query.filter_by(id=current_user.id).first_or_404()
-    jobs = user.jobs.order_by(desc('timestamp')).all()
+    jobs = Job.query.order_by(desc('timestamp')).all()
 
     return render_template('jobs.html', jobs=jobs)
 
 
-@app.route('/user/models', methods=['GET', 'POST'])
-@login_required
+@app.route('/models', methods=['GET', 'POST'])
 def models():
     if request.method == 'POST':
         choosed_models = request.form.getlist('id[]')
@@ -281,7 +259,7 @@ def models():
             db.session.delete(model)
         db.session.commit()
 
-    models = Model.query.filter_by(user_id=current_user.id).order_by(desc(Model.timestamp)).all()
+    models = Model.query.order_by(desc(Model.timestamp)).all()
 
     jobnames = []
     for model in models:
@@ -289,82 +267,6 @@ def models():
         jobnames.append(jobname)
 
     return render_template('models.html', models=models, jobnames=jobnames)
-
-
-@app.route('/repository')
-def repository():
-    models = Model.query.filter_by(is_shared=True).order_by(desc(Model.timestamp)).all()
-    print(models)
-    jobnames = []
-    usernames = []
-    for model in models:
-        jobname = Job.query.filter_by(id=model.job_id).first_or_404().jobname
-        jobnames.append(jobname)
-        username = User.query.filter_by(id=model.user_id).first_or_404().username
-        usernames.append(username)
-
-    return render_template('repository.html', models=models, jobnames=jobnames, usernames=usernames)
-
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-
-    if request.method == 'POST':
-        user = User.query.filter_by(email=request.form['email']).first()
-        if user is not None:
-            flash(message='This Email has been registered. Please log in or use another email address.',
-                  category='error')
-            return redirect(url_for('signup'))
-        user = User(username=request.form['username'], email=request.form['email'])
-        user.set_password(request.form['password'])
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        # flash(message='Successful! You will be redirected to Home page.', category='message')
-        # time.sleep(5)
-        return redirect(url_for('index'))
-
-    return render_template('signup.html')
-
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-
-    # achieve next page link
-    next = request.args.get('next')
-    if not is_safe_url(next):
-        return abort(400)
-
-    # verify security code
-    if request.method == 'POST':
-        user = User.query.filter_by(email=request.form['email']).first()
-        if user is None or not user.check_security_code(request.form['security_code']):
-            flash(message='Login Failed! Invalid Username or Password.', category='error')
-            return redirect(next or url_for('index'))
-        else:
-            # login_user(user, remember=request.form['remember_me'])
-            login_user(user)
-            return redirect(next or url_for('index'))
-
-    return render_template('login.html', title='Login')
-
-
-@app.route('/user/profile')
-@login_required
-def profile():
-    user = User.query.filter_by(id=current_user.id).first_or_404()
-    return render_template('profile.html', user=user)
-
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
 
 
 @app.route('/about')
@@ -385,7 +287,6 @@ def page_not_found(error):
 
 
 @app.route('/show_pic/<jobid>/<filename>')
-@login_required
 def show_pic(jobid, filename):
     job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
                            '_'.join(['userid', str(current_user.id)]),
@@ -401,7 +302,6 @@ def show_pic(jobid, filename):
 
 
 @app.route('/download/result/<jobid>/<filename>')
-@login_required
 def download_result(jobid, filename):
     job_dir = os.path.join(app.config['UPLOAD_FOLDER'],
                            '_'.join(['userid', str(current_user.id)]),
