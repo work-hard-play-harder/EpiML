@@ -52,10 +52,10 @@ y_preprocessed <- NULL
 if (category == 'Gene') {
   cat('Filter data with missing data', '\n')
   x_filtered <- t(na.omit(t(x)))
-  # no normlization
+  # Gene data is categorical, no normlization
   x_preprocessed <- x_filtered
   
-  y_preprocessed <- y
+  y_preprocessed <- scale(y)
 } else if (category == 'microRNA') {
   cat('Filter data with more than 20% missing data', '\n')
   x_filtered <- x[,colMeans(is.na(x)) < max_percentages_miss_val]
@@ -202,7 +202,6 @@ write.table(
     'p-value'
   )
 )
-
 write.table(
   Blup_full[2:6],
   file = file.path(workspace, 'blup_full_hyperparams.txt'),
@@ -211,6 +210,5 @@ write.table(
   row.names = F,
   col.names = T
 )
-
 
 cat('Done!')
