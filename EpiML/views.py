@@ -94,7 +94,7 @@ def webserver():
 
         # send result link and security code via email
         if email != '':
-            send_submit_job_email([email], security_code)
+            send_submit_job_email([email], jobid=job.id, security_code=security_code)
 
         return redirect(url_for('processing', jobid=job.id, security_code=security_code))
 
