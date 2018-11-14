@@ -1,0 +1,897 @@
+EBEN_train parameters: 
+	Workspace: /Users/jchen67/Experiment/EpiML/EpiML/upload_data/2_T7V3AO5qxq5YP7HiiyltIHmcxyCXBZlY1542118196.1450298 
+	x_filename: Geno.txt 
+	y_filename: Pheno.txt 
+	Category: Gene 
+	nFolds: 5 
+	Max percentage of missing value: 0.2 
+	Seed: 28213 
+[1] "x size: (150, 283)"
+[1] "y size: (150, 1)"
+Filter data with missing data 
+Main effect estimated using EBEN 
+EB-Elastic Net Linear Model, Epis:  no ; 5 fold cross-validation
+Testing alpha 1 / 20 :		alpha:  1 
+	Testing step 1 		lambda:  4.224166 	sum squre error 26.01973 
+	Testing step 2 		lambda:  2.93661 	sum squre error 25.50619 
+	Testing step 3 		lambda:  2.04151 	sum squre error 25.15529 
+	Testing step 4 		lambda:  1.419243 	sum squre error 26.95466 
+	Testing step 5 		lambda:  0.9866475 	sum squre error 34.081 
+Testing alpha 2 / 20 :		alpha:  0.95 
+	Testing step 6 		lambda:  4.224166 	sum squre error 26.39812 
+	Testing step 7 		lambda:  2.93661 	sum squre error 25.89226 
+	Testing step 8 		lambda:  2.04151 	sum squre error 25.21736 
+	Testing step 9 		lambda:  1.419243 	sum squre error 26.80478 
+	Testing step 10 		lambda:  0.9866475 	sum squre error 32.32773 
+Testing alpha 3 / 20 :		alpha:  0.9 
+	Testing step 11 		lambda:  4.224166 	sum squre error 26.20998 
+	Testing step 12 		lambda:  2.93661 	sum squre error 26.09216 
+	Testing step 13 		lambda:  2.04151 	sum squre error 25.35662 
+	Testing step 14 		lambda:  1.419243 	sum squre error 26.65898 
+	Testing step 15 		lambda:  0.9866475 	sum squre error 31.75431 
+Testing alpha 4 / 20 :		alpha:  0.85 
+	Testing step 16 		lambda:  4.224166 	sum squre error 26.66001 
+	Testing step 17 		lambda:  2.93661 	sum squre error 26.19154 
+	Testing step 18 		lambda:  2.04151 	sum squre error 25.36823 
+	Testing step 19 		lambda:  1.419243 	sum squre error 26.48289 
+	Testing step 20 		lambda:  0.9866475 	sum squre error 31.33088 
+Testing alpha 5 / 20 :		alpha:  0.8 
+	Testing step 21 		lambda:  4.224166 	sum squre error 26.72811 
+	Testing step 22 		lambda:  2.93661 	sum squre error 26.28602 
+	Testing step 23 		lambda:  2.04151 	sum squre error 25.40293 
+	Testing step 24 		lambda:  1.419243 	sum squre error 26.4724 
+	Testing step 25 		lambda:  0.9866475 	sum squre error 30.92116 
+Testing alpha 6 / 20 :		alpha:  0.75 
+	Testing step 26 		lambda:  4.224166 	sum squre error 27.0863 
+	Testing step 27 		lambda:  2.93661 	sum squre error 26.20182 
+	Testing step 28 		lambda:  2.04151 	sum squre error 25.43067 
+	Testing step 29 		lambda:  1.419243 	sum squre error 26.36821 
+	Testing step 30 		lambda:  0.9866475 	sum squre error 30.48046 
+Testing alpha 7 / 20 :		alpha:  0.7 
+	Testing step 31 		lambda:  4.224166 	sum squre error 27.19063 
+	Testing step 32 		lambda:  2.93661 	sum squre error 26.3073 
+	Testing step 33 		lambda:  2.04151 	sum squre error 25.46031 
+	Testing step 34 		lambda:  1.419243 	sum squre error 26.36495 
+	Testing step 35 		lambda:  0.9866475 	sum squre error 30.20221 
+Testing alpha 8 / 20 :		alpha:  0.65 
+	Testing step 36 		lambda:  4.224166 	sum squre error 27.23345 
+	Testing step 37 		lambda:  2.93661 	sum squre error 26.49144 
+	Testing step 38 		lambda:  2.04151 	sum squre error 25.45299 
+	Testing step 39 		lambda:  1.419243 	sum squre error 26.37061 
+	Testing step 40 		lambda:  0.9866475 	sum squre error 29.9524 
+Testing alpha 9 / 20 :		alpha:  0.6 
+	Testing step 41 		lambda:  4.224166 	sum squre error 27.53231 
+	Testing step 42 		lambda:  2.93661 	sum squre error 26.3245 
+	Testing step 43 		lambda:  2.04151 	sum squre error 25.4799 
+	Testing step 44 		lambda:  1.419243 	sum squre error 26.3419 
+	Testing step 45 		lambda:  0.9866475 	sum squre error 29.7119 
+Testing alpha 10 / 20 :		alpha:  0.55 
+	Testing step 46 		lambda:  4.224166 	sum squre error 27.72122 
+	Testing step 47 		lambda:  2.93661 	sum squre error 26.36323 
+	Testing step 48 		lambda:  2.04151 	sum squre error 25.48815 
+	Testing step 49 		lambda:  1.419243 	sum squre error 26.3312 
+	Testing step 50 		lambda:  0.9866475 	sum squre error 29.62661 
+Testing alpha 11 / 20 :		alpha:  0.5 
+	Testing step 51 		lambda:  4.224166 	sum squre error 27.25717 
+	Testing step 52 		lambda:  2.93661 	sum squre error 26.53217 
+	Testing step 53 		lambda:  2.04151 	sum squre error 25.49109 
+	Testing step 54 		lambda:  1.419243 	sum squre error 26.37966 
+	Testing step 55 		lambda:  0.9866475 	sum squre error 29.46694 
+Testing alpha 12 / 20 :		alpha:  0.45 
+	Testing step 56 		lambda:  4.224166 	sum squre error 27.62267 
+	Testing step 57 		lambda:  2.93661 	sum squre error 26.61238 
+	Testing step 58 		lambda:  2.04151 	sum squre error 25.49476 
+	Testing step 59 		lambda:  1.419243 	sum squre error 26.39799 
+	Testing step 60 		lambda:  0.9866475 	sum squre error 29.46582 
+Testing alpha 13 / 20 :		alpha:  0.4 
+	Testing step 61 		lambda:  4.224166 	sum squre error 27.62644 
+	Testing step 62 		lambda:  2.93661 	sum squre error 26.56208 
+	Testing step 63 		lambda:  2.04151 	sum squre error 25.51409 
+	Testing step 64 		lambda:  1.419243 	sum squre error 26.46111 
+	Testing step 65 		lambda:  0.9866475 	sum squre error 29.57342 
+Testing alpha 14 / 20 :		alpha:  0.35 
+	Testing step 66 		lambda:  4.224166 	sum squre error 27.18383 
+	Testing step 67 		lambda:  2.93661 	sum squre error 26.54582 
+	Testing step 68 		lambda:  2.04151 	sum squre error 25.53003 
+	Testing step 69 		lambda:  1.419243 	sum squre error 26.54792 
+	Testing step 70 		lambda:  0.9866475 	sum squre error 29.59867 
+Testing alpha 15 / 20 :		alpha:  0.3 
+	Testing step 71 		lambda:  4.224166 	sum squre error 26.99697 
+	Testing step 72 		lambda:  2.93661 	sum squre error 26.48434 
+	Testing step 73 		lambda:  2.04151 	sum squre error 25.51861 
+	Testing step 74 		lambda:  1.419243 	sum squre error 26.66133 
+	Testing step 75 		lambda:  0.9866475 	sum squre error 29.59443 
+Testing alpha 16 / 20 :		alpha:  0.25 
+	Testing step 76 		lambda:  4.224166 	sum squre error 27.45422 
+	Testing step 77 		lambda:  2.93661 	sum squre error 26.44693 
+	Testing step 78 		lambda:  2.04151 	sum squre error 25.56574 
+	Testing step 79 		lambda:  1.419243 	sum squre error 26.74104 
+	Testing step 80 		lambda:  0.9866475 	sum squre error 29.77111 
+Testing alpha 17 / 20 :		alpha:  0.2 
+	Testing step 81 		lambda:  4.224166 	sum squre error 27.43735 
+	Testing step 82 		lambda:  2.93661 	sum squre error 26.39886 
+	Testing step 83 		lambda:  2.04151 	sum squre error 25.5697 
+	Testing step 84 		lambda:  1.419243 	sum squre error 26.85553 
+	Testing step 85 		lambda:  0.9866475 	sum squre error 29.87199 
+Testing alpha 18 / 20 :		alpha:  0.15 
+	Testing step 86 		lambda:  4.224166 	sum squre error 27.54328 
+	Testing step 87 		lambda:  2.93661 	sum squre error 26.35124 
+	Testing step 88 		lambda:  2.04151 	sum squre error 25.63425 
+	Testing step 89 		lambda:  1.419243 	sum squre error 27.04658 
+	Testing step 90 		lambda:  0.9866475 	sum squre error 30.15104 
+Testing alpha 19 / 20 :		alpha:  0.1 
+	Testing step 91 		lambda:  4.224166 	sum squre error 27.48116 
+	Testing step 92 		lambda:  2.93661 	sum squre error 26.26732 
+	Testing step 93 		lambda:  2.04151 	sum squre error 25.64056 
+	Testing step 94 		lambda:  1.419243 	sum squre error 27.19019 
+	Testing step 95 		lambda:  0.9866475 	sum squre error 30.28206 
+Testing alpha 20 / 20 :		alpha:  0.05 
+	Testing step 96 		lambda:  4.224166 	sum squre error 27.27877 
+	Testing step 97 		lambda:  2.93661 	sum squre error 26.16333 
+	Testing step 98 		lambda:  2.04151 	sum squre error 25.76925 
+	Testing step 99 		lambda:  1.419243 	sum squre error 27.48735 
+	Testing step 100 		lambda:  0.9866475 	sum squre error 30.67913 
+Subtract the main effect 
+Epistatic effect estimated using EBEN 
+EB-Elastic Net Linear Model, Epis:  yes ; 5 fold cross-validation
+Testing alpha 1 / 20 :		alpha:  1 
+	Testing step 1 		lambda:  53.97395 	sum squre error 22.04813 
+	Testing step 2 		lambda:  37.5223 	sum squre error 21.97975 
+	Testing step 3 		lambda:  26.08523 	sum squre error 22.711 
+	Testing step 4 		lambda:  18.13427 	sum squre error 22.32038 
+	Testing step 5 		lambda:  12.60681 	sum squre error 3.086915 
+	Testing step 6 		lambda:  8.764164 	sum squre error 2.375603 
+	Testing step 7 		lambda:  6.092784 	sum squre error 2.008772 
+	Testing step 8 		lambda:  4.235659 	sum squre error 1.916764 
+	Testing step 9 		lambda:  2.9446 	sum squre error 1.91961 
+	Testing step 10 		lambda:  2.047065 	sum squre error 1.840904 
+	Testing step 11 		lambda:  1.423105 	sum squre error 1.912545 
+	Testing step 12 		lambda:  0.989332 	sum squre error 1.825341 
+	Testing step 13 		lambda:  0.6877765 	sum squre error 1.900857 
+	Testing step 14 		lambda:  0.4781373 	sum squre error 1.912718 
+	Testing step 15 		lambda:  0.3323976 	sum squre error 1.856076 
+	Testing step 16 		lambda:  0.2310804 	sum squre error 1.770387 
+	Testing step 17 		lambda:  0.1606454 	sum squre error 1.819989 
+	Testing step 18 		lambda:  0.1116796 	sum squre error 1.677104 
+	Testing step 19 		lambda:  0.07763882 	sum squre error 1.818469 
+Testing alpha 2 / 20 :		alpha:  0.95 
+	Testing step 20 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 21 		lambda:  37.5223 	sum squre error 22.62413 
+	Testing step 22 		lambda:  26.08523 	sum squre error 22.94058 
+	Testing step 23 		lambda:  18.13427 	sum squre error 22.71843 
+	Testing step 24 		lambda:  12.60681 	sum squre error 12.13519 
+	Testing step 25 		lambda:  8.764164 	sum squre error 4.301942 
+	Testing step 26 		lambda:  6.092784 	sum squre error 2.108493 
+	Testing step 27 		lambda:  4.235659 	sum squre error 1.897015 
+	Testing step 28 		lambda:  2.9446 	sum squre error 1.737619 
+	Testing step 29 		lambda:  2.047065 	sum squre error 1.859983 
+	Testing step 30 		lambda:  1.423105 	sum squre error 1.956133 
+Testing alpha 3 / 20 :		alpha:  0.9 
+	Testing step 31 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 32 		lambda:  37.5223 	sum squre error 23.23016 
+	Testing step 33 		lambda:  26.08523 	sum squre error 23.04841 
+	Testing step 34 		lambda:  18.13427 	sum squre error 22.75482 
+	Testing step 35 		lambda:  12.60681 	sum squre error 17.69114 
+	Testing step 36 		lambda:  8.764164 	sum squre error 7.378151 
+	Testing step 37 		lambda:  6.092784 	sum squre error 2.968178 
+	Testing step 38 		lambda:  4.235659 	sum squre error 2.083132 
+	Testing step 39 		lambda:  2.9446 	sum squre error 1.97159 
+	Testing step 40 		lambda:  2.047065 	sum squre error 1.831402 
+	Testing step 41 		lambda:  1.423105 	sum squre error 1.900917 
+	Testing step 42 		lambda:  0.989332 	sum squre error 2.027887 
+Testing alpha 4 / 20 :		alpha:  0.85 
+	Testing step 43 		lambda:  53.97395 	sum squre error 22.90701 
+	Testing step 44 		lambda:  37.5223 	sum squre error 23.22714 
+	Testing step 45 		lambda:  26.08523 	sum squre error 23.06806 
+	Testing step 46 		lambda:  18.13427 	sum squre error 22.79426 
+	Testing step 47 		lambda:  12.60681 	sum squre error 20.36244 
+	Testing step 48 		lambda:  8.764164 	sum squre error 10.24049 
+	Testing step 49 		lambda:  6.092784 	sum squre error 5.208755 
+	Testing step 50 		lambda:  4.235659 	sum squre error 2.127608 
+	Testing step 51 		lambda:  2.9446 	sum squre error 1.796365 
+	Testing step 52 		lambda:  2.047065 	sum squre error 2.012682 
+	Testing step 53 		lambda:  1.423105 	sum squre error 1.732256 
+	Testing step 54 		lambda:  0.989332 	sum squre error 2.033919 
+Testing alpha 5 / 20 :		alpha:  0.8 
+	Testing step 55 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 56 		lambda:  37.5223 	sum squre error 22.86418 
+	Testing step 57 		lambda:  26.08523 	sum squre error 23.07952 
+	Testing step 58 		lambda:  18.13427 	sum squre error 22.82938 
+	Testing step 59 		lambda:  12.60681 	sum squre error 20.70313 
+	Testing step 60 		lambda:  8.764164 	sum squre error 11.7231 
+	Testing step 61 		lambda:  6.092784 	sum squre error 7.095618 
+	Testing step 62 		lambda:  4.235659 	sum squre error 3.115786 
+	Testing step 63 		lambda:  2.9446 	sum squre error 1.866346 
+	Testing step 64 		lambda:  2.047065 	sum squre error 1.715507 
+	Testing step 65 		lambda:  1.423105 	sum squre error 1.786834 
+	Testing step 66 		lambda:  0.989332 	sum squre error 1.981982 
+Testing alpha 6 / 20 :		alpha:  0.75 
+	Testing step 67 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 68 		lambda:  37.5223 	sum squre error 23.22382 
+	Testing step 69 		lambda:  26.08523 	sum squre error 22.7016 
+	Testing step 70 		lambda:  18.13427 	sum squre error 22.81953 
+	Testing step 71 		lambda:  12.60681 	sum squre error 20.99163 
+	Testing step 72 		lambda:  8.764164 	sum squre error 12.55143 
+	Testing step 73 		lambda:  6.092784 	sum squre error 9.157072 
+	Testing step 74 		lambda:  4.235659 	sum squre error 3.786477 
+	Testing step 75 		lambda:  2.9446 	sum squre error 2.346343 
+	Testing step 76 		lambda:  2.047065 	sum squre error 2.138303 
+	Testing step 77 		lambda:  1.423105 	sum squre error 1.78912 
+	Testing step 78 		lambda:  0.989332 	sum squre error 2.025119 
+Testing alpha 7 / 20 :		alpha:  0.7 
+	Testing step 79 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 80 		lambda:  37.5223 	sum squre error 23.22271 
+	Testing step 81 		lambda:  26.08523 	sum squre error 22.75708 
+	Testing step 82 		lambda:  18.13427 	sum squre error 22.82849 
+	Testing step 83 		lambda:  12.60681 	sum squre error 21.14265 
+	Testing step 84 		lambda:  8.764164 	sum squre error 13.59569 
+	Testing step 85 		lambda:  6.092784 	sum squre error 11.80639 
+	Testing step 86 		lambda:  4.235659 	sum squre error 6.535424 
+	Testing step 87 		lambda:  2.9446 	sum squre error 2.61321 
+	Testing step 88 		lambda:  2.047065 	sum squre error 1.762581 
+	Testing step 89 		lambda:  1.423105 	sum squre error 2.077728 
+Testing alpha 8 / 20 :		alpha:  0.65 
+	Testing step 90 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 91 		lambda:  37.5223 	sum squre error 23.22176 
+	Testing step 92 		lambda:  26.08523 	sum squre error 23.0674 
+	Testing step 93 		lambda:  18.13427 	sum squre error 22.82992 
+	Testing step 94 		lambda:  12.60681 	sum squre error 21.26044 
+	Testing step 95 		lambda:  8.764164 	sum squre error 13.05056 
+	Testing step 96 		lambda:  6.092784 	sum squre error 10.5076 
+	Testing step 97 		lambda:  4.235659 	sum squre error 6.476081 
+	Testing step 98 		lambda:  2.9446 	sum squre error 3.225809 
+	Testing step 99 		lambda:  2.047065 	sum squre error 2.127354 
+	Testing step 100 		lambda:  1.423105 	sum squre error 2.170932 
+	Testing step 101 		lambda:  0.989332 	sum squre error 1.607082 
+	Testing step 102 		lambda:  0.6877765 	sum squre error 2.293343 
+Testing alpha 9 / 20 :		alpha:  0.6 
+	Testing step 103 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 104 		lambda:  37.5223 	sum squre error 23.22091 
+	Testing step 105 		lambda:  26.08523 	sum squre error 23.05245 
+	Testing step 106 		lambda:  18.13427 	sum squre error 22.76146 
+	Testing step 107 		lambda:  12.60681 	sum squre error 21.25318 
+	Testing step 108 		lambda:  8.764164 	sum squre error 13.90485 
+	Testing step 109 		lambda:  6.092784 	sum squre error 11.0724 
+	Testing step 110 		lambda:  4.235659 	sum squre error 8.203772 
+	Testing step 111 		lambda:  2.9446 	sum squre error 3.060575 
+	Testing step 112 		lambda:  2.047065 	sum squre error 2.422095 
+	Testing step 113 		lambda:  1.423105 	sum squre error 2.188312 
+	Testing step 114 		lambda:  0.989332 	sum squre error 1.756899 
+	Testing step 115 		lambda:  0.6877765 	sum squre error 2.246934 
+Testing alpha 10 / 20 :		alpha:  0.55 
+	Testing step 116 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 117 		lambda:  37.5223 	sum squre error 23.22011 
+	Testing step 118 		lambda:  26.08523 	sum squre error 23.10076 
+	Testing step 119 		lambda:  18.13427 	sum squre error 22.74227 
+	Testing step 120 		lambda:  12.60681 	sum squre error 21.27191 
+	Testing step 121 		lambda:  8.764164 	sum squre error 14.28374 
+	Testing step 122 		lambda:  6.092784 	sum squre error 14.50442 
+	Testing step 123 		lambda:  4.235659 	sum squre error 9.367624 
+	Testing step 124 		lambda:  2.9446 	sum squre error 3.737393 
+	Testing step 125 		lambda:  2.047065 	sum squre error 2.649378 
+	Testing step 126 		lambda:  1.423105 	sum squre error 2.133381 
+	Testing step 127 		lambda:  0.989332 	sum squre error 1.972311 
+	Testing step 128 		lambda:  0.6877765 	sum squre error 2.313328 
+Testing alpha 11 / 20 :		alpha:  0.5 
+	Testing step 129 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 130 		lambda:  37.5223 	sum squre error 23.21813 
+	Testing step 131 		lambda:  26.08523 	sum squre error 23.09226 
+	Testing step 132 		lambda:  18.13427 	sum squre error 22.72519 
+	Testing step 133 		lambda:  12.60681 	sum squre error 21.19915 
+	Testing step 134 		lambda:  8.764164 	sum squre error 14.54636 
+	Testing step 135 		lambda:  6.092784 	sum squre error 12.31927 
+	Testing step 136 		lambda:  4.235659 	sum squre error 10.73203 
+	Testing step 137 		lambda:  2.9446 	sum squre error 3.613954 
+	Testing step 138 		lambda:  2.047065 	sum squre error 2.563399 
+	Testing step 139 		lambda:  1.423105 	sum squre error 2.04021 
+	Testing step 140 		lambda:  0.989332 	sum squre error 1.687574 
+	Testing step 141 		lambda:  0.6877765 	sum squre error 2.312983 
+Testing alpha 12 / 20 :		alpha:  0.45 
+	Testing step 142 		lambda:  53.97395 	sum squre error 23.17859 
+	Testing step 143 		lambda:  37.5223 	sum squre error 23.21409 
+	Testing step 144 		lambda:  26.08523 	sum squre error 23.08421 
+	Testing step 145 		lambda:  18.13427 	sum squre error 22.67492 
+	Testing step 146 		lambda:  12.60681 	sum squre error 21.20549 
+	Testing step 147 		lambda:  8.764164 	sum squre error 15.36937 
+	Testing step 148 		lambda:  6.092784 	sum squre error 13.63009 
+	Testing step 149 		lambda:  4.235659 	sum squre error 10.35988 
+	Testing step 150 		lambda:  2.9446 	sum squre error 3.516475 
+	Testing step 151 		lambda:  2.047065 	sum squre error 2.627434 
+	Testing step 152 		lambda:  1.423105 	sum squre error 2.031784 
+	Testing step 153 		lambda:  0.989332 	sum squre error 1.695186 
+	Testing step 154 		lambda:  0.6877765 	sum squre error 1.942218 
+Testing alpha 13 / 20 :		alpha:  0.4 
+	Testing step 155 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 156 		lambda:  37.5223 	sum squre error 23.21032 
+	Testing step 157 		lambda:  26.08523 	sum squre error 23.07641 
+	Testing step 158 		lambda:  18.13427 	sum squre error 22.65379 
+	Testing step 159 		lambda:  12.60681 	sum squre error 21.13647 
+	Testing step 160 		lambda:  8.764164 	sum squre error 14.83248 
+	Testing step 161 		lambda:  6.092784 	sum squre error 14.19709 
+	Testing step 162 		lambda:  4.235659 	sum squre error 12.52472 
+	Testing step 163 		lambda:  2.9446 	sum squre error 5.158241 
+	Testing step 164 		lambda:  2.047065 	sum squre error 2.93328 
+	Testing step 165 		lambda:  1.423105 	sum squre error 2.19704 
+	Testing step 166 		lambda:  0.989332 	sum squre error 1.668006 
+	Testing step 167 		lambda:  0.6877765 	sum squre error 1.947392 
+Testing alpha 14 / 20 :		alpha:  0.35 
+	Testing step 168 		lambda:  53.97395 	sum squre error 23.23568 
+	Testing step 169 		lambda:  37.5223 	sum squre error 23.20799 
+	Testing step 170 		lambda:  26.08523 	sum squre error 23.12089 
+	Testing step 171 		lambda:  18.13427 	sum squre error 22.6297 
+	Testing step 172 		lambda:  12.60681 	sum squre error 21.11844 
+	Testing step 173 		lambda:  8.764164 	sum squre error 15.82418 
+	Testing step 174 		lambda:  6.092784 	sum squre error 13.52525 
+	Testing step 175 		lambda:  4.235659 	sum squre error 10.86621 
+	Testing step 176 		lambda:  2.9446 	sum squre error 6.208988 
+	Testing step 177 		lambda:  2.047065 	sum squre error 2.88178 
+	Testing step 178 		lambda:  1.423105 	sum squre error 2.248353 
+	Testing step 179 		lambda:  0.989332 	sum squre error 1.672146 
+	Testing step 180 		lambda:  0.6877765 	sum squre error 1.89406 
+Testing alpha 15 / 20 :		alpha:  0.3 
+	Testing step 181 		lambda:  53.97395 	sum squre error 23.22214 
+	Testing step 182 		lambda:  37.5223 	sum squre error 23.20113 
+	Testing step 183 		lambda:  26.08523 	sum squre error 23.1095 
+	Testing step 184 		lambda:  18.13427 	sum squre error 22.57831 
+	Testing step 185 		lambda:  12.60681 	sum squre error 20.1481 
+	Testing step 186 		lambda:  8.764164 	sum squre error 17.00232 
+	Testing step 187 		lambda:  6.092784 	sum squre error 17.55302 
+	Testing step 188 		lambda:  4.235659 	sum squre error 13.394 
+	Testing step 189 		lambda:  2.9446 	sum squre error 7.483951 
+	Testing step 190 		lambda:  2.047065 	sum squre error 3.090795 
+	Testing step 191 		lambda:  1.423105 	sum squre error 2.21019 
+	Testing step 192 		lambda:  0.989332 	sum squre error 1.700075 
+	Testing step 193 		lambda:  0.6877765 	sum squre error 1.996143 
+Testing alpha 16 / 20 :		alpha:  0.25 
+	Testing step 194 		lambda:  53.97395 	sum squre error 23.23449 
+	Testing step 195 		lambda:  37.5223 	sum squre error 23.19946 
+	Testing step 196 		lambda:  26.08523 	sum squre error 23.09746 
+	Testing step 197 		lambda:  18.13427 	sum squre error 22.54505 
+	Testing step 198 		lambda:  12.60681 	sum squre error 20.27297 
+	Testing step 199 		lambda:  8.764164 	sum squre error 16.81908 
+	Testing step 200 		lambda:  6.092784 	sum squre error 15.47736 
+	Testing step 201 		lambda:  4.235659 	sum squre error 12.46692 
+	Testing step 202 		lambda:  2.9446 	sum squre error 7.264073 
+	Testing step 203 		lambda:  2.047065 	sum squre error 2.866606 
+	Testing step 204 		lambda:  1.423105 	sum squre error 2.281862 
+	Testing step 205 		lambda:  0.989332 	sum squre error 1.673191 
+	Testing step 206 		lambda:  0.6877765 	sum squre error 1.962239 
+Testing alpha 17 / 20 :		alpha:  0.2 
+	Testing step 207 		lambda:  53.97395 	sum squre error 23.23308 
+	Testing step 208 		lambda:  37.5223 	sum squre error 23.19566 
+	Testing step 209 		lambda:  26.08523 	sum squre error 23.07251 
+	Testing step 210 		lambda:  18.13427 	sum squre error 22.49784 
+	Testing step 211 		lambda:  12.60681 	sum squre error 19.81711 
+	Testing step 212 		lambda:  8.764164 	sum squre error 15.17512 
+	Testing step 213 		lambda:  6.092784 	sum squre error 14.64961 
+	Testing step 214 		lambda:  4.235659 	sum squre error 11.16112 
+	Testing step 215 		lambda:  2.9446 	sum squre error 7.185819 
+	Testing step 216 		lambda:  2.047065 	sum squre error 3.104514 
+	Testing step 217 		lambda:  1.423105 	sum squre error 2.267531 
+	Testing step 218 		lambda:  0.989332 	sum squre error 2.305825 
+	Testing step 219 		lambda:  0.6877765 	sum squre error 1.978107 
+	Testing step 220 		lambda:  0.4781373 	sum squre error 2.301583 
+Testing alpha 18 / 20 :		alpha:  0.15 
+	Testing step 221 		lambda:  53.97395 	sum squre error 23.23164 
+	Testing step 222 		lambda:  37.5223 	sum squre error 23.19159 
+	Testing step 223 		lambda:  26.08523 	sum squre error 23.03102 
+	Testing step 224 		lambda:  18.13427 	sum squre error 22.44343 
+	Testing step 225 		lambda:  12.60681 	sum squre error 19.97378 
+	Testing step 226 		lambda:  8.764164 	sum squre error 15.3081 
+	Testing step 227 		lambda:  6.092784 	sum squre error 15.23899 
+	Testing step 228 		lambda:  4.235659 	sum squre error 12.21612 
+	Testing step 229 		lambda:  2.9446 	sum squre error 6.805323 
+	Testing step 230 		lambda:  2.047065 	sum squre error 3.09808 
+	Testing step 231 		lambda:  1.423105 	sum squre error 2.410187 
+	Testing step 232 		lambda:  0.989332 	sum squre error 2.191737 
+	Testing step 233 		lambda:  0.6877765 	sum squre error 1.97987 
+	Testing step 234 		lambda:  0.4781373 	sum squre error 2.290123 
+Testing alpha 19 / 20 :		alpha:  0.1 
+	Testing step 235 		lambda:  53.97395 	sum squre error 23.23014 
+	Testing step 236 		lambda:  37.5223 	sum squre error 23.1155 
+	Testing step 237 		lambda:  26.08523 	sum squre error 23.0076 
+	Testing step 238 		lambda:  18.13427 	sum squre error 22.32188 
+	Testing step 239 		lambda:  12.60681 	sum squre error 19.00242 
+	Testing step 240 		lambda:  8.764164 	sum squre error 17.39529 
+	Testing step 241 		lambda:  6.092784 	sum squre error 16.21921 
+	Testing step 242 		lambda:  4.235659 	sum squre error 11.371 
+	Testing step 243 		lambda:  2.9446 	sum squre error 8.282189 
+	Testing step 244 		lambda:  2.047065 	sum squre error 3.028831 
+	Testing step 245 		lambda:  1.423105 	sum squre error 2.448691 
+	Testing step 246 		lambda:  0.989332 	sum squre error 2.190776 
+	Testing step 247 		lambda:  0.6877765 	sum squre error 2.084701 
+	Testing step 248 		lambda:  0.4781373 	sum squre error 2.168529 
+	Testing step 249 		lambda:  0.3323976 	sum squre error 2.035833 
+	Testing step 250 		lambda:  0.2310804 	sum squre error 1.716532 
+	Testing step 251 		lambda:  0.1606454 	sum squre error 1.823939 
+	Testing step 252 		lambda:  0.1116796 	sum squre error 1.794438 
+	Testing step 253 		lambda:  0.07763882 	sum squre error 1.793803 
+	Testing step 254 		lambda:  0.05397395 	sum squre error 1.797852 
+Testing alpha 20 / 20 :		alpha:  0.05 
+	Testing step 255 		lambda:  53.97395 	sum squre error 23.2285 
+	Testing step 256 		lambda:  37.5223 	sum squre error 23.13033 
+	Testing step 257 		lambda:  26.08523 	sum squre error 22.96636 
+	Testing step 258 		lambda:  18.13427 	sum squre error 22.18817 
+	Testing step 259 		lambda:  12.60681 	sum squre error 16.22792 
+	Testing step 260 		lambda:  8.764164 	sum squre error 16.0085 
+	Testing step 261 		lambda:  6.092784 	sum squre error 14.72235 
+	Testing step 262 		lambda:  4.235659 	sum squre error 10.47667 
+	Testing step 263 		lambda:  2.9446 	sum squre error 7.329627 
+	Testing step 264 		lambda:  2.047065 	sum squre error 3.280735 
+	Testing step 265 		lambda:  1.423105 	sum squre error 2.473686 
+	Testing step 266 		lambda:  0.989332 	sum squre error 2.19688 
+	Testing step 267 		lambda:  0.6877765 	sum squre error 2.085205 
+	Testing step 268 		lambda:  0.4781373 	sum squre error 2.167307 
+	Testing step 269 		lambda:  0.3323976 	sum squre error 2.107201 
+	Testing step 270 		lambda:  0.2310804 	sum squre error 1.722625 
+	Testing step 271 		lambda:  0.1606454 	sum squre error 1.821432 
+	Testing step 272 		lambda:  0.1116796 	sum squre error 1.794439 
+	Testing step 273 		lambda:  0.07763882 	sum squre error 1.802123 
+	Testing step 274 		lambda:  0.05397395 	sum squre error 1.797826 
+Final run 
+Quantile normalization 
+EB-Elastic Net Linear Model, Epis:  no ; 5 fold cross-validation
+Testing alpha 1 / 20 :		alpha:  1 
+	Testing step 1 		lambda:  4.643244 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.01819585 
+	Testing step 2 		lambda:  3.22795 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.01358812 
+	Testing step 3 		lambda:  2.244048 	sum squre error 0.1938746 
+Testing alpha 2 / 20 :		alpha:  0.95 
+	Testing step 4 		lambda:  4.643244 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+sum squre error 0.004269428 
+	Testing step 5 		lambda:  3.22795 	bases: 78, warning: out of Memory!
+sum squre error 0.007647971 
+Testing alpha 3 / 20 :		alpha:  0.9 
+	Testing step 6 		lambda:  4.643244 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.01033052 
+	Testing step 7 		lambda:  3.22795 	sum squre error 0.003641067 
+	Testing step 8 		lambda:  2.244048 	sum squre error 0.003227613 
+	Testing step 9 		lambda:  1.560046 	sum squre error 0.003571675 
+	Testing step 10 		lambda:  1.084533 	bases: 78, warning: out of Memory!
+sum squre error 0.005256437 
+Testing alpha 4 / 20 :		alpha:  0.85 
+	Testing step 11 		lambda:  4.643244 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+sum squre error 0.008984653 
+	Testing step 12 		lambda:  3.22795 	sum squre error 0.004047843 
+	Testing step 13 		lambda:  2.244048 	sum squre error 0.003213018 
+	Testing step 14 		lambda:  1.560046 	sum squre error 0.002950026 
+	Testing step 15 		lambda:  1.084533 	bases: 78, warning: out of Memory!
+sum squre error 0.003006479 
+	Testing step 16 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.005726354 
+Testing alpha 5 / 20 :		alpha:  0.8 
+	Testing step 17 		lambda:  4.643244 	sum squre error 0.01470512 
+	Testing step 18 		lambda:  3.22795 	sum squre error 0.004323262 
+	Testing step 19 		lambda:  2.244048 	sum squre error 0.003207409 
+	Testing step 20 		lambda:  1.560046 	sum squre error 0.002546716 
+	Testing step 21 		lambda:  1.084533 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.002839452 
+	Testing step 22 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.002958745 
+	Testing step 23 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.008019637 
+Testing alpha 6 / 20 :		alpha:  0.75 
+	Testing step 24 		lambda:  4.643244 	sum squre error 0.01932987 
+	Testing step 25 		lambda:  3.22795 	sum squre error 0.003914597 
+	Testing step 26 		lambda:  2.244048 	sum squre error 0.003308426 
+	Testing step 27 		lambda:  1.560046 	sum squre error 0.002566588 
+	Testing step 28 		lambda:  1.084533 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.0028824 
+	Testing step 29 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.002974662 
+	Testing step 30 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+bases: 78, warning: out of Memory!
+sum squre error 0.004652139 
+Testing alpha 7 / 20 :		alpha:  0.7 
+	Testing step 31 		lambda:  4.643244 	sum squre error 0.02766121 
+	Testing step 32 		lambda:  3.22795 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 85, warning: out of Memory!
+bases: 86, warning: out of Memory!
+sum squre error 0.009138655 
+	Testing step 33 		lambda:  2.244048 	sum squre error 0.003675702 
+	Testing step 34 		lambda:  1.560046 	sum squre error 0.003273653 
+	Testing step 35 		lambda:  1.084533 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.002901485 
+	Testing step 36 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+sum squre error 0.002451207 
+	Testing step 37 		lambda:  0.524147 	sum squre error 0.003151917 
+	Testing step 38 		lambda:  0.3643832 	bases: 78, warning: out of Memory!
+sum squre error 0.007407095 
+Testing alpha 8 / 20 :		alpha:  0.65 
+	Testing step 39 		lambda:  4.643244 	sum squre error 0.03857941 
+	Testing step 40 		lambda:  3.22795 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 85, warning: out of Memory!
+sum squre error 0.009718309 
+	Testing step 41 		lambda:  2.244048 	sum squre error 0.003801425 
+	Testing step 42 		lambda:  1.560046 	sum squre error 0.003325164 
+	Testing step 43 		lambda:  1.084533 	sum squre error 0.002962553 
+	Testing step 44 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.002469693 
+	Testing step 45 		lambda:  0.524147 	sum squre error 0.003096991 
+	Testing step 46 		lambda:  0.3643832 	bases: 78, warning: out of Memory!
+sum squre error 0.004837178 
+Testing alpha 9 / 20 :		alpha:  0.6 
+	Testing step 47 		lambda:  4.643244 	sum squre error 0.05269221 
+	Testing step 48 		lambda:  3.22795 	sum squre error 0.01157727 
+	Testing step 49 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.003408483 
+	Testing step 50 		lambda:  1.560046 	sum squre error 0.00332734 
+	Testing step 51 		lambda:  1.084533 	sum squre error 0.00261762 
+	Testing step 52 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+sum squre error 0.002475597 
+	Testing step 53 		lambda:  0.524147 	sum squre error 0.003083324 
+	Testing step 54 		lambda:  0.3643832 	bases: 78, warning: out of Memory!
+sum squre error 0.003195006 
+	Testing step 55 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.007122656 
+Testing alpha 10 / 20 :		alpha:  0.55 
+	Testing step 56 		lambda:  4.643244 	sum squre error 0.0672947 
+	Testing step 57 		lambda:  3.22795 	sum squre error 0.01686446 
+	Testing step 58 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.003637576 
+	Testing step 59 		lambda:  1.560046 	sum squre error 0.003080756 
+	Testing step 60 		lambda:  1.084533 	sum squre error 0.002935145 
+	Testing step 61 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+sum squre error 0.003099002 
+	Testing step 62 		lambda:  0.524147 	sum squre error 0.002559419 
+	Testing step 63 		lambda:  0.3643832 	sum squre error 0.0031099 
+	Testing step 64 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+sum squre error 0.007267699 
+Testing alpha 11 / 20 :		alpha:  0.5 
+	Testing step 65 		lambda:  4.643244 	sum squre error 2.737306 
+	Testing step 66 		lambda:  3.22795 	sum squre error 0.0179242 
+	Testing step 67 		lambda:  2.244048 	sum squre error 0.003938582 
+	Testing step 68 		lambda:  1.560046 	sum squre error 0.003319791 
+	Testing step 69 		lambda:  1.084533 	sum squre error 0.002919553 
+	Testing step 70 		lambda:  0.7539592 	sum squre error 0.003107936 
+	Testing step 71 		lambda:  0.524147 	sum squre error 0.002565031 
+	Testing step 72 		lambda:  0.3643832 	sum squre error 0.003107627 
+	Testing step 73 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+sum squre error 0.007311497 
+Testing alpha 12 / 20 :		alpha:  0.45 
+	Testing step 74 		lambda:  4.643244 	sum squre error 15.9623 
+	Testing step 75 		lambda:  3.22795 	sum squre error 0.0228018 
+	Testing step 76 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.004270793 
+	Testing step 77 		lambda:  1.560046 	sum squre error 0.003382606 
+	Testing step 78 		lambda:  1.084533 	sum squre error 0.003071174 
+	Testing step 79 		lambda:  0.7539592 	sum squre error 0.002764372 
+	Testing step 80 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002420473 
+	Testing step 81 		lambda:  0.3643832 	sum squre error 0.002396062 
+	Testing step 82 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 78, warning: out of Memory!
+sum squre error 0.002339612 
+	Testing step 83 		lambda:  0.1761039 	sum squre error 0.006974999 
+Testing alpha 13 / 20 :		alpha:  0.4 
+	Testing step 84 		lambda:  4.643244 	sum squre error 17.49977 
+	Testing step 85 		lambda:  3.22795 	sum squre error 0.02735667 
+	Testing step 86 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+sum squre error 0.004657681 
+	Testing step 87 		lambda:  1.560046 	sum squre error 0.003350193 
+	Testing step 88 		lambda:  1.084533 	sum squre error 0.002986821 
+	Testing step 89 		lambda:  0.7539592 	sum squre error 0.002452899 
+	Testing step 90 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.00244101 
+	Testing step 91 		lambda:  0.3643832 	sum squre error 0.002532581 
+	Testing step 92 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002269137 
+	Testing step 93 		lambda:  0.1761039 	sum squre error 0.007362709 
+Testing alpha 14 / 20 :		alpha:  0.35 
+	Testing step 94 		lambda:  4.643244 	sum squre error 18.51158 
+	Testing step 95 		lambda:  3.22795 	sum squre error 0.03280552 
+	Testing step 96 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+sum squre error 0.004911715 
+	Testing step 97 		lambda:  1.560046 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.003137232 
+	Testing step 98 		lambda:  1.084533 	sum squre error 0.00297885 
+	Testing step 99 		lambda:  0.7539592 	sum squre error 0.00247846 
+	Testing step 100 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002439781 
+	Testing step 101 		lambda:  0.3643832 	sum squre error 0.002525092 
+	Testing step 102 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002273943 
+	Testing step 103 		lambda:  0.1761039 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.007080741 
+Testing alpha 15 / 20 :		alpha:  0.3 
+	Testing step 104 		lambda:  4.643244 	sum squre error 19.12806 
+	Testing step 105 		lambda:  3.22795 	sum squre error 0.03952694 
+	Testing step 106 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 85, warning: out of Memory!
+bases: 86, warning: out of Memory!
+sum squre error 0.009881497 
+	Testing step 107 		lambda:  1.560046 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.003279613 
+	Testing step 108 		lambda:  1.084533 	sum squre error 0.002355148 
+	Testing step 109 		lambda:  0.7539592 	sum squre error 0.002506724 
+	Testing step 110 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002451078 
+	Testing step 111 		lambda:  0.3643832 	sum squre error 0.00253153 
+	Testing step 112 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002321432 
+	Testing step 113 		lambda:  0.1761039 	bases: 78, warning: out of Memory!
+sum squre error 0.007251903 
+Testing alpha 16 / 20 :		alpha:  0.25 
+	Testing step 114 		lambda:  4.643244 	sum squre error 19.58724 
+	Testing step 115 		lambda:  3.22795 	sum squre error 0.04791187 
+	Testing step 116 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+sum squre error 0.01068015 
+	Testing step 117 		lambda:  1.560046 	bases: 78, warning: out of Memory!
+sum squre error 0.003091097 
+	Testing step 118 		lambda:  1.084533 	sum squre error 0.002359636 
+	Testing step 119 		lambda:  0.7539592 	sum squre error 0.002541575 
+	Testing step 120 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002453663 
+	Testing step 121 		lambda:  0.3643832 	sum squre error 0.002537663 
+	Testing step 122 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002335595 
+	Testing step 123 		lambda:  0.1761039 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.005938203 
+Testing alpha 17 / 20 :		alpha:  0.2 
+	Testing step 124 		lambda:  4.643244 	sum squre error 19.82223 
+	Testing step 125 		lambda:  3.22795 	sum squre error 0.05490776 
+	Testing step 126 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.01130785 
+	Testing step 127 		lambda:  1.560046 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+sum squre error 0.002985367 
+	Testing step 128 		lambda:  1.084533 	sum squre error 0.002485929 
+	Testing step 129 		lambda:  0.7539592 	sum squre error 0.002472904 
+	Testing step 130 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002458135 
+	Testing step 131 		lambda:  0.3643832 	sum squre error 0.002541227 
+	Testing step 132 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002260228 
+	Testing step 133 		lambda:  0.1761039 	bases: 78, warning: out of Memory!
+sum squre error 0.005835219 
+Testing alpha 18 / 20 :		alpha:  0.15 
+	Testing step 134 		lambda:  4.643244 	sum squre error 19.87468 
+	Testing step 135 		lambda:  3.22795 	sum squre error 0.06492184 
+	Testing step 136 		lambda:  2.244048 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 85, warning: out of Memory!
+sum squre error 0.01321811 
+	Testing step 137 		lambda:  1.560046 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+sum squre error 0.002282333 
+	Testing step 138 		lambda:  1.084533 	sum squre error 0.002497264 
+	Testing step 139 		lambda:  0.7539592 	sum squre error 0.002482006 
+	Testing step 140 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002486135 
+	Testing step 141 		lambda:  0.3643832 	sum squre error 0.002553155 
+	Testing step 142 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 78, warning: out of Memory!
+sum squre error 0.002242254 
+	Testing step 143 		lambda:  0.1761039 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002414468 
+	Testing step 144 		lambda:  0.1224261 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+sum squre error 0.00390012 
+Testing alpha 19 / 20 :		alpha:  0.1 
+	Testing step 145 		lambda:  4.643244 	sum squre error 19.83769 
+	Testing step 146 		lambda:  3.22795 	sum squre error 0.07154447 
+	Testing step 147 		lambda:  2.244048 	sum squre error 0.01612329 
+	Testing step 148 		lambda:  1.560046 	sum squre error 0.003072648 
+	Testing step 149 		lambda:  1.084533 	sum squre error 0.002498579 
+	Testing step 150 		lambda:  0.7539592 	bases: 78, warning: out of Memory!
+sum squre error 0.002471538 
+	Testing step 151 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002476096 
+	Testing step 152 		lambda:  0.3643832 	sum squre error 0.00255299 
+	Testing step 153 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 78, warning: out of Memory!
+sum squre error 0.002224401 
+	Testing step 154 		lambda:  0.1761039 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002413751 
+	Testing step 155 		lambda:  0.1224261 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+sum squre error 0.003904795 
+Testing alpha 20 / 20 :		alpha:  0.05 
+	Testing step 156 		lambda:  4.643244 	sum squre error 19.58664 
+	Testing step 157 		lambda:  3.22795 	sum squre error 0.08141391 
+	Testing step 158 		lambda:  2.244048 	sum squre error 0.01765144 
+	Testing step 159 		lambda:  1.560046 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.00311793 
+	Testing step 160 		lambda:  1.084533 	sum squre error 0.002469414 
+	Testing step 161 		lambda:  0.7539592 	sum squre error 0.002479869 
+	Testing step 162 		lambda:  0.524147 	bases: 78, warning: out of Memory!
+sum squre error 0.002743825 
+	Testing step 163 		lambda:  0.3643832 	sum squre error 0.002534978 
+	Testing step 164 		lambda:  0.2533166 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 78, warning: out of Memory!
+sum squre error 0.002222241 
+	Testing step 165 		lambda:  0.1761039 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+sum squre error 0.002414042 
+	Testing step 166 		lambda:  0.1224261 	bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+sum squre error 0.003904914 
+bases: 78, warning: out of Memory!
+bases: 79, warning: out of Memory!
+bases: 80, warning: out of Memory!
+bases: 81, warning: out of Memory!
+bases: 82, warning: out of Memory!
+bases: 83, warning: out of Memory!
+bases: 84, warning: out of Memory!
+bases: 85, warning: out of Memory!
+bases: 86, warning: out of Memory!
+bases: 87, warning: out of Memory!
+bases: 87, out of Memory,exiting program!
+Ouput the final result including main and epistatic effect 
+Done!
