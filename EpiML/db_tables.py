@@ -3,9 +3,9 @@ import shutil
 from datetime import datetime, timezone
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from flask_login import UserMixin, current_user
 
-from EpiML import app, db, login
+
+from EpiML import app, db
 
 
 class Job(db.Model):

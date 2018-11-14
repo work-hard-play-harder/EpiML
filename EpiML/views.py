@@ -7,7 +7,6 @@ from celery.result import AsyncResult
 
 # third-parties packages
 from flask import render_template, request, redirect, url_for, flash, make_response, abort, send_file
-from flask_login import current_user
 from werkzeug.utils import secure_filename
 from sqlalchemy import desc
 
