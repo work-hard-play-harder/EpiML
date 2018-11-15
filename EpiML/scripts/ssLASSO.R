@@ -4,7 +4,6 @@ library('Matrix');
 library('foreach');
 library('glmnet');
 source('cv.bh.R');
-library('r2d3')
 
 workspace <- '~/Desktop/samples/'
 x_filename <- 'Geno.txt'
