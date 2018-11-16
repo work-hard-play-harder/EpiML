@@ -6,6 +6,7 @@ y_filename <- 'Pheno.txt'
 category <- 'Gene'
 nFolds <- 5
 max_percentages_miss_val <- 0.2
+pvalue <- 0.05
 seed <- 28213
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -99,7 +100,7 @@ Blup1 = EBelasticNet.Gaussian(
   Epis = "no",
   verbose = 0
 )
-Blup_main_sig = matrix(Blup1$weight[which(Blup1$weight[, 6] <= 0.05),], ncol = 6)
+Blup_main_sig = matrix(Blup1$weight[which(Blup1$weight[, 6] <= pvalue),], ncol = 6)
 
 cat('Subtract the main effect', '\n')
 index_main <- Blup_main_sig[, 1]
@@ -116,7 +117,7 @@ Blup_epis = EBelasticNet.Gaussian(
   Epis = "yes",
   verbose = 0
 )
-Blup_epis_sig = matrix(Blup_epis$weight[which(Blup_epis$weight[, 6] <= 0.05),], ncol = 6)
+Blup_epis_sig = matrix(Blup_epis$weight[which(Blup_epis$weight[, 6] <= pvalue),], ncol = 6)
 
 
 cat('Final run', '\n')
@@ -153,7 +154,7 @@ Blup_full = EBelasticNet.Gaussian(
   Epis = "no",
   verbose = 0
 )
-Blup_full_sig =  Blup_full$weight[which(Blup_full$weight[, 6] <= 0.05), ]
+Blup_full_sig =  Blup_full$weight[which(Blup_full$weight[, 6] <= pvalue), ]
 Blup_full_sig[, 1:2] <- main_epi_sig_id[Blup_full_sig[, 1], 1:2]
 
 main_result <- NULL

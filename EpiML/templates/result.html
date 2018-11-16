@@ -204,9 +204,11 @@
                         <th>#</th>
                         <th>Feature</th>
                         <th>Coefficent value</th>
-                        <th>Posterior variance</th>
-                        <th>t-value</th>
-                        <th>p-value</th>
+                        {% if job.selected_algorithm=='EBEN' %}
+                            <th>Posterior variance</th>
+                            <th>t-value</th>
+                            <th>p-value</th>
+                        {% endif %}
                     </tr>
                     </thead>
                     <tbody>
@@ -215,9 +217,11 @@
                             <td>{{ loop.index }}</td>
                             <td>{{ line[0] }}</td>
                             <td>{{ line[1] }}</td>
-                            <td>{{ line[2] }}</td>
-                            <td>{{ line[3] }}</td>
-                            <td>{{ line[4] }}</td>
+                            {% if job.selected_algorithm=='EBEN' %}
+                                <td>{{ line[2] }}</td>
+                                <td>{{ line[3] }}</td>
+                                <td>{{ line[4] }}</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -236,9 +240,11 @@
                         <th>Feature 1</th>
                         <th>Feature 2</th>
                         <th>Coefficent value</th>
-                        <th>Posterior variance</th>
-                        <th>t-value</th>
-                        <th>p-value</th>
+                        {% if job.selected_algorithm=='EBEN' %}
+                            <th>Posterior variance</th>
+                            <th>t-value</th>
+                            <th>p-value</th>
+                        {% endif %}
                     </tr>
                     </thead>
                     <tbody>
@@ -248,9 +254,11 @@
                             <td>{{ line[0] }}</td>
                             <td>{{ line[1] }}</td>
                             <td>{{ line[2] }}</td>
-                            <td>{{ line[3] }}</td>
-                            <td>{{ line[4] }}</td>
-                            <td>{{ line[5] }}</td>
+                            {% if job.selected_algorithm=='EBEN' %}
+                                <td>{{ line[3] }}</td>
+                                <td>{{ line[4] }}</td>
+                                <td>{{ line[5] }}</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>

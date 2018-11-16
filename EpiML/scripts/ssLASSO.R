@@ -3,7 +3,7 @@ library('BhGLM');
 library('Matrix');
 library('foreach');
 library('glmnet');
-source('cv.bh.R');
+source('./EpiML/scripts/cv.bh.R');
 
 workspace <- '~/Desktop/samples/'
 x_filename <- 'Geno.txt'

@@ -26,7 +26,7 @@ def create_job_folder(upload_folder='', jobid=None, security_code=None):
 
 @celery.task()
 def call_scripts(jobid, method, params=None, x_filename='', y_filename='',jobcategory=''):
-    print('Background start...')
+    print('Background start {}...'.format(method))
     job = Job.query.filter_by(id=jobid).first_or_404()
     job.status = 'Running'
     db.session.add(job)
@@ -58,8 +58,8 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename='',jobcat
         except:
             job.status = 'Error'
 
-    if method == 'SSLASSO':
-        print('run SSLASSO')
+    if method == 'ssLASSO':
+        print('run ssLASSO')
         try:
             with open(os.path.join(job_dir, 'SSLASSO.stdout'), 'w') as SSLASSO_stdout, \
                     open(os.path.join(job_dir, 'SSLASSO.stderr'), 'w') as SSLASSO_stderr:
