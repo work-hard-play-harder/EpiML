@@ -52,7 +52,7 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename='', jobca
             with open(os.path.join(job_dir, 'LASSO.stdout'), 'w') as LASSO_stdout, \
                     open(os.path.join(job_dir, 'LASSO.stderr'), 'w') as LASSO_stderr:
                 subprocess.run(['Rscript', app.config['LASSO_SCRIPT'], job_dir, x_filename, y_filename, jobcategory,
-                                params['fold_number'], '0.2', params['seed_number']],
+                                params['fold_number'], params['seed_number']],
                                stdout=LASSO_stdout, stderr=LASSO_stderr)
                 job.status = 'Done'
         except:
