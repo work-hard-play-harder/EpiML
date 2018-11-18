@@ -18,7 +18,7 @@ nFolds <- as.integer(args[4])
 max_percentages_miss_val <- as.numeric(args[5])
 seed <- as.integer(args[6])
 
-cat('EBEN_train parameters:', '\n')
+cat('LASSO parameters:', '\n')
 cat('\tWorkspace:', workspace, '\n')
 cat('\tx_filename:', x_filename, '\n')
 cat('\ty_filename:', y_filename, '\n')
@@ -28,15 +28,15 @@ cat('\tSeed:', seed, '\n')
 
 set.seed(seed)
 
-## Input the Yeast data and pathological data
+## Input data
 mi <- read.table(file.path(workspace, x_filename),header=T);
 mi <- as.matrix(mi);
 target <- read.table(file.path(workspace, y_filename));
 target <- as.matrix(target);
 
 ## Remove the samples without pathological data
-mi2 <- mi[which(target[,1,drop=F]!='NA'),];
-x11 <- mi2[,2:ncol(mi2)];
+# mi2 <- mi[which(target[,1,drop=F]!='NA'),];
+# x11 <- mi2[,2:ncol(mi2)];
 
 ## Filter the Yeast data with more than 20% missing data
 x1 <- NULL;
