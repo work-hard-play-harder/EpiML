@@ -5,7 +5,7 @@ x_filename <- 'Geno.txt'
 y_filename <- 'Pheno.txt'
 category <- 'Gene'
 nFolds <- 5
-max_percentages_miss_val <- 0.2
+# max_percentages_miss_val <- 0.2
 pvalue <- 0.05
 seed <- 28213
 
@@ -15,8 +15,7 @@ x_filename <- args[2]
 y_filename <- args[3]
 category <- args[4]
 nFolds <- as.integer(args[5])
-max_percentages_miss_val <- as.numeric(args[6])
-seed <- as.integer(args[7])
+seed <- as.integer(args[6])
 
 cat('EBEN_train parameters:', '\n')
 cat('\tWorkspace:', workspace, '\n')
@@ -24,7 +23,6 @@ cat('\tx_filename:', x_filename, '\n')
 cat('\ty_filename:', y_filename, '\n')
 cat('\tCategory:', category, '\n')
 cat('\tnFolds:', nFolds, '\n')
-cat('\tMax percentage of missing value:', max_percentages_miss_val, '\n')
 cat('\tSeed:', seed, '\n')
 
 set.seed(seed)
@@ -50,28 +48,14 @@ y <- as.matrix(y)
 # preprocessing for different job categories
 x_preprocessed <- NULL
 y_preprocessed <- NULL
+# for x preprocess
+cat('Filter data with missing data', '\n')
+x_filtered <- t(na.omit(t(x)))
 if (category == 'Gene') {
-  cat('Filter data with missing data', '\n')
-  x_filtered <- t(na.omit(t(x)))
   # Gene data is categorical, no normlization
   x_preprocessed <- x_filtered
-  
-  y_preprocessed <- scale(y)
 } else if (category == 'microRNA') {
-  cat('Filter data with more than 20% missing data', '\n')
-  x_filtered <- x[,colMeans(is.na(x)) < max_percentages_miss_val]
-  
-  # x_filtered_colnames <- NULL
-  # criteria <- trunc(nrow(x) * (1 - max_percentages_miss_val))
-  # for (i in 1:ncol(x)) {
-  #   if (sum(as.numeric(x[, i]) != 0) > criteria) {
-  #     x_filtered <- cbind(x_filtered, x[, i])
-  #     x_filtered_colnames <- c(x_filtered_colnames, colnames(x)[i])
-  #   }
-  # }
-  # colnames(x_filtered) <- x_filtered_colnames
-  
-  cat('Quantile normalization', '\n')
+  # Quantile normalization
   x_filtered_normed <- x_filtered
   for (sl in 1:ncol(x_filtered_normed)) {
     mat = matrix(as.numeric(x_filtered_normed[, sl]), 1)
@@ -80,38 +64,35 @@ if (category == 'Gene') {
     x_filtered_normed[, sl] = mat
   }
   x_preprocessed <- x_filtered_normed
-  rm(x_filtered, x_filtered_normed, sl, mat)
-  
-  y_preprocessed <- y
-  
 } else{
   # no filtering and no normlization
   x_preprocessed <- x
-  y_preprocessed <- y
 }
+# for y preprocess
+y_preprocessed <- scale(y)
 
-cat('Main effect estimated using EBEN', '\n')
-CV = EBelasticNet.GaussianCV(x_preprocessed, y_preprocessed, nFolds = nFolds, Epis = "no")
-Blup1 = EBelasticNet.Gaussian(
+cat('Main effect estimated', '\n')
+cv_main = EBelasticNet.GaussianCV(x_preprocessed, y_preprocessed, nFolds = nFolds, Epis = "no")
+blup_main = EBelasticNet.Gaussian(
   x_preprocessed,
   y_preprocessed,
-  lambda = CV$Lambda_optimal,
-  alpha = CV$Alpha_optimal,
+  lambda = cv_main$Lambda_optimal,
+  alpha = cv_main$Alpha_optimal,
   Epis = "no",
   verbose = 0
 )
-Blup_main_sig = matrix(Blup1$weight[which(Blup1$weight[, 6] <= pvalue),], ncol = 6)
+sig_main = matrix(blup_main$weight[which(blup_main$weight[, 6] <= pvalue),], ncol = 6)
 
 cat('Subtract the main effect', '\n')
-index_main <- Blup_main_sig[, 1]
-effect_main <- Blup_main_sig[, 3]
-y_preprocessed_subtracted <- as.matrix(y_preprocessed) - x_preprocessed[, index_main] %*% (as.matrix(effect_main))
+index_main <- sig_main[, 1]
+effect_main <- sig_main[, 3]
+subtracted_y <- as.matrix(y_preprocessed) - x_preprocessed[, index_main] %*% (as.matrix(effect_main))
 
-cat('Epistatic effect estimated using EBEN', '\n')
-CV_epis = EBelasticNet.GaussianCV(x_preprocessed, y_preprocessed_subtracted, nFolds = nFolds, Epis = "yes")
+cat('Epistatic effect estimated', '\n')
+CV_epis = EBelasticNet.GaussianCV(x_preprocessed, subtracted_y, nFolds = nFolds, Epis = "yes")
 Blup_epis = EBelasticNet.Gaussian(
   x_preprocessed,
-  y_preprocessed_subtracted,
+  subtracted_y,
   lambda =  CV_epis$Lambda_optimal,
   alpha = CV_epis$Alpha_optimal,
   Epis = "yes",
@@ -119,9 +100,8 @@ Blup_epis = EBelasticNet.Gaussian(
 )
 Blup_epis_sig = matrix(Blup_epis$weight[which(Blup_epis$weight[, 6] <= pvalue),], ncol = 6)
 
-
 cat('Final run', '\n')
-main_epi_sig_id = rbind(Blup_main_sig[, 1:2], Blup_epis_sig[, 1:2])
+main_epi_sig_id = rbind(sig_main[, 1:2], Blup_epis_sig[, 1:2])
 
 x_sig <- NULL
 for (i in 1:nrow(main_epi_sig_id)) {
@@ -182,7 +162,7 @@ write.table(
   row.names = F,
   col.names = c(
     'feature',
-    'coefficent value',
+    'coefficent',
     'posterior variance',
     't-value',
     'p-value'
@@ -197,7 +177,7 @@ write.table(
   col.names = c(
     'feature1',
     'feature2',
-    'coefficent value',
+    'coefficent',
     'posterior variance',
     't-value',
     'p-value'

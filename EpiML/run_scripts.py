@@ -25,7 +25,7 @@ def create_job_folder(upload_folder='', jobid=None, security_code=None):
 
 
 @celery.task()
-def call_scripts(jobid, method, params=None, x_filename='', y_filename='',jobcategory=''):
+def call_scripts(jobid, method, params=None, x_filename='', y_filename='', jobcategory=''):
     print('Background start {}...'.format(method))
     job = Job.query.filter_by(id=jobid).first_or_404()
     job.status = 'Running'
@@ -39,8 +39,8 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename='',jobcat
         try:
             with open(os.path.join(job_dir, 'EBEN.stdout'), 'w') as EBEN_stdout, \
                     open(os.path.join(job_dir, 'EBEN.stderr'), 'w') as EBEN_stderr:
-                subprocess.run(['Rscript', app.config['EBEN_SCRIPT'], job_dir, x_filename, y_filename,jobcategory,
-                                params['fold_number'], '0.2', params['seed_number']],
+                subprocess.run(['Rscript', app.config['EBEN_SCRIPT'], job_dir, x_filename, y_filename, jobcategory,
+                                params['fold_number'], params['seed_number']],
                                stdout=EBEN_stdout, stderr=EBEN_stderr)
                 job.status = 'Done'
         except:
@@ -51,7 +51,7 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename='',jobcat
         try:
             with open(os.path.join(job_dir, 'LASSO.stdout'), 'w') as LASSO_stdout, \
                     open(os.path.join(job_dir, 'LASSO.stderr'), 'w') as LASSO_stderr:
-                subprocess.run(['Rscript', app.config['LASSO_SCRIPT'], job_dir, x_filename, y_filename,
+                subprocess.run(['Rscript', app.config['LASSO_SCRIPT'], job_dir, x_filename, y_filename, jobcategory,
                                 params['fold_number'], '0.2', params['seed_number']],
                                stdout=LASSO_stdout, stderr=LASSO_stderr)
                 job.status = 'Done'
@@ -61,12 +61,11 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename='',jobcat
     if method == 'ssLASSO':
         print('run ssLASSO')
         try:
-            with open(os.path.join(job_dir, 'SSLASSO.stdout'), 'w') as SSLASSO_stdout, \
-                    open(os.path.join(job_dir, 'SSLASSO.stderr'), 'w') as SSLASSO_stderr:
-                subprocess.run(['Rscript', app.config['SSLASSO_SCRIPT'], job_dir, x_filename, y_filename,
+            with open(os.path.join(job_dir, 'ssLASSO.stdout'), 'w') as SSLASSO_stdout, \
+                    open(os.path.join(job_dir, 'ssLASSO.stderr'), 'w') as SSLASSO_stderr:
+                subprocess.run(['Rscript', app.config['SSLASSO_SCRIPT'], job_dir, x_filename, y_filename, jobcategory,
                                 params['fold_number'], params['seed_number']],
-                               stdout=SSLASSO_stdout,
-                               stderr=SSLASSO_stderr)
+                               stdout=SSLASSO_stdout, stderr=SSLASSO_stderr)
                 job.status = 'Done'
         except:
             job.status = 'Error'

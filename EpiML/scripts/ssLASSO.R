@@ -76,11 +76,11 @@ if (category == 'Gene') {
 # for y preprocess
 y_preprocessed <- scale(y)
 
-cat('Main effect estimated using ssLASSO', '\n')
+cat('Main effect estimated', '\n')
 sig_main_index <- which(abs(t(y_preprocessed) %*% x_preprocessed/(nrow(x_preprocessed)-1)) > 0.20);
 sig_main_names <- colnames(x_preprocessed)[sig_main_index];
 
-###### Epistasis effect-single locus:
+cat('Epistatic effect estimated', '\n')
 sig_epi_names <- NULL;
 for(k in 1:(ncol(x_preprocessed)-1)){
   single <- x_preprocessed[, k]
@@ -91,43 +91,41 @@ for(k in 1:(ncol(x_preprocessed)-1)){
   sig_epi_index <- which(abs(t(y_preprocessed) %*% pairwise/(nrow(pairwise)-1)) > 0.20)
   sig_epi_names <- c(sig_epi_names, colnames(pairwise)[sig_epi_index])
 }
-sig_names <-c(sig_main_names, sig_epi_names)
 
-new_x <- NULL;
-for(i in 1:length(sig_names)){
-  if(length(grep("\\*",sig_names[i])) == 0){
-    tmp1 = x_preprocessed[, sig_names[i], drop=F]
-    new_x <-cbind(new_x,tmp1)
-  }
-  if(length(grep("\\*",sig_names[i])) == 1){
-    pair_names <- strsplit(sig_names[i],"\\*")
-    tmp1 <- x_preprocessed[, pair_names[[1]][1], drop=F] * x_preprocessed[, pair_names[[1]][2], drop=F];
-    colnames(tmp1) <- sig_names[i]
-    new_x <- cbind(new_x,tmp1);
-  }
+# construct new x with significant variants
+sig_x <- NULL
+# for significated main variants
+for (i in 1:length(sig_main_names)) {
+  tmp1 = x_preprocessed[, sig_main_names[i], drop = F]
+  sig_x <- cbind(sig_x, tmp1)
+}
+# for significated episitatic variants
+for(i in 1:length(sig_epi_names)) {
+  indexes = strsplit(sig_epi_names[i], "\\*")
+  tmp1 = x_preprocessed[, indexes[[1]][1], drop = F] * x_preprocessed[, indexes[[1]][2], drop = F]
+  colnames(tmp1) = sig_epi_names[i]
+  sig_x <- cbind(sig_x, tmp1)
 }
 
-f2 <- bmlasso(new_x, y_preprocessed, family = "gaussian", prior = "mde", ss = c(s0,s1), verbose = TRUE)
-# cv <- cv.bh(f2, ncv=50, nfolds = 3, verbose = TRUE)
-# tmp_mse <- cv$measures["mse"];
-# tmp_dev <- cv$measures["deviance"];
-Blup <- matrix(f2$beta,ncol=1)
-rownames(Blup) <- sig_names
-Blup_estimate <- Blup[which(Blup != 0),1,drop=F]
+cat('Final run', '\n')
+blup_full <- bmlasso(sig_x, y_preprocessed, family = "gaussian", prior = "mde", ss = c(s0,s1), verbose = TRUE)
+full <- matrix(blup_full$beta,ncol=1)
+rownames(full) <- c(sig_main_names, sig_epi_names)
+sig_full <- full[which(full != 0),1,drop=F]
 
 # generate main results
-main_index <- setdiff(1:nrow(Blup_estimate),grep("\\*",rownames(Blup_estimate)))
-output_main <- matrix("NA",length(main_index),2)
-output_main[,1] <- rownames(Blup_estimate)[main_index]
-output_main[,2] <- Blup_estimate[main_index,1]
-colnames(output_main) <- c("feature", "coefficent");
+main_index <- setdiff(1:nrow(sig_full), grep("\\*", rownames(sig_full)))
+output_main <- matrix("NA", length(main_index), 2)
+output_main[, 1] <- rownames(sig_full)[main_index]
+output_main[, 2] <- sig_full[main_index, 1]
+colnames(output_main) <- c("feature", "coefficent")
 # generate epistatic results
-epi_index <- grep("\\*",rownames(Blup_estimate))
-output_epi <- matrix("NA",length(epi_index),3)
-epi_ID <- rownames(Blup_estimate)[epi_index]
-output_epi[,1:2] <- matrix(unlist(strsplit(epi_ID,"\\*")),ncol=2)
-output_epi[,3] <- Blup_estimate[epi_index,1]
-colnames(output_epi) <- c("feature1","feature2", "coefficent");
+epi_index <- grep("\\*", rownames(sig_full))
+output_epi <- matrix("NA", length(epi_index), 3)
+epi_ID <- rownames(sig_full)[epi_index]
+output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2)
+output_epi[, 3] <- sig_full[epi_index, 1]
+colnames(output_epi) <- c("feature1", "feature2", "coefficent")
 
 
 write.table(
@@ -147,4 +145,6 @@ write.table(
   col.names = T,
   row.names = F
 )
+
+cat('Done!')
 
