@@ -4,7 +4,7 @@ workspace <- '~/Desktop/samples/'
 x_filename <- 'Geno.txt'
 y_filename <- 'Pheno.txt'
 category <- 'Gene'
-nFolds <- 5
+nFolds <- 2
 # max_percentages_miss_val <- 0.2
 pvalue <- 0.05
 seed <- 28213
@@ -116,14 +116,16 @@ for (i in 1:nrow(main_epi_sig_id)) {
 }
 
 x_sig_qnormed <- x_sig
-cat('Quantile normalization', '\n')
-for (sl in 1:ncol(x_sig_qnormed)) {
-  mat = matrix(as.numeric(x_sig_qnormed[, sl]), 1)
-  mat = t(apply(mat, 1, rank, ties.method = "average"))
-  mat = qnorm(mat / (nrow(x_sig_qnormed) + 1))
-  x_sig_qnormed[, sl] = mat
+if (category == 'microRNA') {
+  cat('Quantile normalization', '\n')
+  for (sl in 1:ncol(x_sig_qnormed)) {
+    mat = matrix(as.numeric(x_sig_qnormed[, sl]), 1)
+    mat = t(apply(mat, 1, rank, ties.method = "average"))
+    mat = qnorm(mat / (nrow(x_sig_qnormed) + 1))
+    x_sig_qnormed[, sl] = mat
+  }
+  rm(x_sig, sl, mat)
 }
-rm(x_sig, sl, mat)
 
 CV_full = EBelasticNet.GaussianCV(x_sig_qnormed, y_preprocessed, nFolds = nFolds, Epis = "no")
 Blup_full = EBelasticNet.Gaussian(
