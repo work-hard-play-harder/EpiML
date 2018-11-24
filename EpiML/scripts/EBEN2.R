@@ -1,10 +1,10 @@
 library('EBEN')
 
 workspace <- '~/Desktop/samples/'
-x_filename <- 'yeast_Geno.txt'
-y_filename <- 'yeast_Pheno.txt'
-datatype <- 'discrete'  # discrete or continuous
-nFolds <- 5
+x_filename <- 'Geno.txt'
+y_filename <- 'Pheno.txt'
+category <- 'Gene'
+nFolds <- 2
 # max_percentages_miss_val <- 0.2
 pvalue <- 0.05
 seed <- 28213
@@ -13,7 +13,7 @@ args <- commandArgs(trailingOnly = TRUE)
 workspace <- args[1]
 x_filename <- args[2]
 y_filename <- args[3]
-datatype <- args[4]
+category <- args[4]
 nFolds <- as.integer(args[5])
 seed <- as.integer(args[6])
 
@@ -21,7 +21,7 @@ cat('EBEN_train parameters:', '\n')
 cat('\tWorkspace:', workspace, '\n')
 cat('\tx_filename:', x_filename, '\n')
 cat('\ty_filename:', y_filename, '\n')
-cat('\tDatatype:', datatype, '\n')
+cat('\tCategory:', category, '\n')
 cat('\tnFolds:', nFolds, '\n')
 cat('\tSeed:', seed, '\n')
 
@@ -51,10 +51,10 @@ y_preprocessed <- NULL
 # for x preprocess
 cat('Filter data with missing data', '\n')
 x_filtered <- t(na.omit(t(x)))
-if (datatype == 'discrete') {
+if (category == 'Gene') {
   # Gene data is categorical, no normlization
   x_preprocessed <- x_filtered
-} else if (datatype == 'continuous') {
+} else if (category == 'microRNA') {
   # Quantile normalization
   x_filtered_normed <- x_filtered
   for (sl in 1:ncol(x_filtered_normed)) {
@@ -116,7 +116,7 @@ for (i in 1:nrow(main_epi_sig_id)) {
 }
 
 x_sig_qnormed <- x_sig
-if (datatype == 'microRNA') {
+if (category == 'microRNA') {
   cat('Quantile normalization', '\n')
   for (sl in 1:ncol(x_sig_qnormed)) {
     mat = matrix(as.numeric(x_sig_qnormed[, sl]), 1)
