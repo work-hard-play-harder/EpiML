@@ -28,12 +28,13 @@ def index():
 @app.route('/webserver', methods=['GET', 'POST'])
 def webserver():
     if request.method == 'POST':
+        jobname = request.form['jobname']
+        email = request.form['email']
         jobcategory = request.form['jobcategory']
         if jobcategory == 'Gene':
             select_species = request.form.get('species')
             jobcategory = '{0}({1})'.format(jobcategory, select_species)
-        jobname = request.form['jobname']
-        email = request.form['email']
+        datatype = request.form['datatype']
         description = request.form['description']
         input_x = request.files['input-x']
         input_y = request.files['input-y']
@@ -48,9 +49,10 @@ def webserver():
             params['seed_number'] = request.form['seed_number']
         else:
             params['seed_number'] = random.randint(0, 28213)
+        params['datatype'] = datatype
 
-        print(jobcategory, jobname, description, email, method, input_x, input_y, params['fold_number'],
-              params['seed_number'])
+        print(jobname, email, jobcategory, params['datatype'], description, input_x, input_y, method,
+              params['fold_number'], params['seed_number'])
 
         if input_x and input_y and is_allowed_file(input_x.filename) and is_allowed_file(input_y.filename):
             x_filename = secure_filename(input_x.filename)
@@ -80,9 +82,8 @@ def webserver():
         # flash("File has been upload!")
 
         # call scripts and update Model database
-        celery_task = call_scripts.apply_async(
-            [job.id, method, params, x_filename, y_filename, job.category.split('(')[0]],
-            countdown=5)
+        celery_task = call_scripts.apply_async([job.id, method, params, x_filename, y_filename],
+                                               countdown=5)
         job.celery_id = celery_task.id
         db.session.add(job)
 
@@ -215,7 +216,7 @@ def jobs():
             db.session.delete(job)
 
             # delete job_dir
-            job_dir = os.path.join(app.config['UPLOAD_FOLDER'], job.security_code)
+            job_dir = os.path.join(app.config['UPLOAD_FOLDER'], str(job.id) + '_' + job.security_code)
             if os.path.exists(job_dir):
                 shutil.rmtree(job_dir)
         db.session.commit()
