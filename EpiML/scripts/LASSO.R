@@ -2,6 +2,19 @@ library("fdrtool")
 library("Matrix")
 library("foreach")
 library("glmnet")
+quantile_normalisation <- function(df){
+  df_rank <- apply(df,2,rank,ties.method="min")
+  df_sorted <- data.frame(apply(df, 2, sort))
+  df_mean <- apply(df_sorted, 1, mean)
+  
+  index_to_mean <- function(my_index, my_mean){
+    return(my_mean[my_index])
+  }
+  
+  df_final <- apply(df_rank, 2, index_to_mean, my_mean=df_mean)
+  rownames(df_final) <- rownames(df)
+  return(df_final)
+}
 
 workspace <- '~/Desktop/samples/'
 x_filename <- 'yeast_Geno.txt'
@@ -58,17 +71,7 @@ if (datatype == 'discrete') {
   x_preprocessed <- x_filtered
 } else if (datatype == 'continuous') {
   cat('Quantile normalization', '\n')
-  x_filtered_normed <- x_filtered
-  for (sl in 1:ncol(x_filtered_normed)) {
-    mat = matrix(as.numeric(x_filtered_normed[, sl]), 1)
-    mat = t(apply(mat, 1, rank, ties.method = "average"))
-    mat = qnorm(mat / (nrow(x_filtered_normed) + 1))
-    x_filtered_normed[, sl] = mat
-  }
-  x_preprocessed <- x_filtered_normed
-} else{
-  # no filtering and no normlization
-  x_preprocessed <- x
+  x_preprocessed <- quantile_normalisation(x_filtered)
 }
 # for y preprocess
 y_preprocessed <- scale(y)
@@ -88,8 +91,9 @@ sig_main = main[which(main != 0), 1, drop = F]
 
 cat('Subtract the main effect', '\n')
 index_main <- rownames(sig_main)
-# Does subtracted_y need to be scaled?
 subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% sig_main
+# Does subtracted_y need to be scaled?
+subtracted_y <- scale(subtracted_y)
 
 cat('Epistatic effect estimated', '\n')
 # construct epistatic matrix, pairwise of each column 
@@ -104,6 +108,9 @@ for(k in 1:(ncol(x_preprocessed)-1)){
                               sep = "*")
   
   epi_matrix <- cbind(epi_matrix,pairwise)
+}
+if (datatype == 'continuous') {
+  epi_matrix <- quantile_normalisation(epi_matrix)
 }
 # regression using lasso
 cv_epi = cv.glmnet(epi_matrix, subtracted_y, nfolds=nFolds);
@@ -121,6 +128,9 @@ sig_epi = epi[which(epi != 0), 1, drop = F]
 cat('Final run', '\n')
 # construct new matrix from significant main and epistatic variants
 full_matrix <- cbind(x_preprocessed[, rownames(sig_main)],epi_matrix[,rownames(sig_epi)])
+if (datatype == 'continuous') {
+  full_matrix <- quantile_normalisation(full_matrix)
+}
 # regression 
 cv_full = cv.glmnet(full_matrix, y_preprocessed, nfolds=nFolds)
 blup_full = glmnet(

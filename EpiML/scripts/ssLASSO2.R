@@ -3,7 +3,19 @@ library('BhGLM');
 library('Matrix');
 library('foreach');
 library('glmnet');
-#source("cv.bh.R");
+quantile_normalisation <- function(df){
+  df_rank <- apply(df,2,rank,ties.method="min")
+  df_sorted <- data.frame(apply(df, 2, sort))
+  df_mean <- apply(df_sorted, 1, mean)
+  
+  index_to_mean <- function(my_index, my_mean){
+    return(my_mean[my_index])
+  }
+  
+  df_final <- apply(df_rank, 2, index_to_mean, my_mean=df_mean)
+  rownames(df_final) <- rownames(df)
+  return(df_final)
+}
 
 workspace <- '~/Desktop/samples/'
 x_filename <- 'Geno.txt'
@@ -56,22 +68,12 @@ y_preprocessed <- NULL
 # for x preprocess
 cat('Filter data with missing data', '\n')
 x_filtered <- t(na.omit(t(x)))
-if (category == 'Gene') {
-  # Gene data is categorical, no normlization
+if (datatype == 'discrete') {
+  # discrete data is categorical, no normlization
   x_preprocessed <- x_filtered
-} else if (category == 'microRNA') {
+} else if (datatype == 'continuous') {
   cat('Quantile normalization', '\n')
-  x_filtered_normed <- x_filtered
-  for (sl in 1:ncol(x_filtered_normed)) {
-    mat = matrix(as.numeric(x_filtered_normed[, sl]), 1)
-    mat = t(apply(mat, 1, rank, ties.method = "average"))
-    mat = qnorm(mat / (nrow(x_filtered_normed) + 1))
-    x_filtered_normed[, sl] = mat
-  }
-  x_preprocessed <- x_filtered_normed
-} else{
-  # no filtering and no normlization
-  x_preprocessed <- x
+  x_preprocessed <- quantile_normalisation(x_filtered)
 }
 # for y preprocess
 y_preprocessed <- scale(y)
