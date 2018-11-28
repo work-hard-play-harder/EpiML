@@ -48,13 +48,31 @@
                 <ol>
                     <li class="mlutilLevel"><a href="#prepare">Prepare your data</a></li>
                     <li class="mlutilLevel"><a href="#upload"> Upload data</a></li>
-                    <li class="mlutilLevel"><a href="#submit"> Submit and check job status</a></li>
-                    <li class="mlutilLevel"><a href="#result"> Results</a></li>
+                    <li class="mlutilLevel"><a href="#submit"> Check job status and retrieve results</a></li>
                 </ol>
             </li>
-            <li class="mlutilLevel"><a href="#visualization">Visualization</a></li>
-            <li class="mlutilLevel"><a href="#customize_code">Customize Code</a></li>
-            <li class="mlutilLevel"><a href="#machine_learning_methods">Machine Learning Methods</a></li>
+            <li class="mlutilLevel"><a href="#result_visualization">Result and visualization</a>
+                <ol>
+                    <li class="mlutilLevel"><a href="#summary"> Summary</a></li>
+                    <li class="mlutilLevel"><a href="#table"> Interactive table</a></li>
+                    <li class="mlutilLevel"><a href="#visualization"> Visualization</a></li>
+                </ol>
+            </li>
+            <li class="mlutilLevel"><a href="#customize_code">Customize Code</a>
+                <ol>
+                    <li class="mlutilLevel"><a href="#install"> Install Docker</a></li>
+                    <li class="mlutilLevel"><a href="#generate"> Generate job notebook</a></li>
+                    <li class="mlutilLevel"><a href="#launch"> Launch a Docker Container</a></li>
+                    <li class="mlutilLevel"><a href="#customize"> Customize your Notebook</a></li>
+                </ol>
+            </li>
+            <li class="mlutilLevel"><a href="#machine_learning_methods">Machine Learning Methods</a>
+                <ol>
+                    <li class="mlutilLevel"><a href="#preprocessing"> Preprocessing</a></li>
+                    <li class="mlutilLevel"><a href="#pipeline"> Pipline</a></li>
+                    <li class="mlutilLevel"><a href="#method"> Methods</a></li>
+                </ol>
+            </li>
             <li class="mlutilLevel"><a href="#FAQ">FAQ</a></li>
         </ol>
     </div>
@@ -81,7 +99,6 @@
                     customize their analysis. For each job, its corresponding Jupyter notebook is automatically
                     generated. All notebooks can be downloaded, modified and rerun, allowing users to fully customize
                     their epistasis analysis on local computers.
-
                 </p>
                 <!--
                 <p> Epistasis analysis is used to determine if genes with related mutant phenotypes act
@@ -92,13 +109,13 @@
                     genes. [Ref. Genetic Techniques for Biological Research]
                 </p>
                 -->
-                <p> Epistasis Analysis Server is a free web service. The schematic diagram is following:</p>
+                <p> The schematic diagram of EpiML is following:</p>
                 <div align="center">
-                    <figure>
+                    <figure style="margin-bottom: 10px">
                         <img width="80%" src="{{ url_for('static',filename='img/help/epiml.png') }}">
-                        <figcaption style="text-align: justify"><strong>Figure 1. The workflow of our epistasis web
-                            service and an illustration of a yeast epistatic
-                            network.</strong> <strong>a</strong>. Our epistasis analysis server allows users describe
+                        <figcaption style="width: 80%; text-align: justify"><strong>Figure 1. The workflow of our
+                            epistasis web
+                            service.</strong> <strong>a</strong>. Our epistasis analysis server allows users describe
                             their job, upload
                             data and select a machine learning method for analysis. <strong>b</strong>. We provide
                             interactive
@@ -117,25 +134,52 @@
             <section class="anchor" id="getting_started">
                 <h3>2. Getting Started</h3>
                 <p> This is a step-by-step tutorial how to use EpiML to find out main and epistasis effects in your
-                    data.</p>
+                    data.
+                </p>
 
                 <h4 class="anchor" id="prepare">2.1. Prepare your data</h4>
                 <p>Input files include two parts: feature matrix <strong>X</strong>, and label matrix <strong>Y</strong>.
-                    Both of them are table separated files with row and column names. An example for SNP file is shown
-                    in following:</p>
-                <div class="row">
-                    <div class="col-xs-2" align="right"><p> Feature matrix X:</p></div>
-                    <div class="col-xs-10">
-                        <img width="80%"
-                             src="{{ url_for('static',filename='img/help/feature_matrix_X.png') }}"></div>
+                    Both of them are table separated files with row and column names. In generally, the row names and
+                    column names could be any string, but no repeat. However, for gene and microRNA case
+                    studies, the column names of feature matrix are very important, because they will be used for
+                    parsing the gene position for genotype and searching miRBase for microRNA.
+                </p>
+                <p>The column names of genotype are combined with SNP id, chromosome id, position, reference allele, and
+                    alternative allele, separated by ‘_’. An example for genotype data format is shown in following:
+                </p>
+                <div align="center">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%"
+                             src="{{ url_for('static',filename='img/help/genotype_feature_matrix_X.png') }}">
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 2. An example of genotype
+                            data format.</strong></figcaption>
+                    </figure>
                 </div>
-                <div class="row" style="margin-top: 10px">
-                    <div class="col-xs-2" align="right"><p>Label matrix Y:</p></div>
-                    <div class="col-xs-10"><img width="18%"
-                                                src="{{ url_for('static',filename='img/help/label_matrix_Y.png') }}">
-                    </div>
+                <p>The column names of microRNA are microRNA id in miRBase. An example for microRNA data format is shown
+                    in following:
+                </p>
+                <div align="center">
+                    <figure>
+                        <img width="90%"
+                             src="{{ url_for('static',filename='img/help/microRNA_feature_matrix_X.png') }}">
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 3. An example of microRNA
+                            data format.</strong></figcaption>
+                    </figure>
                 </div>
-                <p><strong>Important notes:</strong></p>
+
+
+                <p>The format of label matrix Y for all kind of data are same. An example of label matrix Y is shown in
+                    following:
+                </p>
+                <div align="center">
+                    <figure style="margin-bottom: 10px">
+                        <img height="200px" src="{{ url_for('static',filename='img/help/label_matrix_Y.png') }}">
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 4. An example of label matrix
+                            format.</strong></figcaption>
+                    </figure>
+                </div>
+
+                <p>Important notes:</p>
                 <ul>
                     <li>Only files with .txt or .csv extensions are accepted.</li>
                     <li>File size is limited to no more than 5MB.</li>
@@ -149,67 +193,90 @@
                 <h4 class="anchor" id="upload">2.2. Upload data</h4>
                 <p>Some basic information is required when you upload data. </p>
                 <ul>
-                    <li><strong>Job name</strong> is used to identify jobs in job list when you submitted job is done.
+                    <li><strong>Job name</strong> is used to identify jobs when you retrieve results.
                     </li>
-                    <li><strong>Email</strong> is used to receive job status and security code. For data security, a
-                        security code is required when you want to retrieve results online.
+                    <li><strong>Email</strong> is used to accept notification and retrieve results. It is optional.
+                    <li><strong>Job Category</strong> refers to the kind of data. It’s used to integrated different
+                        resources in result visualization.
                     </li>
-                    <li><strong>Description</strong> is used to help user annotate their jobs, such as purpose, type of
-                        data, and parameters.
+                    <li><strong>Data type</strong> is used to preprocess feature matrix. For continuous data, it will be
+                        quantile normalized.
+                    </li>
+                    <li><strong>Description</strong> is used to help user annotate job details, such as purpose, type of
+                        data, and parameters. It is optional.
                     </li>
                     <li><strong>Upload</strong> the prepared files. Upload the feature matrix file and label matrix file
                         separately.
                     </li>
-                    <li><strong>Select a method</strong>. Three popular machine learning methods are built in web
-                        server. Refer to machine learning methods section to learn more details about build-in machine
-                        learning methods.
+                    <li><strong>Select a method</strong>.Three popular methods are built in web server. Refer to <a
+                            href="#machine_learning_methods">Machine Learning Methods</a> section to learn more details.
+                        The cross validation is specifically set as 5.
                     </li>
                 </ul>
-                <div>
-                    <img width="100%" src="{{ url_for('static',filename='img/help/upload_data.png') }}">
+                <div align="center">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%" src="{{ url_for('static',filename='img/help/upload_data.png') }}">
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 5. A screen shot of update
+                            form.</strong></figcaption>
+                    </figure>
                 </div>
-
-
-                <h4 class="anchor" id="submit">2.3. Submit and check job status</h4>
+                <h4 class="anchor" id="submit">2.3. Check job status and retrieve results</h4>
                 <p> After submit your job, it will be added into job queue waiting for execution in background. The
                     browser will jump to a processing page where you can check your job status, as following figure
-                    shown. Meanwhile, you will receive an Email notification with security code.
-                    The results will be shown on your screen when it is finished. Because all jobs are
-                    running in background, you also can close this page. When jos
-                    is done, you will receive another Email notification and retrieve your results using the link in
-                    Email.</p>
-                <div><img width="100%" src="{{ url_for('static',filename='img/help/start_job.png') }}"></div>
-
-                <p>If you submit several jobs, you can log in Job page to check all jobs you've
-                    submit. All jobs will be listed in a interactive table where you can manage jobs you submitted, like
-                    rank, search, and delete, as following figure shown. You also can retrieve corresponding results
-                    through the <strong>Results</strong> button in each end of line.</p>
-                <div><img width="100%" src="{{ url_for('static',filename='img/help/job_table.png') }}"></div>
-
-
-                <h4 class="anchor" id="result">2.4. Results</h4>
-                <p>EpiML can detect main effects and epistatic effects in your data. These detected results will be list
-                    in two interactive tables correspondingly, as following figure shown, where you can rank whole table
-                    by
-                    anyone column and search all contents to find out your interesting features. </p>
-
-                <img width="100%" src="{{ url_for('static',filename='img/help/result_table.png') }}">
-                <!--<img width="100%" src="{{ url_for('static',filename='img/help/epi_effect.png') }}">-->
-
-                <h4>2.5. Download results</h4>
-                <hr>
-                <p>
-
+                    shown. The results will be shown on your screen when it is finished. Because all jobs are running in
+                    background, you can bookmark and close this page. You also can reopen this page anytime to check job
+                    status. Meanwhile, if you provide an Email address, you will receive an Email notification with this
+                    page link. When job is done, you will receive another Email notification and retrieve your results
+                    using the link in Email.
                 </p>
+                <div align="center">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%" src="{{ url_for('static',filename='img/help/processing.png') }}">
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 6. A screen shot of processing
+                            page.</strong></figcaption>
+                    </figure>
+                </div>
             </section>
-            <section class="anchor" id="visualization">
-                <h3>3. Visualization</h3>
+            <hr>
+            <section class="anchor" id="result_visualization">
+                <h3>3. Result and visualization</h3>
+                <h4 class="anchor" id="summary">3.1. Summary</h4>
+                <p>Your job is finished, and summaries are listed in following. You can download results and report
+                    through corresponding links, or directly check your results using following interactive tables and
+                    visualizations.
+                </p>
+                <div align="center">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%" src="{{ url_for('static',filename='img/help/summary.png') }}">
+                        <figcaption style="width: 90%; text-align: justify"><strong>Figure 7. The summary form of
+                            finished job.</strong> It contains job description, method, running time, input and output
+                            files, PDF report, and jupyter notebook. User can download files through corresponding link.
+                        </figcaption>
+                    </figure>
+                </div>
+                <h4 class="anchor" id="table">3.2. Interactive table</h4>
+                <p>EpiML can detect significant main effects and epistatic effects. These detected results will be list
+                    in two interactive tables correspondingly, where you can rank whole table by anyone column and
+                    search all contents to find out your interesting features.
+                </p>
+
+                <div align="center">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%" src="{{ url_for('static',filename='img/help/result_table.png') }}">
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 8. These detected results
+                            will be list in two interactive tables, by which user can easily find their interested
+                            information.</strong>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <h4 class="anchor" id="visualization">3.3. Visualization</h4>
                 <p> We provides three kind of interactive visualizations, including circle network, adjacency matrix and
                     force-directed graph. When you move mouse over one node, more detailed information and linked nodes
                     will be highlighted. When you click one node in one diagram, the corresponding nodes in other two
                     diagrams will also be highlighted.
                 </p>
-                <h4>3.1. Circle Network</h4>
+                <h4>Circle Network</h4>
                 <p>One node in circle network represents a feature in epistatic effect results table. All nodes are
                     arranged as a circle. Two nodes that have epistatic relationship are linked by an undirected edge.
                     Circle network has two main advantages comparing to table:
@@ -218,10 +285,18 @@
                 <p> You can move mouse over one node to find its epistatic nodes in red. When you
                     click one node, the node and its associated nodes will be highlighted in green. </p>
                 <div align="center">
-                    <img width="100%" src="{{ url_for('static',filename='img/help/circle_network.png') }}">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%" src="{{ url_for('static',filename='img/help/circle_network.png') }}">
+                        <figcaption style="width: 90%; text-align: justify"><strong>Figure 9. An example of circle
+                            network based on detected yeast epistatic effects.</strong> Move mouse over one node to find
+                            its epistatic
+                            nodes in red. When you click one node, the node and its associated nodes will be highlighted
+                            in green.
+                        </figcaption>
+                    </figure>
                 </div>
 
-                <h4>3.2. Adjacency Matrix</h4>
+                <h4>Adjacency Matrix</h4>
                 <p>The row and column names in adjacency matrix both are the features in epistatic effect table. Each
                     cell (i, j) represents an edge from vertex i to vertex j. Matrix cell depicts coefficient value in
                     epistatic effect table. The darker cells indicate strong interaction. Adjacency matrix has two
@@ -232,10 +307,17 @@
 
                 <p> You can move mouse over one node to check its epistatic feature and coefficient value.</p>
                 <div align="center">
-                    <img width="100%" src="{{ url_for('static',filename='img/help/adjacency_matrix.png') }}">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%" src="{{ url_for('static',filename='img/help/adjacency_matrix.png') }}">
+                        <figcaption style="width: 90%; text-align: justify"><strong>Figure 10. An example of adjacency
+                            matrix based on detected yeast epistatic effects.</strong> Move mouse over one node to check
+                            its epistatic feature and coefficient value.
+                        </figcaption>
+                    </figure>
                 </div>
 
-                <h4>3.3. Force-directed Graph</h4>
+
+                <h4>Force-directed Graph</h4>
                 <p>Force-directed graph is a more flexible way to represent epistatic relationship. One node in graph
                     represents a feature in epistatic effect table. Two nodes that have epistatic relationship are
                     linked by an edge. All kinds of information can be
@@ -243,8 +325,16 @@
                 <p> You can move mouse over and drag one node to check its linked epistatic features. Click one node to
                     show more information.</p>
                 <div align="center">
-                    <img width="100%" src="{{ url_for('static',filename='img/help/forced-direct_graph.png') }}">
+                    <figure style="margin-bottom: 10px">
+                        <img width="90%" src="{{ url_for('static',filename='img/help/forced-direct_graph.png') }}">
+                        <figcaption style="width: 90%; text-align: justify"><strong>Figure 10. An example of
+                            force-directed graph based on detected yeast epistatic effects.</strong> Move mouse over and
+                            drag one node to check its linked epistatic features. Click one node to show more
+                            information.
+                        </figcaption>
+                    </figure>
                 </div>
+
             </section>
             <hr>
             <section class="anchor" id="customize_code">
@@ -254,19 +344,19 @@
                     computers. To achieve this, we provide a pre-configured Docker container containing a fully
                     functional Jupyter server with all the Python and R libraries necessary to run the notebooks.</p>
 
-                <h4>4.1. Install Docker</h4>
+                <h4 class="anchor" id="install">4.1. Install Docker</h4>
                 <p>Docker is a Container-as-a-Service (CaaS) platform that enables a secure software supply chain and
                     deploys diverse applications for high availability across disparate infrastructure.
                     Download, install and run Docker on your computer from the official
                     <a href="https://www.docker.com/products/docker-engine" target="_blank">Docker website</a> depending
                     on your OS.</p>
 
-                <h4>4.2. Generate job notebook</h4>
+                <h4 class="anchor" id="generate">4.2. Generate job notebook</h4>
                 <p>You can submit a small data set following <a href="#getting_started">Get Started</a> section. After
                     your job is done, a Jupyter notebook is automatically generated, and you can download from result
                     page.</p>
 
-                <h4>4.3. Launch a Docker Container</h4>
+                <h4 class="anchor" id="launch">4.3. Launch a Docker Container</h4>
                 <ol>
                     <li> Open a new terminal window.</li>
                     <li>Change directory (cd) that includes your job notebook. Strongly recommend to create a new
@@ -280,7 +370,7 @@
                         terminal.
                     </li>
                 </ol>
-                <h4>4.4. Customize your Notebook</h4>
+                <h4 class="anchor" id="customize">4.4. Customize your Notebook</h4>
                 <p>Copy/paste <code>http://&lt;hostname&gt;:8888/?token=&lt;token&gt;</code> in a browser
                     loads the Jupyter Notebook dashboard page, where hostname is the name of the computer running
                     docker and token is the secret token printed in the console. Customize and save your notebook in
@@ -288,8 +378,9 @@
                     previously opened
                     Terminal window.</p>
 
-                <hr>
+
             </section>
+            <hr>
             <section class="anchor" id="machine_learning_methods">
                 <h3>5. Machine Learning Methods</h3>
                 <p>We build-in several machine learning methods for epistatic analysis. In general, you only need to
@@ -298,42 +389,34 @@
                     understand difference among build-in machine learning methods for epistatic analysis, they are
                     briefly introduced:
                 </p>
+                <h4 class="anchor" id="preprocessing">5.1. Preprocessing</h4>
+
+                <h4 class="anchor" id="pipeline">5.2. Pipeline</h4>
+                <p><strong>Step 1:</strong> Run the simplified model
+                    including
+                    solely main effect, which means only the significant features from this step are included in
+                    the main effect part of the model at the final step. <strong>Step 2:</strong> Obtain the
+                    corrected phenotype y' through removing main effect of significant features from the
+                    original phenotype y, <strong>Step 3:</strong> The newly corrected y' is used to infer
+                    epistasis. Only the features with significant epistatic effect can be included in the model
+                    in the next step. <strong>Step 4:</strong> Run the full model that includes all the features
+                    with significant features with main effects from the first step and significant features
+                    with epistatic effect identified in third step. Here, y denotes the trait phenotype, X
+                    represents the expression, <i>β<sub>m</sub></i> and <i>β<sub>e</sub></i> represents for the
+                    main effect and epistatic effect separately, <i>μ</i> represents for the phenotype mean and
+                    <i>e</i> represents for the standard error. Many machine learning methods like LASSO and
+                    EBEN can be used as the parameter estimation method in Steps 1, 3 and 4.</p>
                 <div align="center">
-                    <figure>
+                    <figure style="margin-bottom: 10px">
                         <img width="30%" src="{{ url_for('static',filename='img/help/workflow1.jpg') }}">
-                        <figcaption style="text-align: justify"><strong>Figure 2. The overall workflow based on
-                            removing main effect.</strong> <strong>Step 1:</strong> Run the simplified model
-                            including
-                            solely main effect, which means only the significant features from this step are included in
-                            the main effect part of the model at the final step. <strong>Step 2:</strong> Obtain the
-                            corrected phenotype y' through removing main effect of significant features from the
-                            original phenotype y, <strong>Step 3:</strong> The newly corrected y' is used to infer
-                            epistasis. Only the features with significant epistatic effect can be included in the model
-                            in the next step. <strong>Step 4:</strong> Run the full model that includes all the features
-                            with significant features with main effects from the first step and significant features
-                            with epistatic effect identified in third step. Here, y denotes the trait phenotype, X
-                            represents the expression, <i>β<sub>m</sub></i> and <i>β<sub>e</sub></i> represents for the
-                            main effect and epistatic effect separately, <i>μ</i> represents for the phenotype mean and
-                            <i>e</i> represents for the standard error. Many machine learning methods like LASSO and
-                            EBEN can be used as the parameter estimation method in Steps 1, 3 and 4.
-                        </figcaption>
-                    </figure>
-                </div>
-                <div align="center">
-                    <figure>
-                        <img width="30%" src="{{ url_for('static',filename='img/help/workflow2.png') }}">
-                        <figcaption style="text-align: justify"><strong>Figure 2. The overall workflow based on
-                            matrix multiplication.</strong> <strong>Step 1:</strong> Construct an epistasis model
-                            including the marginal and epistasis effects; <strong>Step 2:</strong> Apply a matrix
-                            multiplication strategy to pre-compute the correlations between features and dependent
-                            variable, followed by filtering features with low correlations with the dependent variable;
-                            <strong>Step 3:</strong> Construct the reduced model using the filtered features and apply
-                            ssLasso to solve the reduced model; <strong>Step 4:</strong> Output significant marginal and
-                            epistasis features.
+                        <figcaption width="90%" style="text-align: center"><strong>Figure 11. The overall workflow based
+                            on
+                            removing main effect.</strong>
                         </figcaption>
                     </figure>
                 </div>
 
+                <h4 class="anchor" id="method">5.3. Methods</h4>
                 <h4>Empirical Bayesian Elastic Net (EBEN)</h4>
                 <p></p>
                 <h4>Least Absolute Shrinkage and Selection Operator (LASSO)</h4>
@@ -341,6 +424,7 @@
                 <h4>Spike-and-Slab LASSO (ssLASSO)</h4>
                 <p></p>
             </section>
+             <hr>
             <section class="anchor" id="FAQ">
                 <h3>6. FAQ</h3>
                 <p>For any question about this service please email <a

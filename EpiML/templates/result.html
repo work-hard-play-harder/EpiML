@@ -104,9 +104,9 @@
         <section>
             <h2>Summary</h2>
             <p>Your job is finished, and summaries are listed in following. You can download results and report
-                through corresponding links, or directly check your results using following interactive result tables
-                and
-                visualizations.</p>
+                through corresponding links, or directly check out your results using following interactive result
+                tables
+                and visualizations.</p>
 
             <table class="tg" width="100%">
                 <tr>
@@ -118,7 +118,7 @@
                     <th class="tg-iu9n">{{ job.selected_algorithm }}</th>
                 </tr>
                 <tr>
-                    <td class="tg-odlp">Started</td>
+                    <td class="tg-odlp">Start time</td>
                     <td class="tg-iu9n">{{ momentjs(job.timestamp).calendar() }}</td>
                     <td class="tg-t70x">Execution time</td>
                     <td class="tg-iu9n">{{ job.running_time }}</td>
@@ -178,12 +178,6 @@
                     <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ jupyter_notebook_size }} KB</td>
                 </tr>
-                <tr>
-                    <td class="tg-odlp">Zip archive</td>
-                    <td class="tg-iu9n" colspan="3"></td>
-                    <td class="tg-o36v">File size</td>
-                    <td class="tg-iu9n">0.5 MB</td>
-                </tr>
             </table>
         </section>
 
@@ -195,8 +189,7 @@
                 compare
                 results.</p>
             <h3>Main Effect</h3>
-            <p>A main effect is the effect of an independent variant on a dependent variable across the levels of any
-                other effects.</p>
+            <p>A main effect is the phenomenon where the effect of one feature is independent on the others.</p>
             <div>
                 <table id="main_effect" name="main_effect" class="table table-hover stripe">
                     <thead>
@@ -230,8 +223,9 @@
         </section>
         <section>
             <h3>Epistatic Effect</h3>
-            <p>Epistatic effect is the phenomenon where the effect of one variant is dependent on the presence of one or
-                more 'modifier variants'. </p>
+            <p>Epistatic effect is the phenomenon where the effect of one feature is dependent on the presence of one or
+                more features.
+            </p>
             <div>
                 <table id="epis_effect" name="epis_effect" class="table table-hover stripe ">
                     <thead>
@@ -317,7 +311,7 @@
         <section>
             <h3>Adjacency Matrix</h3>
             <div>
-                <p> Epistatic effect results also can be represented by an adjacency matrix, where row and column names
+                <p> Epistatic effect results can also be represented by an adjacency matrix, where row and column names
                     are the features in epistatic effect table, each cell (<i>i</i>, <i>j</i>) represents an edge from
                     vertex <i>i</i> to vertex <i>j</i>. Matrix cell depicts coefficent value in epistatic effect table.
                     The darker cells indicate strong

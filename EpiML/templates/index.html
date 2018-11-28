@@ -8,13 +8,16 @@
         <div style="background-color: whitesmoke;padding: 20px">
             <div class="row">
                 <!--<div class="col-sm-6">pics</div>-->
-                <div  align="center">
-                    <img width="30%" style="min-width: 300px" src="{{ url_for('static', filename='img/home/EpiML_logo.png') }}">
-                    <p style="font-size: xx-large;">An open machine learning web service for epistasis analysis </p>
-                    <p>EpiML can detect main effect and epistatic effect features in your data by using several machine
-                        learning methods and produce many interactive visualizations to help understand results.
-                        Especially for some case studies like SNP and miRNA data, external resources are embedded for
-                        epistasis analysis.</p>
+                <div align="center">
+                    <img width="30%" style="min-width: 300px"
+                         src="{{ url_for('static', filename='img/home/EpiML_logo.png') }}">
+                    <p style="font-size: xx-large;">An open machine learning web service for pairwise epistatic
+                        analysis</p>
+                    <p>EpiML can detect main effect and pairwise epistatic effect by using several machine learning and
+                        statistical methods and provide many interactive visualizations to help analyze epistatic
+                        relationship. Especially for genotype and microRNA case studies, external resources are
+                        integrated for result analysis.
+                    </p>
                 </div>
             </div>
 
@@ -51,26 +54,27 @@
             <div class="row">
                 <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/upload.png') }}">
-                    <p style="padding: 10px"><strong>Describe your job and upload your data. </strong> <br>
-                        All user’s data will be kept private.</p>
+                    <p style="padding: 10px"><strong>Describe job and upload data.</strong> Prepare data in requirement
+                        format.
+                        All user's data will be kept private.
+                    </p>
                 </div>
                 <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/submit.png') }}">
-                    <p style="padding: 10px"><strong>Select machine learning method. </strong> <br>
-                        Popular methods are built-in.
+                    <p style="padding: 10px"><strong>Select a machine learning method.</strong>
+                        Several popular machine learning and statistical methods are built-in.
                     </p>
                 </div>
                 <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/processing.png') }}">
-                    <p style="padding: 10px"><strong>Automatically process in background. </strong> <br>
-                        When job is submitted or done, you will receive an email notification.
+                    <p style="padding: 10px"><strong>Automatically process in background. </strong> You don't need to
+                        care about the details. Our server will handle all the processing in background.
                     </p>
                 </div>
                 <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/finished.png') }}">
-                    <p style="padding: 10px"><strong>Check out results. </strong> <br>
-                        You can analysis results on result page and PDF report, or customize and rerun pipeline in
-                        docker.</p>
+                    <p style="padding: 10px"><strong>Check out results. </strong> <br> You can directly analyze results
+                        using interactive visualization on result page or download PDF report.</p>
                 </div>
                 <!--
                 <div class="col-xs-3" align="center">
@@ -80,24 +84,6 @@
                 -->
             </div>
         </div>
-        <!--
-        <hr>
-        <div style=" padding-bottom: 20px; ">
-            <h2 align="center" style="padding: 20px">Model Repository</h2>
-            <div class="row">
-                <div class="col-xs-4" align="center">
-                    <img width="40%" src="{{ url_for('static',filename='img/home/repository.png') }}">
-                </div>
-                <div class="col-xs-8">
-                    <p><strong>Trained models are stored, and they are convenient to share with others.</strong> Due to
-                        the challenges of replicating large models on large datasets, it is hard to achieve a good
-                        model following existing work. We will provide a model repository which is a set of unified
-                        containers with trained models. We will package the depending packages, configurations, model
-                        parameters, and training details in the container, which can be run on any operating system.</p>
-                </div>
-            </div>
-        </div>
-        -->
         <hr>
         <div style=" padding-bottom: 20px; ">
             <h2 align="center" style="padding: 20px">Interactive Visualization</h2>
@@ -112,10 +98,11 @@
                         intermediate results and final results, with options to zoom in and out for diverse views of the
                         data and results. </p>
                         -->
-                    <p>Visualizations are very useful tools to help understand the results. This web server provides
-                        many friendly interactive visualizations, like circle network, adjacent matrix and dynamic
-                        network. When you move mouse over one node, more detailed information and linked nodes will be
-                        high light. When you click one node, other visualizations will high light the same node.</p>
+                    <p><strong>Visualizations are very useful tools to help analyze epistatic relationship.</strong>
+                        EpiML provides friendly interactive visualizations, like circle network, adjacent matrix and
+                        force-directed graph. When you move mouse over one node, more detailed information and linked
+                        nodes will be high light.
+                    </p>
                 </div>
             </div>
         </div>
@@ -127,10 +114,10 @@
                     <img width="40%" src="{{ url_for('static',filename='img/home/integration.png') }}">
                 </div>
                 <div class="col-sm-8">
-                    <p><strong>Multiple external resources are integrated for analysis.</strong> Many external resources
-                        are embedded in results visualization. We also provide links to metadata of omics data and
-                        external resources, such as gene annotations and biological pathways, to help interpret the
-                        results. </p>
+                    <p><strong>Multiple external resources are integrated.</strong> UCSC genome browser links are
+                        provided for genetic data. miRBase and miR2Disease database are embedded for microRNA data.
+                        Multiple resources integration will significantly reduce user time for multi-step analysis.
+                    </p>
                 </div>
             </div>
         </div>
@@ -146,7 +133,8 @@
                         downloaded, modified and rerun, allowing users to fully customize their epistasis analysis on
                         local computers. To achieve this, we provide a pre-configured Docker container containing a
                         fully functional Jupyter server with all the Python and R libraries necessary to run the
-                        notebooks. </p>
+                        notebooks.
+                    </p>
                 </div>
             </div>
         </div>

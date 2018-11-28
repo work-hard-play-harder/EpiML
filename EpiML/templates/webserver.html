@@ -16,7 +16,7 @@
         /* Tooltip text */
         .question_tooltip .tooltiptext {
             visibility: hidden;
-            width: 120px;
+            width: 150px;
             background-color: #555;
             color: #fff;
             text-align: center;
@@ -72,11 +72,12 @@
     <div>
         <h2>Server</h2>
         <div>
-            <p>You can upload feature matrix X and label matrix Y, and submit your job in this page. A step-by-step
-                tutorial can be found in <a href="{{ url_for('help') }}"> Help</a>. When you submit the job, it will be
-                run in background. And an Email notification with processing link and security code will sent to you.
-                You can check the running status and get final report by the link. When your job is done, you will
-                receive another Email notification.
+            <p>Separately upload feature matrix X and label matrix Y, and submit job in this page. A
+                step-by-step tutorial can be found in <a href="{{ url_for('help') }}"> Help</a>. When you submit the
+                job, it will be run in background. If
+                you provide an Email address, an Email notification with result link will be sent to you. You can check
+                the running status and get final report by the link. When job is done, you will receive another Email
+                notification.
             </p>
         </div>
         <hr>
@@ -89,7 +90,7 @@
                     <label class="control-label col-sm-2" for="jobname">Job Name<span
                             style="color: red">*</span>:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">To identify your job</span>
+                            <span class="tooltiptext">To identify jobs when you retrieve results.</span>
                         </div>
                     </label>
                     <div class="col-sm-4">
@@ -100,7 +101,7 @@
                 <div class="form-group row">
                     <label class="control-label col-sm-2" for="email">Email:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">To accept notification and retrieve results</span>
+                            <span class="tooltiptext">To accept notification and retrieve results. It is optional. </span>
                         </div>
                     </label>
                     <div class="col-sm-4">
@@ -112,7 +113,7 @@
                     <label class="control-label col-sm-2 " for="jobcategory">Job Category <span
                             style="color: red">*</span>:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">Choose a category of job</span>
+                            <span class="tooltiptext">Refer to the kind of data. It’s used to integrated different resources in result visualization.</span>
                         </div>
                     </label>
                     <div class="col-sm-10">
@@ -138,7 +139,7 @@
                     <label class="control-label col-sm-2 " for="datatype"> Data Type <span
                             style="color: red">*</span>:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">Choose type of feature data</span>
+                            <span class="tooltiptext">For different data types, the feature matrix has different preprocess. </span>
                         </div>
                     </label>
                     <div class="col-sm-10">
@@ -153,7 +154,7 @@
                 <div class="form-group row">
                     <label class="control-label col-sm-2" for="description">Description:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">To help understand job details</span>
+                            <span class="tooltiptext">To help annotate job details, such as purpose, type of data, and parameters. It is optional. </span>
                         </div>
                     </label>
                     <div class="col-sm-10">
@@ -166,7 +167,7 @@
                     <label class="control-label col-sm-2" for="upload">Upload files<span
                             style="color: red">*</span>:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">Separately upload feature and label data for epistasis analysis</span>
+                            <span class="tooltiptext">Upload the feature matrix file and label matrix file separately.</span>
                         </div>
                     </label>
                     <div class="col-sm-10" id="upload" name="upload">
@@ -194,22 +195,34 @@
                     <label class="control-label col-sm-2" for="method">Select Method<span
                             style="color: red">*</span>:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">Select one method and set parameters for epistasis analysis</span>
+                            <span class="tooltiptext">Select one method and set parameters</span>
                         </div>
                     </label>
 
                     <div class="row" style="padding: 15px">
                         <div class=" col-sm-2">
                             <input type="radio" id="EBEN" name="method" value="EBEN">
-                            <label for="EBEN">EBEN</label>
+                            <label for="EBEN">EBEN
+                                <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                                    <span class="tooltiptext">Empirical Bayesian Elastic Net</span>
+                                </div>
+                            </label>
                         </div>
                         <div class=" col-sm-2">
                             <input type="radio" id="LASSO" name="method" value="LASSO" checked>
-                            <label for="LASSO">LASSO</label>
+                            <label for="LASSO">LASSO
+                                <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                                    <span class="tooltiptext">Least Absolute Shrinkage and Selection Operator</span>
+                                </div>
+                            </label>
                         </div>
                         <div class=" col-sm-2">
                             <input type="radio" id="ssLASSO" name="method" value="ssLASSO">
-                            <label for="ssLASSO">ssLASSO</label>
+                            <label for="ssLASSO">ssLASSO
+                                <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                                    <span class="tooltiptext">Spike-and-Slab LASSO</span>
+                                </div>
+                            </label>
                         </div>
                     </div>
                     <!--
@@ -229,6 +242,7 @@
                                name="fold_number" maxlength="2" value="5">
                     </div>
                 </div>
+                <!---
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-4 form-inline">
                         <input type="checkbox" id="ss" name="ss" CHECKED
@@ -238,6 +252,7 @@
                                name="seed_number">
                     </div>
                 </div>
+                -->
                 <hr>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">

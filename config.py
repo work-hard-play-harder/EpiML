@@ -20,7 +20,6 @@ class Config(object):
 
     # scripts dir
     SCRIPTS_DIR=os.path.join(basedir, 'EpiML', 'scripts')
-
     # for run scripts
     EBEN_SCRIPT = os.path.join(SCRIPTS_DIR, 'EBEN.R')
     LASSO_SCRIPT = os.path.join(SCRIPTS_DIR, 'LASSO.R')

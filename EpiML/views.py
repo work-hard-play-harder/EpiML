@@ -87,7 +87,7 @@ def webserver():
         job.celery_id = celery_task.id
         db.session.add(job)
 
-        params_str = ';'.join([key + '=' + value for key, value in params.items()])
+        params_str = ';'.join([key + '=' + str(value) for key, value in params.items()])
         model = Model(algorithm=method, parameters=params_str, is_shared=True, job_id=job.id)
         db.session.add(model)
         db.session.commit()
