@@ -4,13 +4,13 @@ from datetime import datetime, timezone
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 
-
 from EpiML import app, db
 
 
 class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
+    user_email = db.Column(db.String(128))
     category = db.Column(db.String(64))
     type = db.Column(db.String(64))
     timestamp = db.Column(db.DateTime, default=datetime.now(timezone.utc))
@@ -21,7 +21,7 @@ class Job(db.Model):
     feature_file = db.Column(db.String(32))
     label_file = db.Column(db.String(32))
     celery_id = db.Column(db.String(64))
-    security_code=db.Column(db.String(48))
+    security_code = db.Column(db.String(48))
 
     models = db.relationship('Model', backref='job', lazy='dynamic')
 

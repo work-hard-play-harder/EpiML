@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 
 from EpiML import app, db, celery
 from EpiML.db_tables import Job
+from EpiML.email import send_job_done_email, send_job_error_email
 
 
 def create_job_folder(upload_folder='', jobid=None, security_code=None):
@@ -79,4 +80,10 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename=''):
     job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
     db.session.add(job)
     db.session.commit()
+
+    # if job.status == 'Done':
+    #     send_job_done_email([job.user_email],job.name, jobid=job.id, security_code=job.security_code)
+    # elif job.status=='Error':
+    #     send_job_error_email([job.user_email],job.name, jobid=job.id, security_code=job.security_code)
+
     print('Background Done!')

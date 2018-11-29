@@ -22,6 +22,8 @@ from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_n
 @app.route('/')
 @app.route('/index')
 def index():
+    print(request.url_root)
+    print(request.headers['Host'])
     return render_template('index.html')
 
 
@@ -69,7 +71,7 @@ def webserver():
         security_code = security_code_generator()
 
         # add job into Job database
-        job = Job(name=jobname, category=jobcategory, type='Train', description=description,
+        job = Job(name=jobname, user_email=email, category=jobcategory, type='Train', description=description,
                   selected_algorithm=method, status='Queuing', feature_file=x_filename, label_file=y_filename,
                   security_code=security_code)
         db.session.add(job)
@@ -94,7 +96,7 @@ def webserver():
 
         # send result link and security code via email
         if email != '':
-            send_submit_job_email([email], jobid=job.id, security_code=security_code)
+            send_submit_job_email([email],jobname, jobid=job.id, security_code=security_code)
 
         return redirect(url_for('processing', jobid=job.id, security_code=security_code))
 
@@ -117,7 +119,8 @@ def processing(jobid, security_code):
     elif job.status == 'Error':
         return redirect(url_for('error', jobid=job.id, security_code=security_code))
     else:
-        return render_template('processing.html', jobid=job.id, jobstatus=job.status, security_code=security_code)
+        return render_template('processing.html', host_domain=request.headers['Host'], jobid=job.id, jobstatus=job.status,
+                               security_code=security_code)
 
 
 @app.route('/result/<jobid>_<security_code>')

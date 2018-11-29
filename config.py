@@ -9,6 +9,12 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'database.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # developed ROOT URL
+    # for local running, add a line in /etc/hosts
+    # 127.0.0.1     shilab-apps-d/EpiML/
+    #SERVER_NAME = os.environ.get('SERVER_NAME') or 'shilab-dev.uncc.edu:5000'
+    #APPLICATION_ROOT = os.environ.get('EpiML_APP_ROOT') or '/EpiML'
+
     # for upload file
     UPLOAD_FOLDER = os.path.join(basedir, 'EpiML', 'upload_data')
     ALLOWED_EXTENSIONS = set(['txt', 'csv'])
@@ -19,7 +25,7 @@ class Config(object):
     MIR2BASE_DIR = os.path.join(basedir, 'EpiML', 'datasets', 'miRBase')
 
     # scripts dir
-    SCRIPTS_DIR=os.path.join(basedir, 'EpiML', 'scripts')
+    SCRIPTS_DIR = os.path.join(basedir, 'EpiML', 'scripts')
     # for run scripts
     EBEN_SCRIPT = os.path.join(SCRIPTS_DIR, 'EBEN.R')
     LASSO_SCRIPT = os.path.join(SCRIPTS_DIR, 'LASSO.R')
