@@ -94,7 +94,7 @@ def webserver():
 
         # send result link and security code via email
         if email != '':
-            send_submit_job_email([email],jobname, jobid=job.id, security_code=security_code)
+            send_submit_job_email([email], jobname=jobname, jobid=job.id, security_code=security_code)
 
         return redirect(url_for('processing', jobid=job.id, security_code=security_code))
 
@@ -105,7 +105,7 @@ def webserver():
 def processing(jobid, security_code):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
-    print(security_code)
+    # print(security_code)
     if job.status == 'Done':
         jobcategory = job.category.split('(')[0]  # delete species
         if jobcategory == 'Gene':
@@ -117,7 +117,8 @@ def processing(jobid, security_code):
     elif job.status == 'Error':
         return redirect(url_for('error', jobid=job.id, security_code=security_code))
     else:
-        return render_template('processing.html', host_domain=request.headers['Host'], jobid=job.id, jobstatus=job.status,
+        return render_template('processing.html', host_domain=request.headers['Host'], jobid=job.id,
+                               jobstatus=job.status,
                                security_code=security_code)
 
 

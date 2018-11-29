@@ -38,8 +38,8 @@ def send_submit_job_email(recipients, jobname, jobid, security_code):
     mail.send(msg)
 
 
-@celery.task()
-def send_job_done_email(recipients, jobname, jobid, security_code):
+@celery.task(bind=True)
+def send_job_done_email(self,recipients, jobname, jobid, security_code):
     subject = 'Job done | EpiML@ShiLab'
     sender = app.config['MAIL_USERNAME']
 
