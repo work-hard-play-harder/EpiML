@@ -105,7 +105,7 @@ def webserver():
 def processing(jobid, security_code):
     job = Job.query.filter_by(id=jobid).first_or_404()
     print('job.status', job.status)
-    # print(security_code)
+    print(security_code)
     if job.status == 'Done':
         jobcategory = job.category.split('(')[0]  # delete species
         if jobcategory == 'Gene':
