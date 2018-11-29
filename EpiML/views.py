@@ -22,8 +22,6 @@ from EpiML.generate_r_notebook import generate_EBEN_notebook, generate_ssLASSO_n
 @app.route('/')
 @app.route('/index')
 def index():
-    print(request.url_root)
-    print(request.headers['Host'])
     return render_template('index.html')
 
 
@@ -46,11 +44,11 @@ def webserver():
         if request.form.get('cv') == 'on':
             params['fold_number'] = request.form['fold_number']
         else:
-            params['fold_number'] = 5
+            params['fold_number'] = str(5)
         if request.form.get('ss') == 'on':
             params['seed_number'] = request.form['seed_number']
         else:
-            params['seed_number'] = random.randint(0, 28213)
+            params['seed_number'] = str(random.randint(0, 28213))
         params['datatype'] = datatype
 
         print(jobname, email, jobcategory, params['datatype'], description, input_x, input_y, method,

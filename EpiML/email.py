@@ -39,7 +39,7 @@ def send_submit_job_email(recipients, jobname, jobid, security_code):
 
 
 @celery.task()
-def send_job_done_email(self,recipients, jobname, jobid, security_code):
+def send_job_done_email(recipients, jobname, jobid, security_code):
     subject = 'Job done | EpiML@ShiLab'
     sender = app.config['MAIL_USERNAME']
 
@@ -56,7 +56,7 @@ def send_job_done_email(self,recipients, jobname, jobid, security_code):
 
 
 @celery.task()
-def send_job_error_email(self,recipients, jobname, jobid, security_code):
+def send_job_error_email(recipients, jobname, jobid, security_code):
     subject = 'Job error | EpiML@ShiLab'
     sender = app.config['MAIL_USERNAME']
 

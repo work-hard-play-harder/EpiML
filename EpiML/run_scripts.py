@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 
 from EpiML import app, db, celery
 from EpiML.db_tables import Job
-from EpiML.email import send_job_done_email, send_job_error_email
+
 
 
 def create_job_folder(upload_folder='', jobid=None, security_code=None):
@@ -44,7 +44,8 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename=''):
                                 params['datatype'], params['fold_number'], params['seed_number']],
                                stdout=EBEN_stdout, stderr=EBEN_stderr)
                 job.status = 'Done'
-        except:
+        except Exception as ex:
+            print(ex)
             job.status = 'Error'
 
     if method == 'LASSO':
@@ -56,7 +57,8 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename=''):
                                 params['datatype'], params['fold_number'], params['seed_number']],
                                stdout=LASSO_stdout, stderr=LASSO_stderr)
                 job.status = 'Done'
-        except:
+        except Exception as ex:
+            print(ex)
             job.status = 'Error'
 
     if method == 'ssLASSO':
@@ -68,7 +70,8 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename=''):
                                 params['datatype'], params['fold_number'], params['seed_number']],
                                stdout=SSLASSO_stdout, stderr=SSLASSO_stderr)
                 job.status = 'Done'
-        except:
+        except Exception as ex:
+            print(ex)
             job.status = 'Error'
 
     # check results
@@ -81,9 +84,5 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename=''):
     db.session.add(job)
     db.session.commit()
 
-    # if job.status == 'Done':
-    #     send_job_done_email([job.user_email],job.name, jobid=job.id, security_code=job.security_code)
-    # elif job.status=='Error':
-    #     send_job_error_email([job.user_email],job.name, jobid=job.id, security_code=job.security_code)
 
     print('Background Done!')
