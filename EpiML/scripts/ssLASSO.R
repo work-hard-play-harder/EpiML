@@ -67,7 +67,7 @@ x_preprocessed <- NULL
 y_preprocessed <- NULL
 # for x preprocess
 cat('Filter data with missing data', '\n')
-x_filtered <- t(na.omit(t(x)))
+x_filtered <- t(na.omit(t(x[,1:200])))
 if (datatype == 'discrete') {
   # discrete data is categorical, no normlization
   x_preprocessed <- x_filtered
