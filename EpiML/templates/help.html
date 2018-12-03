@@ -31,6 +31,10 @@
     {{ super() }}
     <script src='{{ url_for('static', filename='js/offset_height_for_help_nav.js') }}'></script>
     <script src='{{ url_for('static', filename='js/back_to_top.js') }}'></script>
+
+    <!--for math equation -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+            async></script>
 {% endblock %}
 
 {% block content %}
@@ -74,6 +78,7 @@
                 </ol>
             </li>
             <li class="mlutilLevel"><a href="#FAQ">FAQ</a></li>
+            <li class="mlutilLevel"><a href="#reference">Reference</a></li>
         </ol>
     </div>
     <hr>
@@ -377,8 +382,6 @@
                     Jupyter. Once you are done, stop the Docker container by pressing <code>Ctrl+C</code> on the
                     previously opened
                     Terminal window.</p>
-
-
             </section>
             <hr>
             <section class="anchor" id="machine_learning_methods">
@@ -389,11 +392,24 @@
                     understand difference among build-in machine learning methods for epistatic analysis, they are
                     briefly introduced:
                 </p>
+                <p>The statistical model for identifying epistasis is shown as below:</p>
+                <p> $$y= \mu + \Sigma X_p \beta_m + \Sigma X_i X_j \beta_e + \epsilon $$</p>
+                <p>where \(y\) is the phenotype, \(\mu\) is mean, \(X_p\) denotes the \(p^{th}\) feature in the genotype
+                    matrix \(X\) which dimension is \(N \times P\) and \(X_i X_j\) denotes the \(i^{th}\) and \(j^{th}\)
+                    features in the genotype matrix
+                    \(X\). \(m\) denotes the marginal effects of \(X_p\), \(e\) denotes the epistatic effects of the
+                    combination of \(X_i X_j\),
+                    and \(\epsilon\) is the residual error which follows the normal distribution \(N(0,\sigma^2)\).
+                </p>
+                <p>We mainly implement three methods to our web server to solve the above statistical model including
+                    Empirical Bayesian Elastic Net (EBEN) [1], Least Absolute Shrinkage and Selection Operator (LASSO)
+                    [2] and Spike-and-Slab LASSO generalized linear models (ssLASSO GLMs) [3, 4]. All these methods can
+                    be applied in the Step 1, Step 3 and Step 4 of our pipeline (Figure 11).
+                </p>
                 <h4 class="anchor" id="preprocessing">5.1. Preprocessing</h4>
 
                 <h4 class="anchor" id="pipeline">5.2. Pipeline</h4>
-                <p><strong>Step 1:</strong> Run the simplified model
-                    including
+                <p><strong>Step 1:</strong> Run the simplified model including
                     solely main effect, which means only the significant features from this step are included in
                     the main effect part of the model at the final step. <strong>Step 2:</strong> Obtain the
                     corrected phenotype y' through removing main effect of significant features from the
@@ -417,20 +433,93 @@
                 </div>
 
                 <h4 class="anchor" id="method">5.3. Methods</h4>
+                <p>Lasso is based on sparse shrinkage solution where only a limited number of parameters with non-zero
+                    coefficients are identified to be associated with the phenotype. EBEN and ssLasso GLMs are Bayesian
+                    based methods that impose priors on the parameters.
+                </p>
+
                 <h4>Empirical Bayesian Elastic Net (EBEN)</h4>
-                <p></p>
+                <p>EBEN is a Bayesian based method which use a fast coordinate ascent method and doesn’t reply on MCMC
+                    procedure. Hence, EBEN can scalable the over-saturated genetic model to estimate the parameters in
+                    the model efficiently. In addition, EBEN can conduct the hypothesis test such as \(t\)-test using
+                    the
+                    covariance matrix and the coefficients which is different from elastic net method [5]. There are two
+                    hyperparameters, such as \(\lambda_1\) and \(\lambda_2\), are the components of a generalized Gamma
+                    distribution which
+                    imposes on the unknown variance of each coefficients. Cross-validation strategy is used to tune
+                    these two hyperparameters to optimize the EBEN model [1].
+                </p>
+
                 <h4>Least Absolute Shrinkage and Selection Operator (LASSO)</h4>
-                <p></p>
+                <p>Lasso is one of the most commonly used method which introduces a \(L_1\) regularization term that
+                    adds a
+                    penalty term equivalent to absolute value of coefficients on all parameters. Lasso will randomly
+                    select one feature if a set of features are closely correlated. There is one hyperparameter
+                    \(\lambda\) to
+                    adjust the regularization degree which means it would induce more coefficients are shinked to zero
+                    if increasing \(\lambda\). Therefore, cross validation strategy is used to choose the \(\lambda\) to
+                    optimize the Lasso
+                    model [2].
+                </p>
+
                 <h4>Spike-and-Slab LASSO (ssLASSO)</h4>
-                <p></p>
+                <p>ssLasso GLMs imposes different shrinkage priors, spike-and-slab mixture double-exponential prior
+                    distribution, on related and unrelated parameters which can induce optimal model solutions. For the
+                    ssLasso-GLM models, \(y\) in the above statistical model is represented by a link function that
+                    \(\eta = E(y_i|X_i)\). ssLasso GLMs combines the EM algorithm and cyclic coordinate descent
+                    algorithm
+                    to fastly
+                    fit high-dimension data. There are two hyperparameters (\(s_0\) and \(s_1\)) in ssLasso algorithm.
+                    The \(s_0\) is a
+                    small value and serves as a “spike” scale for modelling irrelevant coefficients and inducing strong
+                    shrinkage, while \(s_1\) is chosen to be relatively large value and serves to be “slab” scale for
+                    modelling related coefficients and inducing no or weak shrinkage. The grid-search based method can
+                    be applied to select the optimal combination of two hyperparameters. In an alternative way, it’s
+                    reported that \(s_1\) has little influence on results comparing to \(s_0\), then users can use generalized
+                    linear model (GLM) to estimate the data scale to be as \(s_0\) [3, 4].
+                </p>
             </section>
-             <hr>
+            <hr>
             <section class="anchor" id="FAQ">
                 <h3>6. FAQ</h3>
                 <p>For any question about this service please email <a
                         href="mailto:an_example@gmail.com">an_example@gmail.com</a>
                 </p>
             </section>
+            <section class="anchor" id="reference">
+                <h3>7. Reference</h3>
+
+                <ol>
+                    <li style="display: list-item">
+                        Huang A., Xu S., Cai X. Empirical Bayesian elastic net for multiple quantitative trait locus
+                        mapping. Heredity. 2015; 114(1):107.
+                    </li>
+
+                    <li style="display: list-item">
+                        Tibshirani R. Regression shrinkage and selection via the lasso. Journal of the Royal Statistical
+                        Society. Series B (Methodological). 1996; 1:267-88.
+                    </li>
+                    <li style="display: list-item">
+                        Tang Z., Shen Y., Zhang X., Yi N. The spike-and-slab lasso generalized linear models for
+                        prediction and associated genes detection. Genetics. 2017; 205(1):77-88.
+                    </li>
+                    <li style="display: list-item">
+                        Tang Z., Shen Y., Li Y., Zhang X., Wen J., Qian C.A., Zhuang W., Shi X., Yi N. Group
+                        spike-and-slab lasso generalized linear models for disease prediction and associated genes
+                        detection by incorporating pathway information. Bioinformatics. 2017; 34(6):901-10.
+                    </li>
+                    <li style="display: list-item">
+                        Zou H., Hastie T. Regularization and variable selection via the elastic net. Journal of the
+                        Royal Statistical Society: Series B (Statistical Methodology). 2005; 67(2):301-20.
+
+                    </li>
+
+
+                </ol>
+
+            </section>
+
+
         </main>
     </div>
 {% endblock %}
