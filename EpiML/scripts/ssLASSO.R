@@ -77,6 +77,7 @@ if (datatype == 'discrete') {
 }
 # for y preprocess
 y_preprocessed <- scale(y)
+rm(x, y, x_filtered)
 
 cat('Main effect estimated', '\n')
 blup_main <- bmlasso(
@@ -89,11 +90,11 @@ blup_main <- bmlasso(
 )
 main_coef <- blup_main$beta
 sig_main <- main_coef[which(main_coef != 0),1,drop=F]
+rm(blup_main)
 
 cat('Subtract the main effect', '\n')
 index_main <- rownames(sig_main)
 subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% matrix(sig_main) 
-# Does subtracted_y need to be scaled?
 subtracted_y <- scale(subtracted_y)
 
 cat('Epistatic effect estimated', '\n')
@@ -108,7 +109,7 @@ for(k in 1:(ncol(x_preprocessed)-1)){
                               colnames(x_preprocessed)[(k + 1):ncol(x_preprocessed)], 
                               sep = "*")
   
-  epi_matrix <- cbind(epi_matrix,pairwise)
+  epi_matrix <- cbind(epi_matrix, pairwise)
 }
 if (datatype == 'continuous') {
   epi_matrix <- quantile_normalisation(epi_matrix)
@@ -124,6 +125,7 @@ blup_epi <- bmlasso(
 )
 epi_coef <- blup_epi$beta
 sig_epi <- epi_coef[which(epi_coef != 0),1,drop=F]
+rm(blup_epi)
 
 cat('Final run', '\n')
 # construct new matrix from significant main and epistatic variants
