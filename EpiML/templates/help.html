@@ -72,8 +72,8 @@
             </li>
             <li class="mlutilLevel"><a href="#machine_learning_methods">Machine Learning Methods</a>
                 <ol>
-                    <li class="mlutilLevel"><a href="#preprocessing"> Preprocessing</a></li>
-                    <li class="mlutilLevel"><a href="#pipeline"> Pipline</a></li>
+                    <!--<li class="mlutilLevel"><a href="#preprocessing"> Preprocessing</a></li>-->
+                    <li class="mlutilLevel"><a href="#pipeline"> Workflow</a></li>
                     <li class="mlutilLevel"><a href="#method"> Methods</a></li>
                 </ol>
             </li>
@@ -388,9 +388,8 @@
                 <h3>5. Machine Learning Methods</h3>
                 <p>We build-in several machine learning methods for epistatic analysis. In general, you only need to
                     upload your data, select one machine learning method, and then submit your job. You don't need to
-                    care about the algorithm detail. Our server will handel all the procedure in backend. For you better
-                    understand difference among build-in machine learning methods for epistatic analysis, they are
-                    briefly introduced:
+                    care about the algorithm detail. Our server will handle all the procedure in backend. For you better
+                    understand the workflow and difference among build-in methods, they are briefly introduced.
                 </p>
                 <p>The statistical model for identifying epistasis is shown as below:</p>
                 <p> $$y= \mu + \Sigma X_p \beta_m + \Sigma X_i X_j \beta_e + \epsilon $$</p>
@@ -401,38 +400,47 @@
                     combination of \(X_i X_j\),
                     and \(\epsilon\) is the residual error which follows the normal distribution \(N(0,\sigma^2)\).
                 </p>
-                <p>We mainly implement three methods to our web server to solve the above statistical model including
-                    Empirical Bayesian Elastic Net (EBEN) [1], Least Absolute Shrinkage and Selection Operator (LASSO)
-                    [2] and Spike-and-Slab LASSO generalized linear models (ssLASSO GLMs) [3, 4]. All these methods can
-                    be applied in the Step 1, Step 3 and Step 4 of our pipeline (Figure 11).
-                </p>
-                <h4 class="anchor" id="preprocessing">5.1. Preprocessing</h4>
 
-                <h4 class="anchor" id="pipeline">5.2. Pipeline</h4>
-                <p><strong>Step 1:</strong> Run the simplified model including
-                    solely main effect, which means only the significant features from this step are included in
-                    the main effect part of the model at the final step. <strong>Step 2:</strong> Obtain the
-                    corrected phenotype y' through removing main effect of significant features from the
-                    original phenotype y, <strong>Step 3:</strong> The newly corrected y' is used to infer
-                    epistasis. Only the features with significant epistatic effect can be included in the model
-                    in the next step. <strong>Step 4:</strong> Run the full model that includes all the features
-                    with significant features with main effects from the first step and significant features
-                    with epistatic effect identified in third step. Here, y denotes the trait phenotype, X
-                    represents the expression, <i>β<sub>m</sub></i> and <i>β<sub>e</sub></i> represents for the
-                    main effect and epistatic effect separately, <i>μ</i> represents for the phenotype mean and
-                    <i>e</i> represents for the standard error. Many machine learning methods like LASSO and
-                    EBEN can be used as the parameter estimation method in Steps 1, 3 and 4.</p>
+                <!--<h4 class="anchor" id="preprocessing">5.1. Preprocessing</h4>-->
+
+                <h4 class="anchor" id="pipeline">5.1. Workflow</h4>
+                <p>We develop a workflow composed of multiple steps for feature selection based methods. First, we
+                    identify the main effects using a model with only main effect on the phenotype. Second, a corrected
+                    phenotype is calculated by removing the significant main effect from the original phenotype. Third,
+                    we select features with epistatic effect on the corrected phenotype. Finally, we run the full model
+                    with main and epistatic effects on the previously selected main and epistatic features.
+                </p>
+                <p>We implement three feature selection based methods in our web server to build the above workflow
+                    including Empirical Bayesian Elastic Net (EBEN) [1], Least Absolute Shrinkage and Selection Operator
+                    (LASSO) [2] and Spike-and-Slab LASSO generalized linear models (ssLASSO GLMs) [3, 4]. All these
+                    methods can be applied in Step 1, 3 and 4 in Figure 2. </p>
+                <p></p>
                 <div align="center">
                     <figure style="margin-bottom: 10px">
                         <img width="30%" src="{{ url_for('static',filename='img/help/workflow1.jpg') }}">
-                        <figcaption width="90%" style="text-align: center"><strong>Figure 11. The overall workflow based
-                            on
-                            removing main effect.</strong>
+                        <figcaption width="90%" style="text-align: justify"><strong>Figure 11. The overall workflow
+                            based
+                            on removing main effect.</strong> <strong>Step 1:</strong> Run the simplified model
+                            including solely main effect, which means only the significant features from this step are
+                            included in the main effect part of the model at the final step. <strong>Step 2:</strong>
+                            Obtain the corrected phenotype \(y'\) through removing main effect of significant features
+                            from
+                            the original phenotype \(y\), <strong>Step 3:</strong> The newly corrected \(y'\) is used to
+                            infer
+                            epistasis. Only the features with significant epistatic effect can be included in the model
+                            in the next step. <strong>Step 4:</strong> Run the full model that includes all the features
+                            with significant features with main effects from the first step and significant features
+                            with epistatic effect identified in third step. Here, \(y\) denotes the trait phenotype,
+                            \(X\)
+                            represents the expression, \(\beta_m\) and \(\beta_e\) represents for the
+                            main effect and epistatic effect separately, \(\mu\) represents for the phenotype mean and
+                            \(e\) represents for the standard error. Many machine learning methods like LASSO and
+                            EBEN can be used as the parameter estimation method in Steps 1, 3 and 4.
                         </figcaption>
                     </figure>
                 </div>
 
-                <h4 class="anchor" id="method">5.3. Methods</h4>
+                <h4 class="anchor" id="method">5.2. Methods</h4>
                 <p>Lasso is based on sparse shrinkage solution where only a limited number of parameters with non-zero
                     coefficients are identified to be associated with the phenotype. EBEN and ssLasso GLMs are Bayesian
                     based methods that impose priors on the parameters.
@@ -475,7 +483,8 @@
                     shrinkage, while \(s_1\) is chosen to be relatively large value and serves to be “slab” scale for
                     modelling related coefficients and inducing no or weak shrinkage. The grid-search based method can
                     be applied to select the optimal combination of two hyperparameters. In an alternative way, it’s
-                    reported that \(s_1\) has little influence on results comparing to \(s_0\), then users can use generalized
+                    reported that \(s_1\) has little influence on results comparing to \(s_0\), then users can use
+                    generalized
                     linear model (GLM) to estimate the data scale to be as \(s_0\) [3, 4].
                 </p>
             </section>
