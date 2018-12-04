@@ -312,8 +312,8 @@ def download_r_notebook(jobid, security_code, method):
                              attachment_filename=filename)
         except Exception as e:
             return str(e)
-    if method == 'Lasso':
-        filename = 'Lasso_r_notebook.ipynb'
+    if method == 'LASSO':
+        filename = 'LASSO_r_notebook.ipynb'
         try:
             return send_file(os.path.join(job_dir, filename), attachment_filename=filename)
         except Exception as e:
