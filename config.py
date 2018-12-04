@@ -32,6 +32,13 @@ class Config(object):
     SSLASSO_SCRIPT = os.path.join(SCRIPTS_DIR, 'ssLASSO.R')
 
     # for mail
+    # MAIL_SERVER = 'localhost'
+    # MAIL_PORT = 25
+    # MAIL_USE_TLS = False
+    # MAIL_USE_SSL = False
+    # MAIL_USERNAME = 'sender@example.com'
+    # MAIL_PASSWORD = None
+
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
     MAIL_USE_TLS = False
