@@ -13,7 +13,7 @@ quantile_normalisation <- function(df){
   return(df_final)
 }
 
-workspace <- '~/Desktop/samples/'
+# workspace <- '~/Desktop/samples/'
 x_filename <- 'yeast_Geno.txt'
 y_filename <- 'yeast_Pheno.txt'
 datatype <- 'discrete'  # discrete or continuous
@@ -120,68 +120,64 @@ for (i in 1:nrow(full_id)) {
     full_matrix <- cbind(full_matrix, col)
   }
 }
-if (datatype == 'continuous') {
-  full_matrix <- quantile_normalisation(full_matrix)
-}
-
-cv_full = EBelasticNet.GaussianCV(full_matrix, y_preprocessed, nFolds = nFolds, Epis = "no")
-blup_full = EBelasticNet.Gaussian(
-  full_matrix,
-  y_preprocessed,
-  lambda =  cv_full$Lambda_optimal,
-  alpha = cv_full$Alpha_optimal,
-  Epis = "no",
-  verbose = 0
-)
-full = as.matrix(blup_full$weight)
-sig_full = full[which(full[, 6] <= pvalue),, drop = F]
-sig_full[, 1:2] <- full_id[sig_full[, 1], 1:2]
-
-main_result <- NULL
-epsi_result <- NULL
-for (i in 1:nrow(sig_full)) {
-  if (sig_full[i, 1] == sig_full[i, 2]) {
-    main_result <- rbind(main_result, c(colnames(x_preprocessed)[sig_full[i, 1]], sig_full[i, 3:6]))
+if (ncol(full_matrix)==0){
+  # for not significant effect
+  output_main <- matrix("NA", 0, 5)
+  colnames(output_main) <- c('feature', 'coefficent', 'posterior variance', 't-value', 'p-value')
+  output_epi <- matrix("NA", 0, 6)
+  colnames(output_epi) <- c('feature1', 'feature2', 'coefficent', 'posterior variance', 't-value', 'p-value')
+}else{
+  if (datatype == 'continuous') {
+    full_matrix <- quantile_normalisation(full_matrix)
   }
-  if (sig_full[i, 1] != sig_full[i, 2]) {
-    epsi_result <-
-      rbind(epsi_result, c(
-        colnames(x_preprocessed)[sig_full[i, 1]],
-        colnames(x_preprocessed)[sig_full[i, 2]],
-        sig_full[i, 3:6]
-      ))
+  #regression
+  cv_full = EBelasticNet.GaussianCV(full_matrix, y_preprocessed, nFolds = nFolds, Epis = "no")
+  blup_full = EBelasticNet.Gaussian(
+    full_matrix,
+    y_preprocessed,
+    lambda =  cv_full$Lambda_optimal,
+    alpha = cv_full$Alpha_optimal,
+    Epis = "no",
+    verbose = 0
+  )
+  full = as.matrix(blup_full$weight)
+  sig_full = full[which(full[, 6] <= pvalue),, drop = F]
+  sig_full[, 1:2] <- full_id[sig_full[, 1], 1:2]
+  
+  output_main <- NULL
+  output_epi <- NULL
+  for (i in 1:nrow(sig_full)) {
+    if (sig_full[i, 1] == sig_full[i, 2]) {
+      output_main <- rbind(output_main, c(colnames(x_preprocessed)[sig_full[i, 1]], sig_full[i, 3:6]))
+    }
+    if (sig_full[i, 1] != sig_full[i, 2]) {
+      output_epi <-
+        rbind(output_epi, c(
+          colnames(x_preprocessed)[sig_full[i, 1]],
+          colnames(x_preprocessed)[sig_full[i, 2]],
+          sig_full[i, 3:6]
+        ))
+    }
   }
+  colnames(output_main) <- c('feature', 'coefficent', 'posterior variance', 't-value', 'p-value')
+  colnames(output_epi) <- c('feature1', 'feature2', 'coefficent', 'posterior variance', 't-value', 'p-value')
 }
-
 cat('Ouput the final result', '\n')
 write.table(
-  main_result,
-  file = file.path(workspace, 'main_result.txt'),
+  output_main,
+  file = file.path(workspace, 'output_main.txt'),
   quote = F,
   sep = '\t',
-  row.names = F,
-  col.names = c(
-    'feature',
-    'coefficent',
-    'posterior variance',
-    't-value',
-    'p-value'
-  )
+  col.names = T,
+  row.names = F
 )
 write.table(
-  epsi_result,
+  output_epi,
   file = file.path(workspace, 'epis_result.txt'),
   quote = F,
   sep = '\t',
-  row.names = F,
-  col.names = c(
-    'feature1',
-    'feature2',
-    'coefficent',
-    'posterior variance',
-    't-value',
-    'p-value'
-  )
+  col.names = T,
+  row.names = F
 )
 
 cat('Done!')

@@ -130,35 +130,43 @@ rm(blup_epi)
 cat('Final run', '\n')
 # construct new matrix from significant main and epistatic variants
 full_matrix <- cbind(x_preprocessed[, rownames(sig_main)],epi_matrix[,rownames(sig_epi)])
-if (datatype == 'continuous') {
-  full_matrix <- quantile_normalisation(full_matrix)
+if (ncol(full_matrix)==0){
+  # for not significant effect
+  output_main <- matrix("NA", 0, 2)
+  colnames(output_main) <- c("feature", "coefficent")
+  output_epi <- matrix("NA", 0, 3)
+  colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+}else{
+  if (datatype == 'continuous') {
+    full_matrix <- quantile_normalisation(full_matrix)
+  }
+  # regression 
+  blup_full <- bmlasso(
+      full_matrix,
+      y_preprocessed,
+      family = "gaussian",
+      prior = "mde",
+      ss = c(s0, s1),
+      verbose = TRUE
+    )
+  full_coef <- matrix(blup_full$beta,ncol=1)
+  rownames(full_coef) <- c(rownames(sig_main), rownames(sig_epi))
+  sig_full <- full_coef[which(full_coef != 0),1,drop=F]
+  
+  # generate main results
+  main_index <- setdiff(1:nrow(sig_full), grep("\\*", rownames(sig_full)))
+  output_main <- matrix("NA", length(main_index), 2)
+  output_main[, 1] <- rownames(sig_full)[main_index]
+  output_main[, 2] <- sig_full[main_index, 1]
+  colnames(output_main) <- c("feature", "coefficent")
+  # generate epistatic results
+  epi_index <- grep("\\*", rownames(sig_full))
+  output_epi <- matrix("NA", length(epi_index), 3)
+  epi_ID <- rownames(sig_full)[epi_index]
+  output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2)
+  output_epi[, 3] <- sig_full[epi_index, 1]
+  colnames(output_epi) <- c("feature1", "feature2", "coefficent")
 }
-# regression 
-blup_full <- bmlasso(
-    full_matrix,
-    y_preprocessed,
-    family = "gaussian",
-    prior = "mde",
-    ss = c(s0, s1),
-    verbose = TRUE
-  )
-full_coef <- matrix(blup_full$beta,ncol=1)
-rownames(full_coef) <- c(rownames(sig_main), rownames(sig_epi))
-sig_full <- full_coef[which(full_coef != 0),1,drop=F]
-
-# generate main results
-main_index <- setdiff(1:nrow(sig_full), grep("\\*", rownames(sig_full)))
-output_main <- matrix("NA", length(main_index), 2)
-output_main[, 1] <- rownames(sig_full)[main_index]
-output_main[, 2] <- sig_full[main_index, 1]
-colnames(output_main) <- c("feature", "coefficent")
-# generate epistatic results
-epi_index <- grep("\\*", rownames(sig_full))
-output_epi <- matrix("NA", length(epi_index), 3)
-epi_ID <- rownames(sig_full)[epi_index]
-output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2)
-output_epi[, 3] <- sig_full[epi_index, 1]
-colnames(output_epi) <- c("feature1", "feature2", "coefficent")
 
 cat('Write results', '\n')
 write.table(
