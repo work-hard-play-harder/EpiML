@@ -135,8 +135,20 @@
                         </label>
                     </div>
                 </div>
+
                 <div class="form-group row">
-                    <label class="control-label col-sm-2 " for="datatype"> Data Type <span
+                    <label class="control-label col-sm-2" for="description">Description:
+                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                            <span class="tooltiptext">To help annotate job details, such as purpose, type of data, and parameters. It is optional. </span>
+                        </div>
+                    </label>
+                    <div class="col-sm-10">
+                            <textarea style="height: 100px" class="form-control" name="description" id="description"
+                                      placeholder="Describe your data, method and parameters"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2 " for="datatype"> Data Type of Feature Matrix <span
                             style="color: red">*</span>:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
                             <span class="tooltiptext">For different data types, the feature matrix has different preprocess. </span>
@@ -151,18 +163,6 @@
                         </label>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="control-label col-sm-2" for="description">Description:
-                        <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">To help annotate job details, such as purpose, type of data, and parameters. It is optional. </span>
-                        </div>
-                    </label>
-                    <div class="col-sm-10">
-                            <textarea style="height: 100px" class="form-control" name="description" id="description"
-                                      placeholder="Describe your data, method and parameters"></textarea>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="upload">Upload files<span
                             style="color: red">*</span>:
@@ -191,6 +191,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group form-inline">
                     <label class="control-label col-sm-2" for="method">Select Method<span
                             style="color: red">*</span>:
@@ -200,14 +201,6 @@
                     </label>
 
                     <div class="row" style="padding: 15px">
-                        <div class=" col-sm-2">
-                            <input type="radio" id="EBEN" name="method" value="EBEN">
-                            <label for="EBEN">EBEN
-                                <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                                    <span class="tooltiptext">Empirical Bayesian Elastic Net</span>
-                                </div>
-                            </label>
-                        </div>
                         <div class=" col-sm-2">
                             <input type="radio" id="LASSO" name="method" value="LASSO" checked>
                             <label for="LASSO">LASSO
@@ -221,6 +214,14 @@
                             <label for="ssLASSO">ssLASSO
                                 <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
                                     <span class="tooltiptext">Spike-and-Slab LASSO</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class=" col-sm-2">
+                            <input type="radio" id="EBEN" name="method" value="EBEN">
+                            <label for="EBEN">EBEN
+                                <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
+                                    <span class="tooltiptext">Empirical Bayesian Elastic Net</span>
                                 </div>
                             </label>
                         </div>
