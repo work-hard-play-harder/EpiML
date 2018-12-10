@@ -48,7 +48,7 @@ def webserver():
         if request.form.get('ss') == 'on':
             params['seed_number'] = request.form['seed_number']
         else:
-            params['seed_number'] = str(random.randint(0, 28213))
+            params['seed_number'] = '28213' # str(random.randint(0, 28213))
         params['datatype'] = datatype
 
         print(jobname, email, jobcategory, params['datatype'], description, input_x, input_y, method,
@@ -148,6 +148,7 @@ def result(jobid, security_code):
     else:
         fd_graph_json = json_handler.generate_other_fd_graph_json()
 
+    print(fd_graph_json)
     # Generate r notebook if not exist
     jupyter_notebook_size = 0
     if job.selected_algorithm == 'EBEN':

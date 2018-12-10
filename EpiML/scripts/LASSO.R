@@ -16,9 +16,12 @@ quantile_normalisation <- function(df){
   return(df_final)
 }
 
-workspace <- '~/Desktop/samples/'
-x_filename <- 'yeast_Geno.txt'
-y_filename <- 'yeast_Pheno.txt'
+# workspace <- '~/Desktop/samples/'
+# x_filename <- 'yeast_Geno.txt'
+# y_filename <- 'yeast_Pheno.txt'
+workspace <- '~/Experiment/dataset/full_yeast dataset/'
+x_filename <- 'geno_109_164_.txt'
+y_filename <- 'pheno_109_164_.txt'
 datatype <- 'discrete'  # discrete or continuous
 nFolds <- 5
 # max_percentages_miss_val <- 0.2
@@ -127,14 +130,14 @@ sig_epi = epi[which(epi != 0), 1, drop = F]
 
 cat('Final run', '\n')
 # construct new matrix from significant main and epistatic variants
-full_matrix <- cbind(x_preprocessed[, rownames(sig_main)],epi_matrix[,rownames(sig_epi)])
-if (ncol(full_matrix)==0){
-  # for not significant effect
-  output_main <- matrix("NA", 0, 2)
-  colnames(output_main) <- c("feature", "coefficent")
-  output_epi <- matrix("NA", 0, 3)
-  colnames(output_epi) <- c("feature1", "feature2", "coefficent")
-}else{
+full_matrix <- cbind(x_preprocessed[, rownames(sig_main), drop=F],epi_matrix[,rownames(sig_epi), drop=F])
+
+output_main <- matrix("NA", 0, 2)
+colnames(output_main) <- c("feature", "coefficent")
+output_epi <- matrix("NA", 0, 3)
+colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+# at least two columns
+if (!is.null(full_matrix) && ncol(full_matrix)>2){
   if (datatype == 'continuous') {
     full_matrix <- quantile_normalisation(full_matrix)
   }

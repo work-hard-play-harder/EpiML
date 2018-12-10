@@ -17,9 +17,12 @@ quantile_normalisation <- function(df){
   return(df_final)
 }
 
-workspace <- '~/Desktop/samples/'
-x_filename <- 'yeast_Geno.txt'
-y_filename <- 'yeast_Pheno.txt'
+# workspace <- '~/Desktop/samples/'
+# x_filename <- 'yeast_Geno.txt'
+# y_filename <- 'yeast_Pheno.txt'
+workspace <- '~/Experiment/dataset/full_yeast dataset/'
+x_filename <- 'geno_109_164_.txt'
+y_filename <- 'pheno_109_164_.txt'
 datatype <- 'discrete'  # discrete or continuous
 s0 <- 0.03
 s1 <- 0.5
@@ -67,7 +70,7 @@ x_preprocessed <- NULL
 y_preprocessed <- NULL
 # for x preprocess
 cat('Filter data with missing data', '\n')
-x_filtered <- t(na.omit(t(x[,1:200])))
+x_filtered <- t(na.omit(t(x)))
 if (datatype == 'discrete') {
   # discrete data is categorical, no normlization
   x_preprocessed <- x_filtered
@@ -94,7 +97,7 @@ rm(blup_main)
 
 cat('Subtract the main effect', '\n')
 index_main <- rownames(sig_main)
-subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% matrix(sig_main) 
+subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% sig_main
 subtracted_y <- scale(subtracted_y)
 
 cat('Epistatic effect estimated', '\n')
@@ -129,14 +132,14 @@ rm(blup_epi)
 
 cat('Final run', '\n')
 # construct new matrix from significant main and epistatic variants
-full_matrix <- cbind(x_preprocessed[, rownames(sig_main)],epi_matrix[,rownames(sig_epi)])
-if (ncol(full_matrix)==0){
-  # for not significant effect
-  output_main <- matrix("NA", 0, 2)
-  colnames(output_main) <- c("feature", "coefficent")
-  output_epi <- matrix("NA", 0, 3)
-  colnames(output_epi) <- c("feature1", "feature2", "coefficent")
-}else{
+full_matrix <- cbind(x_preprocessed[, rownames(sig_main), drop=F],epi_matrix[,rownames(sig_epi),drop=F])
+
+output_main <- matrix("NA", 0, 2)
+colnames(output_main) <- c("feature", "coefficent")
+output_epi <- matrix("NA", 0, 3)
+colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+# at least two columns
+if (!is.null(full_matrix) && ncol(full_matrix)>2){
   if (datatype == 'continuous') {
     full_matrix <- quantile_normalisation(full_matrix)
   }
@@ -149,7 +152,7 @@ if (ncol(full_matrix)==0){
       ss = c(s0, s1),
       verbose = TRUE
     )
-  full_coef <- matrix(blup_full$beta,ncol=1)
+  full_coef <- as.matrix(blup_full$beta)
   rownames(full_coef) <- c(rownames(sig_main), rownames(sig_epi))
   sig_full <- full_coef[which(full_coef != 0),1,drop=F]
   
@@ -187,3 +190,4 @@ write.table(
 )
 
 cat('Done!')
+
