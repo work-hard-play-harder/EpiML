@@ -20,8 +20,8 @@ quantile_normalisation <- function(df){
 # x_filename <- 'yeast_Geno.txt'
 # y_filename <- 'yeast_Pheno.txt'
 workspace <- '~/Experiment/dataset/full_yeast dataset/'
-x_filename <- 'geno_109_164_.txt'
-y_filename <- 'pheno_109_164_.txt'
+x_filename <- 'geno_150_150_.txt'
+y_filename <- 'pheno_150_150_.txt'
 datatype <- 'discrete'  # discrete or continuous
 nFolds <- 5
 # max_percentages_miss_val <- 0.2
@@ -77,7 +77,7 @@ if (datatype == 'discrete') {
   x_preprocessed <- quantile_normalisation(x_filtered)
 }
 # for y preprocess
-y_preprocessed <- scale(y)
+y_preprocessed <- y # scale(y)
 rm(x, y, x_filtered)
 
 cat('Main effect estimated', '\n')
@@ -96,7 +96,7 @@ sig_main = main[which(main != 0), 1, drop = F]
 cat('Subtract the main effect', '\n')
 index_main <- rownames(sig_main)
 subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% sig_main
-subtracted_y <- scale(subtracted_y)
+# subtracted_y <- scale(subtracted_y)
 
 cat('Epistatic effect estimated', '\n')
 # construct epistatic matrix, pairwise of each column 
@@ -165,7 +165,7 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
   epi_index <- grep("\\*", rownames(sig_full))
   output_epi <- matrix("NA", length(epi_index), 3)
   epi_ID <- matrix(rownames(sig_full), ncol = 1)[epi_index, , drop = F]
-  output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2)
+  output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2, byrow=T)
   output_epi[, 3] <- sig_full[epi_index, 1, drop = F]
   colnames(output_epi) <- c("feature1", "feature2", "coefficent")
 }

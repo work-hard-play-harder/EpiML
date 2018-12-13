@@ -21,8 +21,8 @@ quantile_normalisation <- function(df){
 # x_filename <- 'yeast_Geno.txt'
 # y_filename <- 'yeast_Pheno.txt'
 workspace <- '~/Experiment/dataset/full_yeast dataset/'
-x_filename <- 'geno_109_164_.txt'
-y_filename <- 'pheno_109_164_.txt'
+x_filename <- 'geno_150_150_.txt'
+y_filename <- 'pheno_150_150_.txt'
 datatype <- 'discrete'  # discrete or continuous
 s0 <- 0.03
 s1 <- 0.5
@@ -83,6 +83,12 @@ y_preprocessed <- scale(y)
 rm(x, y, x_filtered)
 
 cat('Main effect estimated', '\n')
+# get s0 prior
+main_prior = glmNet(x_preprocessed,
+                    y_preprocessed,
+                    family = "gaussian",
+                    ncv = nFolds) 
+s0 = main_prior$prior.scale 
 blup_main <- bmlasso(
   x_preprocessed,
   y_preprocessed,
@@ -118,6 +124,12 @@ if (datatype == 'continuous') {
   epi_matrix <- quantile_normalisation(epi_matrix)
 }
 # regression
+# get s0 prior
+epi_prior = glmNet(epi_matrix,
+                   subtracted_y,
+                   family = "gaussian",
+                   ncv = nFolds) 
+s0 = epi_prior$prior.scale 
 blup_epi <- bmlasso(
   epi_matrix,
   subtracted_y,
@@ -144,6 +156,12 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
     full_matrix <- quantile_normalisation(full_matrix)
   }
   # regression 
+  # get s0 prior
+  full_prior = glmNet(full_matrix,
+                      y_preprocessed,
+                      family = "gaussian",
+                      ncv = nFolds) 
+  s0 = full_prior$prior.scale 
   blup_full <- bmlasso(
       full_matrix,
       y_preprocessed,
@@ -166,7 +184,7 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
   epi_index <- grep("\\*", rownames(sig_full))
   output_epi <- matrix("NA", length(epi_index), 3)
   epi_ID <- rownames(sig_full)[epi_index]
-  output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2)
+  output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2, byrow=T)
   output_epi[, 3] <- sig_full[epi_index, 1]
   colnames(output_epi) <- c("feature1", "feature2", "coefficent")
 }
