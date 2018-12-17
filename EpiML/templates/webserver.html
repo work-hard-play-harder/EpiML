@@ -85,6 +85,8 @@
             <p class="col-sm-offset-2" style="color: red; font-size: medium"><strong>All fields marked with an asterisk
                 (*) are required.</strong></p>
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                <!-- hidden input is for csrf protection -->
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
                 <div class="form-group row">
                     <label class="control-label col-sm-2" for="jobname">Job Name<span

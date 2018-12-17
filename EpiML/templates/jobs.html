@@ -136,6 +136,9 @@
         <p>This page lists all submitted jobs. There are total {{ jobs|length }} jobs</p>
         <hr>
         <form name="form_job" id="form_job" method="post" enctype="multipart/form-data">
+            <!-- hidden input is for csrf protection -->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
             <table class="table-hover table-condense stripe" id="job_table">
                 <thead>
                 <tr>

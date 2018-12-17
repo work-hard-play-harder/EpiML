@@ -118,6 +118,9 @@
         <p>This page lists all shared models. There are total {{ models|length }} shared models.</p>
         <hr>
         <form name="form_model" id="form_model" method="post" enctype="multipart/form-data">
+            <!-- hidden input is for csrf protection -->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
             <table class="table-hover table-condense stripe" id="model_table" data-page-length='25'>
                 <thead>
                 <tr>
