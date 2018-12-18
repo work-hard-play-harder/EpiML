@@ -24,6 +24,40 @@
             counter-increment: item
         }
     </style>
+
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg .tg-s6z2 {
+            text-align: center
+        }
+    </style>
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static',filename='css/back_to_top.css') }}">
 {% endblock %}
@@ -488,8 +522,63 @@
             <hr>
             <section class="anchor" id="FAQ">
                 <h3>6. FAQ</h3>
-                <p>For any question about this service please email <a
-                        href="mailto:an_example@gmail.com">an_example@gmail.com</a>
+                <ol>
+                    <li style="display: list-item">How long does it take to get results?</li>
+                    <p>The processing time depends on the scale of your data and selected method. In generally, the
+                        LASSO and ssLASSO are very fast. EBEN needs long time, especially number of folds is large. For
+                        hundreds of samples with 2 times columns, LASSO and ssLASSO can be finished in several minutes.
+                        EBEN may need an hour. </p>
+                    <li style="display: list-item">Why can't I upload files?</li>
+                    <p>First, please check your file extension. Only files with .txt or .csv extensions are accepted.
+                        Second, file size is limited to no more than 5MB due to time consuming. If your data is too
+                        large, please follow customize code section, and run the pipeline on local host.</p>
+                    <li style="display: list-item">Which browser is recommended?</li>
+                    <p>EpiML is tested to work on the following browsers. We recommend using <a
+                            href="https://www.google.com/chrome/" target="_blank">Chrome</a> or <a
+                            href="https://www.apple.com/safari/" target="_blank">Safari</a>. If you are already using
+                        one
+                        of the above browsers try updating it. If it still doesn't work let us know.</p>
+
+                    <table class="tg">
+                        <tr>
+                            <th class="tg-s6z2">OS</th>
+                            <th class="tg-s6z2">Version</th>
+                            <th class="tg-s6z2">Chrome</th>
+                            <th class="tg-s6z2">Firefox</th>
+                            <th class="tg-s6z2">Microsoft Edge</th>
+                            <th class="tg-s6z2">Safari</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-s6z2">Linux</td>
+                            <td class="tg-s6z2">Ubuntu 18.04</td>
+                            <td class="tg-s6z2">70.0</td>
+                            <td class="tg-s6z2">63.0</td>
+                            <td class="tg-s6z2">NA</td>
+                            <td class="tg-s6z2">NA</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-s6z2">MacOS</td>
+                            <td class="tg-s6z2">Mojave</td>
+                            <td class="tg-s6z2">70.0</td>
+                            <td class="tg-s6z2">63.0</td>
+                            <td class="tg-s6z2">NA</td>
+                            <td class="tg-s6z2">12.0</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-s6z2">Windows</td>
+                            <td class="tg-s6z2">10</td>
+                            <td class="tg-s6z2">70.0</td>
+                            <td class="tg-s6z2">63.0</td>
+                            <td class="tg-s6z2">44.0</td>
+                            <td class="tg-s6z2">NA</td>
+                        </tr>
+                    </table>
+
+
+                </ol>
+
+                <p>For any more question about this service please email to <a href="mailto: x.shi@uncc.edu"> Xinghua
+                    Shi</a> or <a href="mailto: jchen67@uncc.edu"> Junjie Chen</a>
                 </p>
             </section>
             <section class="anchor" id="reference">
