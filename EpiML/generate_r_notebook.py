@@ -30,13 +30,27 @@ def generate_EBEN_notebook(job_dir, input_x, input_y):
     load_library = '''\
 # load library
 library('EBEN')
-library('r2d3')'''
+library('r2d3')
+quantile_normalisation <- function(df){
+  df_rank <- apply(df,2,rank,ties.method="min")
+  df_sorted <- data.frame(apply(df, 2, sort))
+  df_mean <- apply(df_sorted, 1, mean)
+  
+  index_to_mean <- function(my_index, my_mean){
+    return(my_mean[my_index])
+  }
+  
+  df_final <- apply(df_rank, 2, index_to_mean, my_mean=df_mean)
+  rownames(df_final) <- rownames(df)
+  return(df_final)
+}'''
 
-    load_params='''\
+    load_params = '''\
 nFolds <- 5
-max_percentages_miss_val <- 0.2
+pvalue <- 0.05
 seed <- 28213
-set.seed(seed)'''
+set.seed(seed)
+datatype <- 'discrete'  # discrete or continuous'''
 
     load_data = '''\
 # load data
@@ -61,142 +75,138 @@ y <- read.table(
 sprintf('y size: (%d, %d)', nrow(y), ncol(y))
 y <- as.matrix(y)'''.format(input_x, input_y)
 
-    preprocessing='''\
-# Filter the miRNA data with more than 20% missing data
-x_filtered <- NULL
-x_filtered_colnames <- NULL
-criteria <- trunc(nrow(x) * (1 - max_percentages_miss_val))
-for (i in 1:ncol(x)) {
-  if (sum(as.numeric(x[, i]) != 0) > criteria) {
-    x_filtered <- cbind(x_filtered, x[, i])
-    x_filtered_colnames<-c(x_filtered_colnames, colnames(x)[i])
-  }
+    preprocessing = '''\
+# preprocessing depending on data type
+x_preprocessed <- NULL
+y_preprocessed <- NULL
+# for x preprocess
+cat('Filter data with missing data', '\n')
+x_filtered <- t(na.omit(t(x)))
+if (datatype == 'discrete') {
+  # discrete data is categorical, no normlization
+  x_preprocessed <- x_filtered
+} else if (datatype == 'continuous') {
+  cat('Quantile normalization', '\n')
+  x_preprocessed <- quantile_normalisation(x_filtered)
 }
-colnames(x_filtered)<-x_filtered_colnames
-# colnames of x_filtered is same with x
+# for y preprocess
+y_preprocessed <- scale(y)'''
 
-# Quantile normalization
-x_filtered_normed <- x_filtered
-for (sl in 1:ncol(x_filtered_normed)) {
-  mat = matrix(as.numeric(x_filtered_normed[, sl]), 1)
-  mat = t(apply(mat, 1, rank, ties.method = "average"))
-  mat = qnorm(mat / (nrow(x_filtered_normed) + 1))
-  x_filtered_normed[, sl] = mat
-}
-
-x_preprocessed <- x_filtered_normed
-rm(x_filtered, x_filtered_normed, sl, mat)'''
-
-    main_effect='''\
-# Main effect estimated using EBEN
-CV = EBelasticNet.GaussianCV(x_preprocessed, y, nFolds = nFolds, Epis = "no")
-Blup1 = EBelasticNet.Gaussian(
+    estimate_main_effect = '''\
+# Main effect estimated
+cv_main = EBelasticNet.GaussianCV(x_preprocessed, y_preprocessed, nFolds = nFolds, Epis = "no")
+blup_main = EBelasticNet.Gaussian(
   x_preprocessed,
-  y,
-  lambda = CV$Lambda_optimal,
-  alpha = CV$Alpha_optimal,
+  y_preprocessed,
+  lambda = cv_main$Lambda_optimal,
+  alpha = cv_main$Alpha_optimal,
   Epis = "no",
   verbose = 0
 )
-Blup_main_sig = Blup1$weight[which(Blup1$weight[, 6] <= 0.05), ]'''
+main <- as.matrix(blup_main$weight)
+sig_main <- main[which(main[, 6] <= pvalue),, drop = F]'''
 
-    substract_main_effect='''\
+    substract_main_effect = '''\
 # Substract the main effect
-index_main <- Blup_main_sig[, 1]
-effect_main <- Blup_main_sig[, 3]
-y_new <- as.matrix(y) - x_preprocessed[, index_main] %*% (as.matrix(effect_main))'''
+index_main <- sig_main[, 1]
+effect_main <- sig_main[, 3]
+subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% effect_main
+subtracted_y <- scale(subtracted_y)'''
 
-    epis_effect='''\
-# Epistatic effect estimated using EBEN. This step may need a long time.
-CV_epis = EBelasticNet.GaussianCV(x_preprocessed, y_new, nFolds = nFolds, Epis = "yes")
-Blup_epis = EBelasticNet.Gaussian(
+    estimate_epis_effect = '''\
+# Epistatic effect estimated. This step may need a long time.
+cv_epis <- EBelasticNet.GaussianCV(x_preprocessed, subtracted_y, nFolds = nFolds, Epis = "yes")
+blup_epis <- EBelasticNet.Gaussian(
   x_preprocessed,
-  y_new,
-  lambda =  CV_epis$Lambda_optimal,
-  alpha = CV_epis$Alpha_optimal,
+  subtracted_y,
+  lambda =  cv_epis$Lambda_optimal,
+  alpha = cv_epis$Alpha_optimal,
   Epis = "yes",
   verbose = 0
 )
-Blup_epis_sig = Blup_epis$weight[which(Blup_epis$weight[, 6] <= 0.05), ]'''
+epi <- as.matrix(blup_epis$weight)
+sig_epi <- epi[which(epi[, 6] <= pvalue),, drop = F]'''
 
-    final_run='''\
+    final_run = '''\
 # Final run
-main_epi_sig_id = rbind(Blup_main_sig[, 1:2], Blup_epis_sig[, 1:2])
+full_id <- rbind(sig_main[, 1:2], sig_epi[, 1:2])
 
-x_sig <- NULL
-for (i in 1:nrow(main_epi_sig_id)) {
-  if (main_epi_sig_id[i, 1] == main_epi_sig_id[i, 2]) {
-    x_sig <- cbind(x_sig, x_preprocessed[, main_epi_sig_id[i, 1]])
+output_main <- matrix("NA", 0, 5)
+colnames(output_main) <- c('feature', 'coefficent', 'posterior variance', 't-value', 'p-value')
+output_epi <- matrix("NA", 0, 6)
+colnames(output_epi) <- c('feature1', 'feature2', 'coefficent', 'posterior variance', 't-value', 'p-value')
+# at least three 
+if (!is.null(full_id) && nrow(full_id)>2)
+{
+  full_matrix <- NULL
+  for (i in 1:nrow(full_id)) {
+    if (full_id[i, 1] == full_id[i, 2]) {
+      full_matrix <- cbind(full_matrix, x_preprocessed[, full_id[i, 1], drop=F])
+    }
+    if (full_id[i, 1] != full_id[i, 2]) {
+      col <- x_preprocessed[, full_id[i, 1], drop=F] * x_preprocessed[, full_id[i, 2], drop=F]
+      full_matrix <- cbind(full_matrix, col)
+    }
   }
-  if (main_epi_sig_id[i, 1] != main_epi_sig_id[i, 2]) {
-    col <- x_preprocessed[, main_epi_sig_id[i, 1]] * x_preprocessed[, main_epi_sig_id[i, 2]]
-    x_sig <- cbind(x_sig, col)
+  if (datatype == 'continuous') {
+    full_matrix <- quantile_normalisation(full_matrix)
   }
-}
-
-# Quantile normalization 
-x_sig_qnormed <- x_sig
-for (sl in 1:ncol(x_sig_qnormed)) {
-  mat = matrix(as.numeric(x_sig_qnormed[, sl]), 1)
-  mat = t(apply(mat, 1, rank, ties.method = "average"))
-  mat = qnorm(mat / (nrow(x_sig_qnormed) + 1))
-  x_sig_qnormed[, sl] = mat
-}
-rm(x_sig, sl, mat)
-
-CV_full = EBelasticNet.GaussianCV(x_sig_qnormed, y, nFolds = nFolds, Epis = "no")
-Blup_full = EBelasticNet.Gaussian(
-  x_sig_qnormed,
-  y,
-  lambda =  CV_full$Lambda_optimal,
-  alpha = CV_full$Alpha_optimal,
-  Epis = "no",
-  verbose = 0
-)
-Blup_full_sig =  Blup_full$weight[which(Blup_full$weight[, 6] <= 0.05),]
-Blup_full_sig[,1:2] <- main_epi_sig_id[Blup_full_sig[,1],1:2]
-
-main_result <- NULL
-epsi_result <- NULL
-for (i in 1:nrow(Blup_full_sig)) {
-  if (Blup_full_sig[i, 1] == Blup_full_sig[i, 2]) {
-    main_result <- rbind(main_result, c(colnames(x_preprocessed)[Blup_full_sig[i, 1]],Blup_full_sig[i,3:6]))
-  }
-  if (Blup_full_sig[i, 1] != Blup_full_sig[i, 2]) {
-    epsi_result <- rbind(epsi_result, c(colnames(x_preprocessed)[Blup_full_sig[i, 1]],colnames(x_preprocessed)[Blup_full_sig[i, 2]],Blup_full_sig[i,3:6]))
+  #regression
+  cv_full <- EBelasticNet.GaussianCV(full_matrix, y_preprocessed, nFolds = nFolds, Epis = "no")
+  blup_full <- EBelasticNet.Gaussian(
+    full_matrix,
+    y_preprocessed,
+    lambda =  cv_full$Lambda_optimal,
+    alpha = cv_full$Alpha_optimal,
+    Epis = "no",
+    verbose = 0
+  )
+  full <- as.matrix(blup_full$weight)
+  sig_full <- full[which(full[, 6] <= pvalue),, drop = F]
+  sig_full[, 1:2] <- full_id[sig_full[, 1], 1:2]
+  
+  output_main <- matrix("NA", 0, 5)
+  colnames(output_main) <- c('feature', 'coefficent', 'posterior variance', 't-value', 'p-value')
+  output_epi <- matrix("NA", 0, 6)
+  colnames(output_epi) <- c('feature1', 'feature2', 'coefficent', 'posterior variance', 't-value', 'p-value')
+  for (i in 1:nrow(sig_full)) {
+    if (sig_full[i, 1] == sig_full[i, 2]) {
+      output_main <- rbind(output_main, c(colnames(x_preprocessed)[sig_full[i, 1]], sig_full[i, 3:6]))
+    }
+    if (sig_full[i, 1] != sig_full[i, 2]) {
+      output_epi <- rbind(output_epi, 
+                          c(colnames(x_preprocessed)[sig_full[i, 1]], 
+                            colnames(x_preprocessed)[sig_full[i, 2]],
+                            sig_full[i, 3:6])
+                          )
+    }
   }
 }'''
 
-    show_main_result='''\
-# show head of main results
-colnames(main_result)<- c('feature','coefficent value','posterior variance','t-value','p-value')
-head(main_result)'''
+    show_main_result = '''output_main'''
 
-    show_epis_result='''\
-# show head of epis results
-colnames(epsi_result)<- c('feature1','feature2','coefficent value','posterior variance','t-value','p-value')
-head(epsi_result)'''
+    show_epis_result = '''output_epi'''
 
-    vis_circle_network='''\
+    vis_circle_network = '''\
 # generate json
 # get all epsitasis nodes (unique)
-epsi_nodes <- c(epsi_result[, 1], epsi_result[, 2])
+epsi_nodes <- c(output_epi[, 1], output_epi[, 2])
 epsi_nodes <- unique(epsi_nodes)
 json_str<-NULL
 for (i in 1:length(epsi_nodes)) {
   f1 <- epsi_nodes[i]
-  f2 <- matrix(epsi_result[epsi_result[, 1] == f1, ],ncol=6)
+  f2 <- matrix(output_epi[output_epi[, 1] == f1, ],ncol=6)
   f2[,2]<-sprintf('"epis.%s"', f2[,2])
   element <- sprintf('{"name":"epis.%s","size":%d,"effects":[%s]}', f1, nrow(f2), paste(f2[,2], collapse=',' ))
   json_str <- c(json_str,element)
 }
 json_str<-sprintf('[%s]',paste(json_str, collapse=',' ))
 # circle network
-r2d3(data=json_str, script = "vis_CN.js", css = "vis_CN.css")'''
+r2d3(data=json_str, script = "../static/js/vis_CN.js", css = "../static/css/vis_CN.css")'''
 
-    vis_adjacent_matrix='''\
+    vis_adjacent_matrix = '''\
 # for adjacent matrix
-epsi_nodes <- c(epsi_result[, 1], epsi_result[, 2])
+epsi_nodes <- c(output_epi[, 1], output_epi[, 2])
 epsi_nodes <- unique(epsi_nodes)
 nodes_str<-NULL
 for (i in 1:length(epsi_nodes)) {
@@ -206,10 +216,10 @@ for (i in 1:length(epsi_nodes)) {
 }
 nodes_str<-sprintf('"nodes":[%s]',paste(nodes_str, collapse=',' ))
 link_str<-NULL
-for(i in 1:nrow(epsi_result)){
-  source_index<- match(epsi_result[i,1], epsi_nodes)
-  target_index<- match(epsi_result[i,2], epsi_nodes)
-  coff<-as.numeric(epsi_result[i,3])
+for(i in 1:nrow(output_epi)){
+  source_index<- match(output_epi[i,1], epsi_nodes)
+  target_index<- match(output_epi[i,2], epsi_nodes)
+  coff<-as.numeric(output_epi[i,3])
   element<-sprintf('{"source":%d, "target":%d, "coff": %f}',source_index-1, target_index-1, coff)
   link_str <- c(link_str,element)
 }
@@ -217,7 +227,7 @@ for(i in 1:nrow(epsi_result)){
 link_str<-sprintf('"links":[%s]',paste(link_str, collapse=',' ))
 am_json<-sprintf('{%s,%s}',nodes_str,link_str)
 write(am_json,'am.json')
-r2d3( d3_version = 4, script = "vis_AM.js", css = "vis_AM.css", dependencies = "d3-scale-chromatic.js")'''
+r2d3( d3_version = 4, script = "../static/js/vis_AM.js", css = "../static/css/vis_AM.css", dependencies = "../static/js/d3-scale-chromatic.js")'''
 
     nb['cells'] = [nbf.v4.new_markdown_cell(title),
                    nbf.v4.new_markdown_cell(introduction),
@@ -225,9 +235,9 @@ r2d3( d3_version = 4, script = "vis_AM.js", css = "vis_AM.css", dependencies = "
                    nbf.v4.new_code_cell(load_data),
                    nbf.v4.new_code_cell(load_params),
                    nbf.v4.new_code_cell(preprocessing),
-                   nbf.v4.new_code_cell(main_effect),
+                   nbf.v4.new_code_cell(estimate_main_effect),
                    nbf.v4.new_code_cell(substract_main_effect),
-                   nbf.v4.new_code_cell(epis_effect),
+                   nbf.v4.new_code_cell(estimate_epis_effect),
                    nbf.v4.new_code_cell(final_run),
                    nbf.v4.new_code_cell(show_main_result),
                    nbf.v4.new_code_cell(show_epis_result),
@@ -242,307 +252,196 @@ r2d3( d3_version = 4, script = "vis_AM.js", css = "vis_AM.css", dependencies = "
 
 def generate_LASSO_notebook(job_dir, input_x, input_y):
     load_library = '''\
-    # load library
-    library('BhGLM');
-    library('Matrix');
-    library('foreach');
-    library('glmnet');
-    source('cv.bh.R');
-    library('r2d3')'''
-
-    load_params = '''\
-    # load parameters
-    s0 <- 0.03;
-    s1 <- 0.5;
-    nFolds <- 5;
-    seed <- 28213;
-    set.seed(seed);'''
-
-    load_data = '''\
-    # load data
-    workspace <- './'
-    x_filename <- '{0}'
-    y_filename <- '{1}'
-
-    x <- read.table(
-      file = file.path(workspace, x_filename),
-      header = TRUE,
-      check.names = FALSE,
-      row.names = 1
-    )
-    sprintf('Geno size: (%d, %d)', nrow(x), ncol(x))
-    y <- read.table(
-      file = file.path(workspace, y_filename),
-      header = TRUE,
-      check.names = FALSE,
-      row.names = 1
-    )
-    sprintf('Pheno size: (%d, %d)', nrow(y), ncol(y))
-
-    features <- as.matrix(x);
-    colnames(features) <- seq(1, ncol(features));
-    pheno <- as.matrix(y);
-
-    geno_stand <- scale(features);
-    new_y <- scale(pheno);
-    new_y_in <- new_y[, 1, drop = F];
-    '''.format(input_x, input_y)
-
-    main_effect = '''\
-    # Main effect-single locus:
-    sig_index <- which(abs(t(new_y_in) %*% geno_stand/(nrow(geno_stand)-1)) > 0.20);
-    sig_main <- sig_index;'''
-
-    epis_effect = '''\
-    #Epistasis effect-single locus:
-    sig_epi_sum <- NULL;
-    for(k in 1:(ncol(features)-1)){
-      single_new <- features[,k,drop=FALSE];
-      new <- features[,(k+1):ncol(features)];
-      new_combine <- cbind(new,single_new);
-      pseudo_allmat <- transform(new_combine,subpseudo=new_combine[,1:(ncol(features)-k)] * new_combine[,ncol(new_combine)]);
-      colnames(pseudo_allmat) <- paste(colnames(pseudo_allmat), colnames(single_new),sep = "*");
-      pseudo_mat <- pseudo_allmat[,grep("subpseudo",colnames(pseudo_allmat)),drop=FALSE];
-      pseudo_mat <- as.matrix(pseudo_mat);
-      pseudo_mat_stand <- scale(pseudo_mat);
-
-      epi_index <- which(abs(t(new_y_in) %*% pseudo_mat_stand/(nrow(pseudo_mat_stand)-1)) > 0.20);
-      pseudo_mat_stand_epi <- pseudo_mat[,epi_index,drop=FALSE];
-      sig_epi_sum <- c(sig_epi_sum,colnames(pseudo_mat_stand_epi));
-    }
-    res <- matrix(c(sig_main,sig_epi_sum),ncol=1);
-    res <- gsub("subpseudo.","",res)
-
-    new_matrix <- NULL;
-    for(i in 1:nrow(res)){
-      if(length(grep("\\\*",res[i,1])) == 0){
-        tmp1 = features[,(as.numeric(res[i,1])),drop=F];
-        colnames(tmp1) <- res[i,1];
-        new_matrix <-cbind(new_matrix,tmp1);
-      }
-      if(length(grep("\\\*",res[i,1])) == 1){
-        indexes <- strsplit(res[i,1],"\\\*");
-        tmp1 <- features[,as.numeric(indexes[[1]][1]),drop=F] * features[,as.numeric(indexes[[1]][2]),drop=F];
-        colnames(tmp1) <- res[i,1];
-        new_matrix <- cbind(new_matrix,tmp1);
-      }
-    }
-    new_matrix <- as.matrix(new_matrix);
-
-    f2 <- bmlasso(new_matrix, new_y_in, family = "gaussian", prior = "mde", ss = c(s0,s1),verbose = TRUE);
-    cv <- cv.bh(f2,ncv=1,nfolds = 3,verbose = TRUE);
-    tmp_mse <- cv$measures["mse"];
-    tmp_dev <- cv$measures["deviance"];
-    Blup <- matrix(f2$beta,ncol=1);
-    rownames(Blup) <- res;
-    Blup_estimate <- Blup[which(Blup != 0),1,drop=F];
-    main_index <- setdiff(1:nrow(Blup_estimate),grep("\\\*",rownames(Blup_estimate)));
-    epi_index <- grep("\\\*",rownames(Blup_estimate))
-    output_main <- matrix("NA",length(main_index),5);
-    output_epi <- matrix("NA",length(epi_index),6);
-    output_main[,1] <- matrix(rownames(Blup_estimate),ncol=1)[main_index,,drop=F];
-    output_main[,2] <- Blup_estimate[main_index,1,drop=F]
-    epi_ID <- matrix(rownames(Blup_estimate),ncol=1)[epi_index,,drop=F];
-    output_epi[,1:2] <- matrix(unlist(strsplit(epi_ID,"\\\*")),ncol=2);
-    output_epi[,3] <- Blup_estimate[epi_index,1,drop=F];
-    colnames(output_main) <- c("feature", "coefficent value", "posterior variance", "t-value","p-value");
-    colnames(output_epi) <- c("feature1","feature2", "coefficent value", "posterior variance", "t-value","p-value");
-    output_main[, 1] <- colnames(x)[as.integer(output_main[, 1])]
-    output_epi[, 1] <- colnames(x)[as.integer(output_epi[, 1])]
-    output_epi[, 2] <- colnames(x)[as.integer(output_epi[, 2])]'''
-
-    # for data visualization
-    visu_cn = '''\
-    # generate json
-    # get all epsitasis nodes (unique)
-    epsi_nodes <- c(epsi_result[, 1], epsi_result[, 2])
-    epsi_nodes <- unique(epsi_nodes)
-    json_str<-NULL
-    for (i in 1:length(epsi_nodes)) {
-      f1 <- epsi_nodes[i]
-      f2 <- matrix(epsi_result[epsi_result[, 1] == f1, ], ncol=6)
-      f2[,2] <- sprintf('"epis.%s"', f2[,2])
-      element <- sprintf('{"name":"epis.%s","size":%d,"effects":[%s]}', f1, nrow(f2), paste(f2[,2], collapse=',' ))
-      json_str <- c(json_str,element)
-    }
-    json_str <- sprintf('[%s]',paste(json_str, collapse=',' ))
-    # circle network
-    r2d3(data=json_str, script = "vis_CN.js", css = "vis_CN.css")'''
-
-    visu_am = '''\
-    # For adjacent matrix
-    epsi_nodes <- c(epsi_result[, 1], epsi_result[, 2])
-    epsi_nodes <- unique(epsi_nodes)
-    nodes_str<-NULL
-    for (i in 1:length(epsi_nodes)) {
-      f1 <- epsi_nodes[i]
-      element<- sprintf('{"name":"%s","group":"Epistatic effect","rank": %d}',f1, 1)
-      nodes_str <- c(nodes_str,element)
-    }
-    nodes_str<-sprintf('"nodes":[%s]',paste(nodes_str, collapse=',' ))
-    link_str<-NULL
-    for(i in 1:nrow(epsi_result)){
-      source_index<- match(epsi_result[i,1], epsi_nodes)
-      target_index<- match(epsi_result[i,2], epsi_nodes)
-      coff<-as.numeric(epsi_result[i,3])
-      element<-sprintf('{"source":%d, "target":%d, "coff": %f}',source_index-1, target_index-1, coff)
-      link_str <- c(link_str,element)
-    }
-
-    link_str<-sprintf('"links":[%s]',paste(link_str, collapse=',' ))
-    am_json<-sprintf('{%s,%s}',nodes_str,link_str)
-    write(am_json,'am.json')
-    r2d3( d3_version = 4, script = "vis_AM.js", css = "vis_AM.css", dependencies = "d3-scale-chromatic.js")'''
-
-    nb['cells'] = [nbf.v4.new_markdown_cell(title),
-                   nbf.v4.new_markdown_cell(introduction),
-                   nbf.v4.new_code_cell(load_library),
-                   nbf.v4.new_code_cell(load_params),
-                   nbf.v4.new_code_cell(load_data),
-                   nbf.v4.new_code_cell(main_effect),
-                   nbf.v4.new_code_cell(epis_effect),
-                   nbf.v4.new_code_cell(visu_cn),
-                   nbf.v4.new_code_cell(visu_am)
-                   ]
-
-    LASSO_nb = os.path.join(job_dir, 'LASSO_r_notebook.ipynb')
-    with open(LASSO_nb, 'w') as f:
-        nbf.write(nb, f)
-    pass
-
-def generate_ssLASSO_notebook(job_dir, input_x, input_y):
-    load_library = '''\
 # load library
-library('BhGLM');
-library('Matrix');
-library('foreach');
-library('glmnet');
-source('cv.bh.R');
-library('r2d3')'''
+library("fdrtool")
+library("Matrix")
+library("foreach")
+library("glmnet")
+library('r2d3')
+quantile_normalisation <- function(df){
+  df_rank <- apply(df,2,rank,ties.method="min")
+  df_sorted <- data.frame(apply(df, 2, sort))
+  df_mean <- apply(df_sorted, 1, mean)
+  
+  index_to_mean <- function(my_index, my_mean){
+    return(my_mean[my_index])
+  }
+  
+  df_final <- apply(df_rank, 2, index_to_mean, my_mean=df_mean)
+  rownames(df_final) <- rownames(df)
+  return(df_final)
+}'''
 
     load_params = '''\
 # load parameters
-s0 <- 0.03;
-s1 <- 0.5;
-nFolds <- 5;
-seed <- 28213;
-set.seed(seed);'''
+nFolds <- 5
+seed <- 28213
+set.seed(seed)
+datatype <- 'discrete'  # discrete or continuous'''
 
     load_data = '''\
 # load data
 workspace <- './'
 x_filename <- '{0}'
 y_filename <- '{1}'
-
 x <- read.table(
   file = file.path(workspace, x_filename),
   header = TRUE,
   check.names = FALSE,
   row.names = 1
 )
-sprintf('Geno size: (%d, %d)', nrow(x), ncol(x))
+sprintf('x size: (%d, %d)', nrow(x), ncol(x))
+x <- as.matrix(x)
+
 y <- read.table(
   file = file.path(workspace, y_filename),
   header = TRUE,
-  check.names = FALSE,
   row.names = 1
 )
-sprintf('Pheno size: (%d, %d)', nrow(y), ncol(y))
+sprintf('y size: (%d, %d)', nrow(y), ncol(y))
+y <- as.matrix(y)'''.format(input_x, input_y)
 
-features <- as.matrix(x);
-colnames(features) <- seq(1, ncol(features));
-pheno <- as.matrix(y);
-
-geno_stand <- scale(features);
-new_y <- scale(pheno);
-new_y_in <- new_y[, 1, drop = F];
-'''.format(input_x, input_y)
-
-    main_effect = '''\
-# Main effect-single locus:
-sig_index <- which(abs(t(new_y_in) %*% geno_stand/(nrow(geno_stand)-1)) > 0.20);
-sig_main <- sig_index;'''
-
-    epis_effect = '''\
-#Epistasis effect-single locus:
-sig_epi_sum <- NULL;
-for(k in 1:(ncol(features)-1)){
-  single_new <- features[,k,drop=FALSE];
-  new <- features[,(k+1):ncol(features)];
-  new_combine <- cbind(new,single_new);
-  pseudo_allmat <- transform(new_combine,subpseudo=new_combine[,1:(ncol(features)-k)] * new_combine[,ncol(new_combine)]);
-  colnames(pseudo_allmat) <- paste(colnames(pseudo_allmat), colnames(single_new),sep = "*");
-  pseudo_mat <- pseudo_allmat[,grep("subpseudo",colnames(pseudo_allmat)),drop=FALSE];
-  pseudo_mat <- as.matrix(pseudo_mat);
-  pseudo_mat_stand <- scale(pseudo_mat);
-
-  epi_index <- which(abs(t(new_y_in) %*% pseudo_mat_stand/(nrow(pseudo_mat_stand)-1)) > 0.20);
-  pseudo_mat_stand_epi <- pseudo_mat[,epi_index,drop=FALSE];
-  sig_epi_sum <- c(sig_epi_sum,colnames(pseudo_mat_stand_epi));
+    preprocessing = '''\
+# preprocessing depending on data type
+x_preprocessed <- NULL
+y_preprocessed <- NULL
+# for x preprocess
+# Filter data with missing data
+x_filtered <- t(na.omit(t(x)))
+if (datatype == 'discrete') {
+  # discrete data is categorical, no normlization
+  x_preprocessed <- x_filtered
+} else if (datatype == 'continuous') {
+  # Quantile normalization
+  x_preprocessed <- quantile_normalisation(x_filtered)
 }
-res <- matrix(c(sig_main,sig_epi_sum),ncol=1);
-res <- gsub("subpseudo.","",res)
+# for y preprocess
+y_preprocessed <- scale(y)
+rm(x, y, x_filtered)'''
 
-new_matrix <- NULL;
-for(i in 1:nrow(res)){
-  if(length(grep("\\\*",res[i,1])) == 0){
-    tmp1 = features[,(as.numeric(res[i,1])),drop=F];
-    colnames(tmp1) <- res[i,1];
-    new_matrix <-cbind(new_matrix,tmp1);
-  }
-  if(length(grep("\\\*",res[i,1])) == 1){
-    indexes <- strsplit(res[i,1],"\\\*");
-    tmp1 <- features[,as.numeric(indexes[[1]][1]),drop=F] * features[,as.numeric(indexes[[1]][2]),drop=F];
-    colnames(tmp1) <- res[i,1];
-    new_matrix <- cbind(new_matrix,tmp1);
-  }
+    estimate_main_effect = '''\
+# Main effect estimated
+cv_main <- cv.glmnet(x_preprocessed, y_preprocessed, nfolds=nFolds)
+blup_main <- glmnet(
+  x_preprocessed,
+  y_preprocessed,
+  alpha = 1,
+  family = c("gaussian"),
+  lambda = cv_main$lambda.min,
+  intercept = TRUE
+)
+main <- as.matrix(blup_main$beta)
+sig_main <- main[which(main != 0), 1, drop = F]'''
+
+    substract_main_effect = '''\
+# Subtract the main effect
+index_main <- rownames(sig_main)
+subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% sig_main
+subtracted_y <- scale(subtracted_y)'''
+
+    estimate_epis_effect = '''\
+# Epistatic effect estimated
+# construct epistatic matrix, pairwise of each column 
+epi_matrix <- NULL
+for(k in 1:(ncol(x_preprocessed)-1)){
+  single <- x_preprocessed[, k]
+  behind <- x_preprocessed[, (k + 1):ncol(x_preprocessed)]
+  # single multiply each column of behind, use as.matrix to avoid pairwise is list when k = ncol(x_preprocessed)-1
+  pairwise <- as.matrix(single * behind) 
+  colnames(pairwise) <- paste(colnames(x_preprocessed)[k], 
+                              colnames(x_preprocessed)[(k + 1):ncol(x_preprocessed)],
+                              sep = "*")
+  
+  epi_matrix <- cbind(epi_matrix, pairwise)
 }
-new_matrix <- as.matrix(new_matrix);
+if (datatype == 'continuous') {
+  epi_matrix <- quantile_normalisation(epi_matrix)
+}
+# regression using lasso
+cv_epi <- cv.glmnet(epi_matrix, subtracted_y, nfolds=nFolds);
+blup_epi <- glmnet(
+  epi_matrix,
+  subtracted_y,
+  alpha = 1,
+  family = c("gaussian"),
+  lambda = cv_epi$lambda.min,
+  intercept = TRUE
+)
+epi <- as.matrix(blup_epi$beta)
+sig_epi <- epi[which(epi != 0), 1, drop = F]'''
 
-f2 <- bmlasso(new_matrix, new_y_in, family = "gaussian", prior = "mde", ss = c(s0,s1),verbose = TRUE);
-cv <- cv.bh(f2,ncv=1,nfolds = 3,verbose = TRUE);
-tmp_mse <- cv$measures["mse"];
-tmp_dev <- cv$measures["deviance"];
-Blup <- matrix(f2$beta,ncol=1);
-rownames(Blup) <- res;
-Blup_estimate <- Blup[which(Blup != 0),1,drop=F];
-main_index <- setdiff(1:nrow(Blup_estimate),grep("\\\*",rownames(Blup_estimate)));
-epi_index <- grep("\\\*",rownames(Blup_estimate))
-output_main <- matrix("NA",length(main_index),5);
-output_epi <- matrix("NA",length(epi_index),6);
-output_main[,1] <- matrix(rownames(Blup_estimate),ncol=1)[main_index,,drop=F];
-output_main[,2] <- Blup_estimate[main_index,1,drop=F]
-epi_ID <- matrix(rownames(Blup_estimate),ncol=1)[epi_index,,drop=F];
-output_epi[,1:2] <- matrix(unlist(strsplit(epi_ID,"\\\*")),ncol=2);
-output_epi[,3] <- Blup_estimate[epi_index,1,drop=F];
-colnames(output_main) <- c("feature", "coefficent value", "posterior variance", "t-value","p-value");
-colnames(output_epi) <- c("feature1","feature2", "coefficent value", "posterior variance", "t-value","p-value");
-output_main[, 1] <- colnames(x)[as.integer(output_main[, 1])]
-output_epi[, 1] <- colnames(x)[as.integer(output_epi[, 1])]
-output_epi[, 2] <- colnames(x)[as.integer(output_epi[, 2])]'''
+    final_run = '''\
+# Final run to re-estimate coefficient
+# construct new matrix from significant main and epistatic variants
+full_matrix <- cbind(x_preprocessed[, rownames(sig_main), drop=F],epi_matrix[,rownames(sig_epi), drop=F])
 
+output_main <- matrix("NA", 0, 2)
+colnames(output_main) <- c("feature", "coefficent")
+output_epi <- matrix("NA", 0, 3)
+colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+# at least two columns
+if (!is.null(full_matrix) && ncol(full_matrix)>2){
+  if (datatype == 'continuous') {
+    full_matrix <- quantile_normalisation(full_matrix)
+  }
+  # regression 
+  cv_full <- cv.glmnet(full_matrix, y_preprocessed, nfolds=nFolds)
+  blup_full <- glmnet(
+    full_matrix,
+    y_preprocessed,
+    alpha = 1,
+    family = c("gaussian"),
+    lambda = cv_full$lambda.min,
+    intercept = TRUE
+  )
+  full <- as.matrix(blup_full$beta)
+  sig_full <- full[which(full != 0), 1, drop = F]
+  
+  # Generate result tables
+  # for main effect
+  main_index <- setdiff(1:nrow(sig_full), grep("\\\*", rownames(sig_full)))
+  if(length(main_index)!=0){
+    output_main <- matrix("NA", length(main_index), 2)
+    output_main[, 1] <- matrix(rownames(sig_full), ncol = 1)[main_index, , drop = F]
+    output_main[, 2] <- sig_full[main_index, 1, drop = F]
+    colnames(output_main) <- c("feature", "coefficent")
+  }
+  # for epistasic effect
+  epi_index <- grep("\\\*", rownames(sig_full))
+  if(length(epi_index)!=0){
+    output_epi <- matrix("NA", length(epi_index), 3)
+    epi_ID <- matrix(rownames(sig_full), ncol = 1)[epi_index, , drop = F]
+    output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\\*")), ncol = 2, byrow=T)
+    output_epi[, 3] <- sig_full[epi_index, 1, drop = F]
+    colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+  }
+}'''
+
+    show_main_effect = '''output_main'''
+
+    show_epis_effect = '''output_epi'''
 
     # for data visualization
-    visu_cn = '''\
+    vis_circle_network = '''\
 # generate json
 # get all epsitasis nodes (unique)
-epsi_nodes <- c(epsi_result[, 1], epsi_result[, 2])
+epsi_nodes <- c(output_epi[, 1], output_epi[, 2])
 epsi_nodes <- unique(epsi_nodes)
 json_str<-NULL
 for (i in 1:length(epsi_nodes)) {
   f1 <- epsi_nodes[i]
-  f2 <- matrix(epsi_result[epsi_result[, 1] == f1, ], ncol=6)
+  f2 <- matrix(output_epi[output_epi[, 1] == f1, ], ncol=6)
   f2[,2] <- sprintf('"epis.%s"', f2[,2])
   element <- sprintf('{"name":"epis.%s","size":%d,"effects":[%s]}', f1, nrow(f2), paste(f2[,2], collapse=',' ))
   json_str <- c(json_str,element)
 }
 json_str <- sprintf('[%s]',paste(json_str, collapse=',' ))
 # circle network
-r2d3(data=json_str, script = "vis_CN.js", css = "vis_CN.css")'''
+r2d3(data=json_str, script = "../static/js/vis_CN.js", css = "../static/css/vis_CN.css")'''
 
-    visu_am = '''\
+    vis_adjacent_matrix = '''\
 # For adjacent matrix
-epsi_nodes <- c(epsi_result[, 1], epsi_result[, 2])
+epsi_nodes <- c(output_epi[, 1], output_epi[, 2])
 epsi_nodes <- unique(epsi_nodes)
 nodes_str<-NULL
 for (i in 1:length(epsi_nodes)) {
@@ -552,10 +451,10 @@ for (i in 1:length(epsi_nodes)) {
 }
 nodes_str<-sprintf('"nodes":[%s]',paste(nodes_str, collapse=',' ))
 link_str<-NULL
-for(i in 1:nrow(epsi_result)){
-  source_index<- match(epsi_result[i,1], epsi_nodes)
-  target_index<- match(epsi_result[i,2], epsi_nodes)
-  coff<-as.numeric(epsi_result[i,3])
+for(i in 1:nrow(output_epi)){
+  source_index<- match(output_epi[i,1], epsi_nodes)
+  target_index<- match(output_epi[i,2], epsi_nodes)
+  coff<-as.numeric(output_epi[i,3])
   element<-sprintf('{"source":%d, "target":%d, "coff": %f}',source_index-1, target_index-1, coff)
   link_str <- c(link_str,element)
 }
@@ -563,17 +462,269 @@ for(i in 1:nrow(epsi_result)){
 link_str<-sprintf('"links":[%s]',paste(link_str, collapse=',' ))
 am_json<-sprintf('{%s,%s}',nodes_str,link_str)
 write(am_json,'am.json')
-r2d3( d3_version = 4, script = "vis_AM.js", css = "vis_AM.css", dependencies = "d3-scale-chromatic.js")'''
+r2d3( d3_version = 4, script = "../static/js/vis_AM.js", css = "../static/css/vis_AM.css", dependencies = "../static/js/d3-scale-chromatic.js")'''
 
     nb['cells'] = [nbf.v4.new_markdown_cell(title),
                    nbf.v4.new_markdown_cell(introduction),
                    nbf.v4.new_code_cell(load_library),
                    nbf.v4.new_code_cell(load_params),
                    nbf.v4.new_code_cell(load_data),
-                   nbf.v4.new_code_cell(main_effect),
-                   nbf.v4.new_code_cell(epis_effect),
-                   nbf.v4.new_code_cell(visu_cn),
-                   nbf.v4.new_code_cell(visu_am)
+                   nbf.v4.new_code_cell(preprocessing),
+                   nbf.v4.new_code_cell(estimate_main_effect),
+                   nbf.v4.new_code_cell(substract_main_effect),
+                   nbf.v4.new_code_cell(estimate_epis_effect),
+                   nbf.v4.new_code_cell(final_run),
+                   nbf.v4.new_code_cell(show_main_effect),
+                   nbf.v4.new_code_cell(show_epis_effect),
+                   nbf.v4.new_code_cell(vis_circle_network),
+                   nbf.v4.new_code_cell(vis_adjacent_matrix)
+                   ]
+
+    LASSO_nb = os.path.join(job_dir, 'LASSO_r_notebook.ipynb')
+    with open(LASSO_nb, 'w') as f:
+        nbf.write(nb, f)
+    pass
+
+
+def generate_ssLASSO_notebook(job_dir, input_x, input_y):
+    load_library = '''\
+# load library
+library('BhGLM')
+library('Matrix')
+library('foreach')
+library('glmnet')
+library('r2d3')
+quantile_normalisation <- function(df){
+  df_rank <- apply(df,2,rank,ties.method="min")
+  df_sorted <- data.frame(apply(df, 2, sort))
+  df_mean <- apply(df_sorted, 1, mean)
+  
+  index_to_mean <- function(my_index, my_mean){
+    return(my_mean[my_index])
+  }
+  
+  df_final <- apply(df_rank, 2, index_to_mean, my_mean=df_mean)
+  rownames(df_final) <- rownames(df)
+  return(df_final)
+}'''
+
+    load_params = '''\
+# load parameters
+s0 <- 0.03
+s1 <- 0.5
+nFolds <- 5
+seed <- 28213
+set.seed(seed)
+datatype <- 'discrete'  # discrete or continuous'''
+
+    load_data = '''\
+# load data
+workspace <- './'
+x_filename <- '{0}'
+y_filename <- '{1}'
+x <- read.table(
+  file = file.path(workspace, x_filename),
+  header = TRUE,
+  check.names = FALSE,
+  row.names = 1
+)
+sprintf('x size: (%d, %d)', nrow(x), ncol(x))
+x <- as.matrix(x)
+
+y <- read.table(
+  file = file.path(workspace, y_filename),
+  header = TRUE,
+  row.names = 1
+)
+sprintf('y size: (%d, %d)', nrow(y), ncol(y))
+y <- as.matrix(y)'''.format(input_x, input_y)
+
+    preprocessing = '''\
+# preprocessing depending on data type
+x_preprocessed <- NULL
+y_preprocessed <- NULL
+# for x preprocess
+cat('Filter data with missing data', '\n')
+x_filtered <- t(na.omit(t(x)))
+if (datatype == 'discrete') {
+  # discrete data is categorical, no normlization
+  x_preprocessed <- x_filtered
+} else if (datatype == 'continuous') {
+  cat('Quantile normalization', '\n')
+  x_preprocessed <- quantile_normalisation(x_filtered)
+}
+# for y preprocess
+y_preprocessed <- scale(y)'''
+
+    estimate_main_effect = '''\
+# get s0 prior
+main_prior <- glmNet(x_preprocessed,
+                    y_preprocessed,
+                    family = "gaussian",
+                    ncv = nFolds) 
+s0 <- main_prior$prior.scale 
+blup_main <- bmlasso(
+  x_preprocessed,
+  y_preprocessed,
+  family = "gaussian",
+  prior = "mde",
+  ss = c(s0, s1),
+  verbose = TRUE
+)
+main_coef <- blup_main$beta
+sig_main <- main_coef[which(main_coef != 0),1,drop=F]'''
+
+    substract_main_effect = '''\
+# Subtract the main effect
+index_main <- rownames(sig_main)
+subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% sig_main
+subtracted_y <- scale(subtracted_y)'''
+
+    estimate_epis_effect = '''\
+# Epistatic effect estimated
+# construct epistatic matrix, pairwise of each column 
+epi_matrix <- NULL
+for(k in 1:(ncol(x_preprocessed)-1)){
+  single <- x_preprocessed[, k]
+  behind <- x_preprocessed[, (k + 1):ncol(x_preprocessed)]
+  # single multiply each column of behind, use as.matrix to avoid pairwise is list when k = ncol(x_preprocessed)-1
+  pairwise <- as.matrix(single * behind) 
+  colnames(pairwise) <- paste(colnames(x_preprocessed)[k], 
+                              colnames(x_preprocessed)[(k + 1):ncol(x_preprocessed)], 
+                              sep = "*")
+  
+  epi_matrix <- cbind(epi_matrix, pairwise)
+}
+if (datatype == 'continuous') {
+  epi_matrix <- quantile_normalisation(epi_matrix)
+}
+# regression
+# get s0 prior
+epi_prior = glmNet(epi_matrix,
+                   subtracted_y,
+                   family = "gaussian",
+                   ncv = nFolds) 
+s0 = epi_prior$prior.scale 
+blup_epi <- bmlasso(
+  epi_matrix,
+  subtracted_y,
+  family = "gaussian",
+  prior = "mde",
+  ss = c(s0, s1),
+  verbose = TRUE
+)
+epi_coef <- blup_epi$beta
+sig_epi <- epi_coef[which(epi_coef != 0),1,drop=F]'''
+
+    final_run = '''\
+# Final run to re-estimate coefficient
+# construct new matrix from significant main and epistatic variants
+full_matrix <- cbind(x_preprocessed[, rownames(sig_main), drop=F],epi_matrix[,rownames(sig_epi),drop=F])
+
+output_main <- matrix("NA", 0, 2)
+colnames(output_main) <- c("feature", "coefficent")
+output_epi <- matrix("NA", 0, 3)
+colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+# at least two columns
+if (!is.null(full_matrix) && ncol(full_matrix)>2){
+  if (datatype == 'continuous') {
+    full_matrix <- quantile_normalisation(full_matrix)
+  }
+  # regression 
+  # get s0 prior
+  full_prior = glmNet(full_matrix,
+                      y_preprocessed,
+                      family = "gaussian",
+                      ncv = nFolds) 
+  s0 <- full_prior$prior.scale 
+  blup_full <- bmlasso(
+      full_matrix,
+      y_preprocessed,
+      family = "gaussian",
+      prior = "mde",
+      ss = c(s0, s1),
+      verbose = TRUE
+    )
+  full_coef <- as.matrix(blup_full$beta)
+  rownames(full_coef) <- c(rownames(sig_main), rownames(sig_epi))
+  sig_full <- full_coef[which(full_coef != 0),1,drop=F]
+  
+  # generate main results
+  main_index <- setdiff(1:nrow(sig_full), grep("\\\*", rownames(sig_full)))
+  output_main <- matrix("NA", length(main_index), 2)
+  output_main[, 1] <- rownames(sig_full)[main_index]
+  output_main[, 2] <- sig_full[main_index, 1]
+  colnames(output_main) <- c("feature", "coefficent")
+  # generate epistatic results
+  epi_index <- grep("\\\*", rownames(sig_full))
+  output_epi <- matrix("NA", length(epi_index), 3)
+  epi_ID <- rownames(sig_full)[epi_index]
+  output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\\*")), ncol = 2, byrow=T)
+  output_epi[, 3] <- sig_full[epi_index, 1]
+  colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+}'''
+
+    show_main_effect = '''output_main'''
+
+    show_epis_effect = '''output_epi'''
+
+    # for data visualization
+    vis_circle_network = '''\
+# generate json
+# get all epsitasis nodes (unique)
+epsi_nodes <- c(output_epi[, 1], output_epi[, 2])
+epsi_nodes <- unique(epsi_nodes)
+json_str<-NULL
+for (i in 1:length(epsi_nodes)) {
+  f1 <- epsi_nodes[i]
+  f2 <- matrix(output_epi[output_epi[, 1] == f1, ], ncol=6)
+  f2[,2] <- sprintf('"epis.%s"', f2[,2])
+  element <- sprintf('{"name":"epis.%s","size":%d,"effects":[%s]}', f1, nrow(f2), paste(f2[,2], collapse=',' ))
+  json_str <- c(json_str,element)
+}
+json_str <- sprintf('[%s]',paste(json_str, collapse=',' ))
+# circle network
+r2d3(data=json_str, script = "../static/js/vis_CN.js", css = "../static/css/vis_CN.css")'''
+
+    vis_adjacent_matrix = '''\
+# For adjacent matrix
+epsi_nodes <- c(output_epi[, 1], output_epi[, 2])
+epsi_nodes <- unique(epsi_nodes)
+nodes_str <- NULL
+for (i in 1:length(epsi_nodes)) {
+  f1 <- epsi_nodes[i]
+  element <- sprintf('{"name":"%s","group":"Epistatic effect","rank": %d}',f1, 1)
+  nodes_str <- c(nodes_str,element)
+}
+nodes_str <- sprintf('"nodes":[%s]',paste(nodes_str, collapse=',' ))
+link_str <- NULL
+for(i in 1:nrow(output_epi)){
+  source_index <- match(output_epi[i,1], epsi_nodes)
+  target_index <- match(output_epi[i,2], epsi_nodes)
+  coff <- as.numeric(output_epi[i,3])
+  element <- sprintf('{"source":%d, "target":%d, "coff": %f}',source_index-1, target_index-1, coff)
+  link_str <- c(link_str,element)
+}
+
+link_str<-sprintf('"links":[%s]',paste(link_str, collapse=',' ))
+am_json<-sprintf('{%s,%s}',nodes_str,link_str)
+write(am_json,'am.json')
+r2d3(d3_version = 4, script = "../static/js/vis_AM.js", css = "../static/css/vis_AM.css", dependencies = "../static/js/d3-scale-chromatic.js")'''
+
+    nb['cells'] = [nbf.v4.new_markdown_cell(title),
+                   nbf.v4.new_markdown_cell(introduction),
+                   nbf.v4.new_code_cell(load_library),
+                   nbf.v4.new_code_cell(load_params),
+                   nbf.v4.new_code_cell(load_data),
+                   nbf.v4.new_code_cell(preprocessing),
+                   nbf.v4.new_code_cell(estimate_main_effect),
+                   nbf.v4.new_code_cell(substract_main_effect),
+                   nbf.v4.new_code_cell(estimate_epis_effect),
+                   nbf.v4.new_code_cell(final_run),
+                   nbf.v4.new_code_cell(show_main_effect),
+                   nbf.v4.new_code_cell(show_epis_effect),
+                   nbf.v4.new_code_cell(vis_circle_network),
+                   nbf.v4.new_code_cell(vis_adjacent_matrix)
                    ]
 
     ssLasso_nb = os.path.join(job_dir, 'ssLASSO_r_notebook.ipynb')

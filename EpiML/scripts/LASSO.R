@@ -63,7 +63,7 @@ y <- read.table(
 sprintf('y size: (%d, %d)', nrow(y), ncol(y))
 y <- as.matrix(y)
 
-# preprocessing for different job categories
+cat('preprocessing depending on data type','\n')
 x_preprocessed <- NULL
 y_preprocessed <- NULL
 # for x preprocess
@@ -77,8 +77,7 @@ if (datatype == 'discrete') {
   x_preprocessed <- quantile_normalisation(x_filtered)
 }
 # for y preprocess
-y_preprocessed <- y # scale(y)
-rm(x, y, x_filtered)
+y_preprocessed <- scale(y)
 
 cat('Main effect estimated', '\n')
 cv_main = cv.glmnet(x_preprocessed, y_preprocessed, nfolds=nFolds)
@@ -90,13 +89,13 @@ blup_main = glmnet(
   lambda = cv_main$lambda.min,
   intercept = TRUE
 )
-main = as.matrix(blup_main$beta)
-sig_main = main[which(main != 0), 1, drop = F]
+main <- as.matrix(blup_main$beta)
+sig_main <- main[which(main != 0), 1, drop = F]
 
 cat('Subtract the main effect', '\n')
 index_main <- rownames(sig_main)
 subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% sig_main
-# subtracted_y <- scale(subtracted_y)
+subtracted_y <- scale(subtracted_y)
 
 cat('Epistatic effect estimated', '\n')
 # construct epistatic matrix, pairwise of each column 
@@ -116,8 +115,8 @@ if (datatype == 'continuous') {
   epi_matrix <- quantile_normalisation(epi_matrix)
 }
 # regression using lasso
-cv_epi = cv.glmnet(epi_matrix, subtracted_y, nfolds=nFolds);
-blup_epi = glmnet(
+cv_epi <- cv.glmnet(epi_matrix, subtracted_y, nfolds=nFolds);
+blup_epi <- glmnet(
   epi_matrix,
   subtracted_y,
   alpha = 1,
@@ -125,8 +124,8 @@ blup_epi = glmnet(
   lambda = cv_epi$lambda.min,
   intercept = TRUE
 )
-epi = as.matrix(blup_epi$beta)
-sig_epi = epi[which(epi != 0), 1, drop = F]
+epi <- as.matrix(blup_epi$beta)
+sig_epi <- epi[which(epi != 0), 1, drop = F]
 
 cat('Final run', '\n')
 # construct new matrix from significant main and epistatic variants
@@ -157,17 +156,21 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
   cat('Generate result tables', '\n')
   # for main effect
   main_index <- setdiff(1:nrow(sig_full), grep("\\*", rownames(sig_full)))
-  output_main <- matrix("NA", length(main_index), 2)
-  output_main[, 1] <- matrix(rownames(sig_full), ncol = 1)[main_index, , drop = F]
-  output_main[, 2] <- sig_full[main_index, 1, drop = F]
-  colnames(output_main) <- c("feature", "coefficent")
+  if(length(main_index)!=0){
+    output_main <- matrix("NA", length(main_index), 2)
+    output_main[, 1] <- matrix(rownames(sig_full), ncol = 1)[main_index, , drop = F]
+    output_main[, 2] <- sig_full[main_index, 1, drop = F]
+    colnames(output_main) <- c("feature", "coefficent")
+  }
   # for epistasic effect
   epi_index <- grep("\\*", rownames(sig_full))
-  output_epi <- matrix("NA", length(epi_index), 3)
-  epi_ID <- matrix(rownames(sig_full), ncol = 1)[epi_index, , drop = F]
-  output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2, byrow=T)
-  output_epi[, 3] <- sig_full[epi_index, 1, drop = F]
-  colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+  if(length(epi_index)!=0){
+    output_epi <- matrix("NA", length(epi_index), 3)
+    epi_ID <- matrix(rownames(sig_full), ncol = 1)[epi_index, , drop = F]
+    output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\*")), ncol = 2, byrow=T)
+    output_epi[, 3] <- sig_full[epi_index, 1, drop = F]
+    colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+  }
 }
 
 ## Ouput the final result including main and epistatic effect

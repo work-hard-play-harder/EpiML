@@ -1,0 +1,786 @@
+{
+  "nodes": [
+    {
+      "name": "X158971_chrI_158971_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X305138_chrII_74920_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X446164_chrII_215946_G_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X550815_chrII_320597_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X570523_chrII_340305_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X601364_chrII_371146_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X625091_chrII_394873_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X701220_chrII_471002_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X729412_chrII_499194_A_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X796687_chrII_566469_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X986485_chrII_756267_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X1086509_chrIII_43107_T_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X1218730_chrIII_175328_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X1800860_chrIV_440838_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X2301085_chrIV_941063_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X2412904_chrIV_1052882_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X2579893_chrIV_1219871_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X2824228_chrIV_1464206_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X2848776_chrIV_1488754_C_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X2867628_chrIV_1507606_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3103374_chrV_211419_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3313976_chrV_422021_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3415134_chrV_523179_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3488445_chrVI_19616_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3571174_chrVI_102345_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3885183_chrVII_146193_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4039498_chrVII_300508_A_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4134872_chrVII_395882_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4209489_chrVII_470499_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4748496_chrVII_1009506_A_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4995072_chrVIII_165142_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X5269646_chrVIII_439716_T_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6171890_chrX_339429_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6224154_chrX_391693_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6259330_chrX_426869_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6439984_chrX_607523_G_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6843186_chrXI_264974_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6889242_chrXI_311030_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7101207_chrXI_522995_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7149964_chrXI_571752_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7174091_chrXI_595879_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7273896_chrXII_28868_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7329532_chrXII_84504_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7526206_chrXII_281178_A_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7761924_chrXII_516896_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X8408616_chrXIII_85411_T_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X8900872_chrXIII_577667_G_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X9509901_chrXIV_262265_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10518104_chrXV_486135_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10544207_chrXV_512238_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10780619_chrXV_748650_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4696256_chrVII_957266_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6378988_chrX_546527_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X896926_chrII_666708_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10277883_chrXV_245914_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7377288_chrXII_132260_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X1502625_chrIV_142603_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X5910191_chrX_77730_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X5056754_chrVIII_226824_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4572855_chrVII_833865_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X1977864_chrIV_617842_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3136068_chrV_244113_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4894435_chrVIII_64505_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X4925353_chrVIII_95423_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6538042_chrX_705581_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11306187_chrXVI_182927_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6317908_chrX_485447_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X6346268_chrX_513807_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X3926164_chrVII_187174_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7616511_chrXII_371483_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11603643_chrXVI_480383_T_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X5811993_chrIX_419420_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10494597_chrXV_462628_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X5588105_chrIX_195532_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7193790_chrXI_615578_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7217302_chrXI_639090_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10921188_chrXV_889219_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X9748288_chrXIV_500652_T_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11527894_chrXVI_404634_C_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11217219_chrXVI_93959_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10235916_chrXV_203947_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X9790652_chrXIV_543016_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X8953451_chrXIII_630246_T_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X8138446_chrXII_893418_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X7481265_chrXII_236237_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11095925_chrXV_1063956_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X8775386_chrXIII_452181_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11243579_chrXVI_120319_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10853111_chrXV_821142_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X9578768_chrXIV_331132_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X8283573_chrXII_1038545_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X9825363_chrXIV_577727_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X9951239_chrXIV_703603_C_T",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X9060988_chrXIII_737783_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11574413_chrXVI_451153_T_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10395522_chrXV_363553_A_G",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X10075842_chrXV_43873_G_A",
+      "group": "Epistatic effect",
+      "rank": 1
+    },
+    {
+      "name": "X11853552_chrXVI_730292_T_C",
+      "group": "Epistatic effect",
+      "rank": 1
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 51,
+      "coff": -0.037313
+    },
+    {
+      "source": 1,
+      "target": 47,
+      "coff": 0.030220
+    },
+    {
+      "source": 2,
+      "target": 52,
+      "coff": 0.038464
+    },
+    {
+      "source": 3,
+      "target": 53,
+      "coff": 0.015508
+    },
+    {
+      "source": 4,
+      "target": 54,
+      "coff": -0.037971
+    },
+    {
+      "source": 5,
+      "target": 55,
+      "coff": 0.022502
+    },
+    {
+      "source": 6,
+      "target": 55,
+      "coff": 0.025463
+    },
+    {
+      "source": 7,
+      "target": 56,
+      "coff": -0.016230
+    },
+    {
+      "source": 8,
+      "target": 57,
+      "coff": -0.040042
+    },
+    {
+      "source": 9,
+      "target": 58,
+      "coff": -0.026453
+    },
+    {
+      "source": 10,
+      "target": 59,
+      "coff": -0.028426
+    },
+    {
+      "source": 11,
+      "target": 60,
+      "coff": -0.025921
+    },
+    {
+      "source": 12,
+      "target": 61,
+      "coff": -0.019965
+    },
+    {
+      "source": 12,
+      "target": 62,
+      "coff": 0.020080
+    },
+    {
+      "source": 12,
+      "target": 63,
+      "coff": 0.237164
+    },
+    {
+      "source": 13,
+      "target": 64,
+      "coff": -0.013615
+    },
+    {
+      "source": 14,
+      "target": 65,
+      "coff": -0.016522
+    },
+    {
+      "source": 15,
+      "target": 66,
+      "coff": 0.036695
+    },
+    {
+      "source": 15,
+      "target": 67,
+      "coff": 0.252987
+    },
+    {
+      "source": 16,
+      "target": 29,
+      "coff": -0.013115
+    },
+    {
+      "source": 17,
+      "target": 35,
+      "coff": 0.259813
+    },
+    {
+      "source": 18,
+      "target": 61,
+      "coff": 0.012468
+    },
+    {
+      "source": 19,
+      "target": 68,
+      "coff": 0.014817
+    },
+    {
+      "source": 20,
+      "target": 69,
+      "coff": 0.026036
+    },
+    {
+      "source": 21,
+      "target": 70,
+      "coff": -0.024203
+    },
+    {
+      "source": 22,
+      "target": 71,
+      "coff": 0.016225
+    },
+    {
+      "source": 23,
+      "target": 72,
+      "coff": 0.029311
+    },
+    {
+      "source": 24,
+      "target": 55,
+      "coff": -0.030912
+    },
+    {
+      "source": 25,
+      "target": 26,
+      "coff": 0.017424
+    },
+    {
+      "source": 26,
+      "target": 73,
+      "coff": -0.018567
+    },
+    {
+      "source": 27,
+      "target": 74,
+      "coff": 0.049606
+    },
+    {
+      "source": 27,
+      "target": 75,
+      "coff": 0.319973
+    },
+    {
+      "source": 27,
+      "target": 76,
+      "coff": 0.029791
+    },
+    {
+      "source": 28,
+      "target": 77,
+      "coff": -0.011462
+    },
+    {
+      "source": 28,
+      "target": 78,
+      "coff": 0.035750
+    },
+    {
+      "source": 29,
+      "target": 79,
+      "coff": 0.030446
+    },
+    {
+      "source": 30,
+      "target": 80,
+      "coff": -0.016965
+    },
+    {
+      "source": 31,
+      "target": 81,
+      "coff": -0.019285
+    },
+    {
+      "source": 31,
+      "target": 54,
+      "coff": -0.023479
+    },
+    {
+      "source": 32,
+      "target": 82,
+      "coff": -0.032093
+    },
+    {
+      "source": 33,
+      "target": 83,
+      "coff": -0.045458
+    },
+    {
+      "source": 34,
+      "target": 84,
+      "coff": -0.063109
+    },
+    {
+      "source": 35,
+      "target": 85,
+      "coff": -0.013005
+    },
+    {
+      "source": 36,
+      "target": 86,
+      "coff": 0.027546
+    },
+    {
+      "source": 37,
+      "target": 87,
+      "coff": -0.024632
+    },
+    {
+      "source": 38,
+      "target": 88,
+      "coff": -0.015911
+    },
+    {
+      "source": 39,
+      "target": 89,
+      "coff": 0.045774
+    },
+    {
+      "source": 40,
+      "target": 90,
+      "coff": -0.026782
+    },
+    {
+      "source": 41,
+      "target": 91,
+      "coff": -0.016278
+    },
+    {
+      "source": 42,
+      "target": 92,
+      "coff": -0.012672
+    },
+    {
+      "source": 43,
+      "target": 83,
+      "coff": -0.022652
+    },
+    {
+      "source": 44,
+      "target": 93,
+      "coff": 0.027069
+    },
+    {
+      "source": 45,
+      "target": 94,
+      "coff": 0.019719
+    },
+    {
+      "source": 46,
+      "target": 95,
+      "coff": -0.020895
+    },
+    {
+      "source": 47,
+      "target": 96,
+      "coff": -0.042298
+    },
+    {
+      "source": 48,
+      "target": 97,
+      "coff": -0.029300
+    },
+    {
+      "source": 49,
+      "target": 50,
+      "coff": 0.009829
+    },
+    {
+      "source": 50,
+      "target": 85,
+      "coff": -0.009999
+    }
+  ]
+}

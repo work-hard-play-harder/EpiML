@@ -61,7 +61,7 @@ y <- read.table(
 sprintf('y size: (%d, %d)', nrow(y), ncol(y))
 y <- as.matrix(y)
 
-# preprocessing for different job categories
+# preprocessing depending on data type
 x_preprocessed <- NULL
 y_preprocessed <- NULL
 # for x preprocess
@@ -78,8 +78,8 @@ if (datatype == 'discrete') {
 y_preprocessed <- scale(y)
 
 cat('Main effect estimated', '\n')
-cv_main = EBelasticNet.GaussianCV(x_preprocessed, y_preprocessed, nFolds = nFolds, Epis = "no")
-blup_main = EBelasticNet.Gaussian(
+cv_main <- EBelasticNet.GaussianCV(x_preprocessed, y_preprocessed, nFolds = nFolds, Epis = "no")
+blup_main <- EBelasticNet.Gaussian(
   x_preprocessed,
   y_preprocessed,
   lambda = cv_main$Lambda_optimal,
@@ -87,8 +87,8 @@ blup_main = EBelasticNet.Gaussian(
   Epis = "no",
   verbose = 0
 )
-main = as.matrix(blup_main$weight)
-sig_main = main[which(main[, 6] <= pvalue),, drop = F]
+main <- as.matrix(blup_main$weight)
+sig_main <- main[which(main[, 6] <= pvalue),, drop = F]
 
 cat('Subtract the main effect', '\n')
 index_main <- sig_main[, 1]
@@ -97,8 +97,8 @@ subtracted_y <- y_preprocessed - x_preprocessed[, index_main, drop=F] %*% effect
 subtracted_y <- scale(subtracted_y)
 
 cat('Epistatic effect estimated', '\n')
-cv_epis = EBelasticNet.GaussianCV(x_preprocessed, subtracted_y, nFolds = nFolds, Epis = "yes")
-blup_epis = EBelasticNet.Gaussian(
+cv_epis <- EBelasticNet.GaussianCV(x_preprocessed, subtracted_y, nFolds = nFolds, Epis = "yes")
+blup_epis <- EBelasticNet.Gaussian(
   x_preprocessed,
   subtracted_y,
   lambda =  cv_epis$Lambda_optimal,
@@ -106,11 +106,11 @@ blup_epis = EBelasticNet.Gaussian(
   Epis = "yes",
   verbose = 0
 )
-epi = as.matrix(blup_epis$weight)
-sig_epi = epi[which(epi[, 6] <= pvalue),, drop = F]
+epi <- as.matrix(blup_epis$weight)
+sig_epi <- epi[which(epi[, 6] <= pvalue),, drop = F]
 
 cat('Final run', '\n')
-full_id = rbind(sig_main[, 1:2], sig_epi[, 1:2])
+full_id <- rbind(sig_main[, 1:2], sig_epi[, 1:2])
 
 output_main <- matrix("NA", 0, 5)
 colnames(output_main) <- c('feature', 'coefficent', 'posterior variance', 't-value', 'p-value')
@@ -133,8 +133,8 @@ if (!is.null(full_id) && nrow(full_id)>2)
     full_matrix <- quantile_normalisation(full_matrix)
   }
   #regression
-  cv_full = EBelasticNet.GaussianCV(full_matrix, y_preprocessed, nFolds = nFolds, Epis = "no")
-  blup_full = EBelasticNet.Gaussian(
+  cv_full <- EBelasticNet.GaussianCV(full_matrix, y_preprocessed, nFolds = nFolds, Epis = "no")
+  blup_full <- EBelasticNet.Gaussian(
     full_matrix,
     y_preprocessed,
     lambda =  cv_full$Lambda_optimal,
@@ -142,8 +142,8 @@ if (!is.null(full_id) && nrow(full_id)>2)
     Epis = "no",
     verbose = 0
   )
-  full = as.matrix(blup_full$weight)
-  sig_full = full[which(full[, 6] <= pvalue),, drop = F]
+  full <- as.matrix(blup_full$weight)
+  sig_full <- full[which(full[, 6] <= pvalue),, drop = F]
   sig_full[, 1:2] <- full_id[sig_full[, 1], 1:2]
   
   output_main <- matrix("NA", 0, 5)

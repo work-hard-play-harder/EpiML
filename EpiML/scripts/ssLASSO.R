@@ -65,7 +65,7 @@ y <- read.table(
 sprintf('y size: (%d, %d)', nrow(y), ncol(y))
 y <- as.matrix(y)
 
-# preprocessing for different job categories
+# preprocessing depending on data type
 x_preprocessed <- NULL
 y_preprocessed <- NULL
 # for x preprocess
@@ -80,15 +80,14 @@ if (datatype == 'discrete') {
 }
 # for y preprocess
 y_preprocessed <- scale(y)
-rm(x, y, x_filtered)
 
 cat('Main effect estimated', '\n')
 # get s0 prior
-main_prior = glmNet(x_preprocessed,
+main_prior <- glmNet(x_preprocessed,
                     y_preprocessed,
                     family = "gaussian",
                     ncv = nFolds) 
-s0 = main_prior$prior.scale 
+s0 <- main_prior$prior.scale 
 blup_main <- bmlasso(
   x_preprocessed,
   y_preprocessed,
@@ -99,7 +98,6 @@ blup_main <- bmlasso(
 )
 main_coef <- blup_main$beta
 sig_main <- main_coef[which(main_coef != 0),1,drop=F]
-rm(blup_main)
 
 cat('Subtract the main effect', '\n')
 index_main <- rownames(sig_main)
@@ -125,11 +123,11 @@ if (datatype == 'continuous') {
 }
 # regression
 # get s0 prior
-epi_prior = glmNet(epi_matrix,
+epi_prior <- glmNet(epi_matrix,
                    subtracted_y,
                    family = "gaussian",
                    ncv = nFolds) 
-s0 = epi_prior$prior.scale 
+s0 <- epi_prior$prior.scale 
 blup_epi <- bmlasso(
   epi_matrix,
   subtracted_y,
@@ -140,7 +138,6 @@ blup_epi <- bmlasso(
 )
 epi_coef <- blup_epi$beta
 sig_epi <- epi_coef[which(epi_coef != 0),1,drop=F]
-rm(blup_epi)
 
 cat('Final run', '\n')
 # construct new matrix from significant main and epistatic variants
@@ -157,11 +154,11 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
   }
   # regression 
   # get s0 prior
-  full_prior = glmNet(full_matrix,
+  full_prior <- glmNet(full_matrix,
                       y_preprocessed,
                       family = "gaussian",
                       ncv = nFolds) 
-  s0 = full_prior$prior.scale 
+  s0 <- full_prior$prior.scale 
   blup_full <- bmlasso(
       full_matrix,
       y_preprocessed,
