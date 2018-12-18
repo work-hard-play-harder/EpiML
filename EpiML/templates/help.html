@@ -161,9 +161,9 @@
                             tools for visualizing and downloading results. <strong>c</strong>. Customize analysis. All
                             automatically generated Jupyter notebooks and pre-configured Docker containers can be
                             downloaded, modified and rerun, allowing users to fully customize their analysis code on
-                            local computers. <strong>d</strong>. Generate bioRxiv report that provides detailed
+                            local computers. <!--<strong>d</strong>. Generate bioRxiv report that provides detailed
                             information
-                            about the models.
+                            about the models.-->
                         </figcaption>
                     </figure>
                 </div>
@@ -289,7 +289,7 @@
                         <img width="90%" src="{{ url_for('static',filename='img/help/summary.png') }}">
                         <figcaption style="width: 90%; text-align: justify"><strong>Figure 7. The summary form of
                             finished job.</strong> It contains job description, method, running time, input and output
-                            files, PDF report, and jupyter notebook. User can download files through corresponding link.
+                            files, and jupyter notebook. User can download files through corresponding link.
                         </figcaption>
                     </figure>
                 </div>
@@ -402,8 +402,8 @@
                         directory, and copy notebook into the new directory.
                     </li>
                     <li>Launch the Docker container by entering the following command
-                        <pre>docker run -it --rm -p 8888:8888 -v "$PWD":/home/jovyan/work workhardplayharder/epiml:v1</pre>
-                        This command pulls the <code>workhardplayharder/epiml</code> image tagged <code>v1</code> from
+                        <pre>docker run -it --rm -p 8888:8888 -v "$PWD":/home/jovyan/work workhardplayharder/epiml:latest</pre>
+                        This command pulls the <code>workhardplayharder/epiml</code> image tagged <code>latest</code> from
                         Docker Hub if it is not already present on the local host. It then starts a container running a
                         Jupyter Notebook server, and exposes the server on host port 8888. The server logs appear in the
                         terminal.
