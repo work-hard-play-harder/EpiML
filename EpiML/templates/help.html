@@ -403,16 +403,17 @@
                     </li>
                     <li>Launch the Docker container by entering the following command
                         <pre>docker run -it --rm -p 8888:8888 -v "$PWD":/home/jovyan/work workhardplayharder/epiml:latest</pre>
-                        This command pulls the <code>workhardplayharder/epiml</code> image tagged <code>latest</code> from
-                        Docker Hub if it is not already present on the local host. It then starts a container running a
-                        Jupyter Notebook server, and exposes the server on host port 8888. The server logs appear in the
-                        terminal.
+                        This command pulls the <code>workhardplayharder/epiml</code> image tagged <code>latest</code>
+                        from Docker Hub if it is not already present on the local host. It then starts a container
+                        running a Jupyter Notebook server, and exposes the server on host port 8888. The server logs
+                        appear in the terminal.
                     </li>
                 </ol>
                 <h4 class="anchor" id="customize">4.4. Customize your Notebook</h4>
                 <p>Copy/paste <code>http://&lt;hostname&gt;:8888/?token=&lt;token&gt;</code> in a browser
                     loads the Jupyter Notebook dashboard page, where hostname is the name of the computer running
-                    docker and token is the secret token printed in the console. Customize and save your notebook in
+                    docker and token is the secret token printed in the console. Click into <code>work</code> directory,
+                    and find the jupyter notebook. Customize and save your notebook in
                     Jupyter. Once you are done, stop the Docker container by pressing <code>Ctrl+C</code> on the
                     previously opened
                     Terminal window.</p>
