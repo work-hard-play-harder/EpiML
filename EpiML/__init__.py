@@ -17,7 +17,6 @@ app.config.from_object(Config)
 # for csrf protection
 CSRFProtect(app)
 
-
 # for url prefix string
 #app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix=app.config['APPLICATION_ROOT'])
 
