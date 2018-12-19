@@ -8,7 +8,6 @@ from redis import Redis
 from celery import Celery
 
 from EpiML.momentjs import momentjs
-from EpiML.prefixMiddleware import PrefixMiddleware
 
 
 app = Flask(__name__)
@@ -16,9 +15,6 @@ app.config.from_object(Config)
 
 # for csrf protection
 CSRFProtect(app)
-
-# for url prefix string
-#app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix=app.config['APPLICATION_ROOT'])
 
 # for time format in html
 app.jinja_env.globals['momentjs'] = momentjs
