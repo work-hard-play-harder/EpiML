@@ -16,7 +16,7 @@
             finished. You also can retrieve the results by using the link:
         <p align="center">
             <a href={{ url_for('processing', jobid=jobid,security_code=security_code) }}>
-               {{ host_domain }}{{ url_for('processing', jobid=jobid,security_code=security_code) }} </a>
+              {{ url_for('processing', jobid=jobid,security_code=security_code, _external=True) }} </a>
         </p>
         <hr>
         <h4><strong>Please note the following:</strong></h4>
