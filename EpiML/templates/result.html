@@ -98,12 +98,34 @@
         }
     </style>
 {% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <!-- for datatables -->
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+
+    <!-- for visualization -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- for interaction -->
+    <script src="{{ url_for('static',filename='js/vis_interaction.js') }}"></script>
+    <!-- for save as -->
+    <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
+    <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+
+    <!--for math equation -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+            async></script>
+{% endblock %}
 
 {% block content %}
     <div>
         <section>
             <h2>Summary</h2>
-            <p>Your job is finished, and summaries are listed in following. You can download results and report
+            <p>Your job is finished, and summaries are listed in following. You can download results
                 through corresponding links, or directly check out your results using following interactive result
                 tables
                 and visualizations.</p>
@@ -186,19 +208,19 @@
         <section>
             <hr>
             <h2>Result</h2>
-            <p>EpiML can detect main effect and epistatic effect features in your data based on your selected machine
-                learning method. These results are shown in interactive tables by which you can easily explore and
-                compare
-                results.</p>
+            <p>EpiML can detect main effect and epistasis effect based on your selected machine
+                learning method. These results are shown in interactive tables, by which you can easily explore and
+                compare results.</p>
             <h3>Main Effect</h3>
-            <p>A main effect is the phenomenon where the effect of one feature is independent on the others.</p>
+            <p>A main effect is the effect of an independent variable on a dependent variable averaging across the
+                levels of any other independent variables.</p>
             <div>
                 <table id="main_effect" name="main_effect" class="table table-hover stripe">
                     <thead>
                     <tr>
                         <th>#</th>
                         <th>Feature</th>
-                        <th>Coefficent value</th>
+                        <th>Coefficient</th>
                         {% if job.selected_algorithm=='EBEN' %}
                             <th>Posterior variance</th>
                             <th>t-value</th>
@@ -224,9 +246,9 @@
             </div>
         </section>
         <section>
-            <h3>Epistatic Effect</h3>
-            <p>Epistatic effect is the phenomenon where the effect of one feature is dependent on the presence of one or
-                more features.
+            <h3>Epistasis Effect</h3>
+            <p>Epistasis effect is the phenomenon where the effect of an independent variable is dependent on either
+                presence or absence of one or more independent variables.
             </p>
             <div>
                 <table id="epis_effect" name="epis_effect" class="table table-hover stripe ">
@@ -235,7 +257,7 @@
                         <th>#</th>
                         <th>Feature 1</th>
                         <th>Feature 2</th>
-                        <th>Coefficent value</th>
+                        <th>Coefficient</th>
                         {% if job.selected_algorithm=='EBEN' %}
                             <th>Posterior variance</th>
                             <th>t-value</th>
@@ -261,7 +283,7 @@
                 </table>
                 <br>
                 Note: This table can interact with following visualizations. When you click one row
-                in this table, the corresponding features will be highlight in circle network and adjacent matrix
+                in this table, the corresponding nodes will be highlighted in circle network and adjacent matrix
                 visualizations.
             </div>
         </section>
@@ -269,15 +291,14 @@
             <hr>
             <h2>Visualization</h2>
             <h3>Circle Network</h3>
-            <p> Epistatic effect results can be represented in circle network. One node in circle network
-                represents a feature in epistatic effect results table. All nodes are arranged as a circle. Two nodes
-                that have
-                epistatic relationship are linked by an undirected edge. It is easy to know that the number of edges of
-                one node equals to the number of epistatic effects that one feature has on other features.
+            <p> Epistatic relationship can be represented in circle network, where one node
+                represents a feature in epistasis effect table. All nodes are arranged as a circle. Two nodes
+                that have interaction are linked by an undirected edge. It is easy to know that the number of
+                edges of one node equals to the number of epistasis effects that one feature has on other features.
                 Circle network has two main advantages comparing to table: </p>
             <ol style="font-size: large">
                 <li>It is easy to find out which feature has the most epistatic effects on other features.</li>
-                <li>It is easy to find complex indirected relationship among features.</li>
+                <li>It is easy to find complex indirect interaction among features.</li>
 
             </ol>
 
@@ -286,11 +307,10 @@
                     <svg name="circle_network" id="circle_network"></svg>
                 </div>
                 <div class="col-sm-3">
-
-                    Mouse over any of nodes in this network to see its associative features in <span
+                    Mouse over any node in this network to see its interaction features in <span
                         style="color: #d62728;">red</span>.
                     <br> <br>
-                    Click one node to find details in above Epistatic Effect table. Double click on graph back
+                    Click one node to find details in above epistasis effect table. Double click on graph back
                     to default.
 
                     <!--//TODO: add datatables mouseover events -->
@@ -313,20 +333,19 @@
         <section>
             <h3>Adjacency Matrix</h3>
             <div>
-                <p> Epistatic effect results can also be represented by an adjacency matrix, where row and column names
-                    are the features in epistatic effect table, each cell (<i>i</i>, <i>j</i>) represents an edge from
-                    vertex <i>i</i> to vertex <i>j</i>. Matrix cell depicts coefficent value in epistatic effect table.
-                    The darker cells indicate strong
-                    interaction.
+                <p> Epistatic relationship can also be represented by an adjacency matrix, where row and column names
+                    are the features in epistasis effect table, each cell \((i,j)\) represents an edge from
+                    vertex \(i\) to vertex \(j\). Matrix cell depicts coefficient value in epistasis effect table.
+                    The darker cells indicate strong interaction.
                     While circle network can give a good view for node-link relationship, adjacency matrix
                     has other advantages:</p>
                 <ol style="font-size: large">
                     <li>Adjacency matrix can give a whole picture of epistatic relationship, especially for large number
-                        of epistatic features. As circle network gets large and highly connected, it
+                        of features. As circle network gets large and highly connected, it
                         often becomes into giant hairballs of line crossings.
                     </li>
-                    <li> Matrix cell value can represent the strength of epistatic relationship. And it also can be
-                        encoded to show additional data.
+                    <li> Matrix cell value can represent the strength of epistatic relationship. And additional data can
+                        be encoded in cell.
                     </li>
                 </ol>
                 <!-- <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>-->
@@ -413,23 +432,4 @@
             </ol>
         </section>
     </div>
-{% endblock %}
-{% block scripts %}
-    {{ super() }}
-    <!-- for datatables -->
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
-
-    <!-- for visualization -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <!-- for interaction -->
-    <script src="{{ url_for('static',filename='js/vis_interaction.js') }}"></script>
-    <!-- for save as -->
-    <script src="{{ url_for('static',filename='js/saveSvgAsPng.js') }}"></script>
-    <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
-    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
-
 {% endblock %}
