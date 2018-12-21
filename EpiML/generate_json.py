@@ -33,7 +33,7 @@ class GenerateJson(object):
 
     def __init__(self, job_dir, jobcategory):
         self.job_dir = job_dir
-        self.species = jobcategory.split('(')[1][:-1]
+        self.jobcategory = jobcategory
 
         self.main_results = load_results(os.path.join(self.job_dir, 'main_result.txt'))
         self.main_nodes = self.main_results['feature'].drop_duplicates()
@@ -89,6 +89,7 @@ class GenerateJson(object):
         return json.dumps(am_graph_json)
 
     def generate_gene_fd_graph_json(self):
+        species = self.jobcategory.split('(')[1][:-1]
         # for all nodes
         nodes_json = []
         for node in self.all_nodes:
@@ -105,7 +106,7 @@ class GenerateJson(object):
                                    'level': 1,
                                    'type': 'gene',
                                    'url': 'https://genome.ucsc.edu/cgi-bin/hgTracks?db={0}&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position={1}%3A{2}%2D{3}&hgsid=696568993_Sf8X26qlPt8PnE4BDjm1qFYLxixM'.format(
-                                       self.UCSC_genomes_db[self.species], chr_name, chr_position - 10,
+                                       self.UCSC_genomes_db[species], chr_name, chr_position - 10,
                                                                                      chr_position + 10)
                                    })
             elif node in self.epis_nodes.values:
@@ -121,7 +122,7 @@ class GenerateJson(object):
                                    'level': 1,
                                    'type': 'gene',
                                    'url': 'https://genome.ucsc.edu/cgi-bin/hgTracks?db={0}&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position={1}%3A{2}%2D{3}&hgsid=696568993_Sf8X26qlPt8PnE4BDjm1qFYLxixM'.format(
-                                       self.UCSC_genomes_db[self.species], chr_name, chr_position - 10,
+                                       self.UCSC_genomes_db[species], chr_name, chr_position - 10,
                                                                                      chr_position + 10)
                                    })
         # for epis link
