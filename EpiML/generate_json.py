@@ -259,9 +259,6 @@ class GenerateJson(object):
                                    'url': ''
                                    })
             elif node in self.epis_nodes.values:
-                feature_name = node.split('_')
-                chr_name = feature_name[1]
-                chr_position = int(feature_name[2])
                 nodes_json.append({'id': node,
                                    'shape': 'triangle',
                                    'size': 80,
