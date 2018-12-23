@@ -9,6 +9,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
     {% block scripts %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131318310-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-131318310-1');
+        </script>
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -24,6 +39,7 @@
                     navbar.addClass('responsive');
                 }
             }
+
             jQuery(document).on('ready', autocollapse);
             jQuery(window).on('resize', autocollapse);
         </script>
