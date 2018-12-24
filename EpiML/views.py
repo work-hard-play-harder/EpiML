@@ -61,6 +61,8 @@ def webserver():
             flash("Only .txt and .csv file types are valid!")
             return redirect(request.url)
 
+
+
         if x_filename == y_filename:
             flash("Training data have the same file name.")
             return redirect(request.url)
@@ -80,6 +82,10 @@ def webserver():
         input_x.save(os.path.join(job_dir, x_filename))
         input_y.save(os.path.join(job_dir, y_filename))
         # flash("File has been upload!")
+
+        if (os.path.getsize(os.path.join(job_dir, x_filename)) / (1024*1024))>5:
+            flash("File size is limited to no more than 5MB.!")
+            return redirect(request.url)
 
         # call scripts and update Model database
         celery_task = call_scripts.apply_async([job.id, method, params, x_filename, y_filename],
