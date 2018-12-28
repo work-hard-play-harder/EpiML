@@ -132,9 +132,9 @@ sig_epi <- epi[which(epi[, 6] <= pvalue),, drop = F]'''
 full_id <- rbind(sig_main[, 1:2], sig_epi[, 1:2])
 
 output_main <- matrix("NA", 0, 5)
-colnames(output_main) <- c('feature', 'coefficent', 'posterior variance', 't-value', 'p-value')
+colnames(output_main) <- c('feature', 'coefficient', 'posterior variance', 't-value', 'p-value')
 output_epi <- matrix("NA", 0, 6)
-colnames(output_epi) <- c('feature1', 'feature2', 'coefficent', 'posterior variance', 't-value', 'p-value')
+colnames(output_epi) <- c('feature1', 'feature2', 'coefficient', 'posterior variance', 't-value', 'p-value')
 # at least three 
 if (!is.null(full_id) && nrow(full_id)>2)
 {
@@ -166,9 +166,9 @@ if (!is.null(full_id) && nrow(full_id)>2)
   sig_full[, 1:2] <- full_id[sig_full[, 1], 1:2]
   
   output_main <- matrix("NA", 0, 5)
-  colnames(output_main) <- c('feature', 'coefficent', 'posterior variance', 't-value', 'p-value')
+  colnames(output_main) <- c('feature', 'coefficient', 'posterior variance', 't-value', 'p-value')
   output_epi <- matrix("NA", 0, 6)
-  colnames(output_epi) <- c('feature1', 'feature2', 'coefficent', 'posterior variance', 't-value', 'p-value')
+  colnames(output_epi) <- c('feature1', 'feature2', 'coefficient', 'posterior variance', 't-value', 'p-value')
   for (i in 1:nrow(sig_full)) {
     if (sig_full[i, 1] == sig_full[i, 2]) {
       output_main <- rbind(output_main, c(colnames(x_preprocessed)[sig_full[i, 1]], sig_full[i, 3:6]))
@@ -376,9 +376,9 @@ sig_epi <- epi[which(epi != 0), 1, drop = F]'''
 full_matrix <- cbind(x_preprocessed[, rownames(sig_main), drop=F],epi_matrix[,rownames(sig_epi), drop=F])
 
 output_main <- matrix("NA", 0, 2)
-colnames(output_main) <- c("feature", "coefficent")
+colnames(output_main) <- c("feature", "coefficient")
 output_epi <- matrix("NA", 0, 3)
-colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+colnames(output_epi) <- c("feature1", "feature2", "coefficient")
 # at least two columns
 if (!is.null(full_matrix) && ncol(full_matrix)>2){
   if (datatype == 'continuous') {
@@ -404,7 +404,7 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
     output_main <- matrix("NA", length(main_index), 2)
     output_main[, 1] <- matrix(rownames(sig_full), ncol = 1)[main_index, , drop = F]
     output_main[, 2] <- sig_full[main_index, 1, drop = F]
-    colnames(output_main) <- c("feature", "coefficent")
+    colnames(output_main) <- c("feature", "coefficient")
   }
   # for epistasic effect
   epi_index <- grep("\\\*", rownames(sig_full))
@@ -413,7 +413,7 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
     epi_ID <- matrix(rownames(sig_full), ncol = 1)[epi_index, , drop = F]
     output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\\*")), ncol = 2, byrow=T)
     output_epi[, 3] <- sig_full[epi_index, 1, drop = F]
-    colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+    colnames(output_epi) <- c("feature1", "feature2", "coefficient")
   }
 }'''
 
@@ -622,9 +622,9 @@ sig_epi <- epi_coef[which(epi_coef != 0),1,drop=F]'''
 full_matrix <- cbind(x_preprocessed[, rownames(sig_main), drop=F],epi_matrix[,rownames(sig_epi),drop=F])
 
 output_main <- matrix("NA", 0, 2)
-colnames(output_main) <- c("feature", "coefficent")
+colnames(output_main) <- c("feature", "coefficient")
 output_epi <- matrix("NA", 0, 3)
-colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+colnames(output_epi) <- c("feature1", "feature2", "coefficient")
 # at least two columns
 if (!is.null(full_matrix) && ncol(full_matrix)>2){
   if (datatype == 'continuous') {
@@ -654,14 +654,14 @@ if (!is.null(full_matrix) && ncol(full_matrix)>2){
   output_main <- matrix("NA", length(main_index), 2)
   output_main[, 1] <- rownames(sig_full)[main_index]
   output_main[, 2] <- sig_full[main_index, 1]
-  colnames(output_main) <- c("feature", "coefficent")
+  colnames(output_main) <- c("feature", "coefficient")
   # generate epistatic results
   epi_index <- grep("\\\*", rownames(sig_full))
   output_epi <- matrix("NA", length(epi_index), 3)
   epi_ID <- rownames(sig_full)[epi_index]
   output_epi[, 1:2] <- matrix(unlist(strsplit(epi_ID, "\\\*")), ncol = 2, byrow=T)
   output_epi[, 3] <- sig_full[epi_index, 1]
-  colnames(output_epi) <- c("feature1", "feature2", "coefficent")
+  colnames(output_epi) <- c("feature1", "feature2", "coefficient")
 }'''
 
     show_main_effect = '''output_main'''

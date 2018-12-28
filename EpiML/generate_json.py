@@ -78,7 +78,7 @@ class GenerateJson(object):
             target_index = epis_nodes_list.index(link['feature2'])
             am_graph_links_json.append({'source': source_index,
                                         'target': target_index,
-                                        'coff': link['coefficent'],
+                                        'coff': link['coefficient'],
                                         # 'post': link['posterior variance'],
                                         # 'tvalue': link['t-value'],
                                         # 'pvalue': link['p-value'],
