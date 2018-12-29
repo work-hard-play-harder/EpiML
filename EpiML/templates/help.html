@@ -176,7 +176,7 @@
                 </p>
 
                 <h4 class="anchor" id="prepare">2.1. Prepare your data</h4>
-                <p>Input files include two parts: feature matrix <strong>X</strong>, and label matrix <strong>Y</strong>.
+                <p>Input files include two parts: feature matrix <strong>X</strong>, and target matrix <strong>Y</strong>.
                     Both of them are table separated files with row and column names. In generally, the row names and
                     column names could be any string, but no repeat. However, for gene and microRNA case
                     studies, the column names of feature matrix are very important, because they will be used for
@@ -206,13 +206,13 @@
                 </div>
 
 
-                <p>The format of label matrix Y for all kind of data are same. An example of label matrix Y is shown in
+                <p>The format of target matrix Y for all kind of data are same. An example of target matrix Y is shown in
                     following:
                 </p>
                 <div align="center">
                     <figure style="margin-bottom: 10px">
                         <img height="200px" src="{{ url_for('static',filename='img/help/label_matrix_Y.png') }}">
-                        <figcaption style="width: 90%; text-align: center"><strong>Figure 4. An example of label matrix
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 4. An example of target matrix
                             format.</strong></figcaption>
                     </figure>
                 </div>
@@ -244,7 +244,7 @@
                     <li><strong>Description</strong> is used to help user annotate job details, such as purpose, type of
                         data, and parameters. It is optional.
                     </li>
-                    <li><strong>Upload</strong> the prepared files. Upload the feature matrix file and label matrix file
+                    <li><strong>Upload</strong> the prepared files. Upload the feature matrix file and target matrix file
                         separately.
                     </li>
                     <li><strong>Select Method</strong>.Three popular methods are built in web server. Refer to <a
@@ -418,17 +418,17 @@
             <hr>
             <section class="anchor" id="analysis_methods">
                 <h3>5. Analysis Methods</h3>
-                <p>We build-in several machine learning methods for epistatic analysis. In general, you only need to
+                <p>We build-in several statistical and machine learning methods for epistatic analysis. In general, you only need to
                     upload your data, select one machine learning method, and then submit your job. You don't need to
                     care about the algorithm detail. Our server will handle all the procedure in backend. For you better
-                    understand the workflow and difference among build-in methods, they are briefly introduced.
+                    understanding the workflow and difference among build-in methods, the build-in methods are briefly introduced.
                 </p>
                 <p>The statistical model for identifying epistasis is shown as below:</p>
                 <p> $$y= \mu + \Sigma X_p \beta_m + \Sigma X_i X_j \beta_e + \epsilon $$</p>
-                <p>where \(y\) is the phenotype, \(\mu\) is mean, \(X_p\) denotes the \(p^{th}\) feature in the genotype
+                <p>where \(y\) is the target, \(\mu\) is mean, \(X_p\) denotes the \(p^{th}\) feature in the
                     matrix \(X\) which dimension is \(N \times P\) and \(X_i X_j\) denotes the \(i^{th}\) and \(j^{th}\)
-                    features in the genotype matrix
-                    \(X\). \(m\) denotes the main effects of \(X_p\), \(e\) denotes the epistatic effects of the
+                    features in the matrix
+                    \(X\). \(m\) denotes the marginal effects of \(X_p\), \(e\) denotes the epistatic effects of the
                     combination of \(X_i X_j\),
                     and \(\epsilon\) is the residual error which follows the normal distribution \(N(0,\sigma^2)\).
                 </p>
@@ -442,7 +442,7 @@
                     we select features with epistasis effect on the corrected phenotype. Finally, we run the full model
                     on the previously selected main and epistatic features.
                 </p>
-                <p>We implement three feature selection based methods in our web server to build the above workflow
+                <p>We implemented three feature selection based methods in our web server to build the above workflow
                     including Empirical Bayesian Elastic Net (EBEN) [1], Least Absolute Shrinkage and Selection Operator
                     (LASSO) [2] and Spike-and-Slab LASSO generalized linear models (ssLASSO GLMs) [3, 4]. All these
                     methods can be applied in Step 1, 3 and 4 in Figure 11. </p>
