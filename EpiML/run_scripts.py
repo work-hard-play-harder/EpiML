@@ -4,10 +4,11 @@ import shlex
 import subprocess
 import pandas as pd
 from datetime import datetime, timezone
+from flask import url_for
 
 from EpiML import app, db, celery
 from EpiML.db_tables import Job
-from EpiML.email import send_job_done_email
+from EpiML.email import send_job_done_email,send_job_error_email
 
 
 def create_job_folder(upload_folder='', jobid=None, security_code=None):
@@ -26,7 +27,7 @@ def create_job_folder(upload_folder='', jobid=None, security_code=None):
 
 
 @celery.task()
-def call_scripts(jobid, method, params=None, x_filename='', y_filename=''):
+def call_scripts(jobid, method, params=None, x_filename='', y_filename='', processing_url=''):
     print('Background start {}...'.format(method))
     job = Job.query.filter_by(id=jobid).first_or_404()
     job.status = 'Running'
@@ -84,8 +85,12 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename=''):
     db.session.add(job)
     db.session.commit()
 
-    # if job.status == 'Done':
-    #     send_job_done_email.apply_async(recipients=[job.user_email], jobname=job.name, jobid=job.id,
-    #                                     security_code=job.security_code)
+    # send result link
+    if job.status == 'Done':
+        send_job_done_email.apply_async(args=[job.user_email, job.name, processing_url],
+                                        countdown=5)
+    elif job.status == 'Error':
+        send_job_error_email.apply_async(args=[job.user_email, job.name, processing_url],
+                                        countdown=5)
 
     print('Background Done!')

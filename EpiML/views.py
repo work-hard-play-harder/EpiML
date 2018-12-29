@@ -48,7 +48,7 @@ def webserver():
         if request.form.get('ss') == 'on':
             params['seed_number'] = request.form['seed_number']
         else:
-            params['seed_number'] = '28213' # str(random.randint(0, 28213))
+            params['seed_number'] = '28213'  # str(random.randint(0, 28213))
         params['datatype'] = datatype
 
         print(jobname, email, jobcategory, params['datatype'], description, input_x, input_y, method,
@@ -60,8 +60,6 @@ def webserver():
         else:
             flash("Only .txt and .csv file types are valid!")
             return redirect(request.url)
-
-
 
         if x_filename == y_filename:
             flash("Training data have the same file name.")
@@ -83,12 +81,17 @@ def webserver():
         input_y.save(os.path.join(job_dir, y_filename))
         # flash("File has been upload!")
 
-        if (os.path.getsize(os.path.join(job_dir, x_filename)) / (1024*1024))>5:
+        if (os.path.getsize(os.path.join(job_dir, x_filename)) / (1024 * 1024)) > 5:
             flash("File size is limited to no more than 5MB.!")
             return redirect(request.url)
 
+        # url_for doesn't work well in celery worker, even using app.app_content or app.test_request_content.
+        # app.test_request_content must manually assign pre-string
+        processing_url = url_for('processing', jobid=job.id, security_code=security_code, _external=True)
+        print(processing_url)
+
         # call scripts and update Model database
-        celery_task = call_scripts.apply_async([job.id, method, params, x_filename, y_filename],
+        celery_task = call_scripts.apply_async(args=[job.id, method, params, x_filename, y_filename, processing_url],
                                                countdown=5)
         job.celery_id = celery_task.id
         db.session.add(job)
@@ -100,7 +103,9 @@ def webserver():
 
         # send result link and security code via email
         if email != '':
-            send_submit_job_email([email], jobname=jobname, jobid=job.id, security_code=security_code)
+            send_submit_job_email.apply_async(args=[email, jobname, processing_url],
+                                              countdown=5)
+            # send_submit_job_email.apply_aysnc(recipients=email, jobname=jobname, jobid=job.id, security_code=security_code)
 
         return redirect(url_for('processing', jobid=job.id, security_code=security_code))
 

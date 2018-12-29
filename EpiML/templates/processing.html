@@ -5,8 +5,8 @@
     <meta http-equiv="refresh" content="5">
 {% endblock %}
 {% block title %}
-        <title>Job status | EpiML@Shilab</title>
-    {% endblock %}
+    <title>Job status | EpiML@Shilab</title>
+{% endblock %}
 {% block content %}
     <div class="container" style="background-color:whitesmoke">
 
@@ -16,7 +16,7 @@
             finished. You also can retrieve the results by using the link:
         <p align="center">
             <a href={{ url_for('processing', jobid=jobid,security_code=security_code) }}>
-              {{ url_for('processing', jobid=jobid,security_code=security_code, _external=True) }} </a>
+                {{ url_for('processing', jobid=jobid,security_code=security_code, _external=True) }} </a>
         </p>
         <hr>
         <h4><strong>Please note the following:</strong></h4>
@@ -29,6 +29,8 @@
             </li>
             <li style="line-height:30px">If you provide your email address when submit job, you will receive an email
                 with this link.
+            </li>
+            <li style="line-height:30px">When job is done, you will receive another email notification.
             </li>
         </ul>
     </div>
