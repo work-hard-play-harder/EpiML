@@ -72,10 +72,11 @@
     <div>
         <h2>Server</h2>
         <div>
-            <p>Separately upload feature matrix X and label matrix Y, and submit job in this page. A
-                step-by-step tutorial can be found in <a href="{{ url_for('help') }}"> Help</a>. When you submit the
-                job, it will be run in background. If you provide an Email address, an Email notification with result
-                link will be sent to you. You can check the running status and get final report by the link.
+            <p>EpiML takes feature matrix X and label matrix Y as input. Both of them are tab-delimited tables. A
+                step-by-step tutorial can be found in <a href="{{ url_for('help') }}"> Help</a>. Once job is
+                submitted, it will be run in background. If an Email address is provided, an Email notification with
+                processing link will be sent to you. You can check job running status and retrieve final results by the
+                link.
                 When job is done, you will receive another Email notification.
             </p>
         </div>
@@ -114,7 +115,7 @@
                     <label class="control-label col-sm-2 " for="jobcategory">Job Category <span
                             style="color: red">*</span>:
                         <div class="question_tooltip"><span class="glyphicon glyphicon-question-sign"></span>
-                            <span class="tooltiptext">Refer to what kind of job. For Gene and microRNA job, external resources will be integrated in result visualization.</span>
+                            <span class="tooltiptext">Refer to what kind of job. For Gene and microRNA category, links to meta-data and database will be integrated in result visualization.</span>
                         </div>
                     </label>
                     <div class="col-sm-10">

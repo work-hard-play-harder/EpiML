@@ -13,7 +13,7 @@ def send_submit_job_email(email, jobname, processing_url):
 
     msg.body = 'Dear {},\nThank you for using EpiML web server.\n\nYour job (Job Name: {}) has been submitted. ' \
                'The processing time depends on the scale of your data and selected method. You can check job status ' \
-               'and retrieve result via the following link.\n Result Link: {}\n\n' \
+               'and retrieve result via the following link.\n\n Result Link: {}\n\n' \
                'Sincerely,\n' \
                'ShiLab'.format(email, jobname, processing_url)
 
@@ -31,7 +31,7 @@ def send_job_done_email(email, jobname, processing_url):
     msg = Message(subject, sender=sender, recipients=[email])
 
     msg.body = 'Dear {},\nThank you for using EpiML web server.\n\nYour job (Job Name: {}) has been done. ' \
-               'You can retrieve result via the following link\n Result Link: {}\n\n' \
+               'You can retrieve result via the following link.\n\n Result Link: {}\n\n' \
                'Sincerely,\n' \
                'ShiLab'.format(email, jobname, processing_url)
 
@@ -49,7 +49,7 @@ def send_job_error_email(email, jobname, processing_url):
     msg = Message(subject, sender=sender, recipients=[email])
 
     msg.body = 'Dear {},\nThank you for using EpiML web server.\n\nYour job (Job Name: {}) is error. ' \
-               'You can check error via the following link\n Result Link: {}\n\n' \
+               'You can check error via the following link.\n\n Result Link: {}\n\n' \
                'Sincerely,\n' \
                'ShiLab'.format(email, jobname, processing_url)
 

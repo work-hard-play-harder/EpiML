@@ -125,7 +125,7 @@
     <div>
         <section>
             <h2>Summary</h2>
-            <p>Your job is finished, and summaries are listed in following. You can download results
+            <p>The submitted job is finished, and summaries are listed in following table. You can download results
                 through corresponding links, or directly check out your results using following interactive result
                 tables
                 and visualizations.</p>
@@ -197,7 +197,7 @@
                     <td class="tg-odlp">Notebook</td>
                     <td class="tg-iu9n" colspan="3">
                         <a href="{{ url_for('download_r_notebook', jobid=job.id, security_code=job.security_code, method=job.selected_algorithm) }}"
-                           target="_blank">Jupyter notebook</a>
+                           target="_blank">{{ job.selected_algorithm }} Jupyter notebook</a>
                     </td>
                     <td class="tg-o36v">File size</td>
                     <td class="tg-iu9n">{{ jupyter_notebook_size }} KB</td>
@@ -208,9 +208,9 @@
         <section>
             <hr>
             <h2>Result</h2>
-            <p>EpiML can detect main effect and epistasis effect based on your selected machine
-                learning method. These results are shown in interactive tables, by which you can easily explore and
-                compare results.</p>
+            <p>The detected main effect and epistasis effect are shown in interactive tables by which you can easily
+                explore and compare results.
+            </p>
             <h3>Main Effect</h3>
             <p>A main effect is the effect of an independent variable on a dependent variable averaging across the
                 levels of any other independent variables.</p>

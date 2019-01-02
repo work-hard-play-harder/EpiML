@@ -11,12 +11,19 @@
                 <div align="center">
                     <img width="30%" style="min-width: 300px"
                          src="{{ url_for('static', filename='img/home/EpiML_logo.png') }}">
-                    <p style="font-size: xx-large;">A web server for epistasis analysis using penalized regression based machine learning methods</p>
-                    <p>EpiML can detect significant main effect and epistasis effect by using several statistical and machine
-                        learning methods and provide many interactive visualizations to help analyze epistatic
+                    <p style="font-size: xx-large;">A web server for epistasis analysis using penalized regression based
+                        machine learning methods</p>
+
+                    <!--<p>EpiML can detect significant main effect and epistasis effect by using penalized regression based  machine
+                        learning methods, and provide many interactive visualizations to help analyze epistatic
                         relationship. Especially for genotype and microRNA case studies, external resources are
                         integrated for result analysis.
-                    </p>
+                    </p>-->
+                    <p>EpiML can detect main effect and epistatic effect by using penalized regression based machine
+                        learning methods. Interactive figures, graphs, tables, and links to meta-data and
+                        external databases will be provided to help retrieve, explore and interpret the identified
+                        effects. In addition to these results, users can customize analysis code based on released
+                        Jupyter notebooks and pre-configured Docker containers.</p>
                 </div>
             </div>
 
@@ -61,7 +68,7 @@
                 <div class="col-sm-3" align="center">
                     <img width="40%" src="{{ url_for('static',filename='img/home/submit.png') }}">
                     <p style="padding: 10px"><strong>Select a machine learning method.</strong>
-                        Several popular statistical and machine learning methods are built-in.
+                        Several popular penalized regression based machine learning methods are built-in.
                     </p>
                 </div>
                 <div class="col-sm-3" align="center">
@@ -98,10 +105,15 @@
                         intermediate results and final results, with options to zoom in and out for diverse views of the
                         data and results. </p>
                         -->
-                    <p><strong>Visualizations are very useful tools to help analyze epistatic relationship.</strong>
-                        EpiML provides friendly interactive visualizations, like circle network, adjacent matrix and
+                    <p><strong> Interactive tables, figures are provided to help analyze epistatic
+                        relationship.</strong>
+                        <!--EpiML provides friendly interactive visualizations, like circle network, adjacent matrix and
                         force-directed graph. When you move mouse over one node, more detailed information and linked
-                        nodes will be highlighted.
+                        nodes will be highlighted.-->
+
+                        EpiML provides friendly interactive visualizations, like circle network, adjacent matrix and
+                        force-directed graph, in which users can search and highlight their interested effect.
+
                     </p>
                 </div>
             </div>
@@ -114,7 +126,8 @@
                     <img width="40%" src="{{ url_for('static',filename='img/home/integration.png') }}">
                 </div>
                 <div class="col-sm-8">
-                    <p><strong>Multiple external resources are integrated.</strong> UCSC genome browser links are
+                    <p><strong>Links to meta-data and external databases are embedded in visualizations to help
+                        interpret the identified effect.</strong> UCSC genome browser links are
                         provided for genetic data. miRBase and miR2Disease database are embedded for microRNA data.
                         Multiple resources integration will significantly reduce user time for further analysis.
                     </p>
@@ -129,11 +142,17 @@
                     <img width="40%" src="{{ url_for('static',filename='img/home/customize.png') }}">
                 </div>
                 <div class="col-sm-8">
-                    <p>For each job, its corresponding Jupyter notebook is automatically generated. All notebooks can be
+                    <p><!--For each job, its corresponding Jupyter notebook is automatically generated. All notebooks can be
                         downloaded, modified and rerun, allowing users to fully customize their epistasis analysis on
                         local computers. To achieve this, we provide a pre-configured Docker container containing a
                         fully functional Jupyter server with all the Python and R libraries necessary to run the
-                        notebooks.
+                        notebooks.-->
+                        <strong>Jupyter notebook is automatically generated for each job, allowing users to fully
+                            customize their epistasis analysis on local computers.</strong>
+                        All notebooks can be downloaded, modified and rerun based on pre-configured Docker container
+                        which contains a fully functional Jupyter server with all the Python and R libraries necessary
+                        to run the notebooks.
+
                     </p>
                 </div>
             </div>

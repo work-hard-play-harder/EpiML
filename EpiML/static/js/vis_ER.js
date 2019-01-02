@@ -361,7 +361,7 @@ d3.select('#ER_diagram').on('click', function () {
     //alert(d3.select('.tooltip').style("opacity"));
     if (d3.select('.tooltip').style("opacity") == 0.9) {
         tooltip.transition()
-            //.duration(100)
+            .duration(0)
             .style("opacity", 0)
             .style("left", (width + 10) + "px")
             .style("top", (height + 10) + "px");

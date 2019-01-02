@@ -81,16 +81,18 @@ def call_scripts(jobid, method, params=None, x_filename='', y_filename='', proce
     if not os.path.exists(os.path.join(job_dir, 'epis_result.txt')):
         job.status = 'Error'
 
-    job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
+    job.running_time = str(datetime.now(timezone.utc) - job.timestamp.replace(tzinfo=timezone.utc))[:-7]
+    # job.running_time = str(datetime.now(timezone.utc).replace(tzinfo=None) - job.timestamp)[:-7]
     db.session.add(job)
     db.session.commit()
 
     # send result link
-    if job.status == 'Done':
-        send_job_done_email.apply_async(args=[job.user_email, job.name, processing_url],
-                                        countdown=5)
-    elif job.status == 'Error':
-        send_job_error_email.apply_async(args=[job.user_email, job.name, processing_url],
-                                        countdown=5)
+    if job.user_email != '':
+        if job.status == 'Done':
+            send_job_done_email.apply_async(args=[job.user_email, job.name, processing_url],
+                                            countdown=5)
+        elif job.status == 'Error':
+            send_job_error_email.apply_async(args=[job.user_email, job.name, processing_url],
+                                            countdown=5)
 
     print('Background Done!')
