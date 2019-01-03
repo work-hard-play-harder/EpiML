@@ -125,10 +125,8 @@
     <div>
         <section>
             <h2>Summary</h2>
-            <p>The submitted job is finished, and summaries are listed in following table. You can download results
-                through corresponding links, or directly check out your results using following interactive result
-                tables
-                and visualizations.</p>
+            <p>The submitted job is finished. You can download results through corresponding links, or directly check
+                out your results using following interactive result tables and visualizations.</p>
 
             <table class="tg" width="100%">
                 <tr>
@@ -208,7 +206,7 @@
         <section>
             <hr>
             <h2>Result</h2>
-            <p>The detected main effect and epistasis effect are shown in interactive tables by which you can easily
+            <p>The detected significant main effect and epistasis effect are shown in interactive tables by which you can easily
                 explore and compare results.
             </p>
             <h3>Main Effect</h3>
@@ -284,21 +282,22 @@
                 <br>
                 Note: This table can interact with following visualizations. When you click one row
                 in this table, the corresponding nodes will be highlighted in circle network and adjacent matrix
-                visualizations.
+                visualizations. Though this, it is easy to find those indirectly epistatic effect related with your
+                interesting features.
             </div>
         </section>
         <section>
             <hr>
             <h2>Visualization</h2>
             <h3>Circle Network</h3>
-            <p> Epistatic relationship can be represented in circle network, where one node
+            <p> Epistatic relationship can be represented by an circle network, where one node
                 represents a feature in epistasis effect table. All nodes are arranged as a circle. Two nodes
                 that have interaction are linked by an undirected edge. It is easy to know that the number of
                 edges of one node equals to the number of epistasis effects that one feature has on other features.
                 Circle network has two main advantages comparing to table: </p>
             <ol style="font-size: large">
-                <li>It is easy to find out which feature has the most epistatic effects on other features.</li>
-                <li>It is easy to find complex indirect interaction among features.</li>
+                <li>It is easy to find out those features that have multiple epistatic effects with other features.</li>
+                <li>It is easy to find indirect interaction among features.</li>
 
             </ol>
 
@@ -307,10 +306,11 @@
                     <svg name="circle_network" id="circle_network"></svg>
                 </div>
                 <div class="col-sm-3">
-                    Mouse over any node in this network to see its interaction features in <span
-                        style="color: #d62728;">red</span>.
+                    Mouse over any node in this network to see its interaction features in red.
                     <br> <br>
-                    Click one node to find details in above epistasis effect table. Double click on graph back
+                    Click one node to find details in above epistasis effect table.
+                    <br> <br>
+                    Double click on graph back
                     to default.
 
                     <!--//TODO: add datatables mouseover events -->
@@ -344,8 +344,7 @@
                         of features. As circle network gets large and highly connected, it
                         often becomes into giant hairballs of line crossings.
                     </li>
-                    <li> Matrix cell value can represent the strength of epistatic relationship. And additional data can
-                        be encoded in cell.
+                    <li> Matrix cell value can depict the strength of epistatic relationship.
                     </li>
                 </ol>
                 <!-- <p>add adjacent matrix. There is an example: https://bost.ocks.org/mike/miserables/</p>-->
@@ -362,9 +361,8 @@
                     <select id="order">
                         <option value="name">by Name</option>
                         <option value="count">by Count</option>
-                        <option value="rank">by Position</option>
+                        <!--<option value="rank">by Position</option>-->
                     </select>
-                    <p></p>
                     <div>
                         <button id='am_saveAsPNG' style="margin: 10px">Save as PNG</button>
                         <button id='am_saveAsSVG' style="margin: 10px">Save as SVG</button>
@@ -425,10 +423,10 @@
             </div>
             Note:
             <ol>
-                <li>Check the items that you want to explore in figure legend</li>
+                <li>Check the groups that you want to explore in figure legend</li>
                 <li>Zoom in and drag nodes to find out your interested nodes.</li>
                 <li>Mouse over one node to highlight it and its linked nodes by fading out other nodes and links.</li>
-                <li>Click one node to show more information, including links to external resources.</li>
+                <li>Click one node to show more information, including links to meta-data and databases.</li>
             </ol>
         </section>
     </div>

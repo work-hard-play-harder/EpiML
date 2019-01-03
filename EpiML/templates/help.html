@@ -120,18 +120,40 @@
         <main>
             <section class="anchor" id="introduction">
                 <h3>1. Introduction</h3>
-                <p> Epistasis was originally a concept from genetics in which it refers to the phenomenon that the
+                <p>Epistasis describes a phenomenon that different genetic variants affect phenotypes jointly instead of
+                    independently. Epistasis among different variants contributes to a large proportion of the hidden in
+                    heritability of complex traits [1-3], and plays an important role in gene expression and regulation
+                    [4-6]. However, genomic data is typically high-dimensional, where the number of features (genetic
+                    variants) is usually much larger than sample size. The large number of genetic variants that present
+                    in high dimensional genomic data make it extremely challenging for epistasis analysis since the
+                    searching space for epistasis grows exponentially with the number of genetic variants. Penalized
+                    regression based machine learning methods work well with analyzing high-dimensional and large-scale
+                    genomic data in that they can use penalized terms to impose sparsity to simultaneously enable
+                    scalable feature selection and dimension reduction to avoid overfitting. Such methods including
+                    classical Least Absolute Shrinkage and Selection Operator (LASSO) [7], newly proposed spike-and-slab
+                    LASSO generalized linear models (ssLASSO GLMs) [8, 9] and Empirical Bayesian Elastic Net (EBEN) [10,
+                    11] are proved to well scalable the large dimension genomic data in recent studies. Nonetheless,
+                    these methods usually include multiple hyperparameters that need to be carefully trained
+                    for optimization on a particular genomic dataset. The intrinsic complexity of
+                    optimizing these models limits their wide adoption and makes it hard to reproduce results.
+                </p>
+                <!--<p> Epistasis was originally a concept from genetics in which it refers to the phenomenon that the
                     effect of one gene (locus) is dependent on the presence of one or more 'modifier genes'. As the
                     study of genetics developed, and with the advent of molecular biology, epistasis starts to be
                     studied in relation to Quantitative Trait Loci (QTL) and polygenic inheritance. Increasingly
                     sophisticated computational and evolutionary biology models aim to describe the effects of epistasis
                     on a genome-wide scale and the consequences of this for evolution. Thus, identification of epistatic
-                    pairs has large research significance.</p>
-                <p> We proposed an open machine learning web service for epistasis analysis, call EpiML, which can
+                    pairs has large research significance.</p>-->
+                <p>
+                    <!--We proposed an open machine learning web service for epistasis analysis, call EpiML, which can
                     detect main effect and epistasis effect by using several statistical and machine learning methods,
                     and
                     produce many interactive visualizations. Especially for some case studies like SNP and miRNA data,
-                    external resources are embedded for epistasis analysis. EpiML has many advantages: 1) it is easy to
+                    external resources are embedded for epistasis analysis. EpiML -->
+
+                    To support reproducible epistasis analysis on high dimensional genomic datasets, we have developed
+                    an integrated and user-friendly web server for epistasis analysis using classical and emerging
+                    penalized machine learning methods (EpiML), which has many advantages: 1) it is easy to
                     use. The users only need to upload their data, select a method and submit their job. Our server will
                     handle all the processing in background. 2) It will provide many friendly interactive
                     visualizations, like circle network, adjacent matrix and force-directed network. 3) For some case
@@ -177,10 +199,10 @@
 
                 <h4 class="anchor" id="prepare">2.1. Prepare your data</h4>
                 <p>Input files include two parts: feature matrix <strong>X</strong>, and label matrix <strong>Y</strong>.
-                    Both of them are table separated files with row and column names. In generally, the row names and
-                    column names could be any string, but no repeat. However, for gene and microRNA case
-                    studies, the column names of feature matrix are very important, because they will be used for
-                    parsing the gene position for genotype and searching miRBase for microRNA.
+                    Both of them are tab-delimited tables with row and column names. In generally, the row names and
+                    column names could be any string, but no repeat. However, for gene and microRNA case studies, the
+                    column names of feature matrix are very important, because they will be used for parsing the gene
+                    position for genotype and searching miRBase for microRNA.
                 </p>
                 <p>The column names of genotype are combined with SNP id, chromosome id, position, reference allele, and
                     alternative allele, separated by ‘_’. An example for genotype data format is shown in following:
@@ -229,13 +251,13 @@
                     </p>
                 -->
                 <h4 class="anchor" id="upload">2.2. Upload data</h4>
-                <p>Some basic information is required when you upload data. </p>
+                <p>Some basic information is required before you upload data.</p>
                 <ul>
                     <li><strong>Job name</strong> is used to identify jobs when you retrieve results.
                     </li>
                     <li><strong>Email</strong> is used to accept notification and retrieve results. It is optional.
-                    <li><strong>Job Category</strong> refers to what kind of job. It’s used to integrated different
-                        resources in result visualization.
+                    <li><strong>Job Category</strong> refers to what kind of job. For Gene and microRNA category, links
+                        to meta-data and database will be integrated in result visualization.
                     </li>
                     <li><strong>Data Type of Feature Matrix</strong> is used to preprocess feature matrix. For
                         continuous data, it will be
@@ -255,12 +277,12 @@
                 <div align="center">
                     <figure style="margin-bottom: 10px">
                         <img width="90%" src="{{ url_for('static',filename='img/help/upload_data.png') }}">
-                        <figcaption style="width: 90%; text-align: center"><strong>Figure 5. A screen shot of update
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 5. A screenshot of upload
                             form.</strong></figcaption>
                     </figure>
                 </div>
                 <h4 class="anchor" id="submit">2.3. Check job status and retrieve results</h4>
-                <p> After submit your job, it will be added into job queue waiting for execution in background. The
+                <p>Once your job is submitted, it will be added into job queue waiting for execution in background. The
                     browser will jump to a processing page where you can check your job status, as following figure
                     shown. The results will be shown on your screen when it is finished. Because all jobs are running in
                     background, you can bookmark and close this page. You also can reopen this page anytime to check job
@@ -270,7 +292,7 @@
                 <div align="center">
                     <figure style="margin-bottom: 10px">
                         <img width="90%" src="{{ url_for('static',filename='img/help/processing.png') }}">
-                        <figcaption style="width: 90%; text-align: center"><strong>Figure 6. A screen shot of processing
+                        <figcaption style="width: 90%; text-align: center"><strong>Figure 6. A screenshot of processing
                             page.</strong></figcaption>
                     </figure>
                 </div>
@@ -279,7 +301,7 @@
             <section class="anchor" id="result_visualization">
                 <h3>3. Result and visualization</h3>
                 <h4 class="anchor" id="summary">3.1. Summary</h4>
-                <p>Your job is finished, and summaries are listed in following. You can download results
+                <p>Once the submitted job is finished, you can download results
                     through corresponding links, or directly check your results using following interactive tables and
                     visualizations.
                 </p>
@@ -314,11 +336,11 @@
                     will be highlighted.
                 </p>
                 <h4>Circle Network</h4>
-                <p>One node in circle network represents a feature in epistasis effect table. All nodes are
+                <p>One node in circle network represents a feature in detected effects. All nodes are
                     arranged as a circle. Two nodes that have epistatic interaction are linked by an undirected edge.
                     Circle network has two main advantages comparing to table:
-                    1) It is easy to find out which feature has the most epistasis effects on other features;
-                    2) It is easy to find complex indirect relationship among features.</p>
+                    1) It is easy to find out those features that have multiple epistatic effects with other features;
+                    2) It is easy to find indirect relationship among features.</p>
                 <p> You can move mouse over one node to find its interaction nodes in red. When you
                     click one node, the node and its associated nodes will be highlighted in green. </p>
                 <div align="center">
@@ -333,14 +355,15 @@
                 </div>
 
                 <h4>Adjacency Matrix</h4>
-                <p>The row and column names in adjacency matrix both are the features in epistatic effect table. Each
+                <p>The row and column names in adjacency matrix both are the features in detected epistatic effects.
+                    Each
                     cell \((i, j)\) represents an edge from vertex \(i\) to vertex \(j\). Matrix cell depicts
                     coefficient value in
                     epistasis effect table. The darker cells indicate strong interaction. Adjacency matrix has two
                     advantages comparing to circle network:
                     1) Adjacency matrix can give a whole picture of epistatic relationship, especially for large number
-                    of epistatic features; 2) Matrix cell value can represent the strength of epistatic relationship.
-                    And it also can be encoded to show additional data.</p>
+                    of epistatic features; 2) Matrix cell value can depict the strength of epistatic relationship.
+                </p>
 
                 <p> You can move mouse over one node to check its epistatic feature and coefficient value.</p>
                 <div align="center">
@@ -376,10 +399,11 @@
             <hr>
             <section class="anchor" id="customize_code">
                 <h3>4. Customize Code</h3>
-                <p>For each job, its corresponding Jupyter notebook is automatically generated. All notebooks can be
-                    downloaded, modified and rerun, allowing users to fully customize their epistasis analysis on local
-                    computers. To achieve this, we provide a pre-configured Docker container containing a fully
-                    functional Jupyter server with all the Python and R libraries necessary to run the notebooks.</p>
+                <p>Users can customize analysis code based on released Jupyter notebooks and pre-configured Docker
+                    containers. For each job, its corresponding Jupyter notebook is automatically generated. All
+                    notebooks can be downloaded, modified and rerun based on pre-configured Docker container which
+                    contains a fully functional Jupyter server with all the Python and R libraries necessary to run the
+                    notebooks.</p>
 
                 <h4 class="anchor" id="install">4.1. Install Docker</h4>
                 <p>Docker is a Container-as-a-Service (CaaS) platform that enables a secure software supply chain and
@@ -389,17 +413,18 @@
                     on your OS.</p>
 
                 <h4 class="anchor" id="generate">4.2. Generate job notebook</h4>
-                <p>After your job is done, a Jupyter notebook is automatically generated, and you can download from
-                    result page.If your data set is too large, you can submit the demo data set following <a
+                <p>Submit your job on EpiML web server. Once the job is done, you can download it from
+                    job summary table. If your data is too large, you can submit the demo data following <a
                             href="#getting_started">Get Started</a> section. </p>
 
                 <h4 class="anchor" id="launch">4.3. Launch a Docker Container</h4>
                 <ol>
-                    <li> Open a new terminal window.</li>
-                    <li>Change directory (cd) that includes your job notebook. Strongly recommend to create a new
+                    <li style="display: list-item"> Open a new terminal window.</li>
+                    <li style="display: list-item">Change work directory into that includes your job notebook. Strongly
+                        recommend to create a new
                         directory, and copy notebook into the new directory.
                     </li>
-                    <li>Launch the Docker container by entering the following command
+                    <li style="display: list-item">Launch the Docker container by entering the following command
                         <pre>docker run -it --rm -p 8888:8888 -v "$PWD":/home/jovyan/work workhardplayharder/epiml:latest</pre>
                         This command pulls the <code>workhardplayharder/epiml</code> image tagged <code>latest</code>
                         from Docker Hub if it is not already present on the local host. It then starts a container
@@ -418,72 +443,96 @@
             <hr>
             <section class="anchor" id="analysis_methods">
                 <h3>5. Analysis Methods</h3>
-                <p>We build-in several statistical and machine learning methods for epistatic analysis. In general, you only need to
+                <p>We build-in several penalized regression based machine learning methods for epistatic analysis. In
+                    general, you only need to
                     upload your data, select one machine learning method, and then submit your job. You don't need to
-                    care about the algorithm detail. Our server will handle all the procedure in backend. For you better
-                    understanding the workflow and difference among build-in methods, the build-in methods are briefly introduced.
+                    care about the algorithm detail. Our server will handle all the procedure in backend. For your
+                    better understanding the workflow and difference among build-in methods, the build-in methods are
+                    briefly introduced.
                 </p>
-                <p>The statistical model for identifying epistasis is shown as below:</p>
-                <p> $$y= \mu + \Sigma X_p \beta_m + \Sigma X_i X_j \beta_e + \epsilon $$</p>
-                <p>where \(y\) is the label, \(\mu\) is mean, \(X_p\) denotes the \(p^{th}\) feature in the
-                    matrix \(X\) which dimension is \(N \times P\) and \(X_i X_j\) denotes the \(i^{th}\) and \(j^{th}\)
-                    features in the matrix
-                    \(X\). \(m\) denotes the marginal effects of \(X_p\), \(e\) denotes the epistatic effects of the
-                    combination of \(X_i X_j\),
+                <p>The model for identifying main and epistasis effect is shown as below:</p>
+                <p> $$y= \mu + X \beta_{main} + (X_i \odot X_j) \beta_{epis} + \epsilon$$</p>
+                <p> $$i \neq j; i,j \in [1, P] $$</p>
+                <p>where \(y\) is the label, \(\mu\) is mean, \(X\) denotes the feature
+                    matrix with dimension \(N \times P\), \(X_i, X_j\) denotes the \(i^{th}\) and \(j^{th}\) features in
+                    the matrix
+                    \(X\). \(\odot\) denotes the symbol for elementwise multiplication of vectors. \(\beta_{main}\)
+                    denotes the
+                    main effects, \(\beta_{epis}\) denotes the epistatic effects of the \(i^{th}\) and \(j^{th}\)
+                    features,
                     and \(\epsilon\) is the residual error which follows the normal distribution \(N(0,\sigma^2)\).
                 </p>
 
                 <!--<h4 class="anchor" id="preprocessing">5.1. Preprocessing</h4>-->
 
                 <h4 class="anchor" id="pipeline">5.1. Workflow</h4>
-                <p>We develop a workflow composed of multiple steps for feature selection based methods. First, we
-                    identify the main effects using a model with only main effect on the phenotype. Second, a corrected
-                    phenotype is calculated by removing the significant main effect from the original phenotype. Third,
-                    we select features with epistasis effect on the corrected phenotype. Finally, we run the full model
-                    on the previously selected main and epistatic features.
+                <p>Penalized regression based machine learning methods work well for high-dimensional data. However,
+                    they are designed for solving linear regression problem. We develop a workflow composed of multiple
+                    steps for main and epistasis detection, as shown in Figure 11.
+                    <!--First, we identify the main effects using a model with only
+                    main effect on the phenotype. Second, a corrected phenotype is calculated by removing the
+                    significant main effect from the original phenotype. Third, we select features with epistatic effect
+                    on the corrected phenotype. Finally, we run the full model on the previously selected main and
+                    epistatic features.-->
                 </p>
-                <p>We implemented three feature selection based methods in our web server to build the above workflow
-                    including Empirical Bayesian Elastic Net (EBEN) [1], Least Absolute Shrinkage and Selection Operator
-                    (LASSO) [2] and Spike-and-Slab LASSO generalized linear models (ssLASSO GLMs) [3, 4]. All these
-                    methods can be applied in Step 1, 3 and 4 in Figure 11. </p>
+                <ol>
+                    <li style="display: list-item"><strong>Identify candidate main effects from feature matrix.</strong>
+                        Run penalized regression based machine
+                        learning methods on feature matrix, by which some significant effects can be selected as
+                        candidate main effects.
+                    </li>
+                    <li style="display: list-item"><strong>Calculate the phenotype of epistatic effect.</strong> The
+                        phenotype of epistatic effect can be
+                        calculated by removing those detected main effects from the original phenotype.
+                    </li>
+                    <li style="display: list-item"><strong>Identify candidate epistatic effects from epistasis
+                        matrix.</strong> Generate epistasis matrix by
+                        element-wise multiplication for pairwise features. Run penalized regression based machine
+                        learning methods on epistasis matrix, by which some significant effects can be selected as
+                        candidate epistatic effects.
+                    </li>
+                    <li style="display: list-item"><strong>Identify significant main and epistatic effects.</strong>
+                        Rerun penalized regression based machine
+                        learning methods on the previously selected candidate main and epistatic effects to identify the
+                        final significant main and epistatic effects.
+                    </li>
+                </ol>
+
+
                 <p></p>
                 <div align="center">
                     <figure style="margin-bottom: 10px">
                         <img width="30%" src="{{ url_for('static',filename='img/help/workflow1.jpg') }}">
                         <figcaption width="90%" style="text-align: justify"><strong>Figure 11. The overall workflow for
-                            epistasis detection.</strong> <strong>Step 1:</strong> Run the simplified model
-                            including solely main effect, which means only the significant features from this step are
-                            included in the main effect part of the model at the final step. <strong>Step 2:</strong>
-                            Obtain the corrected phenotype \(y'\) through removing main effect of significant features
-                            from the original phenotype \(y\), <strong>Step 3:</strong> The newly corrected \(y'\) is
-                            used to infer epistasis. Only the features with significant epistatic effect can be included
-                            in the model in the next step. <strong>Step 4:</strong> Run the full model that includes all
-                            the features with significant features with main effects from the first step and significant
-                            features with epistatic effect identified in third step. Here, \(y\) denotes the trait
-                            phenotype, \(X\) represents the expression, \(\beta_m\) and \(\beta_e\) represents for the
-                            main effect and epistatic effect separately, \(\mu\) represents for the phenotype mean and
-                            \(\epsilon\) represents for the standard error. Many machine learning methods like LASSO and
-                            EBEN can be used as the parameter estimation method in Steps 1, 3 and 4.
+                            epistasis detection.</strong> <strong>Step 1:</strong> Identify candidate main effects from
+                            feature matrix <strong>Step 2:</strong>
+                            Calculate the phenotype of epistatic effect. <strong>Step 3:</strong> Identify candidate
+                            epistatic effects from epistasis matrix. <strong>Step 4:</strong> Run the full model to
+                            identify significant main and epistatic effects.
                         </figcaption>
                     </figure>
                 </div>
 
                 <h4 class="anchor" id="method">5.2. Methods</h4>
-                <p>Lasso is based on sparse shrinkage solution where only a limited number of parameters with non-zero
+                <p>Three popular penalized regression based machine learning methods are used to in our web server to
+                    build the above workflow,
+                    including Least Absolute Shrinkage and Selection Operator (LASSO) [7], Spike-and-Slab LASSO
+                    generalized linear models (ssLASSO GLMs) [8, 9], and Empirical Bayesian Elastic Net (EBEN) [10, 11].
+                </p>
+
+                <!--<p>Lasso is based on sparse shrinkage solution where only a limited number of parameters with non-zero
                     coefficients are identified to be associated with the phenotype. EBEN and ssLasso GLMs are Bayesian
                     based methods that impose priors on the parameters.
-                </p>
+                </p>-->
 
                 <h4>Least Absolute Shrinkage and Selection Operator (LASSO)</h4>
                 <p>Lasso is one of the most commonly used method which introduces a \(L_1\) regularization term that
                     adds a
                     penalty term equivalent to absolute value of coefficients on all parameters. Lasso will randomly
                     select one feature if a set of features are closely correlated. There is one hyperparameter
-                    \(\lambda\) to
-                    adjust the regularization degree which means it would induce more coefficients are shinked to zero
-                    if increasing \(\lambda\). Therefore, cross validation strategy is used to choose the \(\lambda\) to
-                    optimize the Lasso
-                    model [2].
+                    \(\lambda\) to adjust the regularization degree which means it would induce more coefficients are
+                    shinked to zero if increasing \(\lambda\). Therefore, cross validation strategy is used to choose
+                    the \(\lambda\) to optimize the Lasso model [7].
                 </p>
 
                 <h4>Spike-and-Slab LASSO (ssLASSO)</h4>
@@ -498,19 +547,17 @@
                     modelling related coefficients and inducing no or weak shrinkage. The grid-search based method can
                     be applied to select the optimal combination of two hyperparameters. In an alternative way, it’s
                     reported that \(s_1\) has little influence on results comparing to \(s_0\), then users can use
-                    generalized linear model (GLM) to estimate the data scale to be as \(s_0\) [3, 4].
+                    generalized linear model (GLM) to estimate the data scale to be as \(s_0\) [8, 9].
                 </p>
 
                 <h4>Empirical Bayesian Elastic Net (EBEN)</h4>
                 <p>EBEN is a Bayesian based method which use a fast coordinate ascent method and doesn’t reply on MCMC
                     procedure. Hence, EBEN can scalable the over-saturated genetic model to estimate the parameters in
                     the model efficiently. In addition, EBEN can conduct the hypothesis test such as \(t\)-test using
-                    the
-                    covariance matrix and the coefficients which is different from elastic net method [5]. There are two
-                    hyperparameters, such as \(\lambda_1\) and \(\lambda_2\), are the components of a generalized Gamma
-                    distribution which
-                    imposes on the unknown variance of each coefficients. Cross-validation strategy is used to tune
-                    these two hyperparameters to optimize the EBEN model [1].
+                    the covariance matrix and the coefficients which is different from elastic net method [5]. There are
+                    two hyperparameters, such as \(\lambda_1\) and \(\lambda_2\), are the components of a generalized
+                    Gamma distribution which imposes on the unknown variance of each coefficients. Cross-validation
+                    strategy is used to tune these two hyperparameters to optimize the EBEN model [10, 11].
                 </p>
             </section>
             <hr>
@@ -579,29 +626,49 @@
 
                 <ol>
                     <li style="display: list-item">
-                        Huang A., Xu S., Cai X. Empirical Bayesian elastic net for multiple quantitative trait locus
-                        mapping. Heredity. 2015; 114(1):107.
+                        O Carlborg and C. S. Haley. Epistasis: Too often neglected in complex trait studies? Nature
+                        Reviews Genetics, 5:618625, 2004.
                     </li>
-
+                    <li style="display: list-item">
+                        Greg Gibson. Hints of hidden heritability in GWAS. Nat Genet, 42(7):558–560, July 2010.
+                    </li>
+                    <li style="display: list-item">
+                        Zuk O, Hechter E, Sunyaev SR, and Lander ES. The mystery of missing heritability: Genetic
+                        interactions create phantom heritability. Proc Natl Acad Sci U S A., 109(4):1193–8, 2008.
+                    </li>
+                    <li style="display: list-item">
+                        G. Gibson. Epistasis and pleiotropy as natural properties of transcriptional regulation. Theor.
+                        Popul. Biol., 49:5889, 1996.
+                    </li>
+                    <li style="display: list-item">
+                        G.W. et al. Carter. Prediction of phenotype and gene expression for combinations of mutations.
+                        Mol. Syst. Biol., 3:96, 2007.
+                    </li>
+                    <li style="display: list-item">
+                        J. et al. Gertz. Epistasis in a quantitative trait captured by a molecular model of
+                        transcription factor interactions. Theor. Popul. Biol., 77:15, 2010.
+                    </li>
                     <li style="display: list-item">
                         Tibshirani R. Regression shrinkage and selection via the lasso. Journal of the Royal Statistical
                         Society. Series B (Methodological). 1996; 1:267-88.
                     </li>
                     <li style="display: list-item">
                         Tang Z., Shen Y., Zhang X., Yi N. The spike-and-slab lasso generalized linear models for
-                        prediction and associated genes detection. Genetics. 2017; 205(1):77-88.
+                        prediction and associated genes detection. Genetics. 2017; 205(1): 77-88.
                     </li>
                     <li style="display: list-item">
                         Tang Z., Shen Y., Li Y., Zhang X., Wen J., Qian C.A., Zhuang W., Shi X., Yi N. Group
                         spike-and-slab lasso generalized linear models for disease prediction and associated genes
-                        detection by incorporating pathway information. Bioinformatics. 2017; 34(6):901-10.
+                        detection by incorporating pathway information. Bioinformatics. 2017; 34(6): 901-10.
+                    </li>
+                    <li style="display: list-item">
+                        Huang A., Xu S., Cai X. Empirical Bayesian elastic net for multiple quantitative trait locus
+                        mapping. Heredity. 2015; 114(1): 107.
                     </li>
                     <li style="display: list-item">
                         Zou H., Hastie T. Regularization and variable selection via the elastic net. Journal of the
-                        Royal Statistical Society: Series B (Statistical Methodology). 2005; 67(2):301-20.
-
+                        Royal Statistical Society: Series B (Statistical Methodology). 2005; 67(2): 301-20.
                     </li>
-
 
                 </ol>
 
