@@ -443,7 +443,7 @@
             <hr>
             <section class="anchor" id="analysis_methods">
                 <h3>5. Analysis Methods</h3>
-                <p>We build-in several penalized regression based machine learning methods for epistatic analysis. In
+                <p>We build-in three penalized regression based machine learning methods for epistatic analysis. In
                     general, you only need to
                     upload your data, select one machine learning method, and then submit your job. You don't need to
                     care about the algorithm detail. Our server will handle all the procedure in backend. For your
@@ -452,9 +452,9 @@
                 </p>
                 <p>The model for identifying main and epistasis effect is shown as below:</p>
                 <p> $$y= \mu + X \beta_{main} + (X_i \odot X_j) \beta_{epis} + \epsilon$$</p>
-                <p> $$i \neq j; i,j \in [1, P] $$</p>
+                <p> $$i \neq j; i,j \in [1, p] $$</p>
                 <p>where \(y\) is the label, \(\mu\) is mean, \(X\) denotes the feature
-                    matrix with dimension \(N \times P\), \(X_i, X_j\) denotes the \(i^{th}\) and \(j^{th}\) features in
+                    matrix with dimension \((n, p)\), \(X_i, X_j\) denotes the \(i^{th}\) and \(j^{th}\) features in
                     the matrix
                     \(X\). \(\odot\) denotes the symbol for elementwise multiplication of vectors. \(\beta_{main}\)
                     denotes the
@@ -485,9 +485,11 @@
                         phenotype of epistatic effect can be
                         calculated by removing those detected main effects from the original phenotype.
                     </li>
+                    <li style="display: list-item"><strong>Generate epistasis matrix.</strong> Generate epistasis matrix
+                        by pairwise features with element-wise multiplication.
+                    </li>
                     <li style="display: list-item"><strong>Identify candidate epistatic effects from epistasis
-                        matrix.</strong> Generate epistasis matrix by
-                        element-wise multiplication for pairwise features. Run penalized regression based machine
+                        matrix.</strong> Run penalized regression based machine
                         learning methods on epistasis matrix, by which some significant effects can be selected as
                         candidate epistatic effects.
                     </li>
@@ -502,12 +504,13 @@
                 <p></p>
                 <div align="center">
                     <figure style="margin-bottom: 10px">
-                        <img width="30%" src="{{ url_for('static',filename='img/help/workflow1.jpg') }}">
+                        <img width="45%" src="{{ url_for('static',filename='img/help/workflow.png') }}">
                         <figcaption width="90%" style="text-align: justify"><strong>Figure 11. The overall workflow for
                             epistasis detection.</strong> <strong>Step 1:</strong> Identify candidate main effects from
                             feature matrix <strong>Step 2:</strong>
-                            Calculate the phenotype of epistatic effect. <strong>Step 3:</strong> Identify candidate
-                            epistatic effects from epistasis matrix. <strong>Step 4:</strong> Run the full model to
+                            Calculate the phenotype of epistatic effect. <strong>Step 3:</strong> Generate epistasis
+                            matrix. <strong>Step 4:</strong> Identify candidate
+                            epistatic effects from epistasis matrix. <strong>Step 5:</strong> Run the full model to
                             identify significant main and epistatic effects.
                         </figcaption>
                     </figure>
@@ -526,22 +529,22 @@
                 </p>-->
 
                 <h4>Least Absolute Shrinkage and Selection Operator (LASSO)</h4>
-                <p>Lasso is one of the most commonly used method which introduces a \(L_1\) regularization term that
+                <p>LASSO is one of the most commonly used method which introduces a \(L_1\) regularization term that
                     adds a
-                    penalty term equivalent to absolute value of coefficients on all parameters. Lasso will randomly
+                    penalty term equivalent to absolute value of coefficients on all parameters. LASSO will randomly
                     select one feature if a set of features are closely correlated. There is one hyperparameter
                     \(\lambda\) to adjust the regularization degree which means it would induce more coefficients are
-                    shinked to zero if increasing \(\lambda\). Therefore, cross validation strategy is used to choose
+                    shinked to zero if increasing \(\lambda\). Cross validation strategy is used to choose
                     the \(\lambda\) to optimize the Lasso model [7].
                 </p>
 
                 <h4>Spike-and-Slab LASSO (ssLASSO)</h4>
-                <p>ssLasso GLMs imposes different shrinkage priors, spike-and-slab mixture double-exponential prior
+                <p>ssLASSO GLMs imposes different shrinkage priors, spike-and-slab mixture double-exponential prior
                     distribution, on related and unrelated parameters which can induce optimal model solutions. For the
-                    ssLasso-GLM models, \(y\) in the above statistical model is represented by a link function that
+                    ssLASSO GLMs, \(y\) is represented by a link function that
                     \(\eta = E(y_i|X_i)\). ssLasso GLMs combines the EM algorithm and cyclic coordinate descent
                     algorithm to fastly fit high-dimension data. There are two hyperparameters (\(s_0\) and \(s_1\)) in
-                    ssLasso algorithm. The \(s_0\) is a
+                    ssLASSO algorithm. The \(s_0\) is a
                     small value and serves as a “spike” scale for modelling irrelevant coefficients and inducing strong
                     shrinkage, while \(s_1\) is chosen to be relatively large value and serves to be “slab” scale for
                     modelling related coefficients and inducing no or weak shrinkage. The grid-search based method can
@@ -565,9 +568,9 @@
                 <h3>6. FAQ</h3>
                 <ol>
                     <li style="display: list-item">How long does it take to get results?</li>
-                    <p>The processing time depends on the scale of your data and selected method. In generally, the
-                        LASSO and ssLASSO are very fast. EBEN needs long time, especially number of folds is large. For
-                        hundreds of samples with 2 times columns, LASSO and ssLASSO can be finished in several minutes.
+                    <p>The processing time depends on the scale of upload data and selected method. In generally, the
+                        LASSO and ssLASSO are very fast. EBEN takes long time, especially number of folds is large. For
+                        hundreds of samples and features, LASSO and ssLASSO can be finished in several minutes.
                         EBEN may need an hour. </p>
                     <li style="display: list-item">Why can't I upload files?</li>
                     <p>First, please check your file extension. Only files with .txt or .csv extensions are accepted.
@@ -613,8 +616,6 @@
                             <td class="tg-s6z2">NA</td>
                         </tr>
                     </table>
-
-
                 </ol>
 
                 <p>For any more question about this service please email to <a href="mailto: x.shi@uncc.edu"> Xinghua
