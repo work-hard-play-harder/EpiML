@@ -2,6 +2,7 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'R\xb7\xff\xfc\x1a\x94\xd3\xfa\xce\x1e\x1az+J!\xdfW\xf7k\x9br\xd9?\xc5'
 
@@ -11,6 +12,7 @@ class Config(object):
     # for upload file
     UPLOAD_FOLDER = os.path.join(basedir, 'EpiML', 'upload_data')
     ALLOWED_EXTENSIONS = set(['txt', 'csv'])
+    MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5Mb limit
 
     # for datasets
     SAMPLE_DATA_DIR = os.path.join(basedir, 'EpiML', 'datasets', 'sample_data')
